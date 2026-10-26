@@ -20,7 +20,6 @@ Después de editar el contenido:
 ```bash
 python -m pip install -r tools/requirements.txt
 python tools/current_edition.py
-python tools/visual_explanations.py
 python tools/postprocess.py
 python tools/clean_resources.py
 python tools/validate.py
@@ -34,8 +33,6 @@ python tools/check_examples.py
 ```
 
 `reports/cobertura.json` enumera las 29 páginas y su bibliografía. `reports/revision-integral.json`, `reports/figuras-vigentes.json` y `reports/codigo-vigente.json` identifican el contenido actualizado. `reports/validacion.json` y `reports/pruebas-ejemplos.json` contienen los resultados de las comprobaciones. Las modificaciones se explican en los commits.
-
-Las fichas de texto se conservan y se acompañan con diagramas y una sección «Cómo leer esta imagen». El generador es `tools/visual_explanations.py`; su cobertura y la conservación de las fichas se registran en `reports/explicaciones-visuales.json`.
 
 ## Licencias y cita
 

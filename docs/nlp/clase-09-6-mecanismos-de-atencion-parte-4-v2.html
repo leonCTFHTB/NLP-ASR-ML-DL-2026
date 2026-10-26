@@ -12,18 +12,7 @@
 </section><section class="cell" data-cell="6" id="celda-7"><h1 id="seccion-1"><span class="tone-accent"><strong>6. Mecanismos de Atención y Arquitectura Transformer</strong></span></h1>
 </section><section class="cell" data-cell="7" id="celda-8"><h2 id="seccion-2"><span class="tone-emphasis"><strong>6.8. Decomposable Attention e Intra-Attention: Los Eslabones Perdidos hacia el Transformer</strong></span></h2><p>Antes del Transformer existieron distintas formas de atención y de memoria. Parikh et al. (2016) propusieron un modelo de inferencia textual basado en atender, comparar y agregar, con una variante de intra-atención. Cheng et al. (2016) estudiaron atención sobre memoria durante la recurrencia.</p>
 <p>Son antecedentes útiles para comparar diseños. No es correcto afirmar que toda atención anterior necesitaba RNN o que antes de esos trabajos no existía ninguna interacción dentro de una secuencia.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1244/">Parikh et al. (2016)</a></p></section><section class="cell" data-cell="8" id="celda-9"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-9-rnn-memory"><h4 id="imagen-celda-9-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="9" id="celda-10"><blockquote>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1244/">Parikh et al. (2016)</a></p></section><section class="cell" data-cell="8" id="celda-9"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="9" id="celda-10"><blockquote>
 <p>Para romper estas barreras, surgieron dos propuestas complementarias: <span class="tone-accent"><strong>Decomposable Attention</strong></span> (eliminando la recurrencia para acelerar el entrenamiento) e <span class="tone-accent"><strong>Intra-Attention</strong></span> (introduciendo la auto-atención interna en secuencias).</p>
 </blockquote>
 <pre><code>                      EVOLUCIÓN HACIA LA ATENCIÓN MODERNA
@@ -79,18 +68,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 </ul>
 </li>
 </ol>
-</section><section class="cell" data-cell="12" id="celda-13"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-13-decomposable"><h4 id="imagen-celda-13-decomposable">Diagrama visual · Alinear, comparar y reunir evidencia</h4><figure><img alt="Un grafo bipartito enlaza tokens de dos secuencias y conduce a comparaciones y un clasificador." decoding="async" height="760" loading="lazy" src="../assets/visuals/decomposable.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/decomposable.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Attend calcula compatibilidades entre tokens de A y B. Las flechas de distinto grosor representan pesos ilustrativos de alineación suave, normalizados en la dirección correspondiente.</p>
-</li>
-<li>
-<p>Compare recibe cada token junto con su alineación de la otra secuencia. Una red aprendida produce características de comparación; no se asignan detectores lógicos fijos a sus neuronas.</p>
-</li>
-<li>
-<p>Aggregate suma las representaciones de cada lado y las entrega al clasificador. La ilustración muestra el flujo de Parikh et al.; no afirma que un peso alto pruebe implicación o contradicción.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="13" id="celda-14"><h3 id="seccion-5"><span class="tone-accent"><strong>6.9.2. Arquitectura del Modelo: Tres Pasos hacia la Inferencia</strong></span></h3>
+</section><section class="cell" data-cell="12" id="celda-13"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="13" id="celda-14"><h3 id="seccion-5"><span class="tone-accent"><strong>6.9.2. Arquitectura del Modelo: Tres Pasos hacia la Inferencia</strong></span></h3>
 <p>En lugar de procesar las oraciones como un todo indivisible, <span class="tone-emphasis"><strong>el modelo descompone el problema en tres pasos que se entrenan de manera conjunta: Attending (Atender), Comparing (Comparar) y Aggregating (Agregar)</strong>.</span></p>
 <pre><code>       [ Premisa A ]                          [ Hipótesis B ]
              │                                       │
@@ -121,18 +99,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 <math aria-label="\bar{b}_j = F(b_j) = \text{MLP}(b_j) \in \mathbb{R}^{d'}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover><mrow><mi>b</mi></mrow><mo stretchy="true">¯</mo></mover><mi>j</mi></msub><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mtext>MLP</mtext><mo stretchy="false">(</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>∈</mo><msup><mi>ℝ</mi><mrow><msup><mi>d</mi><mi>′</mi></msup></mrow></msup></mrow></math></p>
 <p>La <span class="tone-emphasis"><strong>matriz de afinidad o energía no normalizada <math aria-label="e_{ij}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></math> entre cada palabra <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> de la premisa y cada palabra <math aria-label="j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>j</mi></mrow></math> de la hipótesis se calcula mediante el producto punto de sus proyecciones</strong>:</span></p>
 <p><math aria-label="e_{ij} = F(a_i)^\top F(b_j)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><msub><mi>a</mi><mi>i</mi></msub><msup><mo stretchy="false">)</mo><mo>⊤</mo></msup><mi>F</mi><mo stretchy="false">(</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></math></p>
-</section><section class="cell" data-cell="17" id="celda-18"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-18-decomposable"><h4 id="imagen-celda-18-decomposable">Diagrama visual · Alinear, comparar y reunir evidencia</h4><figure><img alt="Un grafo bipartito enlaza tokens de dos secuencias y conduce a comparaciones y un clasificador." decoding="async" height="760" loading="lazy" src="../assets/visuals/decomposable.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/decomposable.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Attend calcula compatibilidades entre tokens de A y B. Las flechas de distinto grosor representan pesos ilustrativos de alineación suave, normalizados en la dirección correspondiente.</p>
-</li>
-<li>
-<p>Compare recibe cada token junto con su alineación de la otra secuencia. Una red aprendida produce características de comparación; no se asignan detectores lógicos fijos a sus neuronas.</p>
-</li>
-<li>
-<p>Aggregate suma las representaciones de cada lado y las entrega al clasificador. La ilustración muestra el flujo de Parikh et al.; no afirma que un peso alto pruebe implicación o contradicción.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="18" id="celda-19"><h5 id="seccion-7"><span class="tone-accent"><strong>1. La Matriz de Afinidad / Energía (<math aria-label="e_{ij}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></math>)</strong></span></h5>
+</section><section class="cell" data-cell="17" id="celda-18"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="18" id="celda-19"><h5 id="seccion-7"><span class="tone-accent"><strong>1. La Matriz de Afinidad / Energía (<math aria-label="e_{ij}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></math>)</strong></span></h5>
 <p>Antes de alinear, <span class="tone-emphasis"> <strong>el modelo calcula qué tanta relación semántica tiene cada palabra <math aria-label="a_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow></math> de la premisa con cada palabra <math aria-label="b_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>b</mi><mi>j</mi></msub></mrow></math> de la hipótesis</strong>:</span></p>
 <p><math aria-label="e_{ij} = f(a_i)^\top f(b_j)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>a</mi><mi>i</mi></msub><msup><mo stretchy="false">)</mo><mo>⊤</mo></msup><mi>f</mi><mo stretchy="false">(</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></math></p>
 <ul>
@@ -144,18 +111,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 </li>
 </ul>
 </section><section class="cell" data-cell="19" id="celda-20"><figure><img alt="Ilustración de la sección" height="1168" loading="lazy" src="../assets/15dd273ca489b45f2ff6c677.webp" width="2217"/></figure></section><section class="cell" data-cell="20" id="celda-21"><h5 id="seccion-8"><span class="tone-accent"><strong>2. Desglose de las Dos Direcciones</strong></span></h5>
-</section><section class="cell" data-cell="21" id="celda-22"><figure><img alt="Softmax: un ejemplo numérico verificable" height="398" loading="lazy" src="../assets/figures/softmax-numeric.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-22-softmax-numeric"><h4 id="imagen-celda-22-softmax-numeric">Diagrama visual · De scores a probabilidades normalizadas</h4><figure><img alt="Tres barras de scores se transforman en tres probabilidades positivas que suman uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/softmax-numeric.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/softmax-numeric.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se usan los scores [3.2,−1.5,4.0]. Restar su máximo produce [−0.8,−5.5,0] y conserva exactamente el softmax.</p>
-</li>
-<li>
-<p>Las exponenciales son aproximadamente [0.4493,0.00409,1]. Se divide cada una por su suma, aproximadamente 1.4534.</p>
-</li>
-<li>
-<p>El resultado es [0.3092,0.0028,0.6880], salvo redondeo. Son probabilidades sobre los candidatos del eje elegido; los scores iniciales no eran probabilidades.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="22" id="celda-23"><p>A partir de esta <span class="tone-emphasis"><strong>matriz de correlación completa de tamaño <math aria-label="m \times n" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi><mo>×</mo><mi>n</mi></mrow></math>, se calculan dos alineaciones suaves bidireccionales mediante la función Softmax</strong>:</span></p>
+</section><section class="cell" data-cell="21" id="celda-22"><figure><img alt="Softmax: un ejemplo numérico verificable" height="398" loading="lazy" src="../assets/figures/softmax-numeric.svg" width="1440"/></figure></section><section class="cell" data-cell="22" id="celda-23"><p>A partir de esta <span class="tone-emphasis"><strong>matriz de correlación completa de tamaño <math aria-label="m \times n" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi><mo>×</mo><mi>n</mi></mrow></math>, se calculan dos alineaciones suaves bidireccionales mediante la función Softmax</strong>:</span></p>
 <p><span class="tone-context"><strong>1. Premisa hacia Hipótesis (<math aria-label="\beta_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mi>i</mi></msub></mrow></math>): El "doble" de <math aria-label="a_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow></math> en la Hipótesis</strong></span></p>
 <ul>
 <li>
@@ -190,18 +146,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 </ol>
 <p><span class="tone-emphasis"> <strong>Lo mismo ocurre en la dirección inversa para <math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math>:</strong></span></p>
 <p><math aria-label="\alpha_j = \sum_{i=1}^m \underbrace{\text{softmax}_i(e_{ij})}_{\text{Número (Escalar)}} \cdot \underbrace{\mathbf{a}_i}_{\text{Vector } \in \mathbb{R}^d} \quad \Longrightarrow \quad \alpha_j \in \mathbb{R}^d" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><munder><munder><mrow><msub><mtext>softmax</mtext><mi>i</mi></msub><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false">)</mo></mrow><mo>⏟</mo></munder><mrow><mtext>Número (Escalar)</mtext></mrow></munder><mo>·</mo><munder><munder><mrow><msub><mi>𝐚</mi><mi>i</mi></msub></mrow><mo>⏟</mo></munder><mrow><mtext>Vector </mtext><mo>∈</mo><msup><mi>ℝ</mi><mi>d</mi></msup></mrow></munder><mspace width="1em"></mspace><mi>⟹</mi><mspace width="1em"></mspace><msub><mi>α</mi><mi>j</mi></msub><mo>∈</mo><msup><mi>ℝ</mi><mi>d</mi></msup></mrow></math></p>
-</section><section class="cell" data-cell="23" id="celda-24"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-24-decomposable"><h4 id="imagen-celda-24-decomposable">Diagrama visual · Alinear, comparar y reunir evidencia</h4><figure><img alt="Un grafo bipartito enlaza tokens de dos secuencias y conduce a comparaciones y un clasificador." decoding="async" height="760" loading="lazy" src="../assets/visuals/decomposable.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/decomposable.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Attend calcula compatibilidades entre tokens de A y B. Las flechas de distinto grosor representan pesos ilustrativos de alineación suave, normalizados en la dirección correspondiente.</p>
-</li>
-<li>
-<p>Compare recibe cada token junto con su alineación de la otra secuencia. Una red aprendida produce características de comparación; no se asignan detectores lógicos fijos a sus neuronas.</p>
-</li>
-<li>
-<p>Aggregate suma las representaciones de cada lado y las entrega al clasificador. La ilustración muestra el flujo de Parikh et al.; no afirma que un peso alto pruebe implicación o contradicción.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="24" id="celda-25"><p><span class="tone-context"><strong>2. Hipótesis hacia Premisa (<math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math>): El "doble" de <math aria-label="b_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>b</mi><mi>j</mi></msub></mrow></math> en la Premisa</strong>&lt;&gt;/font</span></p>
+</section><section class="cell" data-cell="23" id="celda-24"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="24" id="celda-25"><p><span class="tone-context"><strong>2. Hipótesis hacia Premisa (<math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math>): El "doble" de <math aria-label="b_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>b</mi><mi>j</mi></msub></mrow></math> en la Premisa</strong>&lt;&gt;/font</span></p>
 <ul>
 <li>
 <p><span class="tone-context"><strong>Objetivo:</strong></span> Para la palabra <math aria-label="b_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>b</mi><mi>j</mi></msub></mrow></math> de la hipótesis, <span class="tone-emphasis"><strong>armar un vector <math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math> con el contexto equivalente dentro de la premisa.</strong></span></p>
@@ -216,43 +161,10 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
     \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><msub><mi>α</mi><mi>j</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mtext>softmax</mtext><mi>i</mi></msub><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false">)</mo><msub><mi>a</mi><mi>i</mi></msub></mrow></mrow></math></p>
 </li>
 </ul>
-</section><section class="cell" data-cell="25" id="celda-26"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-26-decomposable"><h4 id="imagen-celda-26-decomposable">Diagrama visual · Alinear, comparar y reunir evidencia</h4><figure><img alt="Un grafo bipartito enlaza tokens de dos secuencias y conduce a comparaciones y un clasificador." decoding="async" height="760" loading="lazy" src="../assets/visuals/decomposable.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/decomposable.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Attend calcula compatibilidades entre tokens de A y B. Las flechas de distinto grosor representan pesos ilustrativos de alineación suave, normalizados en la dirección correspondiente.</p>
-</li>
-<li>
-<p>Compare recibe cada token junto con su alineación de la otra secuencia. Una red aprendida produce características de comparación; no se asignan detectores lógicos fijos a sus neuronas.</p>
-</li>
-<li>
-<p>Aggregate suma las representaciones de cada lado y las entrega al clasificador. La ilustración muestra el flujo de Parikh et al.; no afirma que un peso alto pruebe implicación o contradicción.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="26" data-reviewed-source="https://aclanthology.org/D16-1244/" id="celda-27"><h5 id="seccion-9"><span class="tone-accent"><strong>3. Ejemplo Intuitivo</strong></span></h5><p>Ejemplo hipotético: la premisa «Un perro marrón corre en el césped» contiene siete tokens si se separa por espacios. La hipótesis y la premisa se alinean mediante softmax por fila; los pesos deben sumar uno sobre posiciones válidas. Un número ilustrativo no es una medición del modelo.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1244/">Parikh et al. · Decomposable attention</a></p></section><section class="cell" data-cell="27" id="celda-28"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-28-decomposable"><h4 id="imagen-celda-28-decomposable">Diagrama visual · Alinear, comparar y reunir evidencia</h4><figure><img alt="Un grafo bipartito enlaza tokens de dos secuencias y conduce a comparaciones y un clasificador." decoding="async" height="760" loading="lazy" src="../assets/visuals/decomposable.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/decomposable.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Attend calcula compatibilidades entre tokens de A y B. Las flechas de distinto grosor representan pesos ilustrativos de alineación suave, normalizados en la dirección correspondiente.</p>
-</li>
-<li>
-<p>Compare recibe cada token junto con su alineación de la otra secuencia. Una red aprendida produce características de comparación; no se asignan detectores lógicos fijos a sus neuronas.</p>
-</li>
-<li>
-<p>Aggregate suma las representaciones de cada lado y las entrega al clasificador. La ilustración muestra el flujo de Parikh et al.; no afirma que un peso alto pruebe implicación o contradicción.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="28" id="celda-29"><hr/>
+</section><section class="cell" data-cell="25" id="celda-26"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="26" data-reviewed-source="https://aclanthology.org/D16-1244/" id="celda-27"><h5 id="seccion-9"><span class="tone-accent"><strong>3. Ejemplo Intuitivo</strong></span></h5><p>Ejemplo hipotético: la premisa «Un perro marrón corre en el césped» contiene siete tokens si se separa por espacios. La hipótesis y la premisa se alinean mediante softmax por fila; los pesos deben sumar uno sobre posiciones válidas. Un número ilustrativo no es una medición del modelo.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1244/">Parikh et al. · Decomposable attention</a></p></section><section class="cell" data-cell="27" id="celda-28"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="28" id="celda-29"><hr/>
 <h4 id="seccion-10"><span class="tone-emphasis"><strong>6.9.2.2. Fase 2: Comparing (Comparación Local No Lineal)</strong></span></h4>
-</section><section class="cell" data-cell="29" id="celda-30"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-30-decomposable"><h4 id="imagen-celda-30-decomposable">Diagrama visual · Alinear, comparar y reunir evidencia</h4><figure><img alt="Un grafo bipartito enlaza tokens de dos secuencias y conduce a comparaciones y un clasificador." decoding="async" height="760" loading="lazy" src="../assets/visuals/decomposable.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/decomposable.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Attend calcula compatibilidades entre tokens de A y B. Las flechas de distinto grosor representan pesos ilustrativos de alineación suave, normalizados en la dirección correspondiente.</p>
-</li>
-<li>
-<p>Compare recibe cada token junto con su alineación de la otra secuencia. Una red aprendida produce características de comparación; no se asignan detectores lógicos fijos a sus neuronas.</p>
-</li>
-<li>
-<p>Aggregate suma las representaciones de cada lado y las entrega al clasificador. La ilustración muestra el flujo de Parikh et al.; no afirma que un peso alto pruebe implicación o contradicción.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="30" id="celda-31"><p>Una vez obtenidas las representaciones alineadas (<math aria-label="\beta_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mi>i</mi></msub></mrow></math> y <math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math>), <span class="tone-emphasis"><strong>se comparan localmente los vectores originales con sus pares alineados correspondientes concatenándolos y procesándolos a través de otra red Feed-Forward <math aria-label="G" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>G</mi></mrow></math></strong>:</span></p>
+</section><section class="cell" data-cell="29" id="celda-30"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="30" id="celda-31"><p>Una vez obtenidas las representaciones alineadas (<math aria-label="\beta_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mi>i</mi></msub></mrow></math> y <math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math>), <span class="tone-emphasis"><strong>se comparan localmente los vectores originales con sus pares alineados correspondientes concatenándolos y procesándolos a través de otra red Feed-Forward <math aria-label="G" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>G</mi></mrow></math></strong>:</span></p>
 <p><math aria-label="\begin{align}
     v_{1, i} = G([a_i; \beta_i]) \quad \forall i \in \{1, \dots, m\}\\
     v_{2, j} = G([b_j; \alpha_j]) \quad \forall j \in \{1, \dots, n\}
@@ -261,18 +173,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 <ul>
 <li><math aria-label="[a_i; \beta_i] \in \mathbb{R}^{2d}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mi>i</mi></msub><mi>;</mi><msub><mi>β</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>∈</mo><msup><mi>ℝ</mi><mrow><mn>2</mn><mi>d</mi></mrow></msup></mrow></math> es la <span class="tone-emphasis"><strong>concatenación de la palabra original y su vector de alineación semántica.</strong></span></li>
 </ul>
-</section><section class="cell" data-cell="31" id="celda-32"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-32-decomposable"><h4 id="imagen-celda-32-decomposable">Diagrama visual · Alinear, comparar y reunir evidencia</h4><figure><img alt="Un grafo bipartito enlaza tokens de dos secuencias y conduce a comparaciones y un clasificador." decoding="async" height="760" loading="lazy" src="../assets/visuals/decomposable.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/decomposable.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Attend calcula compatibilidades entre tokens de A y B. Las flechas de distinto grosor representan pesos ilustrativos de alineación suave, normalizados en la dirección correspondiente.</p>
-</li>
-<li>
-<p>Compare recibe cada token junto con su alineación de la otra secuencia. Una red aprendida produce características de comparación; no se asignan detectores lógicos fijos a sus neuronas.</p>
-</li>
-<li>
-<p>Aggregate suma las representaciones de cada lado y las entrega al clasificador. La ilustración muestra el flujo de Parikh et al.; no afirma que un peso alto pruebe implicación o contradicción.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="32" id="celda-33"><ul>
+</section><section class="cell" data-cell="31" id="celda-32"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="32" id="celda-33"><ul>
 <li>
 <p><math aria-label="G" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>G</mi></mrow></math> es un <span class="tone-emphasis"><strong>perceptrón multicapa con capas lineales y activaciones ReLU que mapea la comparación a un vector latente</strong></span> <math aria-label="v_{1, i}, v_{2, j} \in \mathbb{R}^{d_g}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mrow><mn>1</mn><mo>,</mo><mi>i</mi></mrow></msub><mo>,</mo><msub><mi>v</mi><mrow><mn>2</mn><mo>,</mo><mi>j</mi></mrow></msub><mo>∈</mo><msup><mi>ℝ</mi><mrow><msub><mi>d</mi><mi>g</mi></msub></mrow></msup></mrow></math>:</p>
 <ul>
@@ -285,18 +186,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 </ul>
 </li>
 </ul>
-</section><section class="cell" data-cell="33" id="celda-34"><figure><img alt="ReLU: una no linealidad elemento a elemento" height="435" loading="lazy" src="../assets/figures/relu-exact.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-34-relu-exact"><h4 id="imagen-celda-34-relu-exact">Diagrama visual · ReLU conserva positivos y anula negativos</h4><figure><img alt="Un gráfico cartesiano y cinco puntos muestran max(0,x)." decoding="async" height="760" loading="lazy" src="../assets/visuals/relu-exact.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/relu-exact.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La línea dorada permanece en cero cuando x es negativo. A partir de cero sigue la diagonal y=x.</p>
-</li>
-<li>
-<p>Las muestras [−2,−1,0,1,2] se transforman en [0,0,0,1,2]. La operación actúa por coordenada, sin una rotación matricial.</p>
-</li>
-<li>
-<p>Fuera del origen, la derivada es cero en la rama negativa y uno en la positiva. En una red, su interpretación depende del entrenamiento; la curva por sí sola no codifica contradicciones lingüísticas.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="34" id="celda-35"><ul>
+</section><section class="cell" data-cell="33" id="celda-34"><figure><img alt="ReLU: una no linealidad elemento a elemento" height="435" loading="lazy" src="../assets/figures/relu-exact.svg" width="1440"/></figure></section><section class="cell" data-cell="34" id="celda-35"><ul>
 <li>Al no existir conexiones temporales recurrentes entre <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> e <math aria-label="i+1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></math>, <span class="tone-emphasis"><strong>todas las comparaciones <math aria-label="v_{1, i}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mrow><mn>1</mn><mo>,</mo><mi>i</mi></mrow></msub></mrow></math> y <math aria-label="v_{2, j}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mrow><mn>2</mn><mo>,</mo><mi>j</mi></mrow></msub></mrow></math> se ejecutan en paralelo en la GPU</strong>.</span></li>
 </ul>
 </section><section class="cell" data-cell="35" id="celda-36"><h5 id="seccion-11"><span class="tone-accent"><strong>1. Ejemplo Intuitivo</strong></span></h5>
@@ -346,102 +236,25 @@ En la fase previa (<em>Attending</em>), <span class="tone-emphasis"><strong>cada
 <math aria-label="v_2 = \sum_{j=1}^n v_{2, j} \in \mathbb{R}^{d_g}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mn>2</mn></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>v</mi><mrow><mn>2</mn><mo>,</mo><mi>j</mi></mrow></msub><mo>∈</mo><msup><mi>ℝ</mi><mrow><msub><mi>d</mi><mi>g</mi></msub></mrow></msup></mrow></math></p>
 </section><section class="cell" data-cell="41" id="celda-42"><p>Finalmente, <span class="tone-emphasis"><strong>se concatenan ambos vectores consolidados <math aria-label="[v_1; v_2] \in \mathbb{R}^{2d_g}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><msub><mi>v</mi><mn>1</mn></msub><mi>;</mi><msub><mi>v</mi><mn>2</mn></msub><mo stretchy="false">]</mo><mo>∈</mo><msup><mi>ℝ</mi><mrow><mn>2</mn><msub><mi>d</mi><mi>g</mi></msub></mrow></msup></mrow></math> y se alimentan a un clasificador final <math aria-label="H" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>H</mi></mrow></math> con Softmax para generar las probabilidades de las clases</strong>:</span></p>
 <p><math aria-label="\hat{y} = \text{softmax}(H([v_1; v_2]))" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover accent="true"><mrow><mi>y</mi></mrow><mo>^</mo></mover><mo>=</mo><mtext>softmax</mtext><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">(</mo><mo stretchy="false">[</mo><msub><mi>v</mi><mn>1</mn></msub><mi>;</mi><msub><mi>v</mi><mn>2</mn></msub><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math></p>
-</section><section class="cell" data-cell="42" id="celda-43"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-43-decomposable"><h4 id="imagen-celda-43-decomposable">Diagrama visual · Alinear, comparar y reunir evidencia</h4><figure><img alt="Un grafo bipartito enlaza tokens de dos secuencias y conduce a comparaciones y un clasificador." decoding="async" height="760" loading="lazy" src="../assets/visuals/decomposable.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/decomposable.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Attend calcula compatibilidades entre tokens de A y B. Las flechas de distinto grosor representan pesos ilustrativos de alineación suave, normalizados en la dirección correspondiente.</p>
-</li>
-<li>
-<p>Compare recibe cada token junto con su alineación de la otra secuencia. Una red aprendida produce características de comparación; no se asignan detectores lógicos fijos a sus neuronas.</p>
-</li>
-<li>
-<p>Aggregate suma las representaciones de cada lado y las entrega al clasificador. La ilustración muestra el flujo de Parikh et al.; no afirma que un peso alto pruebe implicación o contradicción.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="43" data-reviewed-source="https://aclanthology.org/D16-1053/" id="celda-44"><h2 id="seccion-13"><span class="tone-emphasis"><strong>6.10. Auto-Alineación e Intra-Attention (Cheng et al., 2016)</strong></span></h2><p>Cheng et al. (2016) desarrollaron LSTMN, con memoria de estados y atención dentro de la secuencia. Es una contribución temprana a la atención interna, distinta de la self-attention sin recurrencia del Transformer. No debe atribuirse a un único artículo la invención de toda forma de autoatención.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1053/">Cheng et al. · LSTMN</a></p></section><section class="cell" data-cell="44" id="celda-45"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-45-decomposable"><h4 id="imagen-celda-45-decomposable">Diagrama visual · Alinear, comparar y reunir evidencia</h4><figure><img alt="Un grafo bipartito enlaza tokens de dos secuencias y conduce a comparaciones y un clasificador." decoding="async" height="760" loading="lazy" src="../assets/visuals/decomposable.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/decomposable.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Attend calcula compatibilidades entre tokens de A y B. Las flechas de distinto grosor representan pesos ilustrativos de alineación suave, normalizados en la dirección correspondiente.</p>
-</li>
-<li>
-<p>Compare recibe cada token junto con su alineación de la otra secuencia. Una red aprendida produce características de comparación; no se asignan detectores lógicos fijos a sus neuronas.</p>
-</li>
-<li>
-<p>Aggregate suma las representaciones de cada lado y las entrega al clasificador. La ilustración muestra el flujo de Parikh et al.; no afirma que un peso alto pruebe implicación o contradicción.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="45" id="celda-46"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-46-intra-history"><h4 id="imagen-celda-46-intra-history">Diagrama visual · Memoria recurrente y autoatención tienen rutas distintas</h4><figure><img alt="Una ruta temporal recurrente se contrasta con una matriz de atención dentro de la secuencia." decoding="async" height="760" loading="lazy" src="../assets/visuals/intra-history.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/intra-history.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior procesa pasos en orden y conserva una dependencia entre actualizaciones. En LSTMN, la consulta a estados de memoria forma parte de ese procesamiento recurrente.</p>
-</li>
-<li>
-<p>La fila inferior ilustra atención entre posiciones de una misma secuencia mediante una matriz. En un Transformer puede calcularse en paralelo durante entrenamiento con la máscara adecuada.</p>
-</li>
-<li>
-<p>La comparación distingue arquitecturas. La self-attention no exige una LSTM, y el paralelismo del entrenamiento no elimina la dependencia autorregresiva durante generación.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="46" data-reviewed-source="https://www.bioinf.jku.at/publications/older/2604.pdf" id="celda-47"><h3 id="seccion-14"><span class="tone-accent"><strong>6.10.1. La Falencia de la Memoria Tradicional en LSTMs</strong></span></h3><p>Una LSTM mantiene estado oculto h y estado de celda c. Sus compuertas controlan actualizaciones y pueden favorecer dependencias largas; no existe una cantidad fija de palabras que siempre recuerde ni una garantía de gradientes estables en cualquier entrenamiento.</p>
+</section><section class="cell" data-cell="42" id="celda-43"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="43" data-reviewed-source="https://aclanthology.org/D16-1053/" id="celda-44"><h2 id="seccion-13"><span class="tone-emphasis"><strong>6.10. Auto-Alineación e Intra-Attention (Cheng et al., 2016)</strong></span></h2><p>Cheng et al. (2016) desarrollaron LSTMN, con memoria de estados y atención dentro de la secuencia. Es una contribución temprana a la atención interna, distinta de la self-attention sin recurrencia del Transformer. No debe atribuirse a un único artículo la invención de toda forma de autoatención.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1053/">Cheng et al. · LSTMN</a></p></section><section class="cell" data-cell="44" id="celda-45"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="45" id="celda-46"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/></figure></section><section class="cell" data-cell="46" data-reviewed-source="https://www.bioinf.jku.at/publications/older/2604.pdf" id="celda-47"><h3 id="seccion-14"><span class="tone-accent"><strong>6.10.1. La Falencia de la Memoria Tradicional en LSTMs</strong></span></h3><p>Una LSTM mantiene estado oculto h y estado de celda c. Sus compuertas controlan actualizaciones y pueden favorecer dependencias largas; no existe una cantidad fija de palabras que siempre recuerde ni una garantía de gradientes estables en cualquier entrenamiento.</p>
 <p class="note source-reference">Referencia: <a href="https://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter y Schmidhuber · LSTM</a></p></section><section class="cell" data-cell="47" id="celda-48"><h3 id="seccion-15"><span class="tone-accent"><strong>6.10.2. Formulación Matemática de Intra-Attention</strong></span></h3>
 <p>El modelo LSTMN <span class="tone-emphasis"><strong>reemplaza la memoria interna fija</strong></span> por una <span class="tone-emphasis"><strong>memoria externa dinámica que crece con el tiempo</strong></span>. Al llegar al paso <math aria-label="t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math>, <span class="tone-emphasis"><strong>la red mantiene almacenada la secuencia de todos los estados ocultos y celdas de memoria pasados:</strong></span></p>
 <p><math aria-label="H_{t-1} = [h_1, h_2, \dots, h_{t-1}]" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>H</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>=</mo><mo stretchy="false">[</mo><msub><mi>h</mi><mn>1</mn></msub><mo>,</mo><msub><mi>h</mi><mn>2</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">]</mo></mrow></math>
 <math aria-label="C_{t-1} = [c_1, c_2, \dots, c_{t-1}]" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>C</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>=</mo><mo stretchy="false">[</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><msub><mi>c</mi><mn>2</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>c</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">]</mo></mrow></math></p>
 <p>Para calcular el nuevo estado <math aria-label="h_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>t</mi></msub></mrow></math>, <span class="tone-emphasis"><strong>la red consulta activamente toda su historia pasada calculando una puntuación de afinidad interna</strong></span> (<em>intra-sequence score</em>):</p>
-</section><section class="cell" data-cell="48" id="celda-49"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-49-intra-history"><h4 id="imagen-celda-49-intra-history">Diagrama visual · Memoria recurrente y autoatención tienen rutas distintas</h4><figure><img alt="Una ruta temporal recurrente se contrasta con una matriz de atención dentro de la secuencia." decoding="async" height="760" loading="lazy" src="../assets/visuals/intra-history.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/intra-history.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior procesa pasos en orden y conserva una dependencia entre actualizaciones. En LSTMN, la consulta a estados de memoria forma parte de ese procesamiento recurrente.</p>
-</li>
-<li>
-<p>La fila inferior ilustra atención entre posiciones de una misma secuencia mediante una matriz. En un Transformer puede calcularse en paralelo durante entrenamiento con la máscara adecuada.</p>
-</li>
-<li>
-<p>La comparación distingue arquitecturas. La self-attention no exige una LSTM, y el paralelismo del entrenamiento no elimina la dependencia autorregresiva durante generación.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="49" data-reviewed-source="https://aclanthology.org/D16-1053/" id="celda-50"><p>El ejemplo es una simplificación didáctica de atención sobre estados pasados, no una reproducción exacta de LSTMN. En Cheng et al. las lecturas ponderadas de memorias ocultas y de celda intervienen en la actualización recurrente; hay que consultar las ecuaciones del artículo para reproducir esa arquitectura.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1053/">Cheng et al. · LSTMN</a></p></section><section class="cell" data-cell="50" id="celda-51"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-51-intra-history"><h4 id="imagen-celda-51-intra-history">Diagrama visual · Memoria recurrente y autoatención tienen rutas distintas</h4><figure><img alt="Una ruta temporal recurrente se contrasta con una matriz de atención dentro de la secuencia." decoding="async" height="760" loading="lazy" src="../assets/visuals/intra-history.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/intra-history.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior procesa pasos en orden y conserva una dependencia entre actualizaciones. En LSTMN, la consulta a estados de memoria forma parte de ese procesamiento recurrente.</p>
-</li>
-<li>
-<p>La fila inferior ilustra atención entre posiciones de una misma secuencia mediante una matriz. En un Transformer puede calcularse en paralelo durante entrenamiento con la máscara adecuada.</p>
-</li>
-<li>
-<p>La comparación distingue arquitecturas. La self-attention no exige una LSTM, y el paralelismo del entrenamiento no elimina la dependencia autorregresiva durante generación.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="51" id="celda-52"><ol start="2">
+</section><section class="cell" data-cell="48" id="celda-49"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/></figure></section><section class="cell" data-cell="49" data-reviewed-source="https://aclanthology.org/D16-1053/" id="celda-50"><p>El ejemplo es una simplificación didáctica de atención sobre estados pasados, no una reproducción exacta de LSTMN. En Cheng et al. las lecturas ponderadas de memorias ocultas y de celda intervienen en la actualización recurrente; hay que consultar las ecuaciones del artículo para reproducir esa arquitectura.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1053/">Cheng et al. · LSTMN</a></p></section><section class="cell" data-cell="50" id="celda-51"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/></figure></section><section class="cell" data-cell="51" id="celda-52"><ol start="2">
 <li><span class="tone-context"><strong>Pesos de Auto-Atención (<math aria-label="\alpha_{t, k}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub></mrow></math>):</strong></span>
 Se <span class="tone-emphasis"><strong>normaliza sobre todos los pasos de tiempo previos</strong></span> mediante Softmax:
 <math aria-label="\alpha_{t, k} = \frac{\exp(e_{t, k})}{\sum_{j=1}^{t-1} \exp(e_{t, j})}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>exp</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub><mo stretchy="false">)</mo></mrow><mrow><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mi>exp</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>j</mi></mrow></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow></math></li>
 </ol>
-</section><section class="cell" data-cell="52" id="celda-53"><figure><img alt="Softmax: un ejemplo numérico verificable" height="398" loading="lazy" src="../assets/figures/softmax-numeric.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-53-softmax-numeric"><h4 id="imagen-celda-53-softmax-numeric">Diagrama visual · De scores a probabilidades normalizadas</h4><figure><img alt="Tres barras de scores se transforman en tres probabilidades positivas que suman uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/softmax-numeric.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/softmax-numeric.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se usan los scores [3.2,−1.5,4.0]. Restar su máximo produce [−0.8,−5.5,0] y conserva exactamente el softmax.</p>
-</li>
-<li>
-<p>Las exponenciales son aproximadamente [0.4493,0.00409,1]. Se divide cada una por su suma, aproximadamente 1.4534.</p>
-</li>
-<li>
-<p>El resultado es [0.3092,0.0028,0.6880], salvo redondeo. Son probabilidades sobre los candidatos del eje elegido; los scores iniciales no eran probabilidades.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="53" id="celda-54"><ol start="3">
+</section><section class="cell" data-cell="52" id="celda-53"><figure><img alt="Softmax: un ejemplo numérico verificable" height="398" loading="lazy" src="../assets/figures/softmax-numeric.svg" width="1440"/></figure></section><section class="cell" data-cell="53" id="celda-54"><ol start="3">
 <li><span class="tone-context"><strong>Vector de Memoria Contextual Interna (<math aria-label="r_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>r</mi><mi>t</mi></msub></mrow></math>):</strong></span>
 Se calcula la <span class="tone-emphasis"><strong>suma ponderada de los estados pasados</strong>:</span>
 <math aria-label="r_t = \sum_{k=1}^{t-1} \alpha_{t, k} h_k" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>r</mi><mi>t</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></munderover><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub><msub><mi>h</mi><mi>k</mi></msub></mrow></math></li>
 </ol>
-</section><section class="cell" data-cell="54" id="celda-55"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-55-weighted-sum"><h4 id="imagen-celda-55-weighted-sum">Diagrama visual · Los pesos mezclan vectores completos</h4><figure><img alt="Tres vectores de valor contribuyen a una suma ponderada de dos coordenadas." decoding="async" height="760" loading="lazy" src="../assets/visuals/weighted-sum.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/weighted-sum.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Cada columna representa un valor: v₀=(2,0), v₁=(0,2) y v₂=(2,2). Los pesos 0.2, 0.5 y 0.3 suman uno.</p>
-</li>
-<li>
-<p>Cada peso multiplica todas las coordenadas de su valor. Las contribuciones son (0.4,0), (0,1) y (0.6,0.6); al sumarlas se obtiene z=(1,1.6).</p>
-</li>
-<li>
-<p>Los scores se calculan antes y softmax los normaliza. La figura se centra en la mezcla posterior: un peso aislado no determina la dirección final, que también depende de los valores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="55" id="celda-56"><ol start="4">
+</section><section class="cell" data-cell="54" id="celda-55"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/></figure></section><section class="cell" data-cell="55" id="celda-56"><ol start="4">
 <li><span class="tone-context"><strong>Actualización de la Celda Recurrente:</strong></span>
 Las <span class="tone-emphasis"><strong>compuertas de la LSTM (entrada <math aria-label="i_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>i</mi><mi>t</mi></msub></mrow></math>, olvido <math aria-label="f_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>f</mi><mi>t</mi></msub></mrow></math>, salida <math aria-label="o_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>o</mi><mi>t</mi></msub></mrow></math>) se calculan ahora condicionadas simultáneamente en <math aria-label="x_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>x</mi><mi>t</mi></msub></mrow></math>, <math aria-label="h_{t-1}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></math> y el vector de intra-atención <math aria-label="r_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>r</mi><mi>t</mi></msub></mrow></math>:</strong></span>
 <math aria-label="i_t = \sigma(W_{xi} x_t + W_{hi} h_{t-1} + W_{ri} r_t + b_i)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>i</mi><mi>t</mi></msub><mo>=</mo><mi>σ</mi><mo stretchy="false">(</mo><msub><mi>W</mi><mrow><mi>x</mi><mi>i</mi></mrow></msub><msub><mi>x</mi><mi>t</mi></msub><mo>+</mo><msub><mi>W</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>W</mi><mrow><mi>r</mi><mi>i</mi></mrow></msub><msub><mi>r</mi><mi>t</mi></msub><mo>+</mo><msub><mi>b</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></math>
@@ -450,18 +263,7 @@ Las <span class="tone-emphasis"><strong>compuertas de la LSTM (entrada <math ari
 <math aria-label="o_t = \sigma(W_{xo} x_t + W_{ho} h_{t-1} + W_{ro} r_t + b_o)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>o</mi><mi>t</mi></msub><mo>=</mo><mi>σ</mi><mo stretchy="false">(</mo><msub><mi>W</mi><mrow><mi>x</mi><mi>o</mi></mrow></msub><msub><mi>x</mi><mi>t</mi></msub><mo>+</mo><msub><mi>W</mi><mrow><mi>h</mi><mi>o</mi></mrow></msub><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>W</mi><mrow><mi>r</mi><mi>o</mi></mrow></msub><msub><mi>r</mi><mi>t</mi></msub><mo>+</mo><msub><mi>b</mi><mi>o</mi></msub><mo stretchy="false">)</mo></mrow></math>
 <math aria-label="h_t = o_t \odot \tanh(c_t)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>o</mi><mi>t</mi></msub><mo>⊙</mo><mi>tanh</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></math></li>
 </ol>
-</section><section class="cell" data-cell="56" id="celda-57"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-57-intra-history"><h4 id="imagen-celda-57-intra-history">Diagrama visual · Memoria recurrente y autoatención tienen rutas distintas</h4><figure><img alt="Una ruta temporal recurrente se contrasta con una matriz de atención dentro de la secuencia." decoding="async" height="760" loading="lazy" src="../assets/visuals/intra-history.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/intra-history.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior procesa pasos en orden y conserva una dependencia entre actualizaciones. En LSTMN, la consulta a estados de memoria forma parte de ese procesamiento recurrente.</p>
-</li>
-<li>
-<p>La fila inferior ilustra atención entre posiciones de una misma secuencia mediante una matriz. En un Transformer puede calcularse en paralelo durante entrenamiento con la máscara adecuada.</p>
-</li>
-<li>
-<p>La comparación distingue arquitecturas. La self-attention no exige una LSTM, y el paralelismo del entrenamiento no elimina la dependencia autorregresiva durante generación.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="57" id="celda-58"><h2 id="seccion-16"><span class="tone-emphasis"><strong>6.11. Implementación con PyTorch</strong></span></h2>
+</section><section class="cell" data-cell="56" id="celda-57"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/></figure></section><section class="cell" data-cell="57" id="celda-58"><h2 id="seccion-16"><span class="tone-emphasis"><strong>6.11. Implementación con PyTorch</strong></span></h2>
 </section><section class="cell" data-cell="58" id="celda-59"><h3 id="seccion-17"><span class="tone-emphasis"><strong>Celda 1: Importación de librerías y configuración</strong></span></h3>
 <p>Configura el entorno de trabajo, define la semilla de reproducibilidad y selecciona el dispositivo de cómputo (CPU o GPU).</p>
 </section><section class="cell" data-cell="59" id="celda-60"><details class="source-code"><summary>Código Python · celda 60</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">fasttext</span><span class="o">-</span><span class="n">wheel</span>

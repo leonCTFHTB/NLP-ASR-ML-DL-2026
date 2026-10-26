@@ -29,45 +29,12 @@
 </section><section class="cell" data-cell="15" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-16"><p>Sea <math aria-label="N" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math> el tamaño del vocabulario y <math aria-label="i\in\{0,\ldots,N-1\}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi><mo>∈</mo><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>N</mi><mo>−</mo><mn>1</mn><mo stretchy="false">}</mo></mrow></math> el índice de una palabra. Su vector one-hot <math aria-label="e_i\in\mathbb R^N" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mi>i</mi></msub><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mi>N</mi></msup></mrow></math> tiene componentes <math aria-label="(e_i)_j=\delta_{ij}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><msub><mi>e</mi><mi>i</mi></msub><msub><mo stretchy="false">)</mo><mi>j</mi></msub><mo>=</mo><msub><mi>δ</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></math>, con el mismo rango de índices para <math aria-label="j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>j</mi></mrow></math>.</p>
 <p>El vector identifica el token; las relaciones entre palabras pueden aprenderse después mediante una matriz de embeddings: <math aria-label="v_i=E^\top e_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><msup><mi>E</mi><mo>⊤</mo></msup><msub><mi>e</mi><mi>i</mi></msub></mrow></math>. No hace falta materializar el vector one-hot para consultar la fila correspondiente de <math aria-label="E" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi></mrow></math>.</p>
 <p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="16" id="celda-17"><h4 id="seccion-4"><strong>1.2.1.1. Visualización</strong></h4>
-</section><section class="cell" data-cell="17" id="celda-18"><figure><img alt="Del índice de token al embedding aprendido" height="398" loading="lazy" src="../assets/figures/onehot.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-18-onehot"><h4 id="imagen-celda-18-onehot">Diagrama visual · Una consulta selecciona una fila del embedding</h4><figure><img alt="Un indicador one-hot destaca una fila de una tabla de tres tokens." decoding="async" height="760" loading="lazy" src="../assets/visuals/onehot.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/onehot.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>El token elegido tiene índice 1 en un vocabulario de tres entradas. Su indicador es [0,1,0].</p>
-</li>
-<li>
-<p>La tabla E tiene una fila por token y dos coordenadas por embedding. La selección devuelve E[1]=[0.3,0.8] en este ejemplo sintético.</p>
-</li>
-<li>
-<p>Multiplicar Eᵀ por el one-hot da el mismo resultado que consultar la fila directamente. La tabla se aprende; no hace falta construir el indicador completo en una implementación habitual.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="18" id="celda-19"><p><em>Fig. 1.2. Representación matemática de la codificación One-Hot y su consecuencia geométricas.</em></p>
+</section><section class="cell" data-cell="17" id="celda-18"><figure><img alt="Del índice de token al embedding aprendido" height="398" loading="lazy" src="../assets/figures/onehot.svg" width="1440"/></figure></section><section class="cell" data-cell="18" id="celda-19"><p><em>Fig. 1.2. Representación matemática de la codificación One-Hot y su consecuencia geométricas.</em></p>
 </section><section class="cell" data-cell="19" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-20"><h2 id="titulo-celda-20"><span class="tone-context"><strong>1.2.2. Evaluación del "One-Hot Encoding"</strong></span></h2><p>Dos vectores one-hot de palabras distintas son ortogonales: <math aria-label="e_i^\top e_j=0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msubsup><mi>e</mi><mi>i</mi><mo>⊤</mo></msubsup><msub><mi>e</mi><mi>j</mi></msub><mo>=</mo><mn>0</mn></mrow></math> y su distancia euclídea es <math aria-label="\sqrt2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msqrt><mn>2</mn></msqrt></mrow></math>. Por eso la similitud directa entre esos indicadores no distingue relaciones lingüísticas. Esto no impide que una red que los recibe aprenda representaciones útiles: una tabla de embeddings realiza precisamente esa transformación.</p>
-<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="20" id="celda-21"><figure><img alt="Del índice de token al embedding aprendido" height="398" loading="lazy" src="../assets/figures/onehot.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-21-onehot"><h4 id="imagen-celda-21-onehot">Diagrama visual · Una consulta selecciona una fila del embedding</h4><figure><img alt="Un indicador one-hot destaca una fila de una tabla de tres tokens." decoding="async" height="760" loading="lazy" src="../assets/visuals/onehot.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/onehot.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>El token elegido tiene índice 1 en un vocabulario de tres entradas. Su indicador es [0,1,0].</p>
-</li>
-<li>
-<p>La tabla E tiene una fila por token y dos coordenadas por embedding. La selección devuelve E[1]=[0.3,0.8] en este ejemplo sintético.</p>
-</li>
-<li>
-<p>Multiplicar Eᵀ por el one-hot da el mismo resultado que consultar la fila directamente. La tabla se aprende; no hace falta construir el indicador completo en una implementación habitual.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="21" id="celda-22"><p><em>Fig. 1.3. La falla geométrica del One-Hot Encoding.</em></p>
+<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="20" id="celda-21"><figure><img alt="Del índice de token al embedding aprendido" height="398" loading="lazy" src="../assets/figures/onehot.svg" width="1440"/></figure></section><section class="cell" data-cell="21" id="celda-22"><p><em>Fig. 1.3. La falla geométrica del One-Hot Encoding.</em></p>
 </section><section class="cell" data-cell="22" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-23"><p>La ortogonalidad pertenece a la codificación one-hot. No afirma que las palabras sean lingüísticamente independientes ni limita lo que puede aprender una transformación posterior.</p>
 <p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="23" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-24"><h4 id="seccion-5"><strong>1.2.2.1. La Similitud Coseno</strong></h4><p>Para vectores no nulos, la similitud coseno es <math aria-label="\cos\theta=x^\top y/(\|x\|\|y\|)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>cos</mi><mi>θ</mi><mo>=</mo><msup><mi>x</mi><mo>⊤</mo></msup><mi>y</mi><mo>/</mo><mo stretchy="false">(</mo><mo fence="false" stretchy="false">‖</mo><mi>x</mi><mo fence="false" stretchy="false">‖</mo><mo fence="false" stretchy="false">‖</mo><mi>y</mi><mo fence="false" stretchy="false">‖</mo><mo stretchy="false">)</mo></mrow></math>. Compara direcciones y es invariante al escalado positivo de cada vector. Su interpretación semántica depende de los embeddings y de la tarea; no mide directamente el significado.</p>
-<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="24" id="celda-25"><figure><img alt="Ilustración de la sección" height="334" loading="lazy" src="../assets/figures/cosine.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-25-cosine"><h4 id="imagen-celda-25-cosine">Diagrama visual · Ángulo y longitud son propiedades distintas</h4><figure><img alt="Tres pares de flechas muestran cosenos uno, cero y menos uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/cosine.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cosine.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>En el primer plano, las flechas tienen la misma dirección y longitudes distintas: su coseno es uno.</p>
-</li>
-<li>
-<p>En el segundo forman un ángulo recto y el coseno es cero. En el tercero apuntan en direcciones opuestas y el coseno es menos uno.</p>
-</li>
-<li>
-<p>Estas son relaciones geométricas entre vectores no nulos. Para leerlas como relaciones lingüísticas hace falta un modelo y una evaluación; coseno negativo no significa automáticamente antonimia.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="25" id="celda-26"><p><em>Fig. 1.4. La necesidad del uso de la Similitud de Coseno.</em></p>
+<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="24" id="celda-25"><figure><img alt="Ilustración de la sección" height="334" loading="lazy" src="../assets/figures/cosine.svg" width="1440"/></figure></section><section class="cell" data-cell="25" id="celda-26"><p><em>Fig. 1.4. La necesidad del uso de la Similitud de Coseno.</em></p>
 </section><section class="cell" data-cell="26" id="celda-27"><h4 id="seccion-6"><strong>1.2.2.2. El espectro de la similitud de coseno</strong></h4>
 <p>Para vectores no nulos, el coseno pertenece a <math aria-label="[-1,1]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><mo>−</mo><mn>1</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math>:</p>
 <ul>
@@ -76,31 +43,9 @@
 <li><strong><math aria-label="-1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>−</mo><mn>1</mn></mrow></math>:</strong> direcciones opuestas.</li>
 </ul>
 <p>Estas son propiedades geométricas. En embeddings, la interpretación depende del modelo y del corpus: <strong>un coseno negativo no demuestra antonimia y un coseno cero no demuestra ausencia de relación lingüística</strong>. Los antónimos pueden aparecer cerca porque comparten contextos. La similitud tampoco garantiza sinonimia.</p>
-</section><section class="cell" data-cell="27" id="celda-28"><figure><img alt="Ilustración de la sección" height="334" loading="lazy" src="../assets/figures/cosine.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-28-cosine"><h4 id="imagen-celda-28-cosine">Diagrama visual · Ángulo y longitud son propiedades distintas</h4><figure><img alt="Tres pares de flechas muestran cosenos uno, cero y menos uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/cosine.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cosine.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>En el primer plano, las flechas tienen la misma dirección y longitudes distintas: su coseno es uno.</p>
-</li>
-<li>
-<p>En el segundo forman un ángulo recto y el coseno es cero. En el tercero apuntan en direcciones opuestas y el coseno es menos uno.</p>
-</li>
-<li>
-<p>Estas son relaciones geométricas entre vectores no nulos. Para leerlas como relaciones lingüísticas hace falta un modelo y una evaluación; coseno negativo no significa automáticamente antonimia.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="28" id="celda-29"><p><em>Fig. 1.5. Intepretación Geométrica de la Similtud de Coseno en NLP.</em></p>
+</section><section class="cell" data-cell="27" id="celda-28"><figure><img alt="Ilustración de la sección" height="334" loading="lazy" src="../assets/figures/cosine.svg" width="1440"/></figure></section><section class="cell" data-cell="28" id="celda-29"><p><em>Fig. 1.5. Intepretación Geométrica de la Similtud de Coseno en NLP.</em></p>
 </section><section class="cell" data-cell="29" data-reviewed-source="https://arxiv.org/abs/1310.4546" id="celda-30"><h2 id="titulo-celda-30"><span class="tone-context"><strong>1.3. ¿Qué es Word2Vec?</strong></span></h2><p>Word2Vec aprende dos tablas de vectores mediante una tarea predictiva de contexto. Skip-gram predice contextos a partir del centro; CBOW predice el centro a partir de una combinación de sus contextos. Las representaciones pueden capturar regularidades distribucionales y algunas analogías, pero no garantizan sinonimia, razonamiento algebraico exacto ni superioridad para cualquier tarea.</p>
-<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1310.4546">Mikolov et al. · Word2Vec</a></p></section><section class="cell" data-cell="30" id="celda-31"><figure><img alt="Del índice de token al embedding aprendido" height="398" loading="lazy" src="../assets/figures/onehot.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-31-onehot"><h4 id="imagen-celda-31-onehot">Diagrama visual · Una consulta selecciona una fila del embedding</h4><figure><img alt="Un indicador one-hot destaca una fila de una tabla de tres tokens." decoding="async" height="760" loading="lazy" src="../assets/visuals/onehot.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/onehot.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>El token elegido tiene índice 1 en un vocabulario de tres entradas. Su indicador es [0,1,0].</p>
-</li>
-<li>
-<p>La tabla E tiene una fila por token y dos coordenadas por embedding. La selección devuelve E[1]=[0.3,0.8] en este ejemplo sintético.</p>
-</li>
-<li>
-<p>Multiplicar Eᵀ por el one-hot da el mismo resultado que consultar la fila directamente. La tabla se aprende; no hace falta construir el indicador completo en una implementación habitual.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="31" id="celda-32"><p><em>Fig. 1.6. Búsqueda Semántica y Matemática de Palabras.</em></p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1310.4546">Mikolov et al. · Word2Vec</a></p></section><section class="cell" data-cell="30" id="celda-31"><figure><img alt="Del índice de token al embedding aprendido" height="398" loading="lazy" src="../assets/figures/onehot.svg" width="1440"/></figure></section><section class="cell" data-cell="31" id="celda-32"><p><em>Fig. 1.6. Búsqueda Semántica y Matemática de Palabras.</em></p>
 </section><section class="cell" data-cell="32" id="celda-33"><ol start="3">
 <li>
 <p><span class="tone-context"><strong>Aprende por sí solo del contexto (Auto-Supervisión):</strong></span> Mientras que crear un vector <em>One-Hot</em> es una simple asignación manual de índices, <strong>Word2Vec</strong> "aprende" <strong>dinámicamente las posiciones correctas de los vectores basándose en la Hipótesis Distribucional (las palabras se definen por su compañía).</strong></p>
@@ -165,18 +110,7 @@
 </ul>
 </li>
 </ul>
-</section><section class="cell" data-cell="45" id="celda-46"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-46-cbow"><h4 id="imagen-celda-46-cbow">Diagrama visual · Skip-gram y CBOW: flechas de predicción</h4><figure><img alt="Dos grafos muestran cómo cambia la dirección entre centro y contextos." decoding="async" height="760" loading="lazy" src="../assets/visuals/cbow.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cbow.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>En la mitad izquierda, la palabra central alimenta varias predicciones de contexto: esa es la dirección de Skip-gram.</p>
-</li>
-<li>
-<p>En la derecha, los vectores de contexto convergen en una media y el clasificador predice el centro: esa es la dirección de CBOW. El centro no se incluye entre sus propios contextos.</p>
-</li>
-<li>
-<p>Las flechas representan relaciones de la tarea de entrenamiento, no una creación literal de palabras a partir de otras ni una garantía de cercanía semántica.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="46" id="celda-47"><p><em>Fig. 1.10. El modelo de Ventana Deslizante aplicado a Skip-Gram.</em></p>
+</section><section class="cell" data-cell="45" id="celda-46"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/></figure></section><section class="cell" data-cell="46" id="celda-47"><p><em>Fig. 1.10. El modelo de Ventana Deslizante aplicado a Skip-Gram.</em></p>
 </section><section class="cell" data-cell="47" id="celda-48"><h4 id="seccion-11"><strong>1.3.2.2. Paso 2: La Premisa Probabilística (El Embudo de Expansión)</strong></h4>
 <blockquote>
 <p>Gráficamente, el modelo se representa como <strong>un punto central del cual salen "flechas" hacia múltiples palabras destino, como una especie de "embudo en expansión".</strong></p>
@@ -193,31 +127,9 @@
     P(\text{"the"}, \text{"man"}, \text{"his"}, \text{"son"} | \text{"loves"}) = P(\text{"the"} | \text{"loves"}) \cdot P(\text{"man"} | \text{"loves"}) \cdot P(\text{"his"} | \text{"loves"}) \cdot \\
     P (\text{"son"} | \text{"loves"}).
 \end{equation}' display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mi>P</mi><mo stretchy="false">(</mo><mtext>"the"</mtext><mo>,</mo><mtext>"man"</mtext><mo>,</mo><mtext>"his"</mtext><mo>,</mo><mtext>"son"</mtext><mo stretchy="false">|</mo><mtext>"loves"</mtext><mo stretchy="false">)</mo><mo>=</mo><mi>P</mi><mo stretchy="false">(</mo><mtext>"the"</mtext><mo stretchy="false">|</mo><mtext>"loves"</mtext><mo stretchy="false">)</mo><mo>·</mo><mi>P</mi><mo stretchy="false">(</mo><mtext>"man"</mtext><mo stretchy="false">|</mo><mtext>"loves"</mtext><mo stretchy="false">)</mo><mo>·</mo><mi>P</mi><mo stretchy="false">(</mo><mtext>"his"</mtext><mo stretchy="false">|</mo><mtext>"loves"</mtext><mo stretchy="false">)</mo><mo>·</mo><mspace linebreak="newline"></mspace><mi>P</mi><mo stretchy="false">(</mo><mtext>"son"</mtext><mo stretchy="false">|</mo><mtext>"loves"</mtext><mo stretchy="false">)</mo><mo>.</mo></mrow></mrow></math></p>
-</section><section class="cell" data-cell="48" id="celda-49"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-49-cbow"><h4 id="imagen-celda-49-cbow">Diagrama visual · Skip-gram y CBOW: flechas de predicción</h4><figure><img alt="Dos grafos muestran cómo cambia la dirección entre centro y contextos." decoding="async" height="760" loading="lazy" src="../assets/visuals/cbow.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cbow.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>En la mitad izquierda, la palabra central alimenta varias predicciones de contexto: esa es la dirección de Skip-gram.</p>
-</li>
-<li>
-<p>En la derecha, los vectores de contexto convergen en una media y el clasificador predice el centro: esa es la dirección de CBOW. El centro no se incluye entre sus propios contextos.</p>
-</li>
-<li>
-<p>Las flechas representan relaciones de la tarea de entrenamiento, no una creación literal de palabras a partir de otras ni una garantía de cercanía semántica.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="49" id="celda-50"><p><em>Fig. 1.11. Probabilidad Condicional de observar el contexto dado el centro.</em></p>
+</section><section class="cell" data-cell="48" id="celda-49"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/></figure></section><section class="cell" data-cell="49" id="celda-50"><p><em>Fig. 1.11. Probabilidad Condicional de observar el contexto dado el centro.</em></p>
 </section><section class="cell" data-cell="50" id="celda-51"><h4 id="seccion-12"><strong>1.3.2.3. Paso 3: El Corazón Matemático (Softmax y Producto Punto)</strong></h4>
-</section><section class="cell" data-cell="51" id="celda-52"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-52-word2vec-score"><h4 id="imagen-celda-52-word2vec-score">Diagrama visual · De scores a probabilidades normalizadas</h4><figure><img alt="Tres barras de scores se transforman en tres probabilidades positivas que suman uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/word2vec-score.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/word2vec-score.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se usan los scores [3.2,−1.5,4.0]. Restar su máximo produce [−0.8,−5.5,0] y conserva exactamente el softmax.</p>
-</li>
-<li>
-<p>Las exponenciales son aproximadamente [0.4493,0.00409,1]. Se divide cada una por su suma, aproximadamente 1.4534.</p>
-</li>
-<li>
-<p>El resultado es [0.3092,0.0028,0.6880], salvo redondeo. Son probabilidades sobre los candidatos del eje elegido; los scores iniciales no eran probabilidades.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="52" id="celda-53"><p><em>Fig. 1.12. Aplicación de la Función Softmax y Producto Punto a los vectores de contexto y central.</em></p>
+</section><section class="cell" data-cell="51" id="celda-52"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/></figure></section><section class="cell" data-cell="52" id="celda-53"><p><em>Fig. 1.12. Aplicación de la Función Softmax y Producto Punto a los vectores de contexto y central.</em></p>
 </section><section class="cell" data-cell="53" id="celda-54"><blockquote>
 <p><strong><em>¿Cómo calcula exactamente el modelo una probabilidad individual como <math aria-label='P(\text{"man"} | \text{"loves"})' display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>P</mi><mo stretchy="false">(</mo><mtext>"man"</mtext><mo stretchy="false">|</mo><mtext>"loves"</mtext><mo stretchy="false">)</mo></mrow></math>?</em></strong></p>
 </blockquote>
@@ -237,33 +149,11 @@
 </section><section class="cell" data-cell="54" id="celda-55"><h5 id="seccion-13"><strong>El Numerador</strong></h5><p>Para el par centro–contexto, el numerador es <strong>la exponencial del producto punto</strong>, no el producto punto aislado:</p>
 <p><math aria-label="\exp(u_o^{\top}v_c)." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>u</mi><mi>o</mi><mrow><mo>⊤</mo></mrow></msubsup><msub><mi>v</mi><mi>c</mi></msub><mo stretchy="false">)</mo><mo>.</mo></mrow></math></p>
 <p>El producto punto combina normas y ángulo: <math aria-label="u_o^{\top}v_c=\|u_o\|\|v_c\|\cos\theta" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msubsup><mi>u</mi><mi>o</mi><mrow><mo>⊤</mo></mrow></msubsup><msub><mi>v</mi><mi>c</mi></msub><mo>=</mo><mo fence="false" stretchy="false">‖</mo><msub><mi>u</mi><mi>o</mi></msub><mo fence="false" stretchy="false">‖</mo><mo fence="false" stretchy="false">‖</mo><msub><mi>v</mi><mi>c</mi></msub><mo fence="false" stretchy="false">‖</mo><mi>cos</mi><mi>θ</mi></mrow></math>. Una puntuación mayor aumenta la probabilidad del contexto <strong>respecto de las demás puntuaciones</strong>, pero no equivale por sí sola a mayor coseno ni a menor distancia euclídea.</p>
-<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1310.4546">Mikolov et al. (2013)</a></p></section><section class="cell" data-cell="55" id="celda-56"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-56-word2vec-score"><h4 id="imagen-celda-56-word2vec-score">Diagrama visual · De scores a probabilidades normalizadas</h4><figure><img alt="Tres barras de scores se transforman en tres probabilidades positivas que suman uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/word2vec-score.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/word2vec-score.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se usan los scores [3.2,−1.5,4.0]. Restar su máximo produce [−0.8,−5.5,0] y conserva exactamente el softmax.</p>
-</li>
-<li>
-<p>Las exponenciales son aproximadamente [0.4493,0.00409,1]. Se divide cada una por su suma, aproximadamente 1.4534.</p>
-</li>
-<li>
-<p>El resultado es [0.3092,0.0028,0.6880], salvo redondeo. Son probabilidades sobre los candidatos del eje elegido; los scores iniciales no eran probabilidades.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="56" id="celda-57"><p><em>Fig. 1.13. Interpretación Geométrica del Numerador.</em></p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1310.4546">Mikolov et al. (2013)</a></p></section><section class="cell" data-cell="55" id="celda-56"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/></figure></section><section class="cell" data-cell="56" id="celda-57"><p><em>Fig. 1.13. Interpretación Geométrica del Numerador.</em></p>
 </section><section class="cell" data-cell="57" id="celda-58"><h5 id="seccion-14"><strong>El Denominador</strong></h5><p>El denominador suma <strong>las exponenciales de las puntuaciones</strong> para todas las palabras candidatas:</p>
 <p><math aria-label="Z_c=\sum_{i\in\mathcal V}\exp(u_i^{\top}v_c),\qquad p(o\mid c)=\frac{\exp(u_o^{\top}v_c)}{Z_c}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>Z</mi><mi>c</mi></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi mathvariant="script">V</mi></mrow></munder><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>u</mi><mi>i</mi><mrow><mo>⊤</mo></mrow></msubsup><msub><mi>v</mi><mi>c</mi></msub><mo stretchy="false">)</mo><mo>,</mo><mspace width="2em"></mspace><mi>p</mi><mo stretchy="false">(</mo><mi>o</mi><mo>∣</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>u</mi><mi>o</mi><mrow><mo>⊤</mo></mrow></msubsup><msub><mi>v</mi><mi>c</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msub><mi>Z</mi><mi>c</mi></msub></mrow></mfrac><mo>.</mo></mrow></math></p>
 <p>Para puntuaciones finitas, cada probabilidad está entre 0 y 1 y su suma es 1. Para expresarlas como porcentaje se multiplica por 100. El softmax completo requiere evaluar todo el vocabulario; negative sampling utiliza otro objetivo para evitar ese cálculo completo.</p>
-<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1310.4546">Mikolov et al. (2013)</a></p></section><section class="cell" data-cell="58" id="celda-59"><figure><img alt="Word2Vec: pérdida y dirección del gradiente" height="398" loading="lazy" src="../assets/figures/loss-gradient.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-59-loss-gradient"><h4 id="imagen-celda-59-loss-gradient">Diagrama visual · El signo de la pérdida fija la dirección del paso</h4><figure><img alt="Un eje muestra cómo aumenta la probabilidad observada al descender una pérdida negativa logarítmica." decoding="async" height="760" loading="lazy" src="../assets/visuals/loss-gradient.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/loss-gradient.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La curva representa L=−ln p para 0&lt;p≤1. Una probabilidad pequeña del contexto observado implica una pérdida grande.</p>
-</li>
-<li>
-<p>La flecha señala la dirección de menor pérdida, hacia probabilidades mayores. En Word2Vec el optimizador mueve parámetros y sus scores; no modifica p de forma independiente.</p>
-</li>
-<li>
-<p>Para el vector central, el gradiente de la pérdida es suma_j p_j u_j menos u observado. El optimizador resta ese gradiente. Maximizar log p usa el signo contrario con un paso de ascenso equivalente.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="59" id="celda-60"><p><em>Fig. 1.14. Interpretación Geométrica del Denominador.</em></p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1310.4546">Mikolov et al. (2013)</a></p></section><section class="cell" data-cell="58" id="celda-59"><figure><img alt="Word2Vec: pérdida y dirección del gradiente" height="398" loading="lazy" src="../assets/figures/loss-gradient.svg" width="1440"/></figure></section><section class="cell" data-cell="59" id="celda-60"><p><em>Fig. 1.14. Interpretación Geométrica del Denominador.</em></p>
 </section><section class="cell" data-cell="60" id="celda-61"><h4 id="seccion-15"><strong>1.3.2.4. Paso 4.1.: Estimación de Máxima Verosimilitud y SGD</strong></h4>
 <blockquote>
 <p>Para entender el entender el <strong>entrenamiento de Skip-Gram</strong>, debemos adentrarnos en cómo la red neuronal ajusta las coordenadas de las palabras (<strong>los vectores</strong>) utilizando la <strong>Estimación de Máxima Verosimilitud (Maximum Likelihood Estimation) y el Descenso del Gradiente Estocástico (SGD).</strong></p>
@@ -302,18 +192,7 @@
 </ul>
 </li>
 </ol>
-</section><section class="cell" data-cell="63" id="celda-64"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-64-cbow"><h4 id="imagen-celda-64-cbow">Diagrama visual · Skip-gram y CBOW: flechas de predicción</h4><figure><img alt="Dos grafos muestran cómo cambia la dirección entre centro y contextos." decoding="async" height="760" loading="lazy" src="../assets/visuals/cbow.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cbow.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>En la mitad izquierda, la palabra central alimenta varias predicciones de contexto: esa es la dirección de Skip-gram.</p>
-</li>
-<li>
-<p>En la derecha, los vectores de contexto convergen en una media y el clasificador predice el centro: esa es la dirección de CBOW. El centro no se incluye entre sus propios contextos.</p>
-</li>
-<li>
-<p>Las flechas representan relaciones de la tarea de entrenamiento, no una creación literal de palabras a partir de otras ni una garantía de cercanía semántica.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="64" id="celda-65"><p><em>Fig. 1.15. La función de pérdida como productoria de las probabilidades condicionales individuales de cada ventana de contexto.</em></p>
+</section><section class="cell" data-cell="63" id="celda-64"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/></figure></section><section class="cell" data-cell="64" id="celda-65"><p><em>Fig. 1.15. La función de pérdida como productoria de las probabilidades condicionales individuales de cada ventana de contexto.</em></p>
 </section><section class="cell" data-cell="65" id="celda-66"><h5 id="seccion-18"><strong>¿Por qué se utiliza el Logaritmo?</strong></h5>
 <blockquote>
 <p>El objetivo de Skip-Gram es <strong>encontrar las posiciones geométricas ideales de las palabras para maximizar la probabilidad de generar todas las palabras de contexto correctas a partir de todas las palabras centrales en un texto.</strong></p>
@@ -335,36 +214,14 @@
 <p><math aria-label="\begin{equation}
     - \sum_{t=1}^{T} \sum_{-m \leq j \leq m,\ j \neq 0} \textrm{log}\, P(w^{(t+j)} \mid w^{(t)}).
 \end{equation}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mo>−</mo><munderover><mo>∑</mo><mrow><mi>t</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>T</mi></mrow></munderover><munder><mo>∑</mo><mrow><mo>−</mo><mi>m</mi><mo>≤</mo><mi>j</mi><mo>≤</mo><mi>m</mi><mo>,</mo><mtext> </mtext><mi>j</mi><mo>≠</mo><mn>0</mn></mrow></munder><mtext>log</mtext><mspace width="0.167em"></mspace><mi>P</mi><mo stretchy="false">(</mo><msup><mi>w</mi><mrow><mo stretchy="false">(</mo><mi>t</mi><mo>+</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msup><mo>∣</mo><msup><mi>w</mi><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></msup><mo stretchy="false">)</mo><mo>.</mo></mrow></mrow></math></p>
-</section><section class="cell" data-cell="67" id="celda-68"><figure><img alt="Word2Vec: pérdida y dirección del gradiente" height="398" loading="lazy" src="../assets/figures/loss-gradient.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-68-loss-gradient"><h4 id="imagen-celda-68-loss-gradient">Diagrama visual · El signo de la pérdida fija la dirección del paso</h4><figure><img alt="Un eje muestra cómo aumenta la probabilidad observada al descender una pérdida negativa logarítmica." decoding="async" height="760" loading="lazy" src="../assets/visuals/loss-gradient.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/loss-gradient.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La curva representa L=−ln p para 0&lt;p≤1. Una probabilidad pequeña del contexto observado implica una pérdida grande.</p>
-</li>
-<li>
-<p>La flecha señala la dirección de menor pérdida, hacia probabilidades mayores. En Word2Vec el optimizador mueve parámetros y sus scores; no modifica p de forma independiente.</p>
-</li>
-<li>
-<p>Para el vector central, el gradiente de la pérdida es suma_j p_j u_j menos u observado. El optimizador resta ese gradiente. Maximizar log p usa el signo contrario con un paso de ascenso equivalente.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="68" id="celda-69"><p><em>Fig. 1.16. La función de pérdida aplicando logaritmo para convertir la productoria en sumas.</em></p>
+</section><section class="cell" data-cell="67" id="celda-68"><figure><img alt="Word2Vec: pérdida y dirección del gradiente" height="398" loading="lazy" src="../assets/figures/loss-gradient.svg" width="1440"/></figure></section><section class="cell" data-cell="68" id="celda-69"><p><em>Fig. 1.16. La función de pérdida aplicando logaritmo para convertir la productoria en sumas.</em></p>
 </section><section class="cell" data-cell="69" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-70"><h5 id="seccion-19"><strong>El Desarrollo de la Función de Pérdida y su Derivada</strong></h5><p>Para un par centro–contexto, definimos <math aria-label="s_j=u_j^\top v_c" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>s</mi><mi>j</mi></msub><mo>=</mo><msubsup><mi>u</mi><mi>j</mi><mo>⊤</mo></msubsup><msub><mi>v</mi><mi>c</mi></msub></mrow></math> y <math aria-label="Z_c=\sum_j e^{s_j}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>Z</mi><mi>c</mi></msub><mo>=</mo><msub><mo>∑</mo><mi>j</mi></msub><msup><mi>e</mi><mrow><msub><mi>s</mi><mi>j</mi></msub></mrow></msup></mrow></math>. La log-verosimilitud que se maximiza es
 <math aria-label="\ell=\log P(w_o\mid w_c)=s_o-\log Z_c." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>ℓ</mi><mo>=</mo><mi>log</mi><mi>P</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mi>o</mi></msub><mo>∣</mo><msub><mi>w</mi><mi>c</mi></msub><mo stretchy="false">)</mo><mo>=</mo><msub><mi>s</mi><mi>o</mi></msub><mo>−</mo><mi>log</mi><msub><mi>Z</mi><mi>c</mi></msub><mo>.</mo></mrow></math>
 La pérdida que se minimiza tiene el signo opuesto:
 <math aria-label="L=-\ell=\log Z_c-s_o." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mo>−</mo><mi>ℓ</mi><mo>=</mo><mi>log</mi><msub><mi>Z</mi><mi>c</mi></msub><mo>−</mo><msub><mi>s</mi><mi>o</mi></msub><mo>.</mo></mrow></math>
 Esta diferencia de signo determina la dirección de la actualización.</p>
 <p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="70" data-reviewed-source="https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html" id="celda-71"><h5 id="seccion-20"><strong>Interpretación de la Pérdida</strong></h5><p>Minimizar <math aria-label="L=-\log P(w_o\mid w_c)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mo>−</mo><mi>log</mi><mi>P</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mi>o</mi></msub><mo>∣</mo><msub><mi>w</mi><mi>c</mi></msub><mo stretchy="false">)</mo></mrow></math> aumenta la probabilidad relativa del contexto observado. Sus dos términos comparten parámetros: no se optimizan de forma independiente. El producto punto depende de normas y ángulos.</p>
-<p class="note source-reference">Referencia: <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html">PyTorch · CrossEntropyLoss</a></p></section><section class="cell" data-cell="71" id="celda-72"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-72-word2vec-score"><h4 id="imagen-celda-72-word2vec-score">Diagrama visual · De scores a probabilidades normalizadas</h4><figure><img alt="Tres barras de scores se transforman en tres probabilidades positivas que suman uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/word2vec-score.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/word2vec-score.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se usan los scores [3.2,−1.5,4.0]. Restar su máximo produce [−0.8,−5.5,0] y conserva exactamente el softmax.</p>
-</li>
-<li>
-<p>Las exponenciales son aproximadamente [0.4493,0.00409,1]. Se divide cada una por su suma, aproximadamente 1.4534.</p>
-</li>
-<li>
-<p>El resultado es [0.3092,0.0028,0.6880], salvo redondeo. Son probabilidades sobre los candidatos del eje elegido; los scores iniciales no eran probabilidades.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="72" id="celda-73"><p><em>Fig. 1.17. Optimización del Espacio de Máxima Verosimilitud.</em></p>
+<p class="note source-reference">Referencia: <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html">PyTorch · CrossEntropyLoss</a></p></section><section class="cell" data-cell="71" id="celda-72"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/></figure></section><section class="cell" data-cell="72" id="celda-73"><p><em>Fig. 1.17. Optimización del Espacio de Máxima Verosimilitud.</em></p>
 </section><section class="cell" data-cell="73" id="celda-74"><p>Para saber <strong>hacia dónde mover el vector de la palabra central <math aria-label="v_c" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mi>c</mi></msub></mrow></math>, calculamos el gradiente (derivada) de esta función con respecto a <math aria-label="v_c" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mi>c</mi></msub></mrow></math>.</strong> Si derivamos la ecuación anterior paso a paso, obtenemos la "<strong>fuerza física</strong>" que describimos anteriormente.</p>
 <hr/>
 <h5 id="seccion-21"><strong>Paso 1: Derivar con respecto a <math aria-label="\mathbf{v}_c" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>𝐯</mi><mi>c</mi></msub></mrow></math></strong></h5>
@@ -405,18 +262,7 @@ Esta diferencia de signo determina la dirección de la actualización.</p>
 &amp;= \mathbf{u}_o - \sum_{j \in \mathcal{V}} \left(\frac{\exp(\mathbf{u}_j^\top \mathbf{v}_c)}{ \sum_{i \in \mathcal{V}} \exp(\mathbf{u}_i^\top \mathbf{v}_c)}\right) \mathbf{u}_j \\
 &amp;= \mathbf{u}_o - \sum_{j \in \mathcal{V}} P(w_j \mid w_c) \mathbf{u}_j
 \end{align*}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mfrac><mrow><mo>∂</mo><mi>log</mi><mi>P</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mi>o</mi></msub><mo>∣</mo><msub><mi>w</mi><mi>c</mi></msub><mo stretchy="false">)</mo></mrow><mrow><mo>∂</mo><msub><mi>𝐯</mi><mi>c</mi></msub></mrow></mfrac><mi>&amp;</mi><mo>=</mo><msub><mi>𝐮</mi><mi>o</mi></msub><mo>−</mo><mfrac><mrow><msub><mo>∑</mo><mrow><mi>j</mi><mo>∈</mo><mi>𝒱</mi></mrow></msub><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>𝐮</mi><mi>j</mi><mo>⊤</mo></msubsup><msub><mi>𝐯</mi><mi>c</mi></msub><mo stretchy="false">)</mo><msub><mi>𝐮</mi><mi>j</mi></msub></mrow><mrow><msub><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>𝒱</mi></mrow></msub><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>𝐮</mi><mi>i</mi><mo>⊤</mo></msubsup><msub><mi>𝐯</mi><mi>c</mi></msub><mo stretchy="false">)</mo></mrow></mfrac><mspace linebreak="newline"></mspace><mi>&amp;</mi><mo>=</mo><msub><mi>𝐮</mi><mi>o</mi></msub><mo>−</mo><munder><mo>∑</mo><mrow><mi>j</mi><mo>∈</mo><mi>𝒱</mi></mrow></munder><mrow><mo fence="true" form="prefix" stretchy="true">(</mo><mfrac><mrow><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>𝐮</mi><mi>j</mi><mo>⊤</mo></msubsup><msub><mi>𝐯</mi><mi>c</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msub><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>𝒱</mi></mrow></msub><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>𝐮</mi><mi>i</mi><mo>⊤</mo></msubsup><msub><mi>𝐯</mi><mi>c</mi></msub><mo stretchy="false">)</mo></mrow></mfrac><mo fence="true" form="postfix" stretchy="true">)</mo></mrow><msub><mi>𝐮</mi><mi>j</mi></msub><mspace linebreak="newline"></mspace><mi>&amp;</mi><mo>=</mo><msub><mi>𝐮</mi><mi>o</mi></msub><mo>−</mo><munder><mo>∑</mo><mrow><mi>j</mi><mo>∈</mo><mi>𝒱</mi></mrow></munder><mi>P</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mi>j</mi></msub><mo>∣</mo><msub><mi>w</mi><mi>c</mi></msub><mo stretchy="false">)</mo><msub><mi>𝐮</mi><mi>j</mi></msub></mrow></mrow></math></p>
-</section><section class="cell" data-cell="74" id="celda-75"><figure><img alt="Word2Vec: pérdida y dirección del gradiente" height="398" loading="lazy" src="../assets/figures/loss-gradient.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-75-loss-gradient"><h4 id="imagen-celda-75-loss-gradient">Diagrama visual · El signo de la pérdida fija la dirección del paso</h4><figure><img alt="Un eje muestra cómo aumenta la probabilidad observada al descender una pérdida negativa logarítmica." decoding="async" height="760" loading="lazy" src="../assets/visuals/loss-gradient.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/loss-gradient.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La curva representa L=−ln p para 0&lt;p≤1. Una probabilidad pequeña del contexto observado implica una pérdida grande.</p>
-</li>
-<li>
-<p>La flecha señala la dirección de menor pérdida, hacia probabilidades mayores. En Word2Vec el optimizador mueve parámetros y sus scores; no modifica p de forma independiente.</p>
-</li>
-<li>
-<p>Para el vector central, el gradiente de la pérdida es suma_j p_j u_j menos u observado. El optimizador resta ese gradiente. Maximizar log p usa el signo contrario con un paso de ascenso equivalente.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="75" id="celda-76"><p><em>Fig. 1.18. La interpretación del gradiente.</em></p>
+</section><section class="cell" data-cell="74" id="celda-75"><figure><img alt="Word2Vec: pérdida y dirección del gradiente" height="398" loading="lazy" src="../assets/figures/loss-gradient.svg" width="1440"/></figure></section><section class="cell" data-cell="75" id="celda-76"><p><em>Fig. 1.18. La interpretación del gradiente.</em></p>
 </section><section class="cell" data-cell="76" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-77"><p>Para ascenso de log-verosimilitud se usa <math aria-label="\nabla_{v_c}\ell=u_o-\sum_j p_j u_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mo>∇</mo><mrow><msub><mi>v</mi><mi>c</mi></msub></mrow></msub><mi>ℓ</mi><mo>=</mo><msub><mi>u</mi><mi>o</mi></msub><mo>−</mo><msub><mo>∑</mo><mi>j</mi></msub><msub><mi>p</mi><mi>j</mi></msub><msub><mi>u</mi><mi>j</mi></msub></mrow></math>. Para descenso de la pérdida se usa <math aria-label="\nabla_{v_c}L=\sum_j p_j u_j-u_o" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mo>∇</mo><mrow><msub><mi>v</mi><mi>c</mi></msub></mrow></msub><mi>L</mi><mo>=</mo><msub><mo>∑</mo><mi>j</mi></msub><msub><mi>p</mi><mi>j</mi></msub><msub><mi>u</mi><mi>j</mi></msub><mo>−</mo><msub><mi>u</mi><mi>o</mi></msub></mrow></math>. Ambos dan el mismo paso <math aria-label="v_c\leftarrow v_c-\eta\nabla L" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mi>c</mi></msub><mo>←</mo><msub><mi>v</mi><mi>c</mi></msub><mo>−</mo><mi>η</mi><mo>∇</mo><mi>L</mi></mrow></math>. La suma incluye también el contexto verdadero. Son direcciones de actualización, no fuerzas que garanticen acercar o alejar las puntas de los vectores.</p>
 <p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="77" id="celda-78"><h4 id="seccion-25"><strong>1.3.2.5. Implementación Básica con PyTorch</strong></h4>
 </section><section class="cell" data-cell="78" id="celda-79"><h5 id="seccion-26"><strong>1. Importación de Librerías</strong></h5>
@@ -1105,18 +951,7 @@ Vocabulario construido con 10000 palabras reales. (Ejemplos: llovía, aranzubía
 </pre></div>
 </details><div class="output"><pre>Output hidden; open in https://colab.research.google.com to view.</pre></div></section><section class="cell" data-cell="96" id="celda-97"><h3 id="seccion-33"><span class="tone-context"><strong>1.3.3. CBOW (Continuous Bag of Words)</strong></span></h3>
 </section><section class="cell" data-cell="97" id="celda-98"><figure><img alt="Ilustración de la sección" height="1185" loading="lazy" src="../assets/a9155ce2ee32bb5fbfbde580.webp" width="2205"/></figure></section><section class="cell" data-cell="98" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-99"><p>CBOW asigna una distribución de probabilidad a la palabra central a partir de las palabras del contexto. El contexto puede ser ambiguo: el modelo no presupone que exista una única palabra deducible con certeza.</p>
-<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="99" id="celda-100"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-100-cbow"><h4 id="imagen-celda-100-cbow">Diagrama visual · Skip-gram y CBOW: flechas de predicción</h4><figure><img alt="Dos grafos muestran cómo cambia la dirección entre centro y contextos." decoding="async" height="760" loading="lazy" src="../assets/visuals/cbow.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cbow.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>En la mitad izquierda, la palabra central alimenta varias predicciones de contexto: esa es la dirección de Skip-gram.</p>
-</li>
-<li>
-<p>En la derecha, los vectores de contexto convergen en una media y el clasificador predice el centro: esa es la dirección de CBOW. El centro no se incluye entre sus propios contextos.</p>
-</li>
-<li>
-<p>Las flechas representan relaciones de la tarea de entrenamiento, no una creación literal de palabras a partir de otras ni una garantía de cercanía semántica.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="100" id="celda-101"><p><em>Fig. 1.19. Diferencias entre el Modelo de Red Neuronal Skip-Gram y CBOW.</em></p>
+<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="99" id="celda-100"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/></figure></section><section class="cell" data-cell="100" id="celda-101"><p><em>Fig. 1.19. Diferencias entre el Modelo de Red Neuronal Skip-Gram y CBOW.</em></p>
 </section><section class="cell" data-cell="101" id="celda-102"><h4 id="seccion-34"><strong>Paso 1: La Ventana Deslizante (La Premisa Invertida)</strong></h4>
 <p>Imaginemos nuevamente el "<em>escáner</em>" <strong>sobre el texto crudo con un tamaño de ventana <math aria-label="m=2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi><mo>=</mo><mn>2</mn></mrow></math>.</strong></p>
 <ul>
@@ -1135,46 +970,13 @@ Vocabulario construido con 10000 palabras reales. (Ejemplos: llovía, aranzubía
 </ul>
 </li>
 </ul>
-</section><section class="cell" data-cell="102" id="celda-103"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-103-cbow"><h4 id="imagen-celda-103-cbow">Diagrama visual · Skip-gram y CBOW: flechas de predicción</h4><figure><img alt="Dos grafos muestran cómo cambia la dirección entre centro y contextos." decoding="async" height="760" loading="lazy" src="../assets/visuals/cbow.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cbow.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>En la mitad izquierda, la palabra central alimenta varias predicciones de contexto: esa es la dirección de Skip-gram.</p>
-</li>
-<li>
-<p>En la derecha, los vectores de contexto convergen en una media y el clasificador predice el centro: esa es la dirección de CBOW. El centro no se incluye entre sus propios contextos.</p>
-</li>
-<li>
-<p>Las flechas representan relaciones de la tarea de entrenamiento, no una creación literal de palabras a partir de otras ni una garantía de cercanía semántica.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="103" id="celda-104"><p><em>Fig. 1.20. La Ventana Deslizante en CBOW.</em></p>
+</section><section class="cell" data-cell="102" id="celda-103"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/></figure></section><section class="cell" data-cell="103" id="celda-104"><p><em>Fig. 1.20. La Ventana Deslizante en CBOW.</em></p>
 </section><section class="cell" data-cell="104" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-105"><h4 id="seccion-35"><strong>Paso 2: Compresión Espacial (El Vector Promediado)</strong></h4><p>Si el contexto válido tiene <math aria-label="C" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>C</mi></mrow></math> posiciones, su representación promediada es
 <math aria-label="\bar v=\frac1C\sum_{i=1}^C v_{o_i}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover><mi>v</mi><mo stretchy="true">¯</mo></mover><mo>=</mo><mfrac><mn>1</mn><mi>C</mi></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>C</mi></munderover><msub><mi>v</mi><mrow><msub><mi>o</mi><mi>i</mi></msub></mrow></msub><mo>.</mo></mrow></math>
 En una ventana completa de radio <math aria-label="m" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi></mrow></math>, <math aria-label="C=2m" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>C</mi><mo>=</mo><mn>2</mn><mi>m</mi></mrow></math>; junto a los extremos de una secuencia puede ser menor. Es una suma de vectores, no una tupla dividida por un escalar.</p>
-<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="105" id="celda-106"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-106-cbow"><h4 id="imagen-celda-106-cbow">Diagrama visual · Skip-gram y CBOW: flechas de predicción</h4><figure><img alt="Dos grafos muestran cómo cambia la dirección entre centro y contextos." decoding="async" height="760" loading="lazy" src="../assets/visuals/cbow.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cbow.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>En la mitad izquierda, la palabra central alimenta varias predicciones de contexto: esa es la dirección de Skip-gram.</p>
-</li>
-<li>
-<p>En la derecha, los vectores de contexto convergen en una media y el clasificador predice el centro: esa es la dirección de CBOW. El centro no se incluye entre sus propios contextos.</p>
-</li>
-<li>
-<p>Las flechas representan relaciones de la tarea de entrenamiento, no una creación literal de palabras a partir de otras ni una garantía de cercanía semántica.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="106" id="celda-107"><p><em>Fig. 1.21. El vector de contexto se promedia ya que necesita "fusionar" el entorno en un único "vector de referencia".</em></p>
+<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="105" id="celda-106"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/></figure></section><section class="cell" data-cell="106" id="celda-107"><p><em>Fig. 1.21. El vector de contexto se promedia ya que necesita "fusionar" el entorno en un único "vector de referencia".</em></p>
 </section><section class="cell" data-cell="107" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-108"><h4 id="seccion-36"><strong>Paso 3: Softmax y Producto Punto</strong></h4><p>La puntuación de cada candidato es <math aria-label="s_j=u_j^\top\bar v" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>s</mi><mi>j</mi></msub><mo>=</mo><msubsup><mi>u</mi><mi>j</mi><mo>⊤</mo></msubsup><mover><mi>v</mi><mo stretchy="true">¯</mo></mover></mrow></math> y la probabilidad es <math aria-label="p_j=e^{s_j}/\sum_k e^{s_k}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>p</mi><mi>j</mi></msub><mo>=</mo><msup><mi>e</mi><mrow><msub><mi>s</mi><mi>j</mi></msub></mrow></msup><mo>/</mo><msub><mo>∑</mo><mi>k</mi></msub><msup><mi>e</mi><mrow><msub><mi>s</mi><mi>k</mi></msub></mrow></msup></mrow></math>. El numerador contiene la exponencial. La puntuación combina normas y ángulo: elegir el mayor producto punto no equivale a elegir el vector más paralelo.</p>
-<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="108" id="celda-109"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-109-word2vec-score"><h4 id="imagen-celda-109-word2vec-score">Diagrama visual · De scores a probabilidades normalizadas</h4><figure><img alt="Tres barras de scores se transforman en tres probabilidades positivas que suman uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/word2vec-score.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/word2vec-score.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se usan los scores [3.2,−1.5,4.0]. Restar su máximo produce [−0.8,−5.5,0] y conserva exactamente el softmax.</p>
-</li>
-<li>
-<p>Las exponenciales son aproximadamente [0.4493,0.00409,1]. Se divide cada una por su suma, aproximadamente 1.4534.</p>
-</li>
-<li>
-<p>El resultado es [0.3092,0.0028,0.6880], salvo redondeo. Son probabilidades sobre los candidatos del eje elegido; los scores iniciales no eran probabilidades.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="109" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-110"><p>Fig. 1.22. CBOW puntúa candidatos mediante productos punto con el promedio del contexto y normaliza sus exponenciales.</p>
+<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="108" id="celda-109"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/></figure></section><section class="cell" data-cell="109" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-110"><p>Fig. 1.22. CBOW puntúa candidatos mediante productos punto con el promedio del contexto y normaliza sus exponenciales.</p>
 <p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="110" id="celda-111"><h4 id="seccion-37"><strong>Paso 4:  Optimización y Entrenamiento</strong></h4>
 <p>El objetivo inamovible es <strong>maximizar la verosimilitud de acertar la palabra central a lo largo de millones de ventanas iterando sbore el texto, lo cual equivale a minimizar la pérdida logarítmica:</strong></p>
 <p><math aria-label="\begin{align}
@@ -1193,18 +995,7 @@ En una ventana completa de radio <math aria-label="m" display="inline" xmlns="ht
 </li>
 </ul>
 </section><section class="cell" data-cell="111" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-112"><p>Para una ventana, <math aria-label="L=\log\sum_j e^{u_j^\top\bar v}-u_c^\top\bar v" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>L</mi><mo>=</mo><mi>log</mi><msub><mo>∑</mo><mi>j</mi></msub><msup><mi>e</mi><mrow><msubsup><mi>u</mi><mi>j</mi><mo>⊤</mo></msubsup><mover><mi>v</mi><mo stretchy="true">¯</mo></mover></mrow></msup><mo>−</mo><msubsup><mi>u</mi><mi>c</mi><mo>⊤</mo></msubsup><mover><mi>v</mi><mo stretchy="true">¯</mo></mover></mrow></math>. El descenso favorece la puntuación del centro observado respecto de los otros candidatos. No garantiza una distancia euclídea menor ni elimina todas las relaciones con palabras que no fueron elegidas.</p>
-<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="112" id="celda-113"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-113-word2vec-score"><h4 id="imagen-celda-113-word2vec-score">Diagrama visual · De scores a probabilidades normalizadas</h4><figure><img alt="Tres barras de scores se transforman en tres probabilidades positivas que suman uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/word2vec-score.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/word2vec-score.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se usan los scores [3.2,−1.5,4.0]. Restar su máximo produce [−0.8,−5.5,0] y conserva exactamente el softmax.</p>
-</li>
-<li>
-<p>Las exponenciales son aproximadamente [0.4493,0.00409,1]. Se divide cada una por su suma, aproximadamente 1.4534.</p>
-</li>
-<li>
-<p>El resultado es [0.3092,0.0028,0.6880], salvo redondeo. Son probabilidades sobre los candidatos del eje elegido; los scores iniciales no eran probabilidades.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="113" id="celda-114"><p><em>Fig. 1.23. La meta principal de CBOW es maximizar la probabilidad condicional de acertar las palabras centrales correctas a lo largo de millones de ventanas en el corpus.</em></p>
+<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="112" id="celda-113"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/></figure></section><section class="cell" data-cell="113" id="celda-114"><p><em>Fig. 1.23. La meta principal de CBOW es maximizar la probabilidad condicional de acertar las palabras centrales correctas a lo largo de millones de ventanas en el corpus.</em></p>
 </section><section class="cell" data-cell="114" id="celda-115"><h5 id="seccion-38"><strong>1. Definición de la Función de Probabilidad (Softmax)</strong></h5>
 <p>La probabilidad de predecir la palabra central correcta <math aria-label="w_c" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>w</mi><mi>c</mi></msub></mrow></math> dado el contexto <math aria-label="W_o" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>W</mi><mi>o</mi></msub></mrow></math> se define mediante la función softmax:</p>
 <p><math aria-label="P(w_c \mid W_o) = \frac{\exp(u_c^\top \bar{v}_o)}{\sum_{j \in V} \exp(u_j^\top \bar{v}_o)}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mi>c</mi></msub><mo>∣</mo><msub><mi>W</mi><mi>o</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>u</mi><mi>c</mi><mo>⊤</mo></msubsup><msub><mover><mrow><mi>v</mi></mrow><mo stretchy="true">¯</mo></mover><mi>o</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msub><mo>∑</mo><mrow><mi>j</mi><mo>∈</mo><mi>V</mi></mrow></msub><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>u</mi><mi>j</mi><mo>⊤</mo></msubsup><msub><mover><mrow><mi>v</mi></mrow><mo stretchy="true">¯</mo></mover><mi>o</mi></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow></math></p>
@@ -1251,33 +1042,11 @@ En una ventana completa de radio <math aria-label="m" display="inline" xmlns="ht
 </section><section class="cell" data-cell="116" id="celda-117"><h5 id="seccion-42"><strong>3. Resultado Final</strong></h5>
 <p>Multiplicando los resultados del Paso A y el Paso B (Regla de la Cadena), llegamos exactamente a la ecuación de la imagen:</p>
 <p><math aria-label="\frac{\partial \log P(w_c \mid W_o)}{\partial v_{o_i}} = \frac{1}{2m} \left[ u_c - \sum_{j \in V} P(w_j \mid W_o) u_j \right]" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mo>∂</mo><mi>log</mi><mi>P</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mi>c</mi></msub><mo>∣</mo><msub><mi>W</mi><mi>o</mi></msub><mo stretchy="false">)</mo></mrow><mrow><mo>∂</mo><msub><mi>v</mi><mrow><msub><mi>o</mi><mi>i</mi></msub></mrow></msub></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mn>2</mn><mi>m</mi></mrow></mfrac><mrow><mo fence="true" form="prefix" stretchy="true">[</mo><msub><mi>u</mi><mi>c</mi></msub><mo>−</mo><msub><mo>∑</mo><mrow><mi>j</mi><mo>∈</mo><mi>V</mi></mrow></msub><mi>P</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mi>j</mi></msub><mo>∣</mo><msub><mi>W</mi><mi>o</mi></msub><mo stretchy="false">)</mo><msub><mi>u</mi><mi>j</mi></msub><mo fence="true" form="postfix" stretchy="true">]</mo></mrow></mrow></math></p>
-</section><section class="cell" data-cell="117" id="celda-118"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-118-word2vec-score"><h4 id="imagen-celda-118-word2vec-score">Diagrama visual · De scores a probabilidades normalizadas</h4><figure><img alt="Tres barras de scores se transforman en tres probabilidades positivas que suman uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/word2vec-score.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/word2vec-score.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se usan los scores [3.2,−1.5,4.0]. Restar su máximo produce [−0.8,−5.5,0] y conserva exactamente el softmax.</p>
-</li>
-<li>
-<p>Las exponenciales son aproximadamente [0.4493,0.00409,1]. Se divide cada una por su suma, aproximadamente 1.4534.</p>
-</li>
-<li>
-<p>El resultado es [0.3092,0.0028,0.6880], salvo redondeo. Son probabilidades sobre los candidatos del eje elegido; los scores iniciales no eran probabilidades.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="118" id="celda-119"><p><em>Fig. 1.24. El "centro de gravedad" del contexto (<math aria-label="\vec{v}_o" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover><mrow><mi>v</mi></mrow><mo stretchy="true">→</mo></mover><mi>o</mi></msub></mrow></math>​) experimenta simultáneamente una fuerza de atracción (<math aria-label="+u_c" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>+</mo><msub><mi>u</mi><mi>c</mi></msub></mrow></math>​) que lo arrastra hacia la coordenada real de la palabra "loves", y una fuerza de repulsión (<math aria-label="−\sum Pu_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>−</mo><mo>∑</mo><mi>P</mi><msub><mi>u</mi><mi>j</mi></msub></mrow></math>​​) que lo empuja alejándolo del resto de las palabras irrelevantes del vocabulario, ponderado por el error de predicción actual.</em></p>
+</section><section class="cell" data-cell="117" id="celda-118"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/></figure></section><section class="cell" data-cell="118" id="celda-119"><p><em>Fig. 1.24. El "centro de gravedad" del contexto (<math aria-label="\vec{v}_o" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover><mrow><mi>v</mi></mrow><mo stretchy="true">→</mo></mover><mi>o</mi></msub></mrow></math>​) experimenta simultáneamente una fuerza de atracción (<math aria-label="+u_c" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>+</mo><msub><mi>u</mi><mi>c</mi></msub></mrow></math>​) que lo arrastra hacia la coordenada real de la palabra "loves", y una fuerza de repulsión (<math aria-label="−\sum Pu_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>−</mo><mo>∑</mo><mi>P</mi><msub><mi>u</mi><mi>j</mi></msub></mrow></math>​​) que lo empuja alejándolo del resto de las palabras irrelevantes del vocabulario, ponderado por el error de predicción actual.</em></p>
 </section><section class="cell" data-cell="119" data-reviewed-source="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html" id="celda-120"><p>Con <math aria-label="C" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>C</mi></mrow></math> posiciones en el contexto, el gradiente de la log-verosimilitud respecto de una aparición <math aria-label="v_{o_i}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mrow><msub><mi>o</mi><mi>i</mi></msub></mrow></msub></mrow></math> es
 <math aria-label="\frac{\partial\ell}{\partial v_{o_i}}=\frac1C\left(u_c-\sum_j p_j u_j\right)." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mo>∂</mo><mi>ℓ</mi></mrow><mrow><mo>∂</mo><msub><mi>v</mi><mrow><msub><mi>o</mi><mi>i</mi></msub></mrow></msub></mrow></mfrac><mo>=</mo><mfrac><mn>1</mn><mi>C</mi></mfrac><mrow><mo fence="true" form="prefix" stretchy="true">(</mo><msub><mi>u</mi><mi>c</mi></msub><mo>−</mo><msub><mo>∑</mo><mi>j</mi></msub><msub><mi>p</mi><mi>j</mi></msub><msub><mi>u</mi><mi>j</mi></msub><mo fence="true" form="postfix" stretchy="true">)</mo></mrow><mo>.</mo></mrow></math>
 El gradiente de la pérdida negativa cambia de signo. Si una palabra aparece varias veces, su fila compartida recibe la suma de las contribuciones de sus apariciones. Las direcciones ajustan puntuaciones; no son fuerzas físicas entre palabras.</p>
-<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="120" id="celda-121"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-121-cbow"><h4 id="imagen-celda-121-cbow">Diagrama visual · Skip-gram y CBOW: flechas de predicción</h4><figure><img alt="Dos grafos muestran cómo cambia la dirección entre centro y contextos." decoding="async" height="760" loading="lazy" src="../assets/visuals/cbow.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cbow.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>En la mitad izquierda, la palabra central alimenta varias predicciones de contexto: esa es la dirección de Skip-gram.</p>
-</li>
-<li>
-<p>En la derecha, los vectores de contexto convergen en una media y el clasificador predice el centro: esa es la dirección de CBOW. El centro no se incluye entre sus propios contextos.</p>
-</li>
-<li>
-<p>Las flechas representan relaciones de la tarea de entrenamiento, no una creación literal de palabras a partir de otras ni una garantía de cercanía semántica.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="121" id="celda-122"><h4 id="seccion-43"><strong>1.3.3.1. Implementación Básica en PyTorch</strong></h4>
+<p class="note source-reference">Referencia: <a href="https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html">D2L · Word embedding</a></p></section><section class="cell" data-cell="120" id="celda-121"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/></figure></section><section class="cell" data-cell="121" id="celda-122"><h4 id="seccion-43"><strong>1.3.3.1. Implementación Básica en PyTorch</strong></h4>
 </section><section class="cell" data-cell="122" id="celda-123"><h5 id="seccion-44"><strong>1. Importación de Librerías</strong></h5>
 <p>Primero, importaremos las herramientas que necesitamos:</p>
 <ul>

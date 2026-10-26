@@ -15,18 +15,7 @@
 <pre><code class="language-Markdown">Secuencia de Entrada ──&gt; [ ENCODER (RNN) ] ──&gt; [ Vector de Contexto ] ──&gt; [ DECODER (RNN) ] ──&gt; Secuencia de Salida
                                                (Longitud Fija: e.g., 512)
 </code></pre>
-</section><section class="cell" data-cell="8" id="celda-9"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-9-rnn-memory"><h4 id="imagen-celda-9-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="9" id="celda-10"><h2 id="seccion-2"><span class="tone-emphasis"><strong>6.1. El Cuello de Botella de Información</strong></span></h2>
+</section><section class="cell" data-cell="8" id="celda-9"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="9" id="celda-10"><h2 id="seccion-2"><span class="tone-emphasis"><strong>6.1. El Cuello de Botella de Información</strong></span></h2>
 <p>En este diseño tradicional:</p>
 <ol>
 <li>
@@ -42,48 +31,15 @@
 </section><section class="cell" data-cell="10" id="celda-11"><figure><img alt="Ilustración de la sección" height="652" loading="lazy" src="../assets/c53ad5b8b3e7cb89569bed2f.webp" width="1905"/></figure></section><section class="cell" data-cell="11" data-reviewed-source="https://www.bioinf.jku.at/publications/older/2604.pdf" id="celda-12"><h2 id="seccion-3"><span class="tone-emphasis"><strong>6.2. El Colapso de la Memoria en Secuencias Largas</strong></span></h2><p>Un resumen de dimensión fija puede dificultar el manejo de secuencias largas. No existe un umbral universal de palabras a partir del cual se pierda la información. La retención depende de parámetros, entrenamiento y datos; las dependencias recurrentes también pueden dificultar la optimización.</p>
 <p class="note source-reference">Referencia: <a href="https://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter y Schmidhuber · LSTM</a></p></section><section class="cell" data-cell="12" id="celda-13"><h2 id="seccion-4"><strong>6.3. Redes Neuronales Recurrentes (RNN)</strong></h2>
 <p>A diferencia de las redes <span class="tone-emphasis"><strong>feed-forward tradicionales, que no mantienen ningún estado interno y procesan cada entrada de manera aislada, las RNNs están diseñadas para procesar secuencias de datos</strong></span>. Su principio fundamental es la <span class="tone-emphasis"><strong>persistencia de la información:</strong></span> los humanos no reiniciamos nuestro pensamiento con cada palabra que leemos, sino que <span class="tone-emphasis"><strong>comprendemos cada palabra basándonos en el contexto anterior</strong>.</span></p>
-</section><section class="cell" data-cell="13" id="celda-14"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-14-rnn-memory"><h4 id="imagen-celda-14-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="14" id="celda-15"><h3 id="seccion-5"><strong>6.3.1. El Bucle de Retroalimentación y el Despliegue</strong></h3>
+</section><section class="cell" data-cell="13" id="celda-14"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="14" id="celda-15"><h3 id="seccion-5"><strong>6.3.1. El Bucle de Retroalimentación y el Despliegue</strong></h3>
 <p>Una RNN introduce <span class="tone-emphasis"><strong>bucles en su arquitectura</strong></span>, lo que <span class="tone-emphasis"><strong>permite que la información circule a través de un ciclo en su capa oculta intermedia:</strong></span></p>
 </section><section class="cell" data-cell="15" id="celda-16"><ul>
 <li><span class="tone-context"><strong>El bucle lógico:</strong></span> La <span class="tone-emphasis"><strong>salida de una capa oculta</strong></span> en el paso de <span class="tone-emphasis"><strong>tiempo <math aria-label="t-1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></math></strong></span> se reintroduce como <span class="tone-emphasis"><strong>parte de la entrada</strong></span> en el paso de <span class="tone-emphasis"><strong>tiempo <math aria-label="t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math></strong>.</span></li>
 </ul>
-</section><section class="cell" data-cell="16" id="celda-17"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-17-rnn-memory"><h4 id="imagen-celda-17-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="17" id="celda-18"><ul>
+</section><section class="cell" data-cell="16" id="celda-17"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="17" id="celda-18"><ul>
 <li><span class="tone-context"><strong>El desplegado temporal (Unrolling):</strong></span> Lógicamente, un bucle de RNN <span class="tone-emphasis"><strong>equivale a realizar múltiples copias de la misma red neuronal de manera secuencial</strong></span>, donde cada copia <span class="tone-emphasis"><strong>transmite un mensaje a su sucesora.</strong></span></li>
 </ul>
-</section><section class="cell" data-cell="18" id="celda-19"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-19-rnn-memory"><h4 id="imagen-celda-19-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="19" data-reviewed-source="https://www.bioinf.jku.at/publications/older/2604.pdf" id="celda-20"><h3 id="seccion-6"><span class="tone-accent"><strong>6.3.2. Compartición de Parámetros (Parameter Sharing)</strong></span></h3><p>Una RNN reutiliza los mismos parámetros en todos los pasos. El número de parámetros no crece con la longitud; el trabajo y las activaciones de entrenamiento sí dependen de ella. Compartir pesos favorece aplicar la misma regla temporal, pero no garantiza generalizar a longitudes nuevas.</p>
+</section><section class="cell" data-cell="18" id="celda-19"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="19" data-reviewed-source="https://www.bioinf.jku.at/publications/older/2604.pdf" id="celda-20"><h3 id="seccion-6"><span class="tone-accent"><strong>6.3.2. Compartición de Parámetros (Parameter Sharing)</strong></span></h3><p>Una RNN reutiliza los mismos parámetros en todos los pasos. El número de parámetros no crece con la longitud; el trabajo y las activaciones de entrenamiento sí dependen de ella. Compartir pesos favorece aplicar la misma regla temporal, pero no garantiza generalizar a longitudes nuevas.</p>
 <p class="note source-reference">Referencia: <a href="https://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter y Schmidhuber · LSTM</a></p></section><section class="cell" data-cell="20" id="celda-21"><figure><img alt="Ilustración de la sección" height="1156" loading="lazy" src="../assets/4957c435429aa7b4ba6ed225.webp" width="2260"/></figure></section><section class="cell" data-cell="21" id="celda-22"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="250" loading="lazy" src="../assets/bae5dbd32e309f04d412495c.gif" width="950"/></div></section><section class="cell" data-cell="22" id="celda-23"><h3 id="seccion-7"><span class="tone-accent"><strong>6.3.3. El Estado Oculto (<math aria-label="h_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>t</mi></msub></mrow></math>): Significado y Geometría</strong></span></h3>
 <blockquote>
 <p>En una <span class="tone-accent"><strong>RNN</strong></span>, para cada elemento de la secuencia en el paso <math aria-label="t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math>, existe un <span class="tone-accent"><strong>estado oculto (hidden state) <math aria-label="h_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>t</mi></msub></mrow></math></strong>.</span></p>
@@ -113,18 +69,7 @@
 </li>
 </ul>
 <hr/>
-</section><section class="cell" data-cell="24" id="celda-25"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-25-rnn-memory"><h4 id="imagen-celda-25-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="25" id="celda-26"><p>Ahora, veremos como se calcula el estado oculto en una RNN:</p>
+</section><section class="cell" data-cell="24" id="celda-25"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="25" id="celda-26"><p>Ahora, veremos como se calcula el estado oculto en una RNN:</p>
 <ul>
 <li>
 <p>Primero, <span class="tone-emphasis"><strong>la entrada y el estado oculto previo se combinan para formar un vector.</strong></span></p>
@@ -137,50 +82,17 @@
 </li>
 </ul>
 </section><section class="cell" data-cell="26" id="celda-27"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="376" loading="lazy" src="../assets/1ef89daaa11b6dc6dfc7c2ed.gif" width="950"/></div></section><section class="cell" data-cell="27" data-reviewed-source="https://www.bioinf.jku.at/publications/older/2604.pdf" id="celda-28"><h4 id="seccion-9"><span class="tone-emphasis"><strong>6.3.3.2. ¿Qué representa semánticamente el estado oculto?</strong></span></h4><p>El estado oculto es una representación aprendida de dimensión fija que depende del prefijo procesado. Puede conservar información útil, pero no contiene necesariamente toda la historia ni tiene coordenadas con una interpretación lingüística prefijada. Un ejemplo de significado es una intuición, no una lectura exacta del vector.</p>
-<p class="note source-reference">Referencia: <a href="https://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter y Schmidhuber · LSTM</a></p></section><section class="cell" data-cell="28" id="celda-29"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-29-rnn-memory"><h4 id="imagen-celda-29-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="29" id="celda-30"><p>Durante el procesamiento, <span class="tone-emphasis"><strong>se pasa el estado oculto anterior al siguiente paso de la secuencia. El estado oculto actúa como memoria de la red neuronal. Contiene información sobre datos anteriores que la red ha visto antes.</strong></span></p>
+<p class="note source-reference">Referencia: <a href="https://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter y Schmidhuber · LSTM</a></p></section><section class="cell" data-cell="28" id="celda-29"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="29" id="celda-30"><p>Durante el procesamiento, <span class="tone-emphasis"><strong>se pasa el estado oculto anterior al siguiente paso de la secuencia. El estado oculto actúa como memoria de la red neuronal. Contiene información sobre datos anteriores que la red ha visto antes.</strong></span></p>
 </section><section class="cell" data-cell="30" id="celda-31"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="250" loading="lazy" src="../assets/6fcb3dbfea9ba4ad2c39fd7f.gif" width="950"/></div></section><section class="cell" data-cell="31" id="celda-32"><h4 id="seccion-10"><span class="tone-emphasis"><strong>6.3.3.3. El Regulador de Memoria: La Función <math aria-label="tanh" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi><mi>a</mi><mi>n</mi><mi>h</mi></mrow></math></strong></span></h4>
 </section><section class="cell" data-cell="32" id="celda-33"><blockquote>
 <p>La activación tangente hiperbólica (tanh) <span class="tone-accent"><strong>se utiliza para ayudar a regular los valores que fluyen a través de la red.</strong></span> La función tangente hiperbólica <span class="tone-accent"><strong>comprime los valores para que siempre estén entre -1 y 1.</strong></span></p>
 </blockquote>
-</section><section class="cell" data-cell="33" id="celda-34"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-34-rnn-memory"><h4 id="imagen-celda-34-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="34" id="celda-35"><p>Esta regularización, se puede observar claramente con el siguiente ejemplo:</p>
+</section><section class="cell" data-cell="33" id="celda-34"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="34" id="celda-35"><p>Esta regularización, se puede observar claramente con el siguiente ejemplo:</p>
 </section><section class="cell" data-cell="35" id="celda-36"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="376" loading="lazy" src="../assets/a34fcefdaf39557c1e1b2c76.gif" width="950"/></div></section><section class="cell" data-cell="36" data-reviewed-source="https://www.bioinf.jku.at/publications/older/2604.pdf" id="celda-37"><p>En una recurrencia lineal, algunas dinámicas pueden crecer si se multiplican repetidamente por una transformación expansiva. <code>tanh</code> acota las activaciones, pero no garantiza controlar el gradiente de toda la red. Este depende de productos de matrices y derivadas.</p>
 <p class="note source-reference">Referencia: <a href="https://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter y Schmidhuber · LSTM</a></p></section><section class="cell" data-cell="37" id="celda-38"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="126" loading="lazy" src="../assets/50ca3ff5b2581930ff4f8ee4.gif" width="950"/></div></section><section class="cell" data-cell="38" id="celda-39"><p>La función tangente hiperbólica <span class="tone-emphasis"><strong>asegura que los valores se mantengan entre -1 y 1, regulando así la salida de la red neuronal.</strong></span> Podemos ver cómo los mismos valores de arriba <span class="tone-emphasis"><strong>permanecen entre los límites permitidos por la función tangente hiperbólica.</strong></span></p>
 </section><section class="cell" data-cell="39" id="celda-40"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="126" loading="lazy" src="../assets/c73ad9702f54f3c9f67df3d9.gif" width="950"/></div></section><section class="cell" data-cell="40" id="celda-41"><h4 id="seccion-11"><strong>6.3.3.4. El Límite de la Memoria a Corto Plazo</strong></h4>
 <p>En las RNNs tradicionales, al <span class="tone-emphasis"><strong>propagar los gradientes hacia atrás en el tiempo (BPTT), la multiplicación sucesiva de la matriz <math aria-label="W_{hh}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>W</mi><mrow><mi>h</mi><mi>h</mi></mrow></msub></mrow></math></strong></span> provoca que los <span class="tone-emphasis"><strong>gradientes se desvanezcan o exploten</strong></span>. Esto <span class="tone-emphasis"><strong>impide que la red recuerde dependencias de largo alcance:</strong></span></p>
-</section><section class="cell" data-cell="41" id="celda-42"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-42-rnn-memory"><h4 id="imagen-celda-42-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="42" id="celda-43"><h3 id="seccion-12"><span class="tone-accent"><strong>6.3.4. Implementación con PyTorch</strong></span></h3>
+</section><section class="cell" data-cell="41" id="celda-42"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="42" id="celda-43"><h3 id="seccion-12"><span class="tone-accent"><strong>6.3.4. Implementación con PyTorch</strong></span></h3>
 </section><section class="cell" data-cell="43" id="celda-44"><h4 id="seccion-13"><span class="tone-emphasis"><strong>Celda 1: Importación de librerías y configuración</strong></span></h4>
 <p>Configura el entorno de trabajo, define la semilla de reproducibilidad y selecciona el dispositivo de cómputo (CPU o GPU).</p>
 </section><section class="cell" data-cell="44" id="celda-45"><details class="source-code"><summary>Código Python · celda 45</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">fasttext</span><span class="o">-</span><span class="n">wheel</span>
@@ -917,31 +829,9 @@ Llama a <span class="tone-emphasis"><strong><code>ft_model.get_word_vector(t)</c
 <math aria-label="h_t = o_t \odot \tanh(C_t)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>o</mi><mi>t</mi></msub><mo>⊙</mo><mi>tanh</mi><mo stretchy="false">(</mo><msub><mi>C</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></math></p>
 </li>
 </ol>
-</section><section class="cell" data-cell="75" id="celda-76"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-76-rnn-memory"><h4 id="imagen-celda-76-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="76" id="celda-77"><h3 id="seccion-33"><span class="tone-accent"><strong>6.4.1. Compuerta de Olvido (Forget Gate)</strong></span></h3>
+</section><section class="cell" data-cell="75" id="celda-76"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="76" id="celda-77"><h3 id="seccion-33"><span class="tone-accent"><strong>6.4.1. Compuerta de Olvido (Forget Gate)</strong></span></h3>
 <p>Esta compuerta <span class="tone-emphasis"><strong>decide qué información debe ser descartada o mantenida.</strong></span> La información del <span class="tone-emphasis"><strong>estado oculto anterior y la información de la entrada actual se pasan a través de la función sigmoide.</strong></span> Los valores salen entre 0 y 1. Cuanto <span class="tone-emphasis"><strong>más cercano a 0, significa que se debe olvidar, y cuanto más cercano a 1, significa que se debe mantener.</strong></span></p>
-</section><section class="cell" data-cell="77" id="celda-78"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-78-rnn-memory"><h4 id="imagen-celda-78-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="78" id="celda-79"><p>La interacción animada sería:</p>
+</section><section class="cell" data-cell="77" id="celda-78"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="78" id="celda-79"><p>La interacción animada sería:</p>
 </section><section class="cell" data-cell="79" id="celda-80"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="376" loading="lazy" src="../assets/09ff1f99f40b7305152ff239.gif" width="950"/></div></section><section class="cell" data-cell="80" id="celda-81"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="500" loading="lazy" src="../assets/a5af59d0f089900a90cb758f.gif" width="950"/></div></section><section class="cell" data-cell="81" id="celda-82"></section><section class="cell" data-cell="82" id="celda-83"><p>El producto elemento a elemento de [0.01, 0.57, 0.9] y [0.723, 0.78, 0.41] es [0.00723, 0.4446, 0.369]. Es un ejemplo numérico de compuerta, no la sigmoide de [1,2,3].</p></section><section class="cell" data-cell="83" id="celda-84"><h3 id="seccion-34"><span class="tone-accent"><strong>6.4.2. Compuerta de Entrada (Input Gate)</strong></span></h3>
 <p>Para <span class="tone-emphasis"><strong>actualizar el estado de la celda, tenemos la compuerta de entrada</strong>.</span> Primero, <span class="tone-emphasis"><strong>pasamos el estado oculto anterior y la entrada actual a través de una función sigmoide.</strong></span> Eso <strong>decide qué valores se actualizarán transformando los valores para que estén entre 0 y 1. 0 significa no importante y 1 significa importante</strong>.</p>
 <ul>
@@ -955,18 +845,7 @@ Llama a <span class="tone-emphasis"><strong><code>ft_model.get_word_vector(t)</c
 </section><section class="cell" data-cell="84" id="celda-85"><figure><img alt="Ilustración de la sección" height="885" loading="lazy" src="../assets/b31ae5830887155693cc24c0.webp" width="1572"/></figure></section><section class="cell" data-cell="85" id="celda-86"><p>La interacción animada sería:</p>
 </section><section class="cell" data-cell="86" id="celda-87"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="450" loading="lazy" src="../assets/afa08d1a0e6813b1b9f1c758.gif" width="950"/></div></section><section class="cell" data-cell="87" id="celda-88"><h3 id="seccion-35"><span class="tone-accent"><strong>6.4.3. Estado de la Celda (Cell State)</strong></span></h3>
 <p>Primero, el <span class="tone-emphasis"> <strong>estado de la celda se multiplica elemento a elemento por el vector de olvido</strong>.</span> Esto tiene la posibilidad de eliminar valores en el estado de la celda si se multiplica por valores cercanos a 0. Luego, <span class="tone-emphasis"> <strong>tomamos la salida de la compuerta de entrada y hacemos una suma punto a punto que actualiza el estado de la celda a nuevos valores que la red neuronal considera relevantes</strong></span>. Eso nos <span class="tone-emphasis"> <strong>da nuestro nuevo estado de celda.</strong></span></p>
-</section><section class="cell" data-cell="88" id="celda-89"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-89-rnn-memory"><h4 id="imagen-celda-89-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="89" id="celda-90"><p>La interacción animada sería</p>
+</section><section class="cell" data-cell="88" id="celda-89"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="89" id="celda-90"><p>La interacción animada sería</p>
 </section><section class="cell" data-cell="90" id="celda-91"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="500" loading="lazy" src="../assets/b070a17dfb39bcf62a16bef4.gif" width="950"/></div></section><section class="cell" data-cell="91" id="celda-92"><h3 id="seccion-36"><span class="tone-accent"><strong>6.4.4. Compuerta de Salida (Output Gate)</strong></span></h3>
 <p>La compuerta de salida <span class="tone-emphasis"> <strong>decide cuál debería ser el siguiente estado oculto.</strong></span></p>
 <ul>
@@ -991,18 +870,7 @@ Llama a <span class="tone-emphasis"><strong><code>ft_model.get_word_vector(t)</c
 <p>La salida es el estado oculto. <span class="tone-emphasis"><strong>El nuevo estado de celda y el nuevo estado oculto se llevan al siguiente paso de tiempo.</strong></span></p>
 </li>
 </ul>
-</section><section class="cell" data-cell="92" id="celda-93"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-93-rnn-memory"><h4 id="imagen-celda-93-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="93" id="celda-94"><p>La interacción animada sería:</p>
+</section><section class="cell" data-cell="92" id="celda-93"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="93" id="celda-94"><p>La interacción animada sería:</p>
 </section><section class="cell" data-cell="94" id="celda-95"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="450" loading="lazy" src="../assets/144b84718f066b48dd4931cb.gif" width="950"/></div></section><section class="cell" data-cell="95" id="celda-96"><h3 id="seccion-37"><span class="tone-accent"><strong>6.4.5. Implementación en PyTorch</strong></span></h3>
 <blockquote>
 <p><span class="tone-accent"><strong>Hasta la Celda 3, la implementación y la justificación de cada línea de código es la misma a la que se vieron en la sección 6.3.4 (Celda 1, Celda 2 y Celda 3).</strong></span></p>

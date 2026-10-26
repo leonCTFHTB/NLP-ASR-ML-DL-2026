@@ -31,18 +31,7 @@
 </ul>
 </section><section class="cell" data-cell="11" id="celda-12"><h3 id="seccion-5"><span class="tone-accent"><strong>6.2.3. El Cuello de Botella de Seq2Seq: El Límite del Vector Fijo</strong></span></h3>
 <p>A pesar del gran avance de Seq2Seq, <span class="tone-emphasis"><strong>la arquitectura clásica sufre de una limitación de diseño devastadora conocida como el cuello de botella de la representación fija</strong></span></p>
-</section><section class="cell" data-cell="12" id="celda-13"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-13-rnn-memory"><h4 id="imagen-celda-13-rnn-memory">Diagrama visual · Las compuertas controlan la ruta de la celda</h4><figure><img alt="Dos productos se reúnen en una suma para actualizar la celda de una LSTM." decoding="async" height="760" loading="lazy" src="../assets/visuals/rnn-memory.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/rnn-memory.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La ruta azul transporta c anterior y la multiplica por la compuerta de olvido f. La ruta violeta multiplica la propuesta g por la compuerta de entrada i.</p>
-</li>
-<li>
-<p>La suma produce c nuevo=f⊙c anterior+i⊙g. Después se calcula h nuevo=o⊙tanh(c nuevo). Los productos son elemento a elemento.</p>
-</li>
-<li>
-<p>La ruta aditiva ayuda a transportar información y gradientes, pero las compuertas y el resto de la red siguen influyendo. El dibujo no garantiza memoria ilimitada ni ausencia de gradientes que crecen o se desvanecen.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="13" data-reviewed-source="https://arxiv.org/abs/1409.0473" id="celda-14"><p>Una representación final fija puede dificultar la traducción de secuencias largas. No implica que las primeras palabras se sobrescriban por completo ni que exista un límite rígido de 30 o 40 tokens. Las LSTM pueden conservar información a largo plazo, con límites que dependen del entrenamiento.</p>
+</section><section class="cell" data-cell="12" id="celda-13"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="13" data-reviewed-source="https://arxiv.org/abs/1409.0473" id="celda-14"><p>Una representación final fija puede dificultar la traducción de secuencias largas. No implica que las primeras palabras se sobrescriban por completo ni que exista un límite rígido de 30 o 40 tokens. Las LSTM pueden conservar información a largo plazo, con límites que dependen del entrenamiento.</p>
 <p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1409.0473">Bahdanau et al. · Alineación aprendida</a></p></section><section class="cell" data-cell="14" id="celda-15"><h2 id="seccion-6"><span class="tone-emphasis"><strong>6.3. El Nacimiento de la Atención: RNNs como la Biblioteca de Consulta</strong></span></h2>
 <blockquote>
 <p>Para romper el cuello de botella, Bahdanau et al. (2015) introdujeron una idea revolucionaria: <span class="tone-accent"><strong>en lugar de desechar los estados ocultos intermedios del codificador, vamos a exponerlos todos al decodificador</strong>.</span></p>
@@ -60,18 +49,7 @@
 </li>
 </ul>
 </section><section class="cell" data-cell="17" id="celda-18"><figure><img alt="Ilustración de la sección" height="1168" loading="lazy" src="../assets/601e470ff8bdf5074ac321dd.webp" width="2137"/></figure></section><section class="cell" data-cell="18" id="celda-19"><h3 id="seccion-8"><span class="tone-accent"><strong>6.3.2. La Matemática de la Consulta (Query, Key, Value) con RNNs</strong></span></h3>
-</section><section class="cell" data-cell="19" id="celda-20"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/qkv.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-20-qkv"><h4 id="imagen-celda-20-qkv">Diagrama visual · Una entrada, tres transformaciones aprendidas</h4><figure><img alt="Una matriz de entrada se bifurca a consultas, claves y valores antes de comparar y mezclar." decoding="async" height="760" loading="lazy" src="../assets/visuals/qkv.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/qkv.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Las tres flechas parten de X, pero atraviesan matrices de parámetros distintas: WQ, WK y WV. Producen las activaciones Q, K y V.</p>
-</li>
-<li>
-<p>Q y K intervienen en los scores QKᵀ/√dₖ. Softmax se aplica por fila sobre claves válidas, formando A.</p>
-</li>
-<li>
-<p>La salida se obtiene con AV. Una fila de salida corresponde a cada consulta. Las matrices W son parámetros; Q, K, V y A cambian con la entrada.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="20" id="celda-21"><p>Aunque el paper original utiliza una terminología diferente, <span class="tone-emphasis"><strong>la mecánica de alineación de Bahdanau define de forma nativa la base del formalismo de Query (Query), Key (Key) y Value (Value)</strong>:</span></p>
+</section><section class="cell" data-cell="19" id="celda-20"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/qkv.svg" width="1440"/></figure></section><section class="cell" data-cell="20" id="celda-21"><p>Aunque el paper original utiliza una terminología diferente, <span class="tone-emphasis"><strong>la mecánica de alineación de Bahdanau define de forma nativa la base del formalismo de Query (Query), Key (Key) y Value (Value)</strong>:</span></p>
 <ol>
 <li>
 <p><span class="tone-context"><strong>La Consulta (Query - <math aria-label="q" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>q</mi></mrow></math>):</strong></span> Proviene del decodificador. Es el <span class="tone-emphasis"><strong>estado oculto del decodificador en el paso anterior <math aria-label="s_{t-1}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>s</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></math>.</strong> </span></p>
@@ -92,114 +70,26 @@
 </blockquote>
 </li>
 </ol>
-</section><section class="cell" data-cell="21" id="celda-22"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-22-weighted-sum"><h4 id="imagen-celda-22-weighted-sum">Diagrama visual · Los pesos mezclan vectores completos</h4><figure><img alt="Tres vectores de valor contribuyen a una suma ponderada de dos coordenadas." decoding="async" height="760" loading="lazy" src="../assets/visuals/weighted-sum.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/weighted-sum.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Cada columna representa un valor: v₀=(2,0), v₁=(0,2) y v₂=(2,2). Los pesos 0.2, 0.5 y 0.3 suman uno.</p>
-</li>
-<li>
-<p>Cada peso multiplica todas las coordenadas de su valor. Las contribuciones son (0.4,0), (0,1) y (0.6,0.6); al sumarlas se obtiene z=(1,1.6).</p>
-</li>
-<li>
-<p>Los scores se calculan antes y softmax los normaliza. La figura se centra en la mezcla posterior: un peso aislado no determina la dirección final, que también depende de los valores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="22" id="celda-23"><h4 id="seccion-9"><span class="tone-emphasis"><strong>1. Cálculo de Scores de Alineación (Energía)</strong></span></h4>
+</section><section class="cell" data-cell="21" id="celda-22"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/></figure></section><section class="cell" data-cell="22" id="celda-23"><h4 id="seccion-9"><span class="tone-emphasis"><strong>1. Cálculo de Scores de Alineación (Energía)</strong></span></h4>
 <p>Se evalúa la <span class="tone-emphasis"><strong>compatibilidad entre el estado del decodificador (<math aria-label="s_{t-1}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>s</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></math>) y cada estado del codificador (<math aria-label="h_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>i</mi></msub></mrow></math>) utilizando una red feed-forward de una capa (Atención Aditiva)</strong>:</span></p>
 <p><math aria-label="e_{t, i} = v_a^\top \tanh(W_a s_{t-1} + U_a h_i)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>i</mi></mrow></msub><mo>=</mo><msubsup><mi>v</mi><mi>a</mi><mo>⊤</mo></msubsup><mi>tanh</mi><mo stretchy="false">(</mo><msub><mi>W</mi><mi>a</mi></msub><msub><mi>s</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>U</mi><mi>a</mi></msub><msub><mi>h</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></math>.</p>
 <hr/>
-</section><section class="cell" data-cell="23" id="celda-24"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-24-additive-attention"><h4 id="imagen-celda-24-additive-attention">Diagrama visual · Dos proyecciones se reúnen antes de puntuar</h4><figure><img alt="Dos ramas de query y key se proyectan, suman, pasan por tanh y se contraen a un score." decoding="async" height="760" loading="lazy" src="../assets/visuals/additive-attention.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/additive-attention.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La consulta q y la clave k pueden tener anchos distintos. Wq y Wk las llevan al mismo ancho intermedio, para poder sumarlas.</p>
-</li>
-<li>
-<p>La suma, con el sesgo si se usa, pasa por tanh. El vector aprendido v convierte esa representación intermedia en un score escalar.</p>
-</li>
-<li>
-<p>Se repite la puntuación para las claves y softmax normaliza el conjunto. La suma de proyecciones no mide por sí sola una distancia o un ángulo entre palabras.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="24" id="celda-25"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/dot.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-25-dot"><h4 id="imagen-celda-25-dot">Diagrama visual · Los pesos mezclan vectores completos</h4><figure><img alt="Tres vectores de valor contribuyen a una suma ponderada de dos coordenadas." decoding="async" height="760" loading="lazy" src="../assets/visuals/dot.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/dot.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Cada columna representa un valor: v₀=(2,0), v₁=(0,2) y v₂=(2,2). Los pesos 0.2, 0.5 y 0.3 suman uno.</p>
-</li>
-<li>
-<p>Cada peso multiplica todas las coordenadas de su valor. Las contribuciones son (0.4,0), (0,1) y (0.6,0.6); al sumarlas se obtiene z=(1,1.6).</p>
-</li>
-<li>
-<p>Los scores se calculan antes y softmax los normaliza. La figura se centra en la mezcla posterior: un peso aislado no determina la dirección final, que también depende de los valores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="25" id="celda-26"><h4 id="seccion-10"><span class="tone-emphasis"><strong>2. Normalización de Pesos (Softmax)</strong></span></h4>
+</section><section class="cell" data-cell="23" id="celda-24"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/></figure></section><section class="cell" data-cell="24" id="celda-25"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/dot.svg" width="1440"/></figure></section><section class="cell" data-cell="25" id="celda-26"><h4 id="seccion-10"><span class="tone-emphasis"><strong>2. Normalización de Pesos (Softmax)</strong></span></h4>
 <p>Se <span class="tone-emphasis"><strong>convierten los scores en una distribución de probabilidad que suma <math aria-label="1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math></strong>:</span></p>
 <p><math aria-label="\alpha_{t, i} = \frac{\exp(e_{t, i})}{\sum_{k=1}^n \exp(e_{t, k})}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>i</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>exp</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>i</mi></mrow></msub><mo stretchy="false">)</mo></mrow><mrow><msubsup><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></msubsup><mi>exp</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow></math></p>
 <hr/>
-</section><section class="cell" data-cell="26" id="celda-27"><figure><img alt="Softmax: un ejemplo numérico verificable" height="398" loading="lazy" src="../assets/figures/softmax-numeric.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-27-softmax-numeric"><h4 id="imagen-celda-27-softmax-numeric">Diagrama visual · De scores a probabilidades normalizadas</h4><figure><img alt="Tres barras de scores se transforman en tres probabilidades positivas que suman uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/softmax-numeric.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/softmax-numeric.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se usan los scores [3.2,−1.5,4.0]. Restar su máximo produce [−0.8,−5.5,0] y conserva exactamente el softmax.</p>
-</li>
-<li>
-<p>Las exponenciales son aproximadamente [0.4493,0.00409,1]. Se divide cada una por su suma, aproximadamente 1.4534.</p>
-</li>
-<li>
-<p>El resultado es [0.3092,0.0028,0.6880], salvo redondeo. Son probabilidades sobre los candidatos del eje elegido; los scores iniciales no eran probabilidades.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="27" id="celda-28"><h4 id="seccion-11"><span class="tone-emphasis"><strong>3. Sumatoria Vectorial Ponderada</strong></span></h4>
+</section><section class="cell" data-cell="26" id="celda-27"><figure><img alt="Softmax: un ejemplo numérico verificable" height="398" loading="lazy" src="../assets/figures/softmax-numeric.svg" width="1440"/></figure></section><section class="cell" data-cell="27" id="celda-28"><h4 id="seccion-11"><span class="tone-emphasis"><strong>3. Sumatoria Vectorial Ponderada</strong></span></h4>
 <p>Se calcula un <span class="tone-emphasis"><strong>vector de contexto dinámico <math aria-label="c_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>c</mi><mi>t</mi></msub></mrow></math></strong></span> que <span class="tone-emphasis"><strong>cambia en cada paso de tiempo, sumando los estados del codificador ponderados por su nivel de atención</strong></span>:</p>
 <p><math aria-label="c_t = \sum_{i=1}^n \alpha_{t, i} h_i" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>c</mi><mi>t</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>i</mi></mrow></msub><msub><mi>h</mi><mi>i</mi></msub></mrow></math></p>
 <blockquote>
 <p>Este <span class="tone-accent"><strong>vector dinámico <math aria-label="c_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>c</mi><mi>t</mi></msub></mrow></math> se concatena directamente con la entrada del decodificador para predecir la siguiente palabra, garantizando que el modelo mantenga una línea directa de visión hacia cualquier palabra de la secuencia original sin importar la distancia física.</strong></span></p>
 </blockquote>
 <hr/>
-</section><section class="cell" data-cell="28" id="celda-29"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-29-weighted-sum"><h4 id="imagen-celda-29-weighted-sum">Diagrama visual · Los pesos mezclan vectores completos</h4><figure><img alt="Tres vectores de valor contribuyen a una suma ponderada de dos coordenadas." decoding="async" height="760" loading="lazy" src="../assets/visuals/weighted-sum.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/weighted-sum.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Cada columna representa un valor: v₀=(2,0), v₁=(0,2) y v₂=(2,2). Los pesos 0.2, 0.5 y 0.3 suman uno.</p>
-</li>
-<li>
-<p>Cada peso multiplica todas las coordenadas de su valor. Las contribuciones son (0.4,0), (0,1) y (0.6,0.6); al sumarlas se obtiene z=(1,1.6).</p>
-</li>
-<li>
-<p>Los scores se calculan antes y softmax los normaliza. La figura se centra en la mezcla posterior: un peso aislado no determina la dirección final, que también depende de los valores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="29" id="celda-30"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/qkv.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-30-qkv"><h4 id="imagen-celda-30-qkv">Diagrama visual · Una entrada, tres transformaciones aprendidas</h4><figure><img alt="Una matriz de entrada se bifurca a consultas, claves y valores antes de comparar y mezclar." decoding="async" height="760" loading="lazy" src="../assets/visuals/qkv.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/qkv.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Las tres flechas parten de X, pero atraviesan matrices de parámetros distintas: WQ, WK y WV. Producen las activaciones Q, K y V.</p>
-</li>
-<li>
-<p>Q y K intervienen en los scores QKᵀ/√dₖ. Softmax se aplica por fila sobre claves válidas, formando A.</p>
-</li>
-<li>
-<p>La salida se obtiene con AV. Una fila de salida corresponde a cada consulta. Las matrices W son parámetros; Q, K, V y A cambian con la entrada.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="30" data-reviewed-source="https://aclanthology.org/D15-1166/" id="celda-31"><h2 id="seccion-12"><span class="tone-emphasis"><strong>6.4. De lo Aditivo a lo Multiplicativo</strong></span></h2><p>Luong et al. compararon funciones dot, general y concat y variantes globales y locales. Las formas multiplicativas permiten cálculos matriciales eficientes, pero no hay una superioridad universal de coste o calidad frente a la atención aditiva.</p>
+</section><section class="cell" data-cell="28" id="celda-29"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/></figure></section><section class="cell" data-cell="29" id="celda-30"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/qkv.svg" width="1440"/></figure></section><section class="cell" data-cell="30" data-reviewed-source="https://aclanthology.org/D15-1166/" id="celda-31"><h2 id="seccion-12"><span class="tone-emphasis"><strong>6.4. De lo Aditivo a lo Multiplicativo</strong></span></h2><p>Luong et al. compararon funciones dot, general y concat y variantes globales y locales. Las formas multiplicativas permiten cálculos matriciales eficientes, pero no hay una superioridad universal de coste o calidad frente a la atención aditiva.</p>
 <p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. · Atención global y local</a></p></section><section class="cell" data-cell="31" data-reviewed-source="https://arxiv.org/abs/1409.0473" id="celda-32"><h3 id="seccion-13"><span class="tone-accent"><strong>6.4.1. La Crítica de la Atención Aditiva</strong></span></h3><p>La atención aditiva proyecta consulta y claves, combina los resultados con tanh y produce una puntuación escalar. Las proyecciones de claves pueden precalcularse y las operaciones se pueden vectorizar en GPU. El tiempo debe medirse para las dimensiones y el backend concretos.</p>
-<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1409.0473">Bahdanau et al. · Alineación aprendida</a></p></section><section class="cell" data-cell="32" id="celda-33"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-33-additive-attention"><h4 id="imagen-celda-33-additive-attention">Diagrama visual · Dos proyecciones se reúnen antes de puntuar</h4><figure><img alt="Dos ramas de query y key se proyectan, suman, pasan por tanh y se contraen a un score." decoding="async" height="760" loading="lazy" src="../assets/visuals/additive-attention.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/additive-attention.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La consulta q y la clave k pueden tener anchos distintos. Wq y Wk las llevan al mismo ancho intermedio, para poder sumarlas.</p>
-</li>
-<li>
-<p>La suma, con el sesgo si se usa, pasa por tanh. El vector aprendido v convierte esa representación intermedia en un score escalar.</p>
-</li>
-<li>
-<p>Se repite la puntuación para las claves y softmax normaliza el conjunto. La suma de proyecciones no mide por sí sola una distancia o un ángulo entre palabras.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="33" id="celda-34"><h4 id="seccion-14"><span class="tone-emphasis"><strong>6.4.1.1. ¿Por qué y para qué se proyecta en los modelos de atención?</strong></span></h4><p>En estas arquitecturas, «proyectar» suele significar aplicar una matriz aprendida: <math aria-label="y=Wx" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mi>W</mi><mi>x</mi></mrow></math>. Es una <strong>transformación lineal</strong>, que puede cambiar dimensión, normas y ángulos. Sin un sesgo, no añade una traslación.</p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1409.0473">Bahdanau et al. · Alineación aprendida</a></p></section><section class="cell" data-cell="32" id="celda-33"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/></figure></section><section class="cell" data-cell="33" id="celda-34"><h4 id="seccion-14"><span class="tone-emphasis"><strong>6.4.1.1. ¿Por qué y para qué se proyecta en los modelos de atención?</strong></span></h4><p>En estas arquitecturas, «proyectar» suele significar aplicar una matriz aprendida: <math aria-label="y=Wx" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mi>W</mi><mi>x</mi></mrow></math>. Es una <strong>transformación lineal</strong>, que puede cambiar dimensión, normas y ángulos. Sin un sesgo, no añade una traslación.</p>
 <p>Una capa con sesgo aplica una transformación afín <math aria-label="y=Wx+b" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mi>W</mi><mi>x</mi><mo>+</mo><mi>b</mi></mrow></math>. Una proyección ortogonal tiene propiedades adicionales, como idempotencia, que una matriz aprendida general no necesita cumplir. En atención, las proyecciones crean representaciones compatibles para comparar consultas y claves; no tienen que ser rotaciones ni preservar distancias.</p>
-<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. (2017), sección 3.2</a></p></section><section class="cell" data-cell="34" id="celda-35"><figure><img alt="Una matriz aprendida es una transformación lineal" height="435" loading="lazy" src="../assets/figures/linear-map.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-35-linear-map"><h4 id="imagen-celda-35-linear-map">Diagrama visual · Una matriz transforma todo el plano</h4><figure><img alt="Un cuadrado se convierte en un rectángulo al aplicar una escala distinta por coordenada." decoding="async" height="760" loading="lazy" src="../assets/visuals/linear-map.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/linear-map.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>El cuadrado de la izquierda tiene vértices (0,0), (1,0), (1,1) y (0,1). Se aplica W=diag(2,0.5).</p>
-</li>
-<li>
-<p>La primera coordenada se duplica y la segunda se reduce a la mitad. El origen se conserva y el cuadrado se convierte en un rectángulo.</p>
-</li>
-<li>
-<p>Es un ejemplo de transformación lineal, no una rotación. Una matriz aprendida general puede mezclar coordenadas y cambiar normas y ángulos; añadir un sesgo daría una transformación afín.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="35" id="celda-36"><ol>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. (2017), sección 3.2</a></p></section><section class="cell" data-cell="34" id="celda-35"><figure><img alt="Una matriz aprendida es una transformación lineal" height="435" loading="lazy" src="../assets/figures/linear-map.svg" width="1440"/></figure></section><section class="cell" data-cell="35" id="celda-36"><ol>
 <li>
 <p><span class="tone-context"><strong>Compatibilidad de dimensiones (Alineación de espacios):</strong></span></p>
 <ul>
@@ -212,18 +102,7 @@
 </ul>
 </li>
 </ol>
-</section><section class="cell" data-cell="36" id="celda-37"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-37-additive-attention"><h4 id="imagen-celda-37-additive-attention">Diagrama visual · Dos proyecciones se reúnen antes de puntuar</h4><figure><img alt="Dos ramas de query y key se proyectan, suman, pasan por tanh y se contraen a un score." decoding="async" height="760" loading="lazy" src="../assets/visuals/additive-attention.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/additive-attention.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La consulta q y la clave k pueden tener anchos distintos. Wq y Wk las llevan al mismo ancho intermedio, para poder sumarlas.</p>
-</li>
-<li>
-<p>La suma, con el sesgo si se usa, pasa por tanh. El vector aprendido v convierte esa representación intermedia en un score escalar.</p>
-</li>
-<li>
-<p>Se repite la puntuación para las claves y softmax normaliza el conjunto. La suma de proyecciones no mide por sí sola una distancia o un ángulo entre palabras.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="37" id="celda-38"><ol start="2">
+</section><section class="cell" data-cell="36" id="celda-37"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/></figure></section><section class="cell" data-cell="37" id="celda-38"><ol start="2">
 <li>
 <p><span class="tone-context"><strong>Transformación geométrica y semántica (Rotar, distorsionar y escalar):</strong></span></p>
 <ul>
@@ -234,29 +113,7 @@
 </blockquote>
 </li>
 </ol>
-</section><section class="cell" data-cell="38" id="celda-39"><figure><img alt="Una matriz aprendida es una transformación lineal" height="435" loading="lazy" src="../assets/figures/linear-map.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-39-linear-map"><h4 id="imagen-celda-39-linear-map">Diagrama visual · Una matriz transforma todo el plano</h4><figure><img alt="Un cuadrado se convierte en un rectángulo al aplicar una escala distinta por coordenada." decoding="async" height="760" loading="lazy" src="../assets/visuals/linear-map.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/linear-map.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>El cuadrado de la izquierda tiene vértices (0,0), (1,0), (1,1) y (0,1). Se aplica W=diag(2,0.5).</p>
-</li>
-<li>
-<p>La primera coordenada se duplica y la segunda se reduce a la mitad. El origen se conserva y el cuadrado se convierte en un rectángulo.</p>
-</li>
-<li>
-<p>Es un ejemplo de transformación lineal, no una rotación. Una matriz aprendida general puede mezclar coordenadas y cambiar normas y ángulos; añadir un sesgo daría una transformación afín.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="39" id="celda-40"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-40-additive-attention"><h4 id="imagen-celda-40-additive-attention">Diagrama visual · Dos proyecciones se reúnen antes de puntuar</h4><figure><img alt="Dos ramas de query y key se proyectan, suman, pasan por tanh y se contraen a un score." decoding="async" height="760" loading="lazy" src="../assets/visuals/additive-attention.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/additive-attention.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La consulta q y la clave k pueden tener anchos distintos. Wq y Wk las llevan al mismo ancho intermedio, para poder sumarlas.</p>
-</li>
-<li>
-<p>La suma, con el sesgo si se usa, pasa por tanh. El vector aprendido v convierte esa representación intermedia en un score escalar.</p>
-</li>
-<li>
-<p>Se repite la puntuación para las claves y softmax normaliza el conjunto. La suma de proyecciones no mide por sí sola una distancia o un ángulo entre palabras.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="40" id="celda-41"><ol start="3">
+</section><section class="cell" data-cell="38" id="celda-39"><figure><img alt="Una matriz aprendida es una transformación lineal" height="435" loading="lazy" src="../assets/figures/linear-map.svg" width="1440"/></figure></section><section class="cell" data-cell="39" id="celda-40"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/></figure></section><section class="cell" data-cell="40" id="celda-41"><ol start="3">
 <li>
 <p><span class="tone-context"><strong>Especialización de roles (Consultas, Claves y Valores):</strong></span></p>
 <ul>
@@ -277,57 +134,13 @@
 </ul>
 </li>
 </ol>
-</section><section class="cell" data-cell="42" id="celda-43"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-43-additive-attention"><h4 id="imagen-celda-43-additive-attention">Diagrama visual · Dos proyecciones se reúnen antes de puntuar</h4><figure><img alt="Dos ramas de query y key se proyectan, suman, pasan por tanh y se contraen a un score." decoding="async" height="760" loading="lazy" src="../assets/visuals/additive-attention.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/additive-attention.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La consulta q y la clave k pueden tener anchos distintos. Wq y Wk las llevan al mismo ancho intermedio, para poder sumarlas.</p>
-</li>
-<li>
-<p>La suma, con el sesgo si se usa, pasa por tanh. El vector aprendido v convierte esa representación intermedia en un score escalar.</p>
-</li>
-<li>
-<p>Se repite la puntuación para las claves y softmax normaliza el conjunto. La suma de proyecciones no mide por sí sola una distancia o un ángulo entre palabras.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="43" id="celda-44"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-44-additive-attention"><h4 id="imagen-celda-44-additive-attention">Diagrama visual · Dos proyecciones se reúnen antes de puntuar</h4><figure><img alt="Dos ramas de query y key se proyectan, suman, pasan por tanh y se contraen a un score." decoding="async" height="760" loading="lazy" src="../assets/visuals/additive-attention.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/additive-attention.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La consulta q y la clave k pueden tener anchos distintos. Wq y Wk las llevan al mismo ancho intermedio, para poder sumarlas.</p>
-</li>
-<li>
-<p>La suma, con el sesgo si se usa, pasa por tanh. El vector aprendido v convierte esa representación intermedia en un score escalar.</p>
-</li>
-<li>
-<p>Se repite la puntuación para las claves y softmax normaliza el conjunto. La suma de proyecciones no mide por sí sola una distancia o un ángulo entre palabras.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="44" id="celda-45"><h3 id="seccion-15"><span class="tone-accent"><strong>6.4.2. La Solución Multiplicativa de Luong</strong></span></h3>
+</section><section class="cell" data-cell="42" id="celda-43"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/></figure></section><section class="cell" data-cell="43" id="celda-44"><figure><img alt="Atención aditiva: compatibilidad aprendida" height="435" loading="lazy" src="../assets/figures/additive-attention.svg" width="1440"/></figure></section><section class="cell" data-cell="44" id="celda-45"><h3 id="seccion-15"><span class="tone-accent"><strong>6.4.2. La Solución Multiplicativa de Luong</strong></span></h3>
 <p>Luong et al. propusieron la <span class="tone-emphasis"><strong>función de puntuación Multiplicativa (o General)</strong></span>:
 <math aria-label="score_{mult}(s_t, h_i) = s_t^\top W_a h_i" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi><mi>c</mi><mi>o</mi><mi>r</mi><msub><mi>e</mi><mrow><mi>m</mi><mi>u</mi><mi>l</mi><mi>t</mi></mrow></msub><mo stretchy="false">(</mo><msub><mi>s</mi><mi>t</mi></msub><mo>,</mo><msub><mi>h</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mo>=</mo><msubsup><mi>s</mi><mi>t</mi><mo>⊤</mo></msubsup><msub><mi>W</mi><mi>a</mi></msub><msub><mi>h</mi><mi>i</mi></msub></mrow></math></p>
 <p>Donde <span class="tone-emphasis"><strong><math aria-label="W_a" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>W</mi><mi>a</mi></msub></mrow></math> es una matriz de pesos aprendible que interactúa de manera bilineal entre el decodificador y el codificador.</strong></span></p>
-</section><section class="cell" data-cell="45" id="celda-46"><figure><img alt="Suma posicional: cambios geométricos sin garantía de pérdida semántica" height="372" loading="lazy" src="../assets/figures/dot.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-46-dot"><h4 id="imagen-celda-46-dot">Diagrama visual · Los pesos mezclan vectores completos</h4><figure><img alt="Tres vectores de valor contribuyen a una suma ponderada de dos coordenadas." decoding="async" height="760" loading="lazy" src="../assets/visuals/dot.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/dot.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Cada columna representa un valor: v₀=(2,0), v₁=(0,2) y v₂=(2,2). Los pesos 0.2, 0.5 y 0.3 suman uno.</p>
-</li>
-<li>
-<p>Cada peso multiplica todas las coordenadas de su valor. Las contribuciones son (0.4,0), (0,1) y (0.6,0.6); al sumarlas se obtiene z=(1,1.6).</p>
-</li>
-<li>
-<p>Los scores se calculan antes y softmax los normaliza. La figura se centra en la mezcla posterior: un peso aislado no determina la dirección final, que también depende de los valores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="46" data-reviewed-source="https://aclanthology.org/D15-1166/" id="celda-47"><h4 id="seccion-16"><span class="tone-emphasis"><strong>6.4.2.1. ¿Por qué es una mejora drástica?</strong></span></h4><p>La puntuación bilineal puede calcularse mediante productos matriciales. Ese patrón es eficiente en muchos aceleradores, pero «más rápido» requiere una comparación medida: tamaño de secuencia, dimensión intermedia y precálculo de claves cambian el coste.</p>
+</section><section class="cell" data-cell="45" id="celda-46"><figure><img alt="Suma posicional: cambios geométricos sin garantía de pérdida semántica" height="372" loading="lazy" src="../assets/figures/dot.svg" width="1440"/></figure></section><section class="cell" data-cell="46" data-reviewed-source="https://aclanthology.org/D15-1166/" id="celda-47"><h4 id="seccion-16"><span class="tone-emphasis"><strong>6.4.2.1. ¿Por qué es una mejora drástica?</strong></span></h4><p>La puntuación bilineal puede calcularse mediante productos matriciales. Ese patrón es eficiente en muchos aceleradores, pero «más rápido» requiere una comparación medida: tamaño de secuencia, dimensión intermedia y precálculo de claves cambian el coste.</p>
 <p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. · Atención global y local</a></p></section><section class="cell" data-cell="47" id="celda-48"><figure><img alt="Ilustración de la sección" height="1218" loading="lazy" src="../assets/41425e4c1e42fdc1d55a84d9.webp" width="2247"/></figure></section><section class="cell" data-cell="48" data-reviewed-source="https://aclanthology.org/D15-1166/" id="celda-49"><p>Si consulta y clave tienen igual dimensión, el producto punto directo no necesita parámetros adicionales de alineación. Las representaciones que lo alimentan sí pueden tener parámetros entrenables. Esto no garantiza convergencia más rápida ni una mejora exponencial.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. · Atención global y local</a></p></section><section class="cell" data-cell="49" id="celda-50"><figure><img alt="Suma posicional: cambios geométricos sin garantía de pérdida semántica" height="372" loading="lazy" src="../assets/figures/dot.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-50-dot"><h4 id="imagen-celda-50-dot">Diagrama visual · Los pesos mezclan vectores completos</h4><figure><img alt="Tres vectores de valor contribuyen a una suma ponderada de dos coordenadas." decoding="async" height="760" loading="lazy" src="../assets/visuals/dot.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/dot.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Cada columna representa un valor: v₀=(2,0), v₁=(0,2) y v₂=(2,2). Los pesos 0.2, 0.5 y 0.3 suman uno.</p>
-</li>
-<li>
-<p>Cada peso multiplica todas las coordenadas de su valor. Las contribuciones son (0.4,0), (0,1) y (0.6,0.6); al sumarlas se obtiene z=(1,1.6).</p>
-</li>
-<li>
-<p>Los scores se calculan antes y softmax los normaliza. La figura se centra en la mezcla posterior: un peso aislado no determina la dirección final, que también depende de los valores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="50" id="celda-51"><h3 id="seccion-17"><span class="tone-accent"><strong>6.4.3. El Cambio de Flujo de Datos</strong></span></h3>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. · Atención global y local</a></p></section><section class="cell" data-cell="49" id="celda-50"><figure><img alt="Suma posicional: cambios geométricos sin garantía de pérdida semántica" height="372" loading="lazy" src="../assets/figures/dot.svg" width="1440"/></figure></section><section class="cell" data-cell="50" id="celda-51"><h3 id="seccion-17"><span class="tone-accent"><strong>6.4.3. El Cambio de Flujo de Datos</strong></span></h3>
 <p>Además de la matemática, Luong modificó el <span class="tone-emphasis"><strong>orden físico de las operaciones dentro de la celda recurrente (RNN):</strong></span></p>
 <pre><code class="language-powershell">FLUJO DE BAHDANAU (Aditivo):
   s_{t-1} ───► Calcular Atención (c_t) ───► Celda RNN(y_{t-1}, c_t) ───► Nuevo s_t
@@ -340,30 +153,8 @@ FLUJO DE LUONG (Multiplicativo):
 </blockquote>
 <p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. (2015), sección 3</a></p></section><section class="cell" data-cell="51" id="celda-52"><h2 id="seccion-18"><span class="tone-emphasis"><strong>6.5. El Dilema de la Escala: Luong Global vs. Local (2015)</strong></span></h2><p>Con una fuente de longitud <math aria-label="T_x" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>T</mi><mi>x</mi></msub></mrow></math> y una salida de longitud <math aria-label="T_y" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>T</mi><mi>y</mi></msub></mrow></math>, la atención global puntúa aproximadamente <math aria-label="T_xT_y" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>T</mi><mi>x</mi></msub><msub><mi>T</mi><mi>y</mi></msub></mrow></math> pares (además del coste por dimensión). Se habla de crecimiento cuadrático cuando ambas longitudes aumentan juntas.</p>
 <p>El uso de memoria depende de la implementación: un decoder recurrente puede calcular un paso cada vez sin guardar una matriz completa de todos los pares. La atención local restringe las posiciones evaluadas alrededor de un centro; su ahorro real requiere computar solo esa vecindad.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. (2015), sección 3</a></p></section><section class="cell" data-cell="52" id="celda-53"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-53-local-window"><h4 id="imagen-celda-53-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="53" data-reviewed-source="https://aclanthology.org/D15-1166/" id="celda-54"><h3 id="seccion-19"><span class="tone-accent"><strong>6.5.1. La Propuesta de Atención Local / Ventana Deslizante (Local Attention)</strong></span></h3><p>La atención local predictiva de Luong evalúa una vecindad alrededor de un centro continuo. Para un centro entero y radio D, el intervalo inclusivo contiene hasta <strong>2D+1 posiciones</strong>, y menos junto a los extremos. El tratamiento de un centro no entero requiere declarar cómo se eligen los índices.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. · Atención global y local</a></p></section><section class="cell" data-cell="54" id="celda-55"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-55-local-window"><h4 id="imagen-celda-55-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="55" id="celda-56"><h4 id="seccion-20"><span class="tone-emphasis"><strong>6.5.1.1. El Algoritmo de Alineación Local</strong></span></h4>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. (2015), sección 3</a></p></section><section class="cell" data-cell="52" id="celda-53"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="53" data-reviewed-source="https://aclanthology.org/D15-1166/" id="celda-54"><h3 id="seccion-19"><span class="tone-accent"><strong>6.5.1. La Propuesta de Atención Local / Ventana Deslizante (Local Attention)</strong></span></h3><p>La atención local predictiva de Luong evalúa una vecindad alrededor de un centro continuo. Para un centro entero y radio D, el intervalo inclusivo contiene hasta <strong>2D+1 posiciones</strong>, y menos junto a los extremos. El tratamiento de un centro no entero requiere declarar cómo se eligen los índices.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. · Atención global y local</a></p></section><section class="cell" data-cell="54" id="celda-55"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="55" id="celda-56"><h4 id="seccion-20"><span class="tone-emphasis"><strong>6.5.1.1. El Algoritmo de Alineación Local</strong></span></h4>
 <ol>
 <li>
 <p><span class="tone-context"><strong>Predicción de la Posición Central (<math aria-label="p_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>p</mi><mi>t</mi></msub></mrow></math>):</strong></span>
@@ -383,44 +174,11 @@ El modelo <span class="tone-emphasis"><strong>proyecta el estado actual del deco
 </ul>
 </li>
 </ol>
-</section><section class="cell" data-cell="56" id="celda-57"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-57-local-window"><h4 id="imagen-celda-57-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="57" id="celda-58"><p>En la variante predictiva local de Luong, se predice un centro <math aria-label="p_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>p</mi><mi>t</mi></msub></mrow></math> y se pondera la atención con una gaussiana:</p>
+</section><section class="cell" data-cell="56" id="celda-57"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="57" id="celda-58"><p>En la variante predictiva local de Luong, se predice un centro <math aria-label="p_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>p</mi><mi>t</mi></msub></mrow></math> y se pondera la atención con una gaussiana:</p>
 <p><math aria-label="a_t(i)=\operatorname{align}(h_t,\bar h_i)\exp\left(-\frac{(i-p_t)^2}{2\sigma^2}\right),\qquad \sigma=D/2." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mi>t</mi></msub><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo><mo>=</mo><mo>align</mo><mo stretchy="false">(</mo><msub><mi>h</mi><mi>t</mi></msub><mo>,</mo><msub><mover><mi>h</mi><mo stretchy="true">¯</mo></mover><mi>i</mi></msub><mo stretchy="false">)</mo><mi>exp</mi><mrow><mo fence="true" form="prefix" stretchy="true">(</mo><mo>−</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><msub><mi>p</mi><mi>t</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mrow><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup></mrow></mfrac><mo fence="true" form="postfix" stretchy="true">)</mo></mrow><mo>,</mo><mspace width="2em"></mspace><mi>σ</mi><mo>=</mo><mi>D</mi><mo>/</mo><mn>2</mn><mo>.</mo></mrow></math></p>
 <p>El factor gaussiano es suave respecto del centro <strong>para las posiciones evaluadas</strong>. No vuelve derivable una operación discreta de selección de índices: deben distinguirse la ponderación continua y el recorte de la ventana.</p>
 <p>Después de multiplicar por la gaussiana, los pesos no tienen por qué sumar uno. Si el laboratorio los renormaliza, esa es una decisión adicional de implementación. Una versión que calcula todas las posiciones y solo las atenúa conserva el coste global de puntuarlas.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. (2015), sección 3</a></p></section><section class="cell" data-cell="58" id="celda-59"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-59-local-window"><h4 id="imagen-celda-59-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="59" id="celda-60"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-60-local-window"><h4 id="imagen-celda-60-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="60" id="celda-61"><ul>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D15-1166/">Luong et al. (2015), sección 3</a></p></section><section class="cell" data-cell="58" id="celda-59"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="59" id="celda-60"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="60" id="celda-61"><ul>
 <li>
 <p><strong>Intuición Física:</strong> <span class="tone-emphasis"><strong>A medida que una palabra de origen <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> se aleja del centro de atención estimado <math aria-label="p_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>p</mi><mi>t</mi></msub></mrow></math>, su peso decae exponencialmente debido al factor Gaussiano.</strong></span></p>
 </li>
@@ -428,47 +186,14 @@ El modelo <span class="tone-emphasis"><strong>proyecta el estado actual del deco
 <p>Al ser una función matemática continua, <span class="tone-emphasis"><strong>los gradientes pueden fluir hacia atrás para ajustar los parámetros de la proyección <math aria-label="W_p" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>W</mi><mi>p</mi></msub></mrow></math>,</strong></span> permitiendo que el "ojo" de la atención <span class="tone-emphasis"><strong>aprenda a deslizarse de forma fluida a lo largo del texto.</strong></span></p>
 </li>
 </ul>
-</section><section class="cell" data-cell="61" id="celda-62"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-62-local-window"><h4 id="imagen-celda-62-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="62" id="celda-63"><p>El coeficiente o variable <span class="tone-emphasis"><strong><math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math></strong></span> representa el <span class="tone-emphasis"><strong>índice de posición real del token en la secuencia del codificador (secuencia de origen)</strong>.</span></p>
+</section><section class="cell" data-cell="61" id="celda-62"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="62" id="celda-63"><p>El coeficiente o variable <span class="tone-emphasis"><strong><math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math></strong></span> representa el <span class="tone-emphasis"><strong>índice de posición real del token en la secuencia del codificador (secuencia de origen)</strong>.</span></p>
 <ul>
 <li><span class="tone-context"><strong>En la penalización Gaussiana <math aria-label="\exp\left(-\frac{(i - p_t)^2}{2\sigma^2}\right)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>exp</mi><mrow><mo fence="true" form="prefix" stretchy="true">(</mo><mo>−</mo><mfrac><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><msub><mi>p</mi><mi>t</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mrow><mn>2</mn><msup><mi>σ</mi><mn>2</mn></msup></mrow></mfrac><mo fence="true" form="postfix" stretchy="true">)</mo></mrow></mrow></math>:</strong></span> Mide la <span class="tone-emphasis"><strong>distancia espacial entre la posición física del token actual (<math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math>) y el punto focal o posición central estimada por el decodificador (<math aria-label="p_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>p</mi><mi>t</mi></msub></mrow></math>).</strong></span></li>
 </ul>
-</section><section class="cell" data-cell="63" id="celda-64"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-64-local-window"><h4 id="imagen-celda-64-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="64" id="celda-65"><ul>
+</section><section class="cell" data-cell="63" id="celda-64"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="64" id="celda-65"><ul>
 <li>A medida que el <span class="tone-emphasis"><strong>índice <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> se aleja de <math aria-label="p_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>p</mi><mi>t</mi></msub></mrow></math>, la diferencia <math aria-label="(i - p_t)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><msub><mi>p</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></math> aumenta, lo que reduce exponencialmente el peso de atención de ese token particular dentro de la ventana de contexto.</strong></span></li>
 </ul>
-</section><section class="cell" data-cell="65" id="celda-66"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-66-local-window"><h4 id="imagen-celda-66-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="66" id="celda-67"><h5 id="seccion-21"><span class="tone-accent"><strong>¿Por qué la función Exponencial (<math aria-label="\exp" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>exp</mi></mrow></math>)?</strong></span></h5>
+</section><section class="cell" data-cell="65" id="celda-66"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="66" id="celda-67"><h5 id="seccion-21"><span class="tone-accent"><strong>¿Por qué la función Exponencial (<math aria-label="\exp" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>exp</mi></mrow></math>)?</strong></span></h5>
 <ul>
 <li>
 <p><span class="tone-context"><strong>Garantizar no-negatividad:</strong></span> Las probabilidades y factores de escala en atención deben ser estrictamente positivos (<math aria-label="\ge 0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>≥</mo><mn>0</mn></mrow></math>). <span class="tone-emphasis"><strong>La función exponencial asegura que cualquier valor resultante se mantenga positivo en todo el dominio.</strong></span></p>
@@ -477,18 +202,7 @@ El modelo <span class="tone-emphasis"><strong>proyecta el estado actual del deco
 <p><span class="tone-context"><strong>Decaimiento asintótico:</strong></span> La exponencial hace que <span class="tone-emphasis"><strong>el decaimiento de la atención sea rápido y fluido a medida que nos alejamos del centro, tendiendo suavemente a <math aria-label="0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0</mn></mrow></math> hacia los extremos sin cortes bruscos.</strong></span></p>
 </li>
 </ul>
-</section><section class="cell" data-cell="67" id="celda-68"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-68-local-window"><h4 id="imagen-celda-68-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="68" id="celda-69"><h5 id="seccion-22"><span class="tone-accent"><strong>¿Por qué el signo Negativo (<math aria-label="-" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>−</mo></mrow></math>)?</strong></span></h5>
+</section><section class="cell" data-cell="67" id="celda-68"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="68" id="celda-69"><h5 id="seccion-22"><span class="tone-accent"><strong>¿Por qué el signo Negativo (<math aria-label="-" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>−</mo></mrow></math>)?</strong></span></h5>
 <ul>
 <li>
 <p><span class="tone-context"><strong>Penalización por distancia:</strong></span> La distancia cuadrática <math aria-label="(i - p_t)^2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>−</mo><msub><mi>p</mi><mi>t</mi></msub><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></math> es un valor positivo que crece conforme el índice <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> se aleja de <math aria-label="p_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>p</mi><mi>t</mi></msub></mrow></math>.</p>
@@ -505,29 +219,7 @@ El modelo <span class="tone-emphasis"><strong>proyecta el estado actual del deco
 </ul>
 </li>
 </ul>
-</section><section class="cell" data-cell="69" id="celda-70"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-70-local-window"><h4 id="imagen-celda-70-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="70" id="celda-71"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-71-local-window"><h4 id="imagen-celda-71-local-window">Diagrama visual · Atenuar posiciones lejanas y normalizar</h4><figure><img alt="Barras de atención global se combinan con una campana gaussiana centrada en la posición dos." decoding="async" height="760" loading="lazy" src="../assets/visuals/local-window.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/local-window.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La fila superior usa scores [1,3,2,0]. El softmax global da aproximadamente [0.0871,0.6439,0.2369,0.0321].</p>
-</li>
-<li>
-<p>La curva marca una preferencia gaussiana centrada en 2, con σ=0.7. Al sumar su logaritmo a los scores y aplicar softmax se obtienen aproximadamente [0.0031,0.4815,0.4915,0.0240].</p>
-</li>
-<li>
-<p>Aquí se calculan todas las posiciones y luego se atenúan: es una variante suave global. Para ahorrar el cálculo de scores mediante atención local real hay que restringir las posiciones evaluadas; multiplicar por la gaussiana sin renormalizar tampoco asegura suma uno.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="71" id="celda-72"><h2 id="seccion-23"><span class="tone-emphasis"><strong>6.6. Implementación con PyTorch</strong></span></h2>
+</section><section class="cell" data-cell="69" id="celda-70"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="70" id="celda-71"><figure><img alt="Atención local: centro, vecindad y gaussiana" height="435" loading="lazy" src="../assets/figures/local-window.svg" width="1440"/></figure></section><section class="cell" data-cell="71" id="celda-72"><h2 id="seccion-23"><span class="tone-emphasis"><strong>6.6. Implementación con PyTorch</strong></span></h2>
 </section><section class="cell" data-cell="72" id="celda-73"><h3 id="seccion-24"><span class="tone-emphasis"><strong>Celda 1: Importación de librerías y configuración</strong></span></h3>
 <p>Configura el entorno de trabajo, define la semilla de reproducibilidad y selecciona el dispositivo de cómputo (CPU o GPU).</p>
 </section><section class="cell" data-cell="73" id="celda-74"><details class="source-code"><summary>Código Python · celda 74</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">fasttext</span><span class="o">-</span><span class="n">wheel</span>
@@ -1882,18 +1574,7 @@ return logits, attention_weights
 <p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="113" id="celda-114"><figure><img alt="Ilustración de la sección" height="1362" loading="lazy" src="../assets/4fec84fb417edad104d26ced.webp" width="786"/></figure></section><section class="cell" data-cell="114" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-115"><h5 id="seccion-53"><span class="tone-accent"><strong>2. Diagnóstico por Mecanismo de Atención - Luong (General)</strong></span></h5><p>Los mapas y probabilidades guardados describen una ejecución pequeña. Su forma no demuestra que un mecanismo sea intrínsecamente agudo, uniforme o mejor. No se puede atribuir una predicción a un mínimo local, a una palabra o a la escala de los scores sin mediciones y pruebas adicionales. Para comparar se requieren varias semillas y evaluación fuera de entrenamiento.</p>
 <p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="115" id="celda-116"><figure><img alt="Ilustración de la sección" height="1357" loading="lazy" src="../assets/5e4a008b028ab83021207e0c.webp" width="801"/></figure></section><section class="cell" data-cell="116" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-117"><h5 id="seccion-54"><span class="tone-accent"><strong>3. Diagnóstico por Mecanismo de Atención - Luong (Dot-Product)</strong></span></h5><p>Los mapas y probabilidades guardados describen una ejecución pequeña. Su forma no demuestra que un mecanismo sea intrínsecamente agudo, uniforme o mejor. No se puede atribuir una predicción a un mínimo local, a una palabra o a la escala de los scores sin mediciones y pruebas adicionales. Para comparar se requieren varias semillas y evaluación fuera de entrenamiento.</p>
 <p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="117" id="celda-118"><figure><img alt="Ilustración de la sección" height="1360" loading="lazy" src="../assets/300a8c461efc25968672e21d.webp" width="792"/></figure></section><section class="cell" data-cell="118" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-119"><h4 id="seccion-55"><span class="tone-emphasis"><strong>Tabla Comparativa de Comportamiento</strong></span></h4><p>Los mapas y probabilidades guardados describen una ejecución pequeña. Su forma no demuestra que un mecanismo sea intrínsecamente agudo, uniforme o mejor. No se puede atribuir una predicción a un mínimo local, a una palabra o a la escala de los scores sin mediciones y pruebas adicionales. Para comparar se requieren varias semillas y evaluación fuera de entrenamiento.</p>
-<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="119" id="celda-120"><figure><img alt="Mapas de atención: observar un experimento" height="435" loading="lazy" src="../assets/figures/attention-experiment.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-120-attention-experiment"><h4 id="imagen-celda-120-attention-experiment">Diagrama visual · Un mapa de atención no identifica una explicación causal</h4><figure><img alt="Dos matrices de pesos distintas se muestran junto al mismo resultado ilustrativo." decoding="async" height="760" loading="lazy" src="../assets/visuals/attention-experiment.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/attention-experiment.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Las dos matrices sintéticas tienen filas normalizadas, pero una concentra pesos y la otra los reparte más. La intensidad del color representa el peso.</p>
-</li>
-<li>
-<p>Las dos pueden acompañar la misma etiqueta de salida en una ilustración. Esa coincidencia no establece que los modelos tengan el mismo funcionamiento interno ni demuestra mejor comprensión en el mapa más nítido.</p>
-</li>
-<li>
-<p>Para estudiar los mecanismos hacen falta datos, entrenamiento, máscaras y evaluaciones comparables. Este dibujo explica cómo leer un mapa, no presenta dos experimentos entrenados.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="120" id="celda-121"><p>Los pesos de esta ejecución son un resultado concreto del modelo y sus parámetros. Que una posición reciba más atención no demuestra una preferencia universal por tokens cercanos: depende de las representaciones, la función de puntuación y el entrenamiento. El producto punto no es un coseno normalizado salvo que se normalicen los vectores.</p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="119" id="celda-120"><figure><img alt="Mapas de atención: observar un experimento" height="435" loading="lazy" src="../assets/figures/attention-experiment.svg" width="1440"/></figure></section><section class="cell" data-cell="120" id="celda-121"><p>Los pesos de esta ejecución son un resultado concreto del modelo y sus parámetros. Que una posición reciba más atención no demuestra una preferencia universal por tokens cercanos: depende de las representaciones, la función de puntuación y el entrenamiento. El producto punto no es un coseno normalizado salvo que se normalicen los vectores.</p>
 </section><section class="cell" data-cell="121" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-122"><h4 id="seccion-56"><span class="tone-emphasis"><strong>Conclusiones</strong></span></h4><p>Los mapas y probabilidades guardados describen una ejecución pequeña. Su forma no demuestra que un mecanismo sea intrínsecamente agudo, uniforme o mejor. No se puede atribuir una predicción a un mínimo local, a una palabra o a la escala de los scores sin mediciones y pruebas adicionales. Para comparar se requieren varias semillas y evaluación fuera de entrenamiento.</p>
 <p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="122" id="celda-123"><h2 id="seccion-57"><span class="tone-emphasis"><strong>6.7. La Nitidez del Foco: Soft vs. Hard Attention (Xu et al., 2015)</strong></span></h2>
 <p>Casi en paralelo a los avances en traducción, <span class="tone-emphasis"><strong>el campo de la Visión por Computadora adoptó la atención para la generación de descripciones de imágenes</strong></span> (<em>Image Captioning</em>). En el artículo clásico <strong>"Show, Attend and Tell" (Xu et al., 2015)</strong>, los autores introdujeron una división conceptual fundamental: <span class="tone-emphasis"><strong>Atención Soft (Suave) frente a Atención Hard (Dura)</strong>.</span></p>
@@ -1918,18 +1599,7 @@ ATENCIÓN HARD (Estocástica y Láser):
   Promedio Ponderado:             ▼          ▼          ▼          ▼
   Vector de Contexto (c_t):      [ 0.15*h_1 + 0.60*h_2 + 0.05*h_3 + 0.20*h_4 ]
 </code></pre>
-</section><section class="cell" data-cell="124" id="celda-125"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-125-weighted-sum"><h4 id="imagen-celda-125-weighted-sum">Diagrama visual · Los pesos mezclan vectores completos</h4><figure><img alt="Tres vectores de valor contribuyen a una suma ponderada de dos coordenadas." decoding="async" height="760" loading="lazy" src="../assets/visuals/weighted-sum.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/weighted-sum.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Cada columna representa un valor: v₀=(2,0), v₁=(0,2) y v₂=(2,2). Los pesos 0.2, 0.5 y 0.3 suman uno.</p>
-</li>
-<li>
-<p>Cada peso multiplica todas las coordenadas de su valor. Las contribuciones son (0.4,0), (0,1) y (0.6,0.6); al sumarlas se obtiene z=(1,1.6).</p>
-</li>
-<li>
-<p>Los scores se calculan antes y softmax los normaliza. La figura se centra en la mezcla posterior: un peso aislado no determina la dirección final, que también depende de los valores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="125" id="celda-126"><h4 id="seccion-59"><span class="tone-emphasis"><strong>6.7.1.1. Formulación Matemática</strong></span></h4>
+</section><section class="cell" data-cell="124" id="celda-125"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/></figure></section><section class="cell" data-cell="125" id="celda-126"><h4 id="seccion-59"><span class="tone-emphasis"><strong>6.7.1.1. Formulación Matemática</strong></span></h4>
 <p>Supongamos que <span class="tone-emphasis"><strong>tenemos <math aria-label="N" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math> vectores de características de entrada <math aria-label="H = \{h_1, h_2, \dots, h_N\}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>H</mi><mo>=</mo><mo stretchy="false">{</mo><msub><mi>h</mi><mn>1</mn></msub><mo>,</mo><msub><mi>h</mi><mn>2</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>h</mi><mi>N</mi></msub><mo stretchy="false">}</mo></mrow></math></strong></span> (pueden ser estados ocultos de una RNN o parches espaciales de una imagen procesados por una CNN). <span class="tone-emphasis"><strong>Para un paso de decodificación <math aria-label="t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math>, calculamos las puntuaciones de energía de alineación <math aria-label="e_{t, i}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>i</mi></mrow></msub></mrow></math> mediante una función de afinidad semántica:</strong></span></p>
 <p><math aria-label="e_{t, i} = f_{\text{align}}(s_{t-1}, h_i)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>i</mi></mrow></msub><mo>=</mo><msub><mi>f</mi><mrow><mtext>align</mtext></mrow></msub><mo stretchy="false">(</mo><msub><mi>s</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>,</mo><msub><mi>h</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></math></p>
 <p>A partir de estas energías, <span class="tone-emphasis"><strong>aplicamos la función Softmax para obtener la distribución de probabilidad de atención <math aria-label="\alpha_{t, i}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>i</mi></mrow></msub></mrow></math>, garantizando que todos los pesos sean positivos y sumen exactamente <math aria-label="1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math></strong>:</span></p>
@@ -1937,18 +1607,7 @@ ATENCIÓN HARD (Estocástica y Láser):
 <p><math aria-label="\text{Fórmula del Vector de Contexto:}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Fórmula del Vector de Contexto:</mtext></mrow></math>
 <math aria-label="c_t = \sum_{i=1}^N \alpha_{t, i} \, h_i" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>c</mi><mi>t</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>i</mi></mrow></msub><mspace width="0.167em"></mspace><msub><mi>h</mi><mi>i</mi></msub></mrow></math></p>
 <hr/>
-</section><section class="cell" data-cell="126" id="celda-127"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-127-weighted-sum"><h4 id="imagen-celda-127-weighted-sum">Diagrama visual · Los pesos mezclan vectores completos</h4><figure><img alt="Tres vectores de valor contribuyen a una suma ponderada de dos coordenadas." decoding="async" height="760" loading="lazy" src="../assets/visuals/weighted-sum.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/weighted-sum.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Cada columna representa un valor: v₀=(2,0), v₁=(0,2) y v₂=(2,2). Los pesos 0.2, 0.5 y 0.3 suman uno.</p>
-</li>
-<li>
-<p>Cada peso multiplica todas las coordenadas de su valor. Las contribuciones son (0.4,0), (0,1) y (0.6,0.6); al sumarlas se obtiene z=(1,1.6).</p>
-</li>
-<li>
-<p>Los scores se calculan antes y softmax los normaliza. La figura se centra en la mezcla posterior: un peso aislado no determina la dirección final, que también depende de los valores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="127" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-128"><h4 id="seccion-60"><span class="tone-emphasis"><strong>6.7.1.2. La Física del Gradiente y la Diferenciabilidad</strong></span></h4><p>Escribimos <math aria-label="c=\sum_i\alpha_i v_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi><mo>=</mo><msub><mo>∑</mo><mi>i</mi></msub><msub><mi>α</mi><mi>i</mi></msub><msub><mi>v</mi><mi>i</mi></msub></mrow></math> y <math aria-label="\alpha=\operatorname{softmax}(e)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mo>softmax</mo><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></math>. Tratando los scores y valores como variables independientes, <math aria-label="\partial c/\partial v_i=\alpha_i I" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>∂</mo><mi>c</mi><mo>/</mo><mo>∂</mo><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><msub><mi>α</mi><mi>i</mi></msub><mi>I</mi></mrow></math> y <math aria-label="\partial c/\partial e_i=\alpha_i(v_i-c)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>∂</mo><mi>c</mi><mo>/</mo><mo>∂</mo><msub><mi>e</mi><mi>i</mi></msub><mo>=</mo><msub><mi>α</mi><mi>i</mi></msub><mo stretchy="false">(</mo><msub><mi>v</mi><mi>i</mi></msub><mo>−</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></math>. Si una entrada también genera claves o scores, su <strong>derivada total</strong> contiene esas rutas adicionales. La diferenciabilidad no garantiza estabilidad ni convergencia.</p>
+</section><section class="cell" data-cell="126" id="celda-127"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/></figure></section><section class="cell" data-cell="127" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-128"><h4 id="seccion-60"><span class="tone-emphasis"><strong>6.7.1.2. La Física del Gradiente y la Diferenciabilidad</strong></span></h4><p>Escribimos <math aria-label="c=\sum_i\alpha_i v_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi><mo>=</mo><msub><mo>∑</mo><mi>i</mi></msub><msub><mi>α</mi><mi>i</mi></msub><msub><mi>v</mi><mi>i</mi></msub></mrow></math> y <math aria-label="\alpha=\operatorname{softmax}(e)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mo>softmax</mo><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo></mrow></math>. Tratando los scores y valores como variables independientes, <math aria-label="\partial c/\partial v_i=\alpha_i I" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>∂</mo><mi>c</mi><mo>/</mo><mo>∂</mo><msub><mi>v</mi><mi>i</mi></msub><mo>=</mo><msub><mi>α</mi><mi>i</mi></msub><mi>I</mi></mrow></math> y <math aria-label="\partial c/\partial e_i=\alpha_i(v_i-c)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>∂</mo><mi>c</mi><mo>/</mo><mo>∂</mo><msub><mi>e</mi><mi>i</mi></msub><mo>=</mo><msub><mi>α</mi><mi>i</mi></msub><mo stretchy="false">(</mo><msub><mi>v</mi><mi>i</mi></msub><mo>−</mo><mi>c</mi><mo stretchy="false">)</mo></mrow></math>. Si una entrada también genera claves o scores, su <strong>derivada total</strong> contiene esas rutas adicionales. La diferenciabilidad no garantiza estabilidad ni convergencia.</p>
 <p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="128" id="celda-129"><figure><img alt="Ilustración de la sección" height="1174" loading="lazy" src="../assets/c071d7e85bd1eff09bdf327f.webp" width="2236"/></figure></section><section class="cell" data-cell="129" id="celda-130"><h4 id="seccion-61"><span class="tone-emphasis"><strong>6.7.1.3. Ventajas y Desventajas</strong></span></h4>
 <ul>
 <li>
@@ -1989,68 +1648,13 @@ ATENCIÓN HARD (Estocástica y Láser):
                                              │
   Vector de Contexto (c_t):                 [ h_2 ]
 </code></pre>
-</section><section class="cell" data-cell="131" id="celda-132"><figure><img alt="Atención discreta: selección y aprendizaje" height="435" loading="lazy" src="../assets/figures/hard-attention.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-132-hard-attention"><h4 id="imagen-celda-132-hard-attention">Diagrama visual · Elegir una posición de una distribución</h4><figure><img alt="Una distribución categórica se convierte en una selección one-hot y en un vector elegido." decoding="async" height="760" loading="lazy" src="../assets/visuals/hard-attention.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/hard-attention.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Las barras azules representan probabilidades [0.2,0.5,0.3]. En el muestreo categórico solo se elige una posición en cada extracción; la ilustración muestra que salió la posición 1.</p>
-</li>
-<li>
-<p>El indicador [0,1,0] deja pasar únicamente v₁. No es la mezcla 0.2v₀+0.5v₁+0.3v₂: el contexto de esta muestra es v₁.</p>
-</li>
-<li>
-<p>La ruta discontinua señala que entrenar una elección discreta necesita un estimador, como REINFORCE, o una relajación. El diagrama no asigna una derivada ordinaria al índice ni supone que muestrear elimine el coste de todos los scores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="132" data-reviewed-source="https://proceedings.mlr.press/v37/xuc15.html" id="celda-133"><h4 id="seccion-63"><span class="tone-emphasis"><strong>6.7.2.1. Formulación Matemática</strong></span></h4><p>En atención discreta, <math aria-label="s\sim\operatorname{Categorical}(\alpha)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi><mi>~</mi><mo>Categorical</mo><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></math> y <math aria-label="c=v_s" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi><mo>=</mo><msub><mi>v</mi><mi>s</mi></msub></mrow></math>. Si se representa la elección como one-hot, corresponde a una multinomial con <strong>un ensayo</strong>. Seleccionar un índice corta la ruta ordinaria del gradiente hacia sus probabilidades; la esperanza del objetivo puede entrenarse con estimadores como REINFORCE o con relajaciones.</p>
-<p class="note source-reference">Referencia: <a href="https://proceedings.mlr.press/v37/xuc15.html">Xu et al. · Show, Attend and Tell</a></p></section><section class="cell" data-cell="133" id="celda-134"><figure><img alt="Atención discreta: selección y aprendizaje" height="435" loading="lazy" src="../assets/figures/hard-attention.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-134-hard-attention"><h4 id="imagen-celda-134-hard-attention">Diagrama visual · Elegir una posición de una distribución</h4><figure><img alt="Una distribución categórica se convierte en una selección one-hot y en un vector elegido." decoding="async" height="760" loading="lazy" src="../assets/visuals/hard-attention.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/hard-attention.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Las barras azules representan probabilidades [0.2,0.5,0.3]. En el muestreo categórico solo se elige una posición en cada extracción; la ilustración muestra que salió la posición 1.</p>
-</li>
-<li>
-<p>El indicador [0,1,0] deja pasar únicamente v₁. No es la mezcla 0.2v₀+0.5v₁+0.3v₂: el contexto de esta muestra es v₁.</p>
-</li>
-<li>
-<p>La ruta discontinua señala que entrenar una elección discreta necesita un estimador, como REINFORCE, o una relajación. El diagrama no asigna una derivada ordinaria al índice ni supone que muestrear elimine el coste de todos los scores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="134" id="celda-135"><hr/>
+</section><section class="cell" data-cell="131" id="celda-132"><figure><img alt="Atención discreta: selección y aprendizaje" height="435" loading="lazy" src="../assets/figures/hard-attention.svg" width="1440"/></figure></section><section class="cell" data-cell="132" data-reviewed-source="https://proceedings.mlr.press/v37/xuc15.html" id="celda-133"><h4 id="seccion-63"><span class="tone-emphasis"><strong>6.7.2.1. Formulación Matemática</strong></span></h4><p>En atención discreta, <math aria-label="s\sim\operatorname{Categorical}(\alpha)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi><mi>~</mi><mo>Categorical</mo><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></math> y <math aria-label="c=v_s" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi><mo>=</mo><msub><mi>v</mi><mi>s</mi></msub></mrow></math>. Si se representa la elección como one-hot, corresponde a una multinomial con <strong>un ensayo</strong>. Seleccionar un índice corta la ruta ordinaria del gradiente hacia sus probabilidades; la esperanza del objetivo puede entrenarse con estimadores como REINFORCE o con relajaciones.</p>
+<p class="note source-reference">Referencia: <a href="https://proceedings.mlr.press/v37/xuc15.html">Xu et al. · Show, Attend and Tell</a></p></section><section class="cell" data-cell="133" id="celda-134"><figure><img alt="Atención discreta: selección y aprendizaje" height="435" loading="lazy" src="../assets/figures/hard-attention.svg" width="1440"/></figure></section><section class="cell" data-cell="134" id="celda-135"><hr/>
 <h4 id="seccion-64"><span class="tone-emphasis"><strong>6.7.2.2. El Muro de la No-Diferenciabilidad</strong></span></h4>
 <p>La operación de muestreo discreto (<math aria-label="s_t \sim \text{Multinomial}(\alpha)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>s</mi><mi>t</mi></msub><mi>~</mi><mtext>Multinomial</mtext><mo stretchy="false">(</mo><mi>α</mi><mo stretchy="false">)</mo></mrow></math>) introduce una <span class="tone-emphasis"><strong>discontinuidad fundamental</strong></span> en el flujo de cómputo. <span class="tone-emphasis"><strong>No existe una función matemática derivable continua que traslade la probabilidad de entrada <math aria-label="\alpha_{t, i}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>i</mi></mrow></msub></mrow></math> a la decisión entera de selección <math aria-label="0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0</mn></mrow></math> o <math aria-label="1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math>.</strong></span></p>
 <p>Si intentamos aplicar la regla de la cadena para fluir los gradientes del error hacia atrás, nos topamos con un "muro": <span class="tone-emphasis"><strong>el gradiente del muestreo respecto a sus parámetros de distribución es cero en casi todos los puntos o indefinido</strong></span>. La retropropagación estándar falla catastróficamente.</p>
-</section><section class="cell" data-cell="135" id="celda-136"><figure><img alt="Hard attention: una muestra categórica" height="435" loading="lazy" src="../assets/figures/sampling.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-136-sampling"><h4 id="imagen-celda-136-sampling">Diagrama visual · Elegir una posición de una distribución</h4><figure><img alt="Una distribución categórica se convierte en una selección one-hot y en un vector elegido." decoding="async" height="760" loading="lazy" src="../assets/visuals/sampling.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/sampling.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Las barras azules representan probabilidades [0.2,0.5,0.3]. En el muestreo categórico solo se elige una posición en cada extracción; la ilustración muestra que salió la posición 1.</p>
-</li>
-<li>
-<p>El indicador [0,1,0] deja pasar únicamente v₁. No es la mezcla 0.2v₀+0.5v₁+0.3v₂: el contexto de esta muestra es v₁.</p>
-</li>
-<li>
-<p>La ruta discontinua señala que entrenar una elección discreta necesita un estimador, como REINFORCE, o una relajación. El diagrama no asigna una derivada ordinaria al índice ni supone que muestrear elimine el coste de todos los scores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="136" id="celda-137"><figure><img alt="Atención discreta: selección y aprendizaje" height="435" loading="lazy" src="../assets/figures/hard-attention.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-137-hard-attention"><h4 id="imagen-celda-137-hard-attention">Diagrama visual · Elegir una posición de una distribución</h4><figure><img alt="Una distribución categórica se convierte en una selección one-hot y en un vector elegido." decoding="async" height="760" loading="lazy" src="../assets/visuals/hard-attention.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/hard-attention.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Las barras azules representan probabilidades [0.2,0.5,0.3]. En el muestreo categórico solo se elige una posición en cada extracción; la ilustración muestra que salió la posición 1.</p>
-</li>
-<li>
-<p>El indicador [0,1,0] deja pasar únicamente v₁. No es la mezcla 0.2v₀+0.5v₁+0.3v₂: el contexto de esta muestra es v₁.</p>
-</li>
-<li>
-<p>La ruta discontinua señala que entrenar una elección discreta necesita un estimador, como REINFORCE, o una relajación. El diagrama no asigna una derivada ordinaria al índice ni supone que muestrear elimine el coste de todos los scores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="137" data-reviewed-source="https://proceedings.mlr.press/v37/xuc15.html" id="celda-138"><h4 id="seccion-65"><span class="tone-emphasis"><strong>6.7.2.3. La Solución por Aprendizaje por Refuerzo: El Algoritmo REINFORCE</strong></span></h4><p>Xu et al. optimizan una cota variacional de la log-verosimilitud con muestreo de localizaciones y un estimador de tipo REINFORCE. No debe atribuirse a ese experimento una recompensa BLEU o +1 inventada. Para una recompensa independiente de los parámetros, <math aria-label="\nabla_\theta\mathbb E[R(s)]=\mathbb E[R(s)\nabla_\theta\log\pi_\theta(s)]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mo>∇</mo><mi>θ</mi></msub><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>=</mo><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><msub><mo>∇</mo><mi>θ</mi></msub><mi>log</mi><msub><mi>π</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow></math>. Si R también depende de parámetros, se añade su derivada directa. Una baseline independiente de la acción puede reducir varianza.</p>
-<p class="note source-reference">Referencia: <a href="https://proceedings.mlr.press/v37/xuc15.html">Xu et al. · Show, Attend and Tell</a></p></section><section class="cell" data-cell="138" id="celda-139"><figure><img alt="Hard attention: una muestra categórica" height="435" loading="lazy" src="../assets/figures/sampling.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-139-sampling"><h4 id="imagen-celda-139-sampling">Diagrama visual · Elegir una posición de una distribución</h4><figure><img alt="Una distribución categórica se convierte en una selección one-hot y en un vector elegido." decoding="async" height="760" loading="lazy" src="../assets/visuals/sampling.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/sampling.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Las barras azules representan probabilidades [0.2,0.5,0.3]. En el muestreo categórico solo se elige una posición en cada extracción; la ilustración muestra que salió la posición 1.</p>
-</li>
-<li>
-<p>El indicador [0,1,0] deja pasar únicamente v₁. No es la mezcla 0.2v₀+0.5v₁+0.3v₂: el contexto de esta muestra es v₁.</p>
-</li>
-<li>
-<p>La ruta discontinua señala que entrenar una elección discreta necesita un estimador, como REINFORCE, o una relajación. El diagrama no asigna una derivada ordinaria al índice ni supone que muestrear elimine el coste de todos los scores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="139" data-reviewed-source="https://proceedings.mlr.press/v37/xuc15.html" id="celda-140"><p>Xu et al. optimizan una cota variacional de la log-verosimilitud con muestreo de localizaciones y un estimador de tipo REINFORCE. No debe atribuirse a ese experimento una recompensa BLEU o +1 inventada. Para una recompensa independiente de los parámetros, <math aria-label="\nabla_\theta\mathbb E[R(s)]=\mathbb E[R(s)\nabla_\theta\log\pi_\theta(s)]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mo>∇</mo><mi>θ</mi></msub><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>=</mo><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><msub><mo>∇</mo><mi>θ</mi></msub><mi>log</mi><msub><mi>π</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow></math>. Si R también depende de parámetros, se añade su derivada directa. Una baseline independiente de la acción puede reducir varianza.</p>
+</section><section class="cell" data-cell="135" id="celda-136"><figure><img alt="Hard attention: una muestra categórica" height="435" loading="lazy" src="../assets/figures/sampling.svg" width="1440"/></figure></section><section class="cell" data-cell="136" id="celda-137"><figure><img alt="Atención discreta: selección y aprendizaje" height="435" loading="lazy" src="../assets/figures/hard-attention.svg" width="1440"/></figure></section><section class="cell" data-cell="137" data-reviewed-source="https://proceedings.mlr.press/v37/xuc15.html" id="celda-138"><h4 id="seccion-65"><span class="tone-emphasis"><strong>6.7.2.3. La Solución por Aprendizaje por Refuerzo: El Algoritmo REINFORCE</strong></span></h4><p>Xu et al. optimizan una cota variacional de la log-verosimilitud con muestreo de localizaciones y un estimador de tipo REINFORCE. No debe atribuirse a ese experimento una recompensa BLEU o +1 inventada. Para una recompensa independiente de los parámetros, <math aria-label="\nabla_\theta\mathbb E[R(s)]=\mathbb E[R(s)\nabla_\theta\log\pi_\theta(s)]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mo>∇</mo><mi>θ</mi></msub><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>=</mo><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><msub><mo>∇</mo><mi>θ</mi></msub><mi>log</mi><msub><mi>π</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow></math>. Si R también depende de parámetros, se añade su derivada directa. Una baseline independiente de la acción puede reducir varianza.</p>
+<p class="note source-reference">Referencia: <a href="https://proceedings.mlr.press/v37/xuc15.html">Xu et al. · Show, Attend and Tell</a></p></section><section class="cell" data-cell="138" id="celda-139"><figure><img alt="Hard attention: una muestra categórica" height="435" loading="lazy" src="../assets/figures/sampling.svg" width="1440"/></figure></section><section class="cell" data-cell="139" data-reviewed-source="https://proceedings.mlr.press/v37/xuc15.html" id="celda-140"><p>Xu et al. optimizan una cota variacional de la log-verosimilitud con muestreo de localizaciones y un estimador de tipo REINFORCE. No debe atribuirse a ese experimento una recompensa BLEU o +1 inventada. Para una recompensa independiente de los parámetros, <math aria-label="\nabla_\theta\mathbb E[R(s)]=\mathbb E[R(s)\nabla_\theta\log\pi_\theta(s)]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mo>∇</mo><mi>θ</mi></msub><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>=</mo><mi mathvariant="double-struck">E</mi><mo stretchy="false">[</mo><mi>R</mi><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><msub><mo>∇</mo><mi>θ</mi></msub><mi>log</mi><msub><mi>π</mi><mi>θ</mi></msub><mo stretchy="false">(</mo><mi>s</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo></mrow></math>. Si R también depende de parámetros, se añade su derivada directa. Una baseline independiente de la acción puede reducir varianza.</p>
 <p class="note source-reference">Referencia: <a href="https://proceedings.mlr.press/v37/xuc15.html">Xu et al. · Show, Attend and Tell</a></p></section><section class="cell" data-cell="140" id="celda-141"><h2 id="seccion-66"><span class="tone-emphasis"><strong>6.8. Implementación con PyTorch</strong></span></h2>
 </section><section class="cell" data-cell="141" id="celda-142"><h3 id="seccion-67"><span class="tone-accent"><strong>Celda 4.1.: Módulo de Atención (<code>LocalAttention</code>)</strong></span></h3>
 </section><section class="cell" data-cell="142" id="celda-143"><details class="source-code"><summary>Código Python · celda 143</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">LocalAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>

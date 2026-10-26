@@ -1,9 +1,0 @@
-{
-  "fft_4": true,
-  "weighted_sum": true,
-  "softmax": true,
-  "gaussian_weights": true,
-  "decibels": true,
-  "batchnorm": true,
-  "glove_weight": true
-}

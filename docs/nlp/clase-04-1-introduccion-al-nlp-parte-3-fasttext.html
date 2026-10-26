@@ -11,18 +11,7 @@
 </ol>
 </section><section class="cell" data-cell="6" id="celda-7"><h1 id="seccion-1"><span class="tone-accent"><strong>3. La Geometría del Lenguaje: Anatomía de <em>fastText</em> (<em>FastWord</em>)</strong></span></h1>
 </section><section class="cell" data-cell="7" id="celda-8"><figure><img alt="Ilustración de la sección" height="1027" loading="lazy" src="../assets/b31787e1f6615da1c0d430a5.webp" width="1849"/></figure></section><section class="cell" data-cell="8" data-reviewed-source="https://aclanthology.org/Q17-1010/" id="celda-9"><p>fastText comparte vectores entre n-gramas de caracteres y mantiene una entrada propia para cada palabra conocida. Así puede combinar fragmentos para representar una palabra nueva. El modelo de embeddings sigue siendo estático: una misma palabra recibe la misma representación fuera de un mecanismo contextual adicional.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/Q17-1010/">Bojanowski et al. · Subword information</a></p></section><section class="cell" data-cell="9" id="celda-10"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-10-subword-limits"><h4 id="imagen-celda-10-subword-limits">Diagrama visual · Fragmentos compartidos, vector compuesto</h4><figure><img alt="Dos palabras comparten un n-grama que apunta a un bucket de parámetros." decoding="async" height="760" loading="lazy" src="../assets/visuals/subword-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/subword-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se ilustran solo algunos n-gramas de «gato» y «gatos», no una segmentación exhaustiva ni una separación en morfemas. Ambas cadenas contienen el fragmento «gat».</p>
-</li>
-<li>
-<p>El fragmento compartido reutiliza parámetros. En fastText se aplica hashing a buckets, por lo que fragmentos distintos también pueden colisionar; no hay un vector independiente garantizado para cada fragmento.</p>
-</li>
-<li>
-<p>Combinar fragmentos permite construir un vector para una palabra nueva. La utilidad semántica depende de los datos y de los fragmentos aprendidos, no queda garantizada por la composición.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="10" data-reviewed-source="https://aclanthology.org/Q17-1010/" id="celda-11"><p>Fig. 3.1. La representación combina la entrada de la palabra conocida y sus n-gramas; una palabra nueva se compone con sus subpalabras.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/Q17-1010/">Bojanowski et al. · Subword information</a></p></section><section class="cell" data-cell="9" id="celda-10"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="10" data-reviewed-source="https://aclanthology.org/Q17-1010/" id="celda-11"><p>Fig. 3.1. La representación combina la entrada de la palabra conocida y sus n-gramas; una palabra nueva se compone con sus subpalabras.</p>
 <p class="note source-reference">Referencia: <a href="https://aclanthology.org/Q17-1010/">Bojanowski et al. · Subword information</a></p></section><section class="cell" data-cell="11" id="celda-12"><h2 id="seccion-2"><span class="tone-emphasis"><strong>3.1. El Límite de los Modelos Clásicos: La Ceguera Morfológica</strong></span></h2>
 <p>Tanto <strong>Word2Vec</strong> como <math aria-label="\text{GloVe}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>GloVe</mtext></mrow></math> <strong>trata a cada palabra como una unidad atómica e indivisible (un símbolo aislado).</strong> Esto genera <span class="tone-accent"><strong>tres problemas críticos en el lenguaje natural:</strong></span></p>
 <ol>
@@ -39,30 +28,8 @@
 <p><span class="tone-context"><strong>Escasez de Datos en Palabras Raras:</strong></span> Las palabras poco frecuentes <span class="tone-accent"><strong>reciben muy pocas actualizaciones de gradiente durante el entrenamiento, lo que produce coordenadas vectoriales de muy baja calidad espacial.</strong></span></p>
 </li>
 </ol>
-</section><section class="cell" data-cell="12" id="celda-13"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-13-subword-limits"><h4 id="imagen-celda-13-subword-limits">Diagrama visual · Fragmentos compartidos, vector compuesto</h4><figure><img alt="Dos palabras comparten un n-grama que apunta a un bucket de parámetros." decoding="async" height="760" loading="lazy" src="../assets/visuals/subword-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/subword-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se ilustran solo algunos n-gramas de «gato» y «gatos», no una segmentación exhaustiva ni una separación en morfemas. Ambas cadenas contienen el fragmento «gat».</p>
-</li>
-<li>
-<p>El fragmento compartido reutiliza parámetros. En fastText se aplica hashing a buckets, por lo que fragmentos distintos también pueden colisionar; no hay un vector independiente garantizado para cada fragmento.</p>
-</li>
-<li>
-<p>Combinar fragmentos permite construir un vector para una palabra nueva. La utilidad semántica depende de los datos y de los fragmentos aprendidos, no queda garantizada por la composición.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="13" data-reviewed-source="https://github.com/facebookresearch/fastText/tree/main/src" id="celda-14"><h2 id="seccion-3"><span class="tone-emphasis"><strong>3.2. Anatomía de la Extracción de Sub-palabras</strong></span></h2><p>El modelo subléxico de Bojanowski et al. amplía Skip-gram: su puntuación suma contribuciones de n-gramas de caracteres de la palabra central y un vector de salida de palabra completa para el contexto. La implementación oficial combina entradas mediante un promedio; la formulación de puntuación del artículo se presenta como suma. El laboratorio usa <code>EmbeddingBag(mode="sum")</code> y debe interpretarse con esa convención.</p>
-<p class="note source-reference">Referencia: <a href="https://github.com/facebookresearch/fastText/tree/main/src">fastText · Implementación oficial</a></p></section><section class="cell" data-cell="14" id="celda-15"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-15-subword-limits"><h4 id="imagen-celda-15-subword-limits">Diagrama visual · Fragmentos compartidos, vector compuesto</h4><figure><img alt="Dos palabras comparten un n-grama que apunta a un bucket de parámetros." decoding="async" height="760" loading="lazy" src="../assets/visuals/subword-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/subword-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se ilustran solo algunos n-gramas de «gato» y «gatos», no una segmentación exhaustiva ni una separación en morfemas. Ambas cadenas contienen el fragmento «gat».</p>
-</li>
-<li>
-<p>El fragmento compartido reutiliza parámetros. En fastText se aplica hashing a buckets, por lo que fragmentos distintos también pueden colisionar; no hay un vector independiente garantizado para cada fragmento.</p>
-</li>
-<li>
-<p>Combinar fragmentos permite construir un vector para una palabra nueva. La utilidad semántica depende de los datos y de los fragmentos aprendidos, no queda garantizada por la composición.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="15" id="celda-16"><h3 id="seccion-4"><span class="tone-accent"><strong>Paso 1: Delimitadores de Frontera</strong></span></h3>
+</section><section class="cell" data-cell="12" id="celda-13"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="13" data-reviewed-source="https://github.com/facebookresearch/fastText/tree/main/src" id="celda-14"><h2 id="seccion-3"><span class="tone-emphasis"><strong>3.2. Anatomía de la Extracción de Sub-palabras</strong></span></h2><p>El modelo subléxico de Bojanowski et al. amplía Skip-gram: su puntuación suma contribuciones de n-gramas de caracteres de la palabra central y un vector de salida de palabra completa para el contexto. La implementación oficial combina entradas mediante un promedio; la formulación de puntuación del artículo se presenta como suma. El laboratorio usa <code>EmbeddingBag(mode="sum")</code> y debe interpretarse con esa convención.</p>
+<p class="note source-reference">Referencia: <a href="https://github.com/facebookresearch/fastText/tree/main/src">fastText · Implementación oficial</a></p></section><section class="cell" data-cell="14" id="celda-15"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="15" id="celda-16"><h3 id="seccion-4"><span class="tone-accent"><strong>Paso 1: Delimitadores de Frontera</strong></span></h3>
 <blockquote>
 <p>Para <span class="tone-accent"><strong>capturar la estructura anatómica de la palabra</strong></span> (distinguiendo cuándo una secuencia de caracteres actúa como prefijo, sufijo o raíz interna), <span class="tone-accent"><strong>se añaden caracteres especiales de frontera: <code>&lt;</code> al inicio y <code>&gt;</code> al final.</strong></span></p>
 </blockquote>
@@ -96,70 +63,15 @@
 <p><math aria-label="\mathbf{v}_w = \sum_{g \in G_w} \mathbf{z}_g" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>𝐯</mi><mi>w</mi></msub><mo>=</mo><munder><mo>∑</mo><mrow><mi>g</mi><mo>∈</mo><msub><mi>G</mi><mi>w</mi></msub></mrow></munder><msub><mi>𝐳</mi><mi>g</mi></msub></mrow></math></p>
 <p>Donde <math aria-label="G_w \subset \mathcal{V}_{\text{sub}}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>G</mi><mi>w</mi></msub><mo>⊂</mo><msub><mi>𝒱</mi><mrow><mtext>sub</mtext></mrow></msub></mrow></math> <span class="tone-accent"><strong>representa el conjunto de n-gramas de longitud <math aria-label="3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn></mrow></math> a <math aria-label="6" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>6</mn></mrow></math> extraídos de <math aria-label="w" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>w</mi></mrow></math> junto al token delimitado original.</strong></span></p>
 <hr/>
-</section><section class="cell" data-cell="19" id="celda-20"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-20-subword-limits"><h4 id="imagen-celda-20-subword-limits">Diagrama visual · Fragmentos compartidos, vector compuesto</h4><figure><img alt="Dos palabras comparten un n-grama que apunta a un bucket de parámetros." decoding="async" height="760" loading="lazy" src="../assets/visuals/subword-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/subword-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se ilustran solo algunos n-gramas de «gato» y «gatos», no una segmentación exhaustiva ni una separación en morfemas. Ambas cadenas contienen el fragmento «gat».</p>
-</li>
-<li>
-<p>El fragmento compartido reutiliza parámetros. En fastText se aplica hashing a buckets, por lo que fragmentos distintos también pueden colisionar; no hay un vector independiente garantizado para cada fragmento.</p>
-</li>
-<li>
-<p>Combinar fragmentos permite construir un vector para una palabra nueva. La utilidad semántica depende de los datos y de los fragmentos aprendidos, no queda garantizada por la composición.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="20" id="celda-21"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/dot.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-21-dot"><h4 id="imagen-celda-21-dot">Diagrama visual · Los pesos mezclan vectores completos</h4><figure><img alt="Tres vectores de valor contribuyen a una suma ponderada de dos coordenadas." decoding="async" height="760" loading="lazy" src="../assets/visuals/dot.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/dot.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Cada columna representa un valor: v₀=(2,0), v₁=(0,2) y v₂=(2,2). Los pesos 0.2, 0.5 y 0.3 suman uno.</p>
-</li>
-<li>
-<p>Cada peso multiplica todas las coordenadas de su valor. Las contribuciones son (0.4,0), (0,1) y (0.6,0.6); al sumarlas se obtiene z=(1,1.6).</p>
-</li>
-<li>
-<p>Los scores se calculan antes y softmax los normaliza. La figura se centra en la mezcla posterior: un peso aislado no determina la dirección final, que también depende de los valores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="21" id="celda-22"><h2 id="seccion-8"><span class="tone-emphasis"><strong>3.3. Formulación Matemática de fastText</strong></span></h2>
+</section><section class="cell" data-cell="19" id="celda-20"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="20" id="celda-21"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/dot.svg" width="1440"/></figure></section><section class="cell" data-cell="21" id="celda-22"><h2 id="seccion-8"><span class="tone-emphasis"><strong>3.3. Formulación Matemática de fastText</strong></span></h2>
 <blockquote>
 <p>fastText hereda el diseño predictivo de <span class="tone-accent"><strong>Skip-Gram con Muestreo Negativo (Negative Sampling)</strong></span>, pero <span class="tone-accent"><strong>reformula el paso de cómputo para trabajar con la sumatoria de sub-palabras.</strong></span></p>
 </blockquote>
-</section><section class="cell" data-cell="22" id="celda-23"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-23-cbow"><h4 id="imagen-celda-23-cbow">Diagrama visual · Skip-gram y CBOW: flechas de predicción</h4><figure><img alt="Dos grafos muestran cómo cambia la dirección entre centro y contextos." decoding="async" height="760" loading="lazy" src="../assets/visuals/cbow.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cbow.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>En la mitad izquierda, la palabra central alimenta varias predicciones de contexto: esa es la dirección de Skip-gram.</p>
-</li>
-<li>
-<p>En la derecha, los vectores de contexto convergen en una media y el clasificador predice el centro: esa es la dirección de CBOW. El centro no se incluye entre sus propios contextos.</p>
-</li>
-<li>
-<p>Las flechas representan relaciones de la tarea de entrenamiento, no una creación literal de palabras a partir de otras ni una garantía de cercanía semántica.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="23" id="celda-24"><h3 id="seccion-9"><strong>3.3.1. Probabilidad Condicional Sub-léxica</strong></h3>
+</section><section class="cell" data-cell="22" id="celda-23"><figure><img alt="Word2Vec: dirección de la predicción" height="435" loading="lazy" src="../assets/figures/cbow.svg" width="1440"/></figure></section><section class="cell" data-cell="23" id="celda-24"><h3 id="seccion-9"><strong>3.3.1. Probabilidad Condicional Sub-léxica</strong></h3>
 </section><section class="cell" data-cell="24" id="celda-25"><p>En el Skip-Gram clásico de Word2Vec, la probabilidad condicional de observar una palabra de contexto <math aria-label="w_o" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>w</mi><mi>o</mi></msub></mrow></math> dada la palabra central <math aria-label="w_c" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>w</mi><mi>c</mi></msub></mrow></math> viene dada por la softmax global:</p>
 <p><math aria-label="P(w_o \mid w_c) = \frac{\exp(\mathbf{u}_o^\top \mathbf{v}_c)}{\sum_{i \in \mathcal{V}} \exp(\mathbf{u}_i^\top \mathbf{v}_c)}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>P</mi><mo stretchy="false">(</mo><msub><mi>w</mi><mi>o</mi></msub><mo>∣</mo><msub><mi>w</mi><mi>c</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mfrac><mrow><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>𝐮</mi><mi>o</mi><mo>⊤</mo></msubsup><msub><mi>𝐯</mi><mi>c</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msub><mo>∑</mo><mrow><mi>i</mi><mo>∈</mo><mi>𝒱</mi></mrow></msub><mi>exp</mi><mo stretchy="false">(</mo><msubsup><mi>𝐮</mi><mi>i</mi><mo>⊤</mo></msubsup><msub><mi>𝐯</mi><mi>c</mi></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow></math></p>
-</section><section class="cell" data-cell="25" id="celda-26"><figure><img alt="Word2Vec: pérdida y dirección del gradiente" height="398" loading="lazy" src="../assets/figures/loss-gradient.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-26-loss-gradient"><h4 id="imagen-celda-26-loss-gradient">Diagrama visual · El signo de la pérdida fija la dirección del paso</h4><figure><img alt="Un eje muestra cómo aumenta la probabilidad observada al descender una pérdida negativa logarítmica." decoding="async" height="760" loading="lazy" src="../assets/visuals/loss-gradient.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/loss-gradient.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>La curva representa L=−ln p para 0&lt;p≤1. Una probabilidad pequeña del contexto observado implica una pérdida grande.</p>
-</li>
-<li>
-<p>La flecha señala la dirección de menor pérdida, hacia probabilidades mayores. En Word2Vec el optimizador mueve parámetros y sus scores; no modifica p de forma independiente.</p>
-</li>
-<li>
-<p>Para el vector central, el gradiente de la pérdida es suma_j p_j u_j menos u observado. El optimizador resta ese gradiente. Maximizar log p usa el signo contrario con un paso de ascenso equivalente.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="26" data-reviewed-source="https://aclanthology.org/Q17-1010/" id="celda-27"><p>Se puede definir un modelo softmax con puntuación <math aria-label="s(w,c)=u_c^\top\sum_{g\in G_w}z_g" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mi>u</mi><mi>c</mi><mo>⊤</mo></msubsup><msub><mo>∑</mo><mrow><mi>g</mi><mo>∈</mo><msub><mi>G</mi><mi>w</mi></msub></mrow></msub><msub><mi>z</mi><mi>g</mi></msub></mrow></math>. Sin embargo, el entrenamiento del artículo usa negative sampling: sus sigmoides distinguen pares de datos y ruido y no son una distribución normalizada de palabras de contexto. Las representaciones de salida corresponden a palabras completas.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/Q17-1010/">Bojanowski et al. · Subword information</a></p></section><section class="cell" data-cell="27" id="celda-28"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/dot.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-28-dot"><h4 id="imagen-celda-28-dot">Diagrama visual · Los pesos mezclan vectores completos</h4><figure><img alt="Tres vectores de valor contribuyen a una suma ponderada de dos coordenadas." decoding="async" height="760" loading="lazy" src="../assets/visuals/dot.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/dot.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Cada columna representa un valor: v₀=(2,0), v₁=(0,2) y v₂=(2,2). Los pesos 0.2, 0.5 y 0.3 suman uno.</p>
-</li>
-<li>
-<p>Cada peso multiplica todas las coordenadas de su valor. Las contribuciones son (0.4,0), (0,1) y (0.6,0.6); al sumarlas se obtiene z=(1,1.6).</p>
-</li>
-<li>
-<p>Los scores se calculan antes y softmax los normaliza. La figura se centra en la mezcla posterior: un peso aislado no determina la dirección final, que también depende de los valores.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="28" id="celda-29"><h3 id="seccion-10"><span class="tone-accent"><strong>3.3.2. Función de Pérdida con Negative Sampling (Muestreo Negativo)</strong></span></h3>
+</section><section class="cell" data-cell="25" id="celda-26"><figure><img alt="Word2Vec: pérdida y dirección del gradiente" height="398" loading="lazy" src="../assets/figures/loss-gradient.svg" width="1440"/></figure></section><section class="cell" data-cell="26" data-reviewed-source="https://aclanthology.org/Q17-1010/" id="celda-27"><p>Se puede definir un modelo softmax con puntuación <math aria-label="s(w,c)=u_c^\top\sum_{g\in G_w}z_g" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi><mo stretchy="false">(</mo><mi>w</mi><mo>,</mo><mi>c</mi><mo stretchy="false">)</mo><mo>=</mo><msubsup><mi>u</mi><mi>c</mi><mo>⊤</mo></msubsup><msub><mo>∑</mo><mrow><mi>g</mi><mo>∈</mo><msub><mi>G</mi><mi>w</mi></msub></mrow></msub><msub><mi>z</mi><mi>g</mi></msub></mrow></math>. Sin embargo, el entrenamiento del artículo usa negative sampling: sus sigmoides distinguen pares de datos y ruido y no son una distribución normalizada de palabras de contexto. Las representaciones de salida corresponden a palabras completas.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/Q17-1010/">Bojanowski et al. · Subword information</a></p></section><section class="cell" data-cell="27" id="celda-28"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/dot.svg" width="1440"/></figure></section><section class="cell" data-cell="28" id="celda-29"><h3 id="seccion-10"><span class="tone-accent"><strong>3.3.2. Función de Pérdida con Negative Sampling (Muestreo Negativo)</strong></span></h3>
 <blockquote>
 <p>Para <span class="tone-accent"><strong>eliminar el denominador de la softmax, cuyo coste algorítmico crece linealmente con el tamaño del vocabulario <math aria-label="|\mathcal{V}|" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">|</mo><mi>𝒱</mi><mo stretchy="false">|</mo></mrow></math>, se utiliza la aproximación de regresión logística binaria</strong>.</span></p>
 </blockquote>
@@ -178,41 +90,8 @@
 </li>
 </ul>
 </section><section class="cell" data-cell="29" id="celda-30"><figure><img alt="Ilustración de la sección" height="1024" loading="lazy" src="../assets/2e7dc55223520d06c3c2e0d0.webp" width="1072"/></figure></section><section class="cell" data-cell="30" data-reviewed-source="https://aclanthology.org/Q17-1010/" id="celda-31"><h3 id="seccion-11">3.3.3. Interpretación de las actualizaciones</h3><p>El gradiente aumenta puntuaciones de pares observados y reduce las de pares de ruido muestreados. Esto cambia normas y direcciones de los vectores compartidos. No garantiza acercamiento euclídeo, paralelismo ni que todos los negativos sean semánticamente incoherentes.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/Q17-1010/">Bojanowski et al. · Subword information</a></p></section><section class="cell" data-cell="31" id="celda-32"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-32-word2vec-score"><h4 id="imagen-celda-32-word2vec-score">Diagrama visual · De scores a probabilidades normalizadas</h4><figure><img alt="Tres barras de scores se transforman en tres probabilidades positivas que suman uno." decoding="async" height="760" loading="lazy" src="../assets/visuals/word2vec-score.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/word2vec-score.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se usan los scores [3.2,−1.5,4.0]. Restar su máximo produce [−0.8,−5.5,0] y conserva exactamente el softmax.</p>
-</li>
-<li>
-<p>Las exponenciales son aproximadamente [0.4493,0.00409,1]. Se divide cada una por su suma, aproximadamente 1.4534.</p>
-</li>
-<li>
-<p>El resultado es [0.3092,0.0028,0.6880], salvo redondeo. Son probabilidades sobre los candidatos del eje elegido; los scores iniciales no eran probabilidades.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="32" data-reviewed-source="https://aclanthology.org/E17-2068/" id="celda-33"><h2 id="seccion-12"><strong>3.4. Clasificación de Texto Supervisada de fastText</strong></h2><p>fastText también ofrece clasificación supervisada con una arquitectura ligera. El artículo de Joulin et al. compara precisión y tiempo en datasets concretos. Esos resultados no garantizan un coste o una precisión superior para cualquier problema.</p>
-<p class="note source-reference">Referencia: <a href="https://aclanthology.org/E17-2068/">Joulin et al. · Clasificación de texto</a></p></section><section class="cell" data-cell="33" id="celda-34"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-34-subword-limits"><h4 id="imagen-celda-34-subword-limits">Diagrama visual · Fragmentos compartidos, vector compuesto</h4><figure><img alt="Dos palabras comparten un n-grama que apunta a un bucket de parámetros." decoding="async" height="760" loading="lazy" src="../assets/visuals/subword-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/subword-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se ilustran solo algunos n-gramas de «gato» y «gatos», no una segmentación exhaustiva ni una separación en morfemas. Ambas cadenas contienen el fragmento «gat».</p>
-</li>
-<li>
-<p>El fragmento compartido reutiliza parámetros. En fastText se aplica hashing a buckets, por lo que fragmentos distintos también pueden colisionar; no hay un vector independiente garantizado para cada fragmento.</p>
-</li>
-<li>
-<p>Combinar fragmentos permite construir un vector para una palabra nueva. La utilidad semántica depende de los datos y de los fragmentos aprendidos, no queda garantizada por la composición.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="34" id="celda-35"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-35-subword-limits"><h4 id="imagen-celda-35-subword-limits">Diagrama visual · Fragmentos compartidos, vector compuesto</h4><figure><img alt="Dos palabras comparten un n-grama que apunta a un bucket de parámetros." decoding="async" height="760" loading="lazy" src="../assets/visuals/subword-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/subword-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se ilustran solo algunos n-gramas de «gato» y «gatos», no una segmentación exhaustiva ni una separación en morfemas. Ambas cadenas contienen el fragmento «gat».</p>
-</li>
-<li>
-<p>El fragmento compartido reutiliza parámetros. En fastText se aplica hashing a buckets, por lo que fragmentos distintos también pueden colisionar; no hay un vector independiente garantizado para cada fragmento.</p>
-</li>
-<li>
-<p>Combinar fragmentos permite construir un vector para una palabra nueva. La utilidad semántica depende de los datos y de los fragmentos aprendidos, no queda garantizada por la composición.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="35" id="celda-36"><h3 id="seccion-13"><span class="tone-accent"><strong>3.4.1. La Arquitectura del Clasificador Lineal</strong></span></h3>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/Q17-1010/">Bojanowski et al. · Subword information</a></p></section><section class="cell" data-cell="31" id="celda-32"><figure><img alt="Softmax: puntuación, exponencial y normalización" height="435" loading="lazy" src="../assets/figures/word2vec-score.svg" width="1440"/></figure></section><section class="cell" data-cell="32" data-reviewed-source="https://aclanthology.org/E17-2068/" id="celda-33"><h2 id="seccion-12"><strong>3.4. Clasificación de Texto Supervisada de fastText</strong></h2><p>fastText también ofrece clasificación supervisada con una arquitectura ligera. El artículo de Joulin et al. compara precisión y tiempo en datasets concretos. Esos resultados no garantizan un coste o una precisión superior para cualquier problema.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/E17-2068/">Joulin et al. · Clasificación de texto</a></p></section><section class="cell" data-cell="33" id="celda-34"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="34" id="celda-35"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="35" id="celda-36"><h3 id="seccion-13"><span class="tone-accent"><strong>3.4.1. La Arquitectura del Clasificador Lineal</strong></span></h3>
 <blockquote>
 <p>Para clasificar un documento que consta de múltiples palabras (y sub-palabras), <span class="tone-accent"><strong>fastText utiliza un modelo lineal con una capa oculta de proyección promediada.</strong></span></p>
 </blockquote>
@@ -233,30 +112,8 @@
 </section><section class="cell" data-cell="36" data-reviewed-source="https://aclanthology.org/E17-2068/" id="celda-37"><h3 id="seccion-14"><span class="tone-accent"><strong>3.4.2. n-gramas de Palabras (Word n-grams) para Capturar Orden Local</strong></span></h3><p>Un promedio de palabras conserva la presencia de «no», pero pierde su posición y alcance. Añadir n-gramas de palabras permite distinguir algunos patrones locales. No garantiza resolver la negación ni igualar a una RNN o CNN en cualquier corpus.</p>
 <p class="note source-reference">Referencia: <a href="https://aclanthology.org/E17-2068/">Joulin et al. · Clasificación de texto</a></p></section><section class="cell" data-cell="37" id="celda-38"><h2 id="seccion-15"><span class="tone-emphasis"><strong>3.5. Sub-palabras de Longitud Fija vs. Byte Pair Encoding (BPE)</strong></span></h2>
 <p>Existe una distinción crucial entre el enfoque de n-gramas de fastText y el algoritmo <strong>Byte Pair Encoding (BPE)</strong>:</p>
-</section><section class="cell" data-cell="38" id="celda-39"><figure><img alt="BPE: compresión de secuencias y tokenización" height="435" loading="lazy" src="../assets/figures/bpe-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-39-bpe-limits"><h4 id="imagen-celda-39-bpe-limits">Diagrama visual · BPE: reemplazar un par adyacente por una unidad</h4><figure><img alt="Una secuencia de caracteres muestra dos fusiones sucesivas durante la tokenización." decoding="async" height="760" loading="lazy" src="../assets/visuals/bpe-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/bpe-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>El ejemplo parte de las unidades [g,a,t,o]. Suponemos que el vocabulario aprendido contiene primero la fusión (g,a)→ga.</p>
-</li>
-<li>
-<p>La siguiente fusión ilustrada convierte (ga,t)→gat y deja [gat,o]. En entrenamiento se eligen pares mediante frecuencias; al tokenizar se aplica el orden de fusiones aprendido.</p>
-</li>
-<li>
-<p>Es un ejemplo de la mecánica, no una lista real de fusiones aprendidas de un corpus. Las unidades resultantes no tienen por qué coincidir con morfemas.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="39" id="celda-40"><h2 id="seccion-16"><span class="tone-emphasis"><strong>3.6. Resumen</strong></span></h2>
-</section><section class="cell" data-cell="40" id="celda-41"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-41-subword-limits"><h4 id="imagen-celda-41-subword-limits">Diagrama visual · Fragmentos compartidos, vector compuesto</h4><figure><img alt="Dos palabras comparten un n-grama que apunta a un bucket de parámetros." decoding="async" height="760" loading="lazy" src="../assets/visuals/subword-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/subword-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
-<li>
-<p>Se ilustran solo algunos n-gramas de «gato» y «gatos», no una segmentación exhaustiva ni una separación en morfemas. Ambas cadenas contienen el fragmento «gat».</p>
-</li>
-<li>
-<p>El fragmento compartido reutiliza parámetros. En fastText se aplica hashing a buckets, por lo que fragmentos distintos también pueden colisionar; no hay un vector independiente garantizado para cada fragmento.</p>
-</li>
-<li>
-<p>Combinar fragmentos permite construir un vector para una palabra nueva. La utilidad semántica depende de los datos y de los fragmentos aprendidos, no queda garantizada por la composición.</p>
-</li>
-</ol>
-</section></figure></section><section class="cell" data-cell="41" id="celda-42"><h1 id="seccion-17"><span class="tone-accent"><strong>4. Implementación en PyTorch</strong></span></h1>
+</section><section class="cell" data-cell="38" id="celda-39"><figure><img alt="BPE: compresión de secuencias y tokenización" height="435" loading="lazy" src="../assets/figures/bpe-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="39" id="celda-40"><h2 id="seccion-16"><span class="tone-emphasis"><strong>3.6. Resumen</strong></span></h2>
+</section><section class="cell" data-cell="40" id="celda-41"><figure><img alt="fastText: composición de subpalabras y sus límites" height="435" loading="lazy" src="../assets/figures/subword-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="41" id="celda-42"><h1 id="seccion-17"><span class="tone-accent"><strong>4. Implementación en PyTorch</strong></span></h1>
 </section><section class="cell" data-cell="42" id="celda-43"><h2 id="seccion-18"><span class="tone-emphasis"><strong>4.1. Importación de dependencias y configuración del entorno</strong></span></h2>
 </section><section class="cell" data-cell="43" id="celda-44"><details class="source-code"><summary>Código Python · celda 44</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="c1"># ==============================================================================</span>
 <span class="c1"># CELDA 1: Librerías y Configuración de Dispositivo</span>
