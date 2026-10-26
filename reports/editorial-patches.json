@@ -1,0 +1,737 @@
+[
+  {
+    "file": "clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-23",
+    "mode": "replace_text",
+    "old": "ortogonales (independientes)",
+    "new": "ortogonales en esta codificación",
+    "source": [
+      "PyTorch: cosine_similarity",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.cosine_similarity.html"
+    ],
+    "reason": "Ortogonalidad no equivale a independencia estadística o lingüística."
+  },
+  {
+    "file": "clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-55",
+    "mode": "replace_body",
+    "markdown": "Para el par centro–contexto, el numerador es **la exponencial del producto punto**, no el producto punto aislado:\n\n$$\\exp(u_o^{\\top}v_c).$$\n\nEl producto punto combina normas y ángulo: $u_o^{\\top}v_c=\\|u_o\\|\\|v_c\\|\\cos\\theta$. Una puntuación mayor aumenta la probabilidad del contexto **respecto de las demás puntuaciones**, pero no equivale por sí sola a mayor coseno ni a menor distancia euclídea.",
+    "source": [
+      "Mikolov et al. (2013)",
+      "https://arxiv.org/abs/1310.4546"
+    ],
+    "reason": "Corregir numerador de softmax y distinguir producto punto de coseno."
+  },
+  {
+    "file": "clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-58",
+    "mode": "replace_body",
+    "markdown": "El denominador suma **las exponenciales de las puntuaciones** para todas las palabras candidatas:\n\n$$Z_c=\\sum_{i\\in\\mathcal V}\\exp(u_i^{\\top}v_c),\\qquad p(o\\mid c)=\\frac{\\exp(u_o^{\\top}v_c)}{Z_c}.$$\n\nPara puntuaciones finitas, cada probabilidad está entre 0 y 1 y su suma es 1. Para expresarlas como porcentaje se multiplica por 100. El softmax completo requiere evaluar todo el vocabulario; negative sampling utiliza otro objetivo para evitar ese cálculo completo.",
+    "source": [
+      "Mikolov et al. (2013)",
+      "https://arxiv.org/abs/1310.4546"
+    ],
+    "reason": "El denominador no es la suma de los productos punto."
+  },
+  {
+    "file": "clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-75",
+    "mode": "replace_text",
+    "old": "Garantiza la reproducibilidad matemática de las inicializaciones aleatorias.",
+    "new": "Fija el generador de PyTorch para controlar las inicializaciones; reproducir un experimento también requiere controlar otras fuentes de azar y las operaciones no deterministas.",
+    "source": [
+      "PyTorch: reproducibilidad",
+      "https://docs.pytorch.org/docs/stable/notes/randomness.html"
+    ],
+    "reason": "Una semilla no certifica reproducibilidad completa."
+  },
+  {
+    "file": "clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-81",
+    "mode": "replace_text",
+    "old": "sin distorsionar su dirección en el espacio de embeddings",
+    "new": "sin imponer que la geometría aprendida dependa solamente de la dirección",
+    "source": [
+      "Pennington et al. (2014), ecuación 8",
+      "https://aclanthology.org/D14-1162/"
+    ],
+    "reason": "Los sesgos no garantizan conservar direcciones de los embeddings."
+  },
+  {
+    "file": "clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-46",
+    "mode": "replace_text",
+    "old": "garantiza que los resultados, la convergencia y las gráficas sean idénticos en cualquier ejecución dentro de Google Colab.",
+    "new": "ayuda a repetir las secuencias pseudoaleatorias en un entorno fijo. No garantiza resultados idénticos entre dispositivos, versiones o algoritmos no deterministas; también deben controlarse el muestreo, los workers y la configuración del backend.",
+    "source": [
+      "PyTorch: reproducibilidad",
+      "https://docs.pytorch.org/docs/stable/notes/randomness.html"
+    ],
+    "reason": "Corregir garantía falsa de determinismo."
+  },
+  {
+    "file": "clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-107",
+    "mode": "replace_text",
+    "old": "ofrecen un balance ideal entre expresividad semántica y velocidad de convergencia sin sobreajustar",
+    "new": "son una elección didáctica de capacidad y coste; su generalización debe evaluarse con datos separados",
+    "source": [
+      "Bojanowski et al. (2017)",
+      "https://arxiv.org/abs/1607.04606"
+    ],
+    "reason": "Los hiperparámetros didácticos no prueban ausencia de sobreajuste."
+  },
+  {
+    "file": "clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-125",
+    "mode": "replace_body",
+    "markdown": "Para vectores no nulos:\n\n$$\\operatorname{cos}(u,v)=\\frac{u^\\top v}{\\|u\\|\\|v\\|}\\in[-1,1].$$\n\nUn valor de 1 significa misma dirección; 0, ortogonalidad; y −1, direcciones opuestas. **Estas propiedades geométricas no demuestran sinonimia, independencia semántica ni antonimia.** La interpretación lingüística depende del corpus y del entrenamiento. Si la función de recuperación devuelve un vector cero, la similitud geométrica no está definida; el valor estabilizado por `eps` es una convención numérica.",
+    "source": [
+      "PyTorch: cosine_similarity",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.cosine_similarity.html"
+    ],
+    "reason": "Corregir interpretación semántica de coseno y caso del vector cero."
+  },
+  {
+    "file": "clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-126",
+    "mode": "replace_body",
+    "markdown": "`F.cosine_similarity` admite tensores de formas compatibles por *broadcasting*: **no exige una dimensión de lote**. Aquí `unsqueeze(0)` convierte `[D]` en `[1,D]` para usar el eje predeterminado `dim=1`.\n\nTambién se puede calcular directamente `F.cosine_similarity(u, v, dim=0)` con dos vectores `[D]`. Con `[1,D]` y `dim=1`, la salida tiene forma `[1]`; `.item()` extrae su único elemento como escalar de Python. No es necesario que el tensor tenga cero dimensiones: debe contener exactamente un elemento.",
+    "source": [
+      "PyTorch: cosine_similarity",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.cosine_similarity.html"
+    ],
+    "reason": "Corregir contrato y forma de salida de cosine_similarity."
+  },
+  {
+    "file": "clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-127",
+    "mode": "replace_text",
+    "old": "se ubicará muy cerca de",
+    "new": "puede quedar próximo a",
+    "source": [
+      "Bojanowski et al. (2017)",
+      "https://arxiv.org/abs/1607.04606"
+    ],
+    "reason": "La vecindad semántica no está garantizada por compartir subpalabras."
+  },
+  {
+    "file": "clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-128",
+    "mode": "replace_body",
+    "source": [
+      "Bojanowski et al. (2017)",
+      "https://arxiv.org/abs/1607.04606"
+    ],
+    "reason": "Distinguir una demostración didáctica de una validación de generalización.",
+    "markdown": "Una tabla Word2Vec o GloVe cerrada no contiene una entrada para una palabra nueva. Según la aplicación, se devuelve un token desconocido, se usa otro mecanismo o se informa un error.\n\nEl laboratorio fastText construye un vector a partir de las subpalabras conocidas. Compartir fragmentos permite reutilizar parámetros, pero **no garantiza una representación semántica correcta** para cualquier palabra nueva. El ejemplo ilustra el mecanismo; validar generalización requiere evaluación fuera del corpus de entrenamiento."
+  },
+  {
+    "file": "clase-05-1-1-redes-convolucionales-teoria-simplificada.html",
+    "cell": "celda-75",
+    "mode": "replace_body",
+    "markdown": "En `BatchNorm2d`, cada canal se normaliza con estadísticas agregadas sobre los ejes de lote y posiciones espaciales, y luego se aplica una transformación aprendida:\n\n$$y=\\gamma\\frac{x-\\mu_B}{\\sqrt{\\sigma_B^2+\\epsilon}}+\\beta.$$\n\nLa activación ReLU, cuando se usa después, es una operación separada. En evaluación, con `track_running_stats=True`, se utilizan estadísticas acumuladas. Con `track_running_stats=False`, se siguen usando las del lote. BatchNorm suele facilitar la optimización y puede tener un efecto regularizador, pero no garantiza evitar el sobreajuste.",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "Precisar los ejes de BatchNorm, la inferencia y sus límites."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
+    "cell": "celda-49",
+    "mode": "replace_body",
+    "markdown": "El pooling con reducción espacial disminuye el número de activaciones y el coste de las capas posteriores. **Max pooling no tiene parámetros entrenables**; tampoco cambia por sí solo el número de pesos de una convolución posterior con igual número de canales y tamaño de kernel. Sí puede reducir los de una capa densa que recibe el mapa aplanado.\n\nSeleccionar máximos puede dar tolerancia local a pequeños desplazamientos, con pérdida de detalle. Reducir resolución no garantiza eliminar información irrelevante ni evitar el sobreajuste.",
+    "source": [
+      "D2L: convoluciones para imágenes",
+      "https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html"
+    ],
+    "reason": "Precisar qué parámetros reduce el pooling y evitar garantías de generalización."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2.html",
+    "cell": "celda-49",
+    "mode": "replace_body",
+    "markdown": "El pooling con reducción espacial disminuye el número de activaciones y el coste de las capas posteriores. **Max pooling no tiene parámetros entrenables**; tampoco cambia por sí solo el número de pesos de una convolución posterior con igual número de canales y tamaño de kernel. Sí puede reducir los de una capa densa que recibe el mapa aplanado.\n\nSeleccionar máximos puede dar tolerancia local a pequeños desplazamientos, con pérdida de detalle. Reducir resolución no garantiza eliminar información irrelevante ni evitar el sobreajuste.",
+    "source": [
+      "D2L: convoluciones para imágenes",
+      "https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html"
+    ],
+    "reason": "Precisar qué parámetros reduce el pooling y evitar garantías de generalización."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
+    "cell": "celda-80",
+    "mode": "replace_body",
+    "markdown": "El *internal covariate shift* fue una motivación histórica de BatchNorm. No debe presentarse su eliminación como explicación definitiva de su eficacia. Santurkar et al. estudiaron cómo la normalización modifica y suaviza la optimización.\n\nEn la práctica puede mejorar la estabilidad y permitir tasas de aprendizaje distintas, pero sus efectos dependen de la arquitectura, el lote y la tarea. No elimina automáticamente los gradientes explosivos o desvanecientes.",
+    "source": [
+      "Santurkar et al. (2018)",
+      "https://arxiv.org/abs/1805.11604"
+    ],
+    "reason": "Separar motivación histórica de explicación causal demostrada."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2.html",
+    "cell": "celda-80",
+    "mode": "replace_body",
+    "markdown": "El *internal covariate shift* fue una motivación histórica de BatchNorm. No debe presentarse su eliminación como explicación definitiva de su eficacia. Santurkar et al. estudiaron cómo la normalización modifica y suaviza la optimización.\n\nEn la práctica puede mejorar la estabilidad y permitir tasas de aprendizaje distintas, pero sus efectos dependen de la arquitectura, el lote y la tarea. No elimina automáticamente los gradientes explosivos o desvanecientes.",
+    "source": [
+      "Santurkar et al. (2018)",
+      "https://arxiv.org/abs/1805.11604"
+    ],
+    "reason": "Separar motivación histórica de explicación causal demostrada."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
+    "cell": "celda-81",
+    "mode": "replace_text",
+    "old": "una distribución con media",
+    "new": "activaciones con media",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "Estandarizar momentos no fija la distribución completa."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2.html",
+    "cell": "celda-81",
+    "mode": "replace_text",
+    "old": "una distribución con media",
+    "new": "activaciones con media",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "Estandarizar momentos no fija la distribución completa."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
+    "cell": "celda-82",
+    "mode": "replace_body",
+    "markdown": "En este bloque se usa el orden Conv → BatchNorm → ReLU. BatchNorm y ReLU son capas distintas; otras arquitecturas eligen otros órdenes.\n\nReLU tiene derivada 1 para entradas positivas y 0 para negativas. No evita todos los problemas del gradiente: puede producir unidades inactivas, y BatchNorm no garantiza impedirlo.",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "Evitar que normalización o ReLU se presenten como garantías del gradiente."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2.html",
+    "cell": "celda-82",
+    "mode": "replace_body",
+    "markdown": "En este bloque se usa el orden Conv → BatchNorm → ReLU. BatchNorm y ReLU son capas distintas; otras arquitecturas eligen otros órdenes.\n\nReLU tiene derivada 1 para entradas positivas y 0 para negativas. No evita todos los problemas del gradiente: puede producir unidades inactivas, y BatchNorm no garantiza impedirlo.",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "Evitar que normalización o ReLU se presenten como garantías del gradiente."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
+    "cell": "celda-83",
+    "mode": "replace_body",
+    "markdown": "Con `model.eval()` y `track_running_stats=True`, BatchNorm utiliza la media y la varianza acumuladas durante entrenamiento. Así la normalización de una muestra no depende de las otras muestras del lote de evaluación.\n\nSi `track_running_stats=False`, se utilizan estadísticas del lote también en evaluación. Cambiar de distribución de datos puede afectar al resultado en ambos casos; las estadísticas acumuladas no garantizan buena generalización.",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "Aclarar configuración de estadísticas durante inferencia."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2.html",
+    "cell": "celda-83",
+    "mode": "replace_body",
+    "markdown": "Con `model.eval()` y `track_running_stats=True`, BatchNorm utiliza la media y la varianza acumuladas durante entrenamiento. Así la normalización de una muestra no depende de las otras muestras del lote de evaluación.\n\nSi `track_running_stats=False`, se utilizan estadísticas del lote también en evaluación. Cambiar de distribución de datos puede afectar al resultado en ambos casos; las estadísticas acumuladas no garantizan buena generalización.",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "Aclarar configuración de estadísticas durante inferencia."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
+    "cell": "celda-84",
+    "mode": "replace_text",
+    "old": "sin provocar divergencia",
+    "new": "en determinadas configuraciones; se debe comprobar la estabilidad",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "BatchNorm no permite cualquier tasa de aprendizaje sin divergencia."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2.html",
+    "cell": "celda-84",
+    "mode": "replace_text",
+    "old": "sin provocar divergencia",
+    "new": "en determinadas configuraciones; se debe comprobar la estabilidad",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "BatchNorm no permite cualquier tasa de aprendizaje sin divergencia."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
+    "cell": "celda-84",
+    "mode": "replace_text",
+    "old": "Reduce el sobreajuste",
+    "new": "Puede regularizar",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "El efecto regularizador depende del experimento."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2.html",
+    "cell": "celda-84",
+    "mode": "replace_text",
+    "old": "Reduce el sobreajuste",
+    "new": "Puede regularizar",
+    "source": [
+      "PyTorch: BatchNorm2d",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html"
+    ],
+    "reason": "El efecto regularizador depende del experimento."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
+    "cell": "celda-90",
+    "mode": "replace_text",
+    "old": "evita saturación de gradientes",
+    "new": "tiene derivada 1 en la rama positiva; puede anular el gradiente en la negativa",
+    "source": [
+      "D2L: convoluciones para imágenes",
+      "https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html"
+    ],
+    "reason": "ReLU no evita todo desvanecimiento del gradiente."
+  },
+  {
+    "file": "clase-05-1-2-redes-convolucionales-v2.html",
+    "cell": "celda-90",
+    "mode": "replace_text",
+    "old": "evita saturación de gradientes",
+    "new": "tiene derivada 1 en la rama positiva; puede anular el gradiente en la negativa",
+    "source": [
+      "D2L: convoluciones para imágenes",
+      "https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html"
+    ],
+    "reason": "ReLU no evita todo desvanecimiento del gradiente."
+  },
+  {
+    "file": "clase-05-1-cnn-teoria-completa.html",
+    "cell": "celda-6",
+    "mode": "replace_body",
+    "markdown": "Conviene distinguir **equivarianza** e **invariancia**. Una convolución con pesos compartidos desplaza su mapa de salida cuando se desplaza la entrada, bajo condiciones compatibles de bordes y muestreo. Eso es equivarianza.\n\nUna predicción invariante conserva su resultado frente al desplazamiento. Puede favorecerse mediante agregación espacial y entrenamiento, pero no es una propiedad automática de toda CNN. El padding y los strides también pueden romper la equivarianza exacta.",
+    "source": [
+      "D2L: de capas densas a convoluciones",
+      "https://d2l.ai/chapter_convolutional-neural-networks/why-conv.html"
+    ],
+    "reason": "Corregir confusión entre equivarianza de características e invariancia de predicción."
+  },
+  {
+    "file": "clase-05-4-transformers-y-mecanismos-de-atencion.html",
+    "cell": "celda-30",
+    "mode": "replace_body",
+    "markdown": "Self-attention relaciona posiciones de una misma secuencia; no es exclusiva de una arquitectura particular. **LSTMN** es la propuesta de Cheng, Dong y Lapata (2016), que amplía una LSTM con memoria y atención durante el procesamiento incremental.\n\nNo debe atribuirse LSTMN a Luong et al. (2015), cuyo trabajo estudia atención global y local en traducción recurrente. La self-attention del Transformer de Vaswani et al. (2017) utiliza proyecciones Q, K y V y no requiere una celda LSTM.",
+    "source": [
+      "Cheng, Dong y Lapata (2016)",
+      "https://arxiv.org/abs/1601.06733"
+    ],
+    "reason": "Corregir autoría histórica y separar LSTMN de Transformer."
+  },
+  {
+    "file": "clase-05-4-transformers-y-mecanismos-de-atencion.html",
+    "cell": "celda-57",
+    "mode": "replace_body",
+    "markdown": "La atención escalada calcula\n\n$$\\operatorname{Attention}(Q,K,V)=\\operatorname{softmax}\\left(\\frac{QK^\\top}{\\sqrt{d_k}}\\right)V.$$\n\nEn **self-attention**, Q, K y V se proyectan desde la misma secuencia de entrada. En **cross-attention** del decoder, Q procede del decoder, mientras K y V se proyectan desde la salida del encoder. No hay que confundir estos dos casos.\n\nPara $n_q$ consultas y $n_k$ claves, las puntuaciones tienen forma $n_q\\times n_k$ y la salida $n_q\\times d_v$. La atención multicabezal concatena salidas y aplica una proyección final aprendida.",
+    "source": [
+      "Vaswani et al. (2017), sección 3.2",
+      "https://arxiv.org/abs/1706.03762"
+    ],
+    "reason": "Separar self-attention y cross-attention y precisar dimensiones."
+  },
+  {
+    "file": "clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-106",
+    "mode": "replace_text",
+    "old": "permitiendo que la información fluya a través de muchos pasos temporales sin atenuarse",
+    "new": "facilitando el flujo de información y gradientes a lo largo del tiempo. La retención depende de las compuertas; no está garantizada y los gradientes aún pueden desvanecerse o explotar",
+    "source": [
+      "PyTorch: RNN y LSTM",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.LSTM.html"
+    ],
+    "reason": "Las LSTM mitigan dificultades recurrentes pero no garantizan memoria ilimitada."
+  },
+  {
+    "file": "clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-34",
+    "mode": "replace_body",
+    "source": [
+      "Vaswani et al. (2017), sección 3.2",
+      "https://arxiv.org/abs/1706.03762"
+    ],
+    "reason": "Distinguir transformación lineal, transformación afín y proyección ortogonal.",
+    "markdown": "En estas arquitecturas, «proyectar» suele significar aplicar una matriz aprendida: $y=Wx$. Es una **transformación lineal**, que puede cambiar dimensión, normas y ángulos. Sin un sesgo, no añade una traslación.\n\nUna capa con sesgo aplica una transformación afín $y=Wx+b$. Una proyección ortogonal tiene propiedades adicionales, como idempotencia, que una matriz aprendida general no necesita cumplir. En atención, las proyecciones crean representaciones compatibles para comparar consultas y claves; no tienen que ser rotaciones ni preservar distancias."
+  },
+  {
+    "file": "clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-34",
+    "mode": "replace_body",
+    "source": [
+      "Vaswani et al. (2017), sección 3.2",
+      "https://arxiv.org/abs/1706.03762"
+    ],
+    "reason": "Distinguir transformación lineal, transformación afín y proyección ortogonal.",
+    "markdown": "En estas arquitecturas, «proyectar» suele significar aplicar una matriz aprendida: $y=Wx$. Es una **transformación lineal**, que puede cambiar dimensión, normas y ángulos. Sin un sesgo, no añade una traslación.\n\nUna capa con sesgo aplica una transformación afín $y=Wx+b$. Una proyección ortogonal tiene propiedades adicionales, como idempotencia, que una matriz aprendida general no necesita cumplir. En atención, las proyecciones crean representaciones compatibles para comparar consultas y claves; no tienen que ser rotaciones ni preservar distancias."
+  },
+  {
+    "file": "clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-51",
+    "mode": "replace_text",
+    "old": "Luong logró que la representación del contexto dinámico fuera más precisa respecto a la palabra que la red estaba intentando predecir en ese instante",
+    "new": "la consulta utiliza información de ese estado actualizado. La calidad final depende del modelo y del entrenamiento; este orden por sí solo no demuestra mayor precisión en cualquier tarea",
+    "source": [
+      "Luong et al. (2015), sección 3",
+      "https://aclanthology.org/D15-1166/"
+    ],
+    "reason": "Separar diferencia arquitectónica de garantía de precisión."
+  },
+  {
+    "file": "clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-51",
+    "mode": "replace_text",
+    "old": "Luong logró que la representación del contexto dinámico fuera más precisa respecto a la palabra que la red estaba intentando predecir en ese instante",
+    "new": "la consulta utiliza información de ese estado actualizado. La calidad final depende del modelo y del entrenamiento; este orden por sí solo no demuestra mayor precisión en cualquier tarea",
+    "source": [
+      "Luong et al. (2015), sección 3",
+      "https://aclanthology.org/D15-1166/"
+    ],
+    "reason": "Separar diferencia arquitectónica de garantía de precisión."
+  },
+  {
+    "file": "clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-52",
+    "mode": "replace_body",
+    "markdown": "Con una fuente de longitud $T_x$ y una salida de longitud $T_y$, la atención global puntúa aproximadamente $T_xT_y$ pares (además del coste por dimensión). Se habla de crecimiento cuadrático cuando ambas longitudes aumentan juntas.\n\nEl uso de memoria depende de la implementación: un decoder recurrente puede calcular un paso cada vez sin guardar una matriz completa de todos los pares. La atención local restringe las posiciones evaluadas alrededor de un centro; su ahorro real requiere computar solo esa vecindad.",
+    "source": [
+      "Luong et al. (2015), sección 3",
+      "https://aclanthology.org/D15-1166/"
+    ],
+    "reason": "Precisar complejidad temporal y memoria; evitar desbordamiento inevitable."
+  },
+  {
+    "file": "clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-52",
+    "mode": "replace_body",
+    "markdown": "Con una fuente de longitud $T_x$ y una salida de longitud $T_y$, la atención global puntúa aproximadamente $T_xT_y$ pares (además del coste por dimensión). Se habla de crecimiento cuadrático cuando ambas longitudes aumentan juntas.\n\nEl uso de memoria depende de la implementación: un decoder recurrente puede calcular un paso cada vez sin guardar una matriz completa de todos los pares. La atención local restringe las posiciones evaluadas alrededor de un centro; su ahorro real requiere computar solo esa vecindad.",
+    "source": [
+      "Luong et al. (2015), sección 3",
+      "https://aclanthology.org/D15-1166/"
+    ],
+    "reason": "Precisar complejidad temporal y memoria; evitar desbordamiento inevitable."
+  },
+  {
+    "file": "clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-8",
+    "mode": "replace_body",
+    "markdown": "Con una fuente de longitud $T_x$ y una salida de longitud $T_y$, la atención global puntúa aproximadamente $T_xT_y$ pares (además del coste por dimensión). Se habla de crecimiento cuadrático cuando ambas longitudes aumentan juntas.\n\nEl uso de memoria depende de la implementación: un decoder recurrente puede calcular un paso cada vez sin guardar una matriz completa de todos los pares. La atención local restringe las posiciones evaluadas alrededor de un centro; su ahorro real requiere computar solo esa vecindad.",
+    "source": [
+      "Luong et al. (2015), sección 3",
+      "https://aclanthology.org/D15-1166/"
+    ],
+    "reason": "Precisar complejidad temporal y memoria; evitar desbordamiento inevitable."
+  },
+  {
+    "file": "clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-58",
+    "mode": "replace_body",
+    "markdown": "En la variante predictiva local de Luong, se predice un centro $p_t$ y se pondera la atención con una gaussiana:\n\n$$a_t(i)=\\operatorname{align}(h_t,\\bar h_i)\\exp\\left(-\\frac{(i-p_t)^2}{2\\sigma^2}\\right),\\qquad \\sigma=D/2.$$\n\nEl factor gaussiano es suave respecto del centro **para las posiciones evaluadas**. No vuelve derivable una operación discreta de selección de índices: deben distinguirse la ponderación continua y el recorte de la ventana.\n\nDespués de multiplicar por la gaussiana, los pesos no tienen por qué sumar uno. Si el laboratorio los renormaliza, esa es una decisión adicional de implementación. Una versión que calcula todas las posiciones y solo las atenúa conserva el coste global de puntuarlas.",
+    "source": [
+      "Luong et al. (2015), sección 3",
+      "https://aclanthology.org/D15-1166/"
+    ],
+    "reason": "Distinguir ponderación gaussiana, ventana discreta, renormalización y coste real."
+  },
+  {
+    "file": "clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-58",
+    "mode": "replace_body",
+    "markdown": "En la variante predictiva local de Luong, se predice un centro $p_t$ y se pondera la atención con una gaussiana:\n\n$$a_t(i)=\\operatorname{align}(h_t,\\bar h_i)\\exp\\left(-\\frac{(i-p_t)^2}{2\\sigma^2}\\right),\\qquad \\sigma=D/2.$$\n\nEl factor gaussiano es suave respecto del centro **para las posiciones evaluadas**. No vuelve derivable una operación discreta de selección de índices: deben distinguirse la ponderación continua y el recorte de la ventana.\n\nDespués de multiplicar por la gaussiana, los pesos no tienen por qué sumar uno. Si el laboratorio los renormaliza, esa es una decisión adicional de implementación. Una versión que calcula todas las posiciones y solo las atenúa conserva el coste global de puntuarlas.",
+    "source": [
+      "Luong et al. (2015), sección 3",
+      "https://aclanthology.org/D15-1166/"
+    ],
+    "reason": "Distinguir ponderación gaussiana, ventana discreta, renormalización y coste real."
+  },
+  {
+    "file": "clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-14",
+    "mode": "replace_body",
+    "markdown": "En la variante predictiva local de Luong, se predice un centro $p_t$ y se pondera la atención con una gaussiana:\n\n$$a_t(i)=\\operatorname{align}(h_t,\\bar h_i)\\exp\\left(-\\frac{(i-p_t)^2}{2\\sigma^2}\\right),\\qquad \\sigma=D/2.$$\n\nEl factor gaussiano es suave respecto del centro **para las posiciones evaluadas**. No vuelve derivable una operación discreta de selección de índices: deben distinguirse la ponderación continua y el recorte de la ventana.\n\nDespués de multiplicar por la gaussiana, los pesos no tienen por qué sumar uno. Si el laboratorio los renormaliza, esa es una decisión adicional de implementación. Una versión que calcula todas las posiciones y solo las atenúa conserva el coste global de puntuarlas.",
+    "source": [
+      "Luong et al. (2015), sección 3",
+      "https://aclanthology.org/D15-1166/"
+    ],
+    "reason": "Distinguir ponderación gaussiana, ventana discreta, renormalización y coste real."
+  },
+  {
+    "file": "clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-8",
+    "mode": "replace_body",
+    "markdown": "Antes del Transformer existieron distintas formas de atención y de memoria. Parikh et al. (2016) propusieron un modelo de inferencia textual basado en atender, comparar y agregar, con una variante de intra-atención. Cheng et al. (2016) estudiaron atención sobre memoria durante la recurrencia.\n\nSon antecedentes útiles para comparar diseños. No es correcto afirmar que toda atención anterior necesitaba RNN o que antes de esos trabajos no existía ninguna interacción dentro de una secuencia.",
+    "source": [
+      "Parikh et al. (2016)",
+      "https://aclanthology.org/D16-1244/"
+    ],
+    "reason": "Eliminar afirmaciones históricas universales no justificadas."
+  },
+  {
+    "file": "clase-05-3-3-vision-por-computadora-yolov3.html",
+    "cell": "celda-78",
+    "mode": "replace_body",
+    "markdown": "NMS recorre las cajas ordenadas por puntuación, conserva una caja de puntuación alta y suprime otras de la misma clase que se solapan demasiado con ella.\n\nEl código de este laboratorio conserva las cajas con `ious < nms_conf`, por lo que suprime las de IoU **mayor o igual** al umbral. La función oficial `torchvision.ops.nms` documenta supresión para IoU **estrictamente mayor**; la igualdad en el umbral es una diferencia de convención que debe elegirse conscientemente.",
+    "source": [
+      "TorchVision: NMS",
+      "https://docs.pytorch.org/vision/stable/generated/torchvision.ops.nms.html"
+    ],
+    "reason": "Precisar orden de NMS y comparación efectiva del umbral."
+  },
+  {
+    "file": "clase-05-3-3-vision-por-computadora-yolov3.html",
+    "cell": "celda-79",
+    "mode": "replace_body",
+    "markdown": "El número de candidatos se reduce durante el recorrido de NMS. El ejemplo heredado captura excepciones para salir si una posición dejó de existir; es una forma frágil de controlar el bucle.\n\nUn segmento vacío `image_pred_class[i+1:]` no produce necesariamente `ValueError`: las operaciones con tensores vacíos pueden ser válidas. Para código nuevo, es preferible un bucle que compruebe explícitamente los candidatos restantes o usar `torchvision.ops.nms`.",
+    "source": [
+      "TorchVision: NMS",
+      "https://docs.pytorch.org/vision/stable/generated/torchvision.ops.nms.html"
+    ],
+    "reason": "No atribuir una excepción inevitable a cualquier tensor vacío."
+  },
+  {
+    "file": "clase-14-1-2-speaker-diarization-test.html",
+    "cell": "celda-38",
+    "mode": "replace_body",
+    "markdown": "En alta dimensión, dos vectores **independientes e isotrópicos**, normalizados, tienden a ser casi ortogonales. Para la distribución uniforme en la esfera, el producto punto tiene media 0 y varianza $1/N$.\n\nNo basta con que $N$ sea grande: embeddings correlacionados, distribuciones anisotrópicas o vectores elegidos de forma adversa pueden violar esa conclusión. Las aproximaciones de concentración de un cluster requieren supuestos sobre su distribución; no son tres lemas universales para cualquier conjunto de d-vectors. Conviene contrastarlas con la distribución y las métricas del experimento.",
+    "source": [
+      "Wang et al.: Speaker Diarization with LSTM",
+      "https://arxiv.org/abs/1710.10468"
+    ],
+    "reason": "Explicitar hipótesis probabilísticas en afirmaciones de alta dimensión."
+  },
+  {
+    "file": "clase-14-attentioncnn-ser-01.html",
+    "cell": "celda-39",
+    "mode": "replace_text",
+    "old": "transformada de Fourier o espectrograma",
+    "new": "transformada de Fourier global (no un espectrograma)",
+    "source": [
+      "SciPy: transformadas discretas de Fourier",
+      "https://docs.scipy.org/doc/scipy/tutorial/fft.html"
+    ],
+    "reason": "La transformada global no es una representación tiempo–frecuencia."
+  },
+  {
+    "file": "clase-14-attentioncnn-ser-01.html",
+    "cell": "celda-39",
+    "mode": "replace_text",
+    "old": "En el caso del sonido en condiciones óptimas, casi no hay atenuación.",
+    "new": "Incluso en condiciones ideales de campo libre, la amplitud de una fuente puntual disminuye con la distancia por expansión geométrica; la absorción y el entorno añaden otros efectos.",
+    "source": [
+      "SciPy: transformadas discretas de Fourier",
+      "https://docs.scipy.org/doc/scipy/tutorial/fft.html"
+    ],
+    "reason": "Eliminar ausencia general de atenuación; distinguirla de dispersión."
+  },
+  {
+    "file": "clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-24",
+    "mode": "replace_text",
+    "old": "es la principal herramienta para medir la similitud semántica entre palabras.",
+    "new": "es una medida habitual de similitud entre embeddings; su utilidad depende de la representación y de la tarea.",
+    "source": [
+      "PyTorch: cosine_similarity",
+      "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.cosine_similarity.html"
+    ],
+    "reason": "Evitar una jerarquía universal de medidas semánticas."
+  },
+  {
+    "file": "clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-56",
+    "mode": "replace_body",
+    "markdown": "Sumar un vector de posición puede cambiar la norma y la dirección del embedding de entrada. El modelo se entrena con esa representación conjunta: **el cambio geométrico no demuestra corrupción del significado**. Tampoco requiere por definición añadir parámetros especiales para reconocer cada palabra en cada índice. La posición es una señal útil para interpretar el orden.",
+    "source": [
+      "Vaswani et al.: posiciones y atención",
+      "https://arxiv.org/abs/1706.03762"
+    ],
+    "reason": "Eliminar pérdida semántica y parámetros adicionales inevitables por suma posicional."
+  },
+  {
+    "file": "clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-60",
+    "mode": "replace_body",
+    "markdown": "Si $\\widetilde x=x+p$, el ángulo entre $x$ y $\\widetilde x$ puede cambiar, siempre que ambos sean no nulos. Es una comparación geométrica entre vectores. Llamar «corrupto» al resultado presupone una pérdida semántica que este cálculo no demuestra: las capas posteriores se entrenan para procesar contenido y posición juntos.",
+    "source": [
+      "Vaswani et al.: posiciones y atención",
+      "https://arxiv.org/abs/1706.03762"
+    ],
+    "reason": "La deflexión angular no certifica corrupción de un embedding."
+  },
+  {
+    "file": "clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-79",
+    "mode": "replace_body",
+    "markdown": "La expansión del producto de atención con posiciones aditivas contiene cuatro contribuciones:\n\n$$(x_m+p_m)W_QW_K^\\top(x_n+p_n)^\\top.$$\n\nAl distribuir aparecen contenido–contenido, contenido–posición, posición–contenido y posición–posición. **Los términos cruzados no son necesariamente ruido**: sus pesos se aprenden y pueden ayudar a utilizar el orden. Esta identidad no prueba que el modelo pierda significado o desperdicie capacidad.",
+    "source": [
+      "Vaswani et al.: posiciones y atención",
+      "https://arxiv.org/abs/1706.03762"
+    ],
+    "reason": "Corregir interpretación de términos cruzados como sesgos espurios universales."
+  },
+  {
+    "file": "clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-81",
+    "mode": "replace_body",
+    "markdown": "En las secuencias «Every day I walk my dog» e «I walk my dog every day», `dog` ocupa los índices **5 y 3**, respectivamente, si se cuenta desde cero y se separa por espacios. Esto es un ejemplo de palabras, no una tokenización de subpalabras concreta.\n\nCon posiciones absolutas cambia la representación de entrada de `dog`. No se deduce que el modelo deba reaprender desde cero la relación para cada posición: los parámetros se comparten. La extrapolación depende de la codificación, la arquitectura y el entrenamiento.",
+    "source": [
+      "Vaswani et al.: posiciones y atención",
+      "https://arxiv.org/abs/1706.03762"
+    ],
+    "reason": "Corregir índices del ejemplo y falsa obligación de reaprender por posición."
+  },
+  {
+    "file": "clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-106",
+    "mode": "replace_body",
+    "markdown": "En la formulación habitual, RoPE aplica rotaciones a parejas de coordenadas de **Q y K proyectadas**. Si $\\widetilde q_m=R_mq_m$, la rotación conserva la norma porque $R_m$ es ortogonal.\n\nEso no separa «qué palabra es» en la longitud y «dónde está» en el ángulo: el contenido de un vector está distribuido entre sus coordenadas. La posición modifica la fase de cada pareja y entra en el producto de atención mediante diferencias de posición. Los valores V no se rotan en esta formulación.",
+    "source": [
+      "Su et al.: RoFormer",
+      "https://arxiv.org/abs/2104.09864"
+    ],
+    "reason": "Eliminar equivalencia falsa norma=identidad semántica y ángulo=posición pura."
+  },
+  {
+    "file": "clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-122",
+    "mode": "replace_body",
+    "markdown": "Hay que distinguir el ancho oculto del modelo y el ancho de cada cabeza. Por ejemplo, en Llama 3 8B el ancho oculto es 4096 y hay 32 cabezas de consulta: cada cabeza tiene $4096/32=128$ componentes.\n\nRoPE actúa por parejas en las dimensiones de cada cabeza a las que se aplique. No construye una matriz densa de $4096\\times4096$ por cabeza: puede implementarse con productos y sumas elemento a elemento, de coste lineal en el número de componentes rotadas. Las dimensiones concretas cambian entre modelos.",
+    "source": [
+      "Meta: implementación oficial de Llama 3",
+      "https://github.com/meta-llama/llama3/blob/main/llama/model.py"
+    ],
+    "reason": "Distinguir dimensión oculta y dimensión por cabeza de atención."
+  },
+  {
+    "file": "clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-128",
+    "mode": "replace_body",
+    "markdown": "En RoPE, distintas parejas usan frecuencias angulares distintas:\n\n$$\\theta_i=\\operatorname{base}^{-2i/d}.$$\n\nLas primeras parejas giran más deprisa y las últimas más despacio. La analogía de varias agujas ayuda a visualizar escalas diferentes; no asigna de forma garantizada sintaxis a unas dimensiones y párrafos a otras. Las funciones de frecuencia tampoco garantizan por sí solas buena extrapolación.",
+    "source": [
+      "Su et al.: RoFormer",
+      "https://arxiv.org/abs/2104.09864"
+    ],
+    "reason": "No atribuir roles lingüísticos fijos a grupos de frecuencias."
+  },
+  {
+    "file": "clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-18",
+    "mode": "replace_body",
+    "markdown": "La forma de onda conserva la información temporal del audio. Las representaciones espectrales hacen explícitas características como resonancias y su evolución, por lo que son una elección habitual para ASR.\n\nNo es correcto declarar que procesar audio crudo sea intrínsecamente ineficiente o inviable: modelos como wav2vec 2.0 aprenden representaciones a partir de la forma de onda. Además de los formantes, la excitación, las transiciones y la prosodia pueden aportar información relevante. La elección depende del modelo y de la tarea.",
+    "source": [
+      "Baevski et al. (2020): wav2vec 2.0",
+      "https://arxiv.org/abs/2006.11477"
+    ],
+    "reason": "Evitar presentar el espectrograma como único camino válido para ASR."
+  },
+  {
+    "file": "clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-34",
+    "mode": "replace_body",
+    "markdown": "La DFT calcula productos con exponenciales complejas de frecuencias de análisis. La ortogonalidad de esa base permite obtener sus coeficientes.\n\nUna sinusoide exactamente alineada con un bin puede concentrar su contribución en los bins correspondientes. Si no coincide con la rejilla o se usa una ventana finita, puede distribuir energía entre bins: es fuga espectral. Un coeficiente no mide exclusivamente una sinusoide física aislada del resto.",
+    "source": [
+      "SciPy: FFT",
+      "https://docs.scipy.org/doc/scipy/tutorial/fft.html"
+    ],
+    "reason": "Explicitar limitaciones de la analogía de resonancia y la fuga espectral."
+  },
+  {
+    "file": "clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-16",
+    "mode": "replace_body",
+    "markdown": "La DFT calcula productos con exponenciales complejas de frecuencias de análisis. La ortogonalidad de esa base permite obtener sus coeficientes.\n\nUna sinusoide exactamente alineada con un bin puede concentrar su contribución en los bins correspondientes. Si no coincide con la rejilla o se usa una ventana finita, puede distribuir energía entre bins: es fuga espectral. Un coeficiente no mide exclusivamente una sinusoide física aislada del resto.",
+    "source": [
+      "SciPy: FFT",
+      "https://docs.scipy.org/doc/scipy/tutorial/fft.html"
+    ],
+    "reason": "Explicitar limitaciones de la analogía de resonancia y la fuga espectral."
+  },
+  {
+    "file": "clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-36",
+    "mode": "replace_body",
+    "markdown": "Cada coeficiente complejo se describe mediante magnitud $|X[k]|$ y fase $\\arg X[k]$ (la fase no está definida cuando la magnitud es cero). La magnitud no es directamente energía: se utiliza $|X[k]|^2$, con los factores de normalización pertinentes, para describir energía o potencia espectral.\n\nMuchos pipelines de ASR usan magnitud o potencia y descartan la fase explícita. Otros modelos parten del audio crudo. Para reconstruir exactamente las muestras con la DFT inversa hace falta el espectro complejo completo o su representación equivalente.",
+    "source": [
+      "SciPy: FFT",
+      "https://docs.scipy.org/doc/scipy/tutorial/fft.html"
+    ],
+    "reason": "Separar magnitud, potencia, fase e información retenida."
+  },
+  {
+    "file": "clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-18",
+    "mode": "replace_body",
+    "markdown": "Cada coeficiente complejo se describe mediante magnitud $|X[k]|$ y fase $\\arg X[k]$ (la fase no está definida cuando la magnitud es cero). La magnitud no es directamente energía: se utiliza $|X[k]|^2$, con los factores de normalización pertinentes, para describir energía o potencia espectral.\n\nMuchos pipelines de ASR usan magnitud o potencia y descartan la fase explícita. Otros modelos parten del audio crudo. Para reconstruir exactamente las muestras con la DFT inversa hace falta el espectro complejo completo o su representación equivalente.",
+    "source": [
+      "SciPy: FFT",
+      "https://docs.scipy.org/doc/scipy/tutorial/fft.html"
+    ],
+    "reason": "Separar magnitud, potencia, fase e información retenida."
+  },
+  {
+    "file": "clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-38",
+    "mode": "replace_body",
+    "markdown": "Para una frecuencia de muestreo $F_s$ y una DFT de longitud $N$, la separación entre bins es:\n\n$$\\Delta f=F_s/N.$$\n\nNo debe confundirse esa separación con la resolución efectiva para separar dos tonos cercanos: también depende de la duración y de la ventana. Añadir ceros aumenta el número de bins e interpola la rejilla, pero no crea nueva información de la señal.",
+    "source": [
+      "SciPy: FFT",
+      "https://docs.scipy.org/doc/scipy/tutorial/fft.html"
+    ],
+    "reason": "Distinguir separación de bins y resolución espectral efectiva."
+  },
+  {
+    "file": "clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-20",
+    "mode": "replace_body",
+    "markdown": "Para una frecuencia de muestreo $F_s$ y una DFT de longitud $N$, la separación entre bins es:\n\n$$\\Delta f=F_s/N.$$\n\nNo debe confundirse esa separación con la resolución efectiva para separar dos tonos cercanos: también depende de la duración y de la ventana. Añadir ceros aumenta el número de bins e interpola la rejilla, pero no crea nueva información de la señal.",
+    "source": [
+      "SciPy: FFT",
+      "https://docs.scipy.org/doc/scipy/tutorial/fft.html"
+    ],
+    "reason": "Distinguir separación de bins y resolución espectral efectiva."
+  },
+  {
+    "file": "clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-40",
+    "mode": "replace_body",
+    "markdown": "Para una señal real, la DFT verifica simetría conjugada:\n\n$$X[N-k]=\\overline{X[k]}.$$\n\nPor eso `rfft` devuelve $\\lfloor N/2\\rfloor+1$ coeficientes no redundantes. El bin 0 es DC. Si $N$ es par, el bin $N/2$ corresponde exactamente a $F_s/2$ (Nyquist); con $N$ impar no hay un bin exactamente en Nyquist. Los coeficientes complejos incluyen tanto magnitud como fase.",
+    "source": [
+      "SciPy: FFT",
+      "https://docs.scipy.org/doc/scipy/tutorial/fft.html"
+    ],
+    "reason": "Aclarar dependencia de la paridad de N y no redundancia del espectro real."
+  },
+  {
+    "file": "clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-22",
+    "mode": "replace_body",
+    "markdown": "Para una señal real, la DFT verifica simetría conjugada:\n\n$$X[N-k]=\\overline{X[k]}.$$\n\nPor eso `rfft` devuelve $\\lfloor N/2\\rfloor+1$ coeficientes no redundantes. El bin 0 es DC. Si $N$ es par, el bin $N/2$ corresponde exactamente a $F_s/2$ (Nyquist); con $N$ impar no hay un bin exactamente en Nyquist. Los coeficientes complejos incluyen tanto magnitud como fase.",
+    "source": [
+      "SciPy: FFT",
+      "https://docs.scipy.org/doc/scipy/tutorial/fft.html"
+    ],
+    "reason": "Aclarar dependencia de la paridad de N y no redundancia del espectro real."
+  }
+]

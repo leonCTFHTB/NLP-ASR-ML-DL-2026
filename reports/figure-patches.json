@@ -1,0 +1,287 @@
+[
+  {
+    "original": "docs/assets/0ba8f1700e6662b5cea5c547.webp",
+    "replacement": "docs/assets/figures/word2vec-score.svg",
+    "reason": "word2vec-score"
+  },
+  {
+    "original": "docs/assets/339a6a34eef60db8a691e53f.webp",
+    "replacement": "docs/assets/figures/word2vec-score.svg",
+    "reason": "word2vec-score"
+  },
+  {
+    "original": "docs/assets/878921d5166ada6baae866d1.webp",
+    "replacement": "docs/assets/figures/word2vec-score.svg",
+    "reason": "word2vec-score"
+  },
+  {
+    "original": "docs/assets/b0dac337c13d2f06ed68eaf8.webp",
+    "replacement": "docs/assets/figures/word2vec-score.svg",
+    "reason": "word2vec-score"
+  },
+  {
+    "original": "docs/assets/c0a91ca1ac6670a51e333b3c.webp",
+    "replacement": "docs/assets/figures/word2vec-score.svg",
+    "reason": "word2vec-score"
+  },
+  {
+    "original": "docs/assets/fdd564bade34037775522c04.webp",
+    "replacement": "docs/assets/figures/word2vec-score.svg",
+    "reason": "word2vec-score"
+  },
+  {
+    "original": "docs/assets/0c29a90f1121a2552cb989ac.webp",
+    "replacement": "docs/assets/figures/position-limits.svg",
+    "reason": "position-limits"
+  },
+  {
+    "original": "docs/assets/0c513810d76ee8e4e07bac8f.webp",
+    "replacement": "docs/assets/figures/position-limits.svg",
+    "reason": "position-limits"
+  },
+  {
+    "original": "docs/assets/16a9219c3164f2517a7cf704.webp",
+    "replacement": "docs/assets/figures/position-limits.svg",
+    "reason": "position-limits"
+  },
+  {
+    "original": "docs/assets/8228f04873c29825814200d1.webp",
+    "replacement": "docs/assets/figures/position-limits.svg",
+    "reason": "position-limits"
+  },
+  {
+    "original": "docs/assets/9147f15fe6bcd294124c492e.webp",
+    "replacement": "docs/assets/figures/position-limits.svg",
+    "reason": "position-limits"
+  },
+  {
+    "original": "docs/assets/dc1d1cbc09ce7451b27b47f1.webp",
+    "replacement": "docs/assets/figures/position-limits.svg",
+    "reason": "position-limits"
+  },
+  {
+    "original": "docs/assets/f5c78f4ae7115c45b0a845f0.webp",
+    "replacement": "docs/assets/figures/position-limits.svg",
+    "reason": "position-limits"
+  },
+  {
+    "original": "docs/assets/34b9936c229e491c4bef4947.webp",
+    "replacement": "docs/assets/figures/ape.svg",
+    "reason": "ape"
+  },
+  {
+    "original": "docs/assets/a9c566c8c2bf5a41deaf0511.webp",
+    "replacement": "docs/assets/figures/ape.svg",
+    "reason": "ape"
+  },
+  {
+    "original": "docs/assets/b76e342b4a20080467b431f9.webp",
+    "replacement": "docs/assets/figures/ape.svg",
+    "reason": "ape"
+  },
+  {
+    "original": "docs/assets/d0bc33cc4a521194e3f97909.webp",
+    "replacement": "docs/assets/figures/ape.svg",
+    "reason": "ape"
+  },
+  {
+    "original": "docs/assets/ec0b720e9e82f1411ec88e57.webp",
+    "replacement": "docs/assets/figures/ape.svg",
+    "reason": "ape"
+  },
+  {
+    "original": "docs/assets/fcaa6df73d4d067052393575.webp",
+    "replacement": "docs/assets/figures/ape.svg",
+    "reason": "ape"
+  },
+  {
+    "original": "docs/assets/44e2c767570e665ed352ba4f.webp",
+    "replacement": "docs/assets/figures/linear-map.svg",
+    "reason": "linear-map"
+  },
+  {
+    "original": "docs/assets/7b65e8989d6f8ebc832edd11.webp",
+    "replacement": "docs/assets/figures/linear-map.svg",
+    "reason": "linear-map"
+  },
+  {
+    "original": "docs/assets/1200fb92f7b731eaf1a6c044.webp",
+    "replacement": "docs/assets/figures/hard-attention.svg",
+    "reason": "hard-attention"
+  },
+  {
+    "original": "docs/assets/1d68707134e68d506d7ab15a.webp",
+    "replacement": "docs/assets/figures/hard-attention.svg",
+    "reason": "hard-attention"
+  },
+  {
+    "original": "docs/assets/267a16025cae0e733b275ec5.webp",
+    "replacement": "docs/assets/figures/hard-attention.svg",
+    "reason": "hard-attention"
+  },
+  {
+    "original": "docs/assets/34e41bf6412f440839e0ee2e.webp",
+    "replacement": "docs/assets/figures/rnn-memory.svg",
+    "reason": "rnn-memory"
+  },
+  {
+    "original": "docs/assets/82dc6204dc655d675ba9017e.webp",
+    "replacement": "docs/assets/figures/rnn-memory.svg",
+    "reason": "rnn-memory"
+  },
+  {
+    "original": "docs/assets/d27f979a60d4eafc5a43c72b.webp",
+    "replacement": "docs/assets/figures/rnn-memory.svg",
+    "reason": "rnn-memory"
+  },
+  {
+    "original": "docs/assets/dfa1ff70754be6d0d3b99d83.webp",
+    "replacement": "docs/assets/figures/rnn-memory.svg",
+    "reason": "rnn-memory"
+  },
+  {
+    "original": "docs/assets/77f51f28e19424b425332c41.webp",
+    "replacement": "docs/assets/figures/fft-exact.svg",
+    "reason": "fft-exact"
+  },
+  {
+    "original": "docs/assets/aaf87e55dd4a633d71889da3.webp",
+    "replacement": "docs/assets/figures/fft-exact.svg",
+    "reason": "fft-exact"
+  },
+  {
+    "original": "docs/assets/772895254407347b5730db6f.webp",
+    "replacement": "docs/assets/figures/subword-limits.svg",
+    "reason": "subword-limits"
+  },
+  {
+    "original": "docs/assets/7977624caddcf6db67fad0a6.webp",
+    "replacement": "docs/assets/figures/subword-limits.svg",
+    "reason": "subword-limits"
+  },
+  {
+    "original": "docs/assets/8181e1333cbda13177ede9f7.webp",
+    "replacement": "docs/assets/figures/subword-limits.svg",
+    "reason": "subword-limits"
+  },
+  {
+    "original": "docs/assets/86bbbde0690073dd12ee6d39.webp",
+    "replacement": "docs/assets/figures/subword-limits.svg",
+    "reason": "subword-limits"
+  },
+  {
+    "original": "docs/assets/a1f451f45710c702da902fa8.webp",
+    "replacement": "docs/assets/figures/bpe-limits.svg",
+    "reason": "bpe-limits"
+  },
+  {
+    "original": "docs/assets/7d9f763452a5990e31abc063.webp",
+    "replacement": "docs/assets/figures/attention-experiment.svg",
+    "reason": "attention-experiment"
+  },
+  {
+    "original": "docs/assets/f47b68803bbfd67d8b9bb3ea.webp",
+    "replacement": "docs/assets/figures/dot.svg",
+    "reason": "dot"
+  },
+  {
+    "original": "docs/assets/f82743cb6b7f8a81035635d9.webp",
+    "replacement": "docs/assets/figures/dot.svg",
+    "reason": "dot"
+  },
+  {
+    "original": "docs/assets/b05fe4e7ccef60410699736f.webp",
+    "replacement": "docs/assets/figures/local-window.svg",
+    "reason": "local-window"
+  },
+  {
+    "original": "docs/assets/b4c9c2cdcd7084e4d3296a1b.webp",
+    "replacement": "docs/assets/figures/local-window.svg",
+    "reason": "local-window"
+  },
+  {
+    "original": "docs/assets/b6cb879e2ac9a5ac5168bb33.webp",
+    "replacement": "docs/assets/figures/local-window.svg",
+    "reason": "local-window"
+  },
+  {
+    "original": "docs/assets/b735d80d4325a6b48a40db35.webp",
+    "replacement": "docs/assets/figures/local-window.svg",
+    "reason": "local-window"
+  },
+  {
+    "original": "docs/assets/b95168e9629be65641a9d823.webp",
+    "replacement": "docs/assets/figures/local-window.svg",
+    "reason": "local-window"
+  },
+  {
+    "original": "docs/assets/f44cf7032958056d68d03640.webp",
+    "replacement": "docs/assets/figures/local-window.svg",
+    "reason": "local-window"
+  },
+  {
+    "original": "docs/assets/29cb48d231c274378383aaa7.webp",
+    "replacement": "docs/assets/figures/additive-attention.svg",
+    "reason": "additive-attention"
+  },
+  {
+    "original": "docs/assets/301c8b9a264a1e4a02f05ec6.webp",
+    "replacement": "docs/assets/figures/weighted-sum.svg",
+    "reason": "weighted-sum"
+  },
+  {
+    "original": "docs/assets/e83264cccbe3171a9064ce78.webp",
+    "replacement": "docs/assets/figures/relu-exact.svg",
+    "reason": "relu-exact"
+  },
+  {
+    "original": "docs/assets/f030fa51302378ed6296d2a0.webp",
+    "replacement": "docs/assets/figures/fourier-time.svg",
+    "reason": "fourier-time"
+  },
+  {
+    "original": "docs/assets/d688414bfcf807c3aaef7a27.webp",
+    "replacement": "docs/assets/figures/logmel-pipeline.svg",
+    "reason": "logmel-pipeline"
+  },
+  {
+    "original": "docs/assets/ab3c919195256631b9d7d436.webp",
+    "replacement": "docs/assets/figures/intra-history.svg",
+    "reason": "intra-history"
+  },
+  {
+    "original": "docs/assets/64804fe47a96ba18e90bb450.webp",
+    "replacement": "docs/assets/figures/softmax-numeric.svg",
+    "reason": "softmax-numeric"
+  },
+  {
+    "original": "docs/assets/d99f11a699c881ddb1d9c14f.webp",
+    "replacement": "docs/assets/figures/source-filter.svg",
+    "reason": "source-filter"
+  },
+  {
+    "original": "docs/assets/ebfaa525a0600954238bd4a7.webp",
+    "replacement": "docs/assets/figures/rnn-memory.svg",
+    "reason": "rnn-memory"
+  },
+  {
+    "original": "docs/assets/a6eb9b708e99971281f860dd.webp",
+    "replacement": "docs/assets/figures/word2vec-score.svg",
+    "reason": "word2vec-score"
+  },
+  {
+    "original": "docs/assets/39bf017568e3777dde2b7359.webp",
+    "replacement": "docs/assets/figures/mel-scale.svg",
+    "reason": "mel-scale"
+  },
+  {
+    "original": "docs/assets/535762776e635bf1b26c77b8.webp",
+    "replacement": "docs/assets/figures/mel-scale.svg",
+    "reason": "mel-scale"
+  },
+  {
+    "original": "docs/assets/b5672628c38035fd349cf5a4.webp",
+    "replacement": "docs/assets/figures/mel-scale.svg",
+    "reason": "mel-scale"
+  }
+]

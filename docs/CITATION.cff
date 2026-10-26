@@ -1,0 +1,16 @@
+cff-version: 1.2.0
+message: "Si utilizás o adaptás este material, citá esta obra y conservá los créditos de sus fuentes. También se incluye CITATION.bib."
+title: "Portafolio docente: Procesamiento del Lenguaje Natural y Reconocimiento del Habla"
+authors:
+  - family-names: "Juárez"
+    given-names: "Jacobo León"
+    website: "https://www.linkedin.com/in/lic-jacobo-leon-juarez/"
+version: "2026.1.0"
+date-released: "2026-10-24"
+url: "https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026"
+repository-code: "https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026"
+keywords:
+  - Procesamiento del lenguaje natural
+  - Reconocimiento del habla
+  - Docencia
+  - PyTorch

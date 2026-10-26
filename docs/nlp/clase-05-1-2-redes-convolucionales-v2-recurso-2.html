@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+
+<html lang="es"><head><meta charset="utf-8"/><meta content="width=device-width,initial-scale=1" name="viewport"/><meta content="Portafolio docente de Jacobo León Juárez. Notebooks de NLP y reconocimiento del habla, con teoría, código y visualizaciones." name="description"/><title>1.2. Redes Convolucionales - V2 · Jacobo León Juárez</title><link href="../assets/site.css" rel="stylesheet"/><link href="../assets/favicon.svg" rel="icon" type="image/svg+xml"/></head><body><a class="skip" href="#contenido">Saltar al contenido</a><div class="progress"></div><button aria-controls="library-nav" aria-expanded="false" id="menu">☰ Índice</button><aside id="library-nav"><a class="brand" href="../index.html">PORTAFOLIO DOCENTE</a><h2>Lenguaje natural<br/><span>y reconocimiento<br/>del habla</span></h2><p class="note">Jacobo León Juárez · 2026</p><a class="search-link" href="../index.html#buscar">⌕ Buscar en el libro</a><nav aria-label="Clases"><div class="chapter pending">01 · Introducción al NLP <small>Material pendiente</small></div><details class="chapter"><summary>02 · Word2Vec</summary><a class="" href="clase-02-1-introduccion-al-nlp-parte-1-word2vec.html">1 - Introducción al NLP  - Parte 1 - Word2Vec</a></details><details class="chapter"><summary>03 · GloVe</summary><a class="" href="clase-03-1-introduccion-al-nlp-parte-2-glove.html">1 - Introducción al NLP  - Parte 2 - GloVe</a></details><details class="chapter"><summary>04 · fastText</summary><a class="" href="clase-04-1-introduccion-al-nlp-parte-3-fasttext.html">1 - Introducción al NLP  - Parte 3 - FastText</a></details><details class="chapter" open=""><summary>05 · Redes convolucionales</summary><a class="" href="clase-05-1-2-redes-convolucionales-v2.html">1.2. Redes Convolucionales - V2</a><a class="" href="clase-05-1-cnn-teoria-completa.html">1 - CNN - Teoría Completa <small>Complemento</small></a><a class="" href="clase-05-1-1-redes-convolucionales-teoria-simplificada.html">1.1. - Redes Convolucionales Teoría Simplificada <small>Complemento</small></a><a aria-current="page" class="active" href="clase-05-1-2-redes-convolucionales-v2-recurso-2.html">1.2. Redes Convolucionales - V2 <small>Complemento</small></a><a class="" href="clase-05-2-mecanismos-de-atencion.html">2 - Mecanismos de Atención <small>Complemento</small></a><a class="" href="clase-05-3-vision-por-computadora-cnns.html">3 - Visión Por Computadora - CNNs <small>Complemento</small></a><a class="" href="clase-05-3-1-vision-por-computadora-introduccion.html">3.1. Visión Por Computadora - Introducción <small>Complemento</small></a><a class="" href="clase-05-3-2-vision-por-computadora-r-cnns.html">3.2. - Visión Por Computadora - R-CNNs <small>Complemento</small></a><a class="" href="clase-05-3-3-vision-por-computadora-yolov3.html">3.3. - Visión por Computadora - YOLOv3 <small>Complemento</small></a><a class="" href="clase-05-4-transformers-y-mecanismos-de-atencion.html">4 - Transformers y Mecanismos de Atención <small>Complemento</small></a><a class="" href="clase-05-4-1-transformers-teoria-simplificada.html">4.1 - Transformers - Teoría Simplificada <small>Complemento</small></a></details><details class="chapter"><summary>06 · Mecanismos de atención · Parte 1</summary><a class="" href="clase-06-6-mecanismos-de-atencion-parte-1-v2.html">6 - Mecanismos de Atención - Parte 1 (v2)</a><a class="" href="clase-06-6-mecanismos-de-atencion-parte-2-v2.html">6 - Mecanismos de Atención - Parte 2 (v2)</a></details><details class="chapter"><summary>07 · Mecanismos de atención · Parte 2</summary><a class="" href="clase-07-6-mecanismos-de-atencion-parte-2-v2.html">6 - Mecanismos de Atención - Parte 2 (v2)</a></details><details class="chapter"><summary>08 · Mecanismos de atención · Parte 3</summary><a class="" href="clase-08-6-mecanismos-de-atencion-parte-3-v2.html">6 - Mecanismos de Atención - Parte 3 (v2)</a></details><details class="chapter"><summary>09 · Mecanismos de atención · Parte 4</summary><a class="" href="clase-09-6-mecanismos-de-atencion-parte-4-v2.html">6 - Mecanismos de Atención - Parte 4 (v2)</a><a class="" href="clase-09-6-1-transformers-teoria-simplificada.html">6.1. - Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>10 · Introducción a Transformers · Parte 1</summary><a class="" href="clase-10-10-transformers-teoria-simplificada.html">10 - Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>11 · Introducción a Transformers · Parte 2</summary><a class="" href="clase-11-clase-12-transformers-teoria-simplificada.html">Clase 12 - Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>12 · GPT y codificación posicional · Parte 1</summary><a class="" href="clase-12-11-positional-encoding-pe-y-gpt-parte-1.html">11 - Positional Encoding (PE) y GPT - Parte 1</a></details><details class="chapter"><summary>13 · GPT y RoPE · Parte 2</summary><a class="" href="clase-13-13-introduccion-a-gpt-rope-parte-2.html">13 - Introducción a GPT - RoPE - Parte 2</a></details><details class="chapter"><summary>14 · Introducción a ASR · Parte 1</summary><a class="" href="clase-14-14-inotroduccion-a-asr-parte-1.html">14 - Introducción a ASR - Parte 1</a><a class="" href="clase-14-attentioncnn-ser-01.html">AttentionCNN_SER_01 <small>Complemento</small></a><a class="" href="clase-14-1-2-speaker-diarization-test.html">_1_2_Speaker_Diarization_Test <small>Complemento</small></a></details><details class="chapter"><summary>15 · Introducción a ASR · Parte 2</summary><a class="" href="clase-15-15-introduccion-a-asr-parte-2.html">15 - Introducción a ASR - Parte 2</a></details><details class="chapter"><summary>16 · FFT Radix-2</summary><a class="" href="clase-16-16-radix-2.html">16 - Radix-2</a></details></nav><div class="aside-links"><a href="https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026">GitHub ↗</a><a href="https://www.linkedin.com/in/lic-jacobo-leon-juarez/">LinkedIn ↗</a><a href="https://app.notion.com/p/leon-ctf/Portafolio-4034120b17c880048026ec0abf21f685">Notion ↗</a></div></aside><main id="contenido"><header class="hero"><div class="eyebrow">Procesamiento del Lenguaje Natural y Reconocimiento del Habla · Clase 05</div><h1>1.2. Redes Convolucionales - V2</h1><p class="note">Contenido convertido sin ejecutar Python. Se conservan las salidas guardadas; las figuras matemáticas sustituidas y los gráficos de PE están identificados en el registro de revisión.</p><div class="toolbar"><button id="expand">Mostrar código</button><button id="collapse">Plegar código</button><button id="print">Imprimir / PDF</button><a download="" href="clase-05-1-2-redes-convolucionales-v2-recurso-2.html" title="Requiere los recursos del repositorio para visualizarse sin conexión.">Descargar página HTML</a></div><details class="page-toc"><summary>En esta página</summary><a href="#seccion-0">Referencias</a><a href="#seccion-1">24. Introducción</a><a href="#seccion-2">24.1. ¿Qué son las Redes Convolucionales?</a><a href="#seccion-3">24.1.1. Componentes Básicos</a><a href="#seccion-10">24.2. CNN vs MLP</a><a href="#seccion-11">24.3. Componentes de las Redes Convolucionales</a><a href="#seccion-12">24.3.1. Capa de Entrada</a><a href="#seccion-13">24.3.2. Capa Convolucional</a><a href="#seccion-19">24.3.3. Capa ReLU</a><a href="#seccion-20">24.3.4. Capa de Max Pooling</a><a href="#seccion-23">24.3.5. Bloque Convolucional Completo (Estructura General)</a><a href="#seccion-24">24.3.6. Capa Flatten y Softmax</a><a href="#seccion-25">23.3.7. Entendiendo los Hiperpármatros</a><a href="#seccion-29">23.3.8. Clasificador VGG-16</a><a href="#seccion-35">24.4. Implementación de la Arquitectura VGG-16 Reducida</a><a href="#seccion-36">24.4.1. Bloque Convolucional 1 - "Conv Block 1"</a><a href="#seccion-37">24.4.2. Bloque Convolucional 2 - "Conv Block 2"</a><a href="#seccion-38">24.4.3. Bloque Convolucional 3 - "Conv Block 3"</a><a href="#seccion-39">24.4.4. Capa de aplanamiento (Flatten)</a><a href="#seccion-40">24.4.5. Capa Densa (FC1)</a><a href="#seccion-41">24.4.6. Capa Densa (FC2)</a><a href="#seccion-42">24.4.7. Flujo Completo de Datos</a><a href="#seccion-43">24.4.8. Código Completo</a><a href="#seccion-44">24.4.9. Dataset y Dataloaders</a><a href="#seccion-45">24.4.10. Definición de Hiperparámetros</a><a href="#seccion-46">24.4.11. Entrenamiento</a></details></header><section class="cell" data-cell="0" id="celda-1"><h1 id="seccion-0"><strong>Referencias</strong></h1>
+<ol>
+<li>
+<p>https://saturncloud.io/blog/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way/</p>
+</li>
+<li>
+<p>https://towardsdatascience.com/a-comprehensive-guide-to-convolutional-neural-networks-the-eli5-way-3bd2b1164a53</p>
+</li>
+<li>
+<p>https://www.freecodecamp.org/news/an-intuitive-guide-to-convolutional-neural-networks-260c2de0a050/</p>
+</li>
+<li>
+<p>https://learnopencv.com/understanding-convolutional-neural-networks-cnn/</p>
+</li>
+<li>
+<p>https://www.simplilearn.com/tutorials/deep-learning-tutorial/convolutional-neural-network</p>
+</li>
+<li>
+<p>https://www.v7labs.com/blog/convolutional-neural-networks-guide</p>
+</li>
+<li>
+<p>https://www.analyticsvidhya.com/blog/2018/12/guide-convolutional-neural-network-cnn/</p>
+</li>
+<li>
+<p>https://www.pinecone.io/learn/cnn/</p>
+</li>
+<li>
+<p>https://poloclub.github.io/cnn-explainer/</p>
+</li>
+<li>
+<p>https://stackoverflow.com/questions/53580088/calculate-the-output-size-in-convolution-layer</p>
+</li>
+</ol>
+</section><section class="cell" data-cell="2" id="celda-3"><details class="source-code"><summary>Código Python · celda 3</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="kn">from</span><span class="w"> </span><span class="nn">IPython.display</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span><span class="p">,</span> <span class="n">display</span><span class="p">,</span> <span class="n">Video</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">ipywidgets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">widgets</span>
+</pre></div>
+</details></section><section class="cell" data-cell="3" id="celda-4"><h1 id="seccion-1"><strong>24. Introducción</strong></h1>
+</section><section class="cell" data-cell="4" id="celda-5"><h2 id="seccion-2"><strong>24.1. ¿Qué son las Redes Convolucionales?</strong></h2>
+<p>Las <strong>redes convolucionales</strong> (o CNN, por Convolutional Neural Networks) son un tipo especial de red neuronal <strong>diseñada para procesar imágenes y videos.</strong>
+Su diferencia principal con las redes neuronales tradicionales es que <strong>utilizan una operación llamada convolución, la cual permite extraer automáticamente características importantes de las imágenes (bordes, texturas, formas, etc.)</strong></p>
+</section><section class="cell" data-cell="5" id="celda-6"><h3 id="seccion-3"><strong>24.1.1. Componentes Básicos</strong></h3>
+<p>En las siguientes secciones se describen brevemente los componentes básicos de una red convolucional.</p>
+</section><section class="cell" data-cell="6" id="celda-7"><h4 id="seccion-4"><strong>24.1.1.1. Filtros o Kernels</strong></h4>
+<blockquote>
+<p>Un filtro es una pequeña matriz de números que se aplica sobre distintas partes de la imagen.</p>
+</blockquote>
+<p>Al "<strong>deslizar</strong>" este filtro (<strong>convolución</strong>) sobre la imagen, <strong>se obtiene una nueva imagen transformada que resalta ciertas características.</strong></p>
+<p>Por ejemplo:</p>
+<ul>
+<li>
+<p>Un filtro <strong>puede detectar bordes horizontales.</strong></p>
+</li>
+<li>
+<p>Otro puede <strong>detectar bordes verticales o esquinas.</strong></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Cada filtro "aprende" a detectar una característica distinta durante el entrenamiento.</strong></p>
+</blockquote>
+</section><section class="cell" data-cell="7" id="celda-8"><h4 id="seccion-5"><strong>24.1.1.2. Mapa de Características (Feature Map)</strong></h4>
+<blockquote>
+<p>El <strong>resultado de aplicar un filtro a una imagen se llama mapa de características. Cada mapa muestra dónde y cuán fuerte aparece una característica específica (como una rueda, una cara, o una línea, etc.).</strong></p>
+</blockquote>
+<p>Cuando se usan varios filtros, <strong>cada uno genera su propio mapa, y todos juntos forman un tensor tridimensional que describe la imagen desde distintos aspectos (en el caso en el que se esté trabajando con 3 dimensiones).</strong></p>
+</section><section class="cell" data-cell="8" id="celda-9"><h4 id="seccion-6"><strong>24.1.1.3. Padding</strong></h4>
+<blockquote>
+<p>El <strong>padding</strong> consite en <strong>agregar bordes de cero alrededor de la imagen antes de aplicar la convolución (kernel).</strong></p>
+</blockquote>
+<p>Su <strong>objetivo es mantener el tamaño original de la imagen en la salida, evitando que se reduzca tras cada operación.</strong></p>
+</section><section class="cell" data-cell="9" id="celda-10"><h4 id="seccion-7"><strong>24.1.1.4. Max Pooling</strong></h4>
+<blockquote>
+<p>El <strong>max pooling</strong> se utiliza para <strong>reducir el tamaño de las imágenes intermedias sin perder la información esencial.</strong></p>
+</blockquote>
+<p>Se <strong>divide la imagen en pequeñas regiones (por ej., 2x2 píxeles)</strong> y se toma <strong>el valor máximo de cada región.</strong></p>
+<p>Esto ayuda a:</p>
+<ul>
+<li>
+<p>Disminuir el costo computacional.</p>
+</li>
+<li>
+<p>Resumir la información más relevante.</p>
+</li>
+<li>
+<p>Aumentar la robustez del modelo ante pequeños cambios en la imagen.</p>
+</li>
+</ul>
+</section><section class="cell" data-cell="10" id="celda-11"><h4 id="seccion-8"><strong>24.1.1.5. Shapes (Dimensiones)</strong></h4>
+<blockquote>
+<p>En redes convolucionales, <strong>cada imagen, filtro y mapa de características se representa como un tensor (una matriz de varias dimensiones).</strong></p>
+</blockquote>
+<p>El shape indica el tamaño de ese tensor, por ejemplo:</p>
+<pre><code class="language-python">    (batch_size, height, width, channels)
+</code></pre>
+<p>Controlar los <strong>shapes</strong> es fundamental para <strong>asegurarse de que todas las capas de la red se conecten correctamente.</strong></p>
+</section><section class="cell" data-cell="11" id="celda-12"><h4 id="seccion-9"><strong>24.1.1.6. Resumen General</strong></h4>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Función Principal</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Convolución</strong></td>
+<td>Extrae características visuales de la imagen.</td>
+</tr>
+<tr>
+<td><strong>Filtro / Kernel</strong></td>
+<td>Define qué característica detectar (bordes, texturas, etc.).</td>
+</tr>
+<tr>
+<td><strong>Mapa de características</strong></td>
+<td>Resultado de aplicar un filtro; representa patrones detectados.</td>
+</tr>
+<tr>
+<td><strong>Padding</strong></td>
+<td>Mantiene el tamaño de la imagen tras la convolución.</td>
+</tr>
+<tr>
+<td><strong>Stride</strong></td>
+<td>Controla el desplazamiento del filtro.</td>
+</tr>
+<tr>
+<td><strong>Max Pooling</strong></td>
+<td>Reduce el tamaño de la imagen manteniendo la información esencial.</td>
+</tr>
+<tr>
+<td><strong>Shapes</strong></td>
+<td>Describen las dimensiones de los tensores en cada capa.</td>
+</tr>
+</tbody>
+</table>
+</section><section class="cell" data-cell="12" id="celda-13"><h2 id="seccion-10"><strong>24.2. CNN vs MLP</strong></h2>
+<p>En secciones anteriores vimos que una red nueronal (MLP simple) tiene la siguiente estructura:</p>
+</section><section class="cell" data-cell="13" id="celda-14"><p><img alt="imagen.png" decoding="async" height="1320" loading="lazy" src="../assets/ee9033f166d8948f59e58643.webp" width="4084"/></p>
+</section><section class="cell" data-cell="14" id="celda-15"><p>Luego, a diferencia de un MLP, una <strong>red convolucional tiene la siguiente estructura:</strong></p>
+</section><section class="cell" data-cell="15" id="celda-16"><p><img alt="imagen.png" decoding="async" height="584" loading="lazy" src="../assets/71077e84c2777bf88801e3d8.webp" width="1240"/></p>
+</section><section class="cell" data-cell="16" id="celda-17"><h2 id="seccion-11"><strong>24.3. Componentes de las Redes Convolucionales</strong></h2>
+</section><section class="cell" data-cell="17" id="celda-18"><h3 id="seccion-12"><strong>24.3.1. Capa de Entrada</strong></h3>
+</section><section class="cell" data-cell="18" id="celda-19"><p><img alt="imagen.png" decoding="async" height="1257" loading="lazy" src="../assets/d8eadb0bbc7713c20070595a.webp" width="1594"/></p>
+</section><section class="cell" data-cell="19" id="celda-20"><blockquote>
+<p>La capa de entrada (la capa más a la izquierda en la imagen de arriba) <strong>representa la imagen de entrada en la CNN. Dado que utilizamos imágenes <code>RGB</code> como entrada, la capa de entrada tiene tres canales, correspondientes a los canales rojo, verde y azul, respectivamente, que se muestran en esta capa.</strong></p>
+</blockquote>
+</section><section class="cell" data-cell="20" id="celda-21"><p>En este caso, la imagen que se está analizando es:</p>
+</section><section class="cell" data-cell="21" id="celda-22"><p><img alt="Geospatial+Intelligence.png" decoding="async" height="900" loading="lazy" src="../assets/dd1adbff8361d8bf799849df.webp" width="1600"/></p>
+</section><section class="cell" data-cell="22" id="celda-23"><h3 id="seccion-13"><strong>24.3.2. Capa Convolucional</strong></h3>
+</section><section class="cell" data-cell="23" id="celda-24"><h4 id="seccion-14"><strong>24.3.2.1. Ejemplo Práctico: Como funciona una capa de convolución</strong></h4>
+<blockquote>
+<p>Supongamos que la <strong>entrada</strong> de nuestra red es una imagen de <math aria-label="32 \times 32" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>32</mn><mo>×</mo><mn>32</mn></mrow></math> píxeles <strong>con 3 canales de color (RGB). Esto equivale a <math aria-label="32 \times 32 \times 3 = 3072" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>32</mn><mo>×</mo><mn>32</mn><mo>×</mo><mn>3</mn><mo>=</mo><mn>3072</mn></mrow></math> valores de píxiles.</strong></p>
+</blockquote>
+</section><section class="cell" data-cell="24" id="celda-25"><h4 id="seccion-15"><strong>24.3.2.2. El filtro: una "linterna" que recorre la imagen</strong></h4>
+<blockquote>
+<p><strong>Podemos imageinar una capa de convolución</strong> como si <strong>tuvieramos una linerna que ilumina pequeñas zonas de la imagen.</strong></p>
+</blockquote>
+<p>Luego, supongamos que esa "linterna" <strong>(kernel)</strong> cubre un área de <math aria-label="5 \times 5" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>5</mn><mo>×</mo><mn>5</mn></mrow></math> píxeles.</p>
+<ul>
+<li>
+<p>La linterna se <strong>moverá por toda la imagen, iluminando una región diferente en cada paso.</strong></p>
+</li>
+<li>
+<p>En términos de aprendizaje automático:</p>
+<ul>
+<li>
+<p>Esa lintera se llama <strong>filtro (también conocido como kernel o núcleo).</strong></p>
+</li>
+<li>
+<p>El <strong>área que ilumni se llama campo receptivo.</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</section><section class="cell" data-cell="25" id="celda-26"><p><img alt="Input_feature_map.gif" decoding="async" height="658" loading="lazy" src="../assets/43e56c2c2a7c30fe4f24975d.gif" width="998"/></p>
+</section><section class="cell" data-cell="26" id="celda-27"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="920" loading="lazy" src="../assets/560eb2d55f1b53968e53851e.gif" width="1131"/></div></section><section class="cell" data-cell="27" id="celda-28"><p>Luego, mediante la herramienta <a href="https://poloclub.github.io/cnn-explainer/">cnn-explainer</a>, podemos ver, como por cada canal RGB se aplica un filtro de <math aria-label="3 \times 3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mo>×</mo><mn>3</mn></mrow></math> que aprende diferentes patrones por canal.</p>
+</section><section class="cell" data-cell="28" id="celda-29"><h4 id="seccion-16"><strong>24.3.2.3. Capa Convolucional con un Solo Filtro</strong></h4>
+<p>Para un mayor entendimiento, veamos un ejemplo más detallado. <em><strong>Supongamos que la imagen de entrada tiene un tamaño de <math aria-label="(224 \times 224 \times 3)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>224</mn><mo>×</mo><mn>224</mn><mo>×</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math></strong></em>. El tamaño espacial de un filtro es una elección de diseño, pero tiene que tener una profundiad de tres para <strong>coincidir con la profundidad de la imagen de entrada. En este caso, supongamos que usamos un único filtro de tamaño <math aria-label="(3 \times 3 \times 3)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>3</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>3</mn><mo stretchy="false">)</mo></mrow></math>.</strong></p>
+</section><section class="cell" data-cell="29" id="celda-30"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="399" loading="lazy" src="../assets/78b31d36b5a83b499d8183a5.webp" width="768"/></div></section><section class="cell" data-cell="30" id="celda-31"><hr/>
+<ul>
+<li><strong>Estructura Interna de un Filtro Convolucional</strong></li>
+</ul>
+<blockquote>
+<p>Supongamos que tenemos un filtro <strong>con tres núcleos (kernels), uno por cada canal de color RGB (Rojo, Verde y Azul).</strong></p>
+</blockquote>
+<p>Cada kernel tiene <strong>tamaño de <math aria-label="3 \times 3 \times 1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>1</mn></mrow></math>, lo que equivale a 9 parámetros entrenables.</strong> Como el filtro tiene <strong>3 canalaes, el total de parámetros es:</strong></p>
+<p><math aria-label="\begin{align}
+    3 \times 3 \times 3 &amp;= 27 &amp; \text{pesos entrenables}
+\end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mn>3</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>3</mn><mi>&amp;</mi><mo>=</mo><mn>27</mn><mi>&amp;</mi><mtext>pesos entrenables</mtext></mrow></mrow></math></p>
+<p>A esto se le suma un <strong>término de sesgo (Bias), dando un total de:</strong></p>
+<p><math aria-label="\begin{align}
+    27 + 1 &amp;= 28 &amp; \text{pesos entrenables}
+\end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mn>27</mn><mo>+</mo><mn>1</mn><mi>&amp;</mi><mo>=</mo><mn>28</mn><mi>&amp;</mi><mtext>pesos entrenables</mtext></mrow></mrow></math></p>
+<hr/>
+<ul>
+<li><strong>Convolución por Canal y Combinación</strong></li>
+</ul>
+<p>Cuando aplicamos este <strong>filtro 3D (<math aria-label="3 \times 3 \times 3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mo>×</mo><mn>3</mn><mo>×</mo><mn>3</mn></mrow></math>) sobre una imagen con 3 canales (RGB):</strong></p>
+<ol>
+<li>
+<p>La <strong>convolución se realiza por separado en cada canal <math aria-label="(R,G,B)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>R</mi><mo>,</mo><mi>G</mi><mo>,</mo><mi>B</mi><mo stretchy="false">)</mo></mrow></math>.</strong></p>
+</li>
+<li>
+<p>Los resultados de los tres canales <strong>se combinan mediante una suma ponderada (sumando los valores resultantes de cada canal).</strong></p>
+</li>
+<li>
+<p>Luego, <strong>se agrega el término de sesgo (bias).</strong></p>
+</li>
+<li>
+<p>Finalmente, se aplica una <strong>función de activación (como <code>ReLU</code>, por ejemplo) para producir un único valor de salida.</strong></p>
+</li>
+</ol>
+<blockquote>
+<p>Ese valor corresponde a una <strong>posición dentro del mapa de activación (feature map) generado por este filtro.</strong></p>
+</blockquote>
+<hr/>
+<ul>
+<li><strong>Profundidad de la Salida</strong></li>
+</ul>
+<blockquote>
+<p>Como en este ejemplo usamos <strong>solo un filtro, la salida tiene profundidad <math aria-label="1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math> - es decir, se genera un solo mapa de activación (una "imagen" en escala de grises que respresenta las activaciones del filtro).</strong></p>
+</blockquote>
+<hr/>
+<ul>
+<li><strong>Relación entre Canales, Filtros y Mapas de Activación</strong></li>
+</ul>
+<blockquote>
+<p><strong>El número de canales de un filtro debe coincidir con el número de canales de la entrada.</strong> Por ejemplo, <strong>una entrada RGB (3 canales), entonces los filtros deben tener 3 canales.</strong></p>
+</blockquote>
+<p>Luego, el <strong>número de filtros en una capa convolucional determina cuántos mapas de activación se producirán.</strong></p>
+<hr/>
+<ul>
+<li><strong>Ejemplo Práctico</strong></li>
+</ul>
+<p>Supongamos que tenemos una <strong>capa convolucional con 32 filtros (<math aria-label="32 \times 32 \times 3 = 3072" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>32</mn><mo>×</mo><mn>32</mn><mo>×</mo><mn>3</mn><mo>=</mo><mn>3072</mn></mrow></math>):</strong></p>
+<ul>
+<li>
+<p>Cada filtro <strong>genera su propio mapa de activación.</strong></p>
+</li>
+<li>
+<p>Por lo tanto, la <strong>salida de la capa tendrá una profundiad de 32 canales (uno por filtro).</strong></p>
+</li>
+<li>
+<p>Si la siguiente <strong>capa convolucional usa esa salida como entrada, cada uno de esos filtros deberá tener también 32 canales, para que la operación de convolución sea válida.</strong></p>
+</li>
+<li>
+<p>Supongamos que nuestro <strong>kernel es de <math aria-label="5 \times 5 \times 3 = 75" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>5</mn><mo>×</mo><mn>5</mn><mo>×</mo><mn>3</mn><mo>=</mo><mn>75</mn></mrow></math>.</strong></p>
+<ul>
+<li>El <strong>tamaño de la salida está dado por el tamaño de la matriz de entrada (o la imagen) <math aria-label="n_h \times n_w" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>n</mi><mi>h</mi></msub><mo>×</mo><msub><mi>n</mi><mi>w</mi></msub></mrow></math> menos el tamño del kernel de convolución <math aria-label="k_h \times k_w" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>k</mi><mi>h</mi></msub><mo>×</mo><msub><mi>k</mi><mi>w</mi></msub></mrow></math>, es decir:</strong></li>
+</ul>
+<p><math aria-label="\begin{align}
+        (n_h - k_h + 1 ) \times (n_w - k_w + 1).
+    \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mo stretchy="false">(</mo><msub><mi>n</mi><mi>h</mi></msub><mo>−</mo><msub><mi>k</mi><mi>h</mi></msub><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><msub><mi>n</mi><mi>w</mi></msub><mo>−</mo><msub><mi>k</mi><mi>w</mi></msub><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>.</mo></mrow></mrow></math></p>
+<ul>
+<li>En nuestro caso, será:</li>
+</ul>
+<p><math aria-label="\begin{align}
+        (32-5+1) \times (32-5+1) = (28 \times 28) = 784.
+    \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mo stretchy="false">(</mo><mn>32</mn><mo>−</mo><mn>5</mn><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>×</mo><mo stretchy="false">(</mo><mn>32</mn><mo>−</mo><mn>5</mn><mo>+</mo><mn>1</mn><mo stretchy="false">)</mo><mo>=</mo><mo stretchy="false">(</mo><mn>28</mn><mo>×</mo><mn>28</mn><mo stretchy="false">)</mo><mo>=</mo><mn>784</mn><mo>.</mo></mrow></mrow></math></p>
+</li>
+</ul>
+<hr/>
+</section><section class="cell" data-cell="31" id="celda-32"><p>Entrada:  (32 x 32) x 32  (Mapa de activación - Se repite 32 veces y cada mapa de activación es diferente al anterior)</p>
+<p>Kernel: 5 x 5 x 3 (5 filas por 5 columnas y 32 canales)</p>
+<p>n_h = 32 y n_w = 32
+k_h = 5 y k_w = 5</p>
+<p>(32 - 5 + 1) x (32 - 5 + 1)
+(28 x 28)</p>
+<hr/>
+<p>(64 - 3 + 1) x (64 - 3 + 1)
+(62 x 62)</p>
+<p>(62 - 3 + 1) x (62 - 3 + 1)
+(60 x 60)</p>
+<hr/>
+<p>Entrada: (5 x 5)
+Kernel: 3 x 3
+stride: 1</p>
+<p>n_h = 5, n_w = 5
+k_h = 3, k_w = 3</p>
+<p>(5 - 3 + 1) x (5 - 3 + 1)
+(3 x 3)</p>
+<hr/>
+<p>--&gt; [(W−K+2P)/S]+1</p>
+<p>W = 5
+K = 3
+P = 0
+S = 2</p>
+<p>-&gt; Oputshape:</p>
+<p>[(5-3 + 2(0)) / 2 ] + 1</p>
+<p>([2 + 0] / 2) + 1 =
+(2/2)  + 1 =
+1 + 1 = 2</p>
+<hr/>
+<p>W = 5
+K = 3
+P = 2
+S = 2</p>
+<p>[(5 - 3 + 2(2)) /2 ] + 1</p>
+<p>([2 + 4] / 2 ) + 1</p>
+<p>(3 + 1) = 4</p>
+<hr/>
+<p>INPUT = 64 X 64 x 3
+Kernel = 3 x 3</p>
+<p>W = 64
+K = 3
+P = 0
+S = 1</p>
+<p>([64 - 3 + 2 (0) ] / 2 ) + 1</p>
+<p>(61 / 1) + 1 =
+(62) = 62</p>
+<hr/>
+<p>Max pooling</p>
+<p>--&gt; [(W−K+2P)/S]+1
+W = 60
+K = 2
+P = 0
+S = 2</p>
+<p>[ (60 - 2 + 2 (0)) / 2 ] + 1
+[ (58 / 2) + 1 ]
+[ 30 ]</p>
+<p>-&gt; 30 x 30</p>
+</section><section class="cell" data-cell="32" id="celda-33"><ul>
+<li><strong>Resumen General</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Descripción</th>
+<th>Ejemplo numérico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Kernel</strong></td>
+<td>Pequeña matriz de pesos aplicada sobre un canal</td>
+<td>3×3×1 = 9 pesos</td>
+</tr>
+<tr>
+<td><strong>Filtro completo</strong></td>
+<td>Conjunto de kernels, uno por canal</td>
+<td>3×3×3 = 27 pesos</td>
+</tr>
+<tr>
+<td><strong>Bias (sesgo)</strong></td>
+<td>Valor adicional para ajustar la salida</td>
+<td>+1 = 28 parámetros</td>
+</tr>
+<tr>
+<td><strong>Convolución</strong></td>
+<td>Se aplica por canal y luego se combinan los resultados</td>
+<td>RGB → salida 1 canal</td>
+</tr>
+<tr>
+<td><strong>Número de filtros</strong></td>
+<td>Define cuántos mapas de activación se generan</td>
+<td>32 filtros → 32 mapas</td>
+</tr>
+<tr>
+<td><strong>Profundidad de salida</strong></td>
+<td>Igual al número de filtros de la capa</td>
+<td>32 canales</td>
+</tr>
+</tbody>
+</table>
+</section><section class="cell" data-cell="33" id="celda-34"><details class="source-code"><summary>Código Python · celda 34</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">Video</span><span class="p">(</span><span class="s2">"./datos"</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><button class="load-video" type="button">Cargar video (50.5 MB)</button><video aria-label="Video didáctico de convolución" controls="" data-original-src="../assets/2f62a6026929cd7f0f6ed5d8.mp4" data-video-parts="../assets/2f62a6026929cd7f0f6ed5d8.part-0.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-1.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-2.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-3.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-4.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-5.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-6.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-7.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-8.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-9.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-10.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-11.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-12.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-13.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-14.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-15.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-16.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-17.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-18.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-19.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-20.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-21.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-22.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-23.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-24.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-25.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-26.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-27.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-28.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-29.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-30.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-31.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-32.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-33.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-34.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-35.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-36.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-37.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-38.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-39.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-40.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-41.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-42.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-43.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-44.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-45.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-46.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-47.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-48.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-49.bin|../assets/2f62a6026929cd7f0f6ed5d8.part-50.bin" preload="none">
+
+ Your browser does not support the video tag.
+ </video></div></section><section class="cell" data-cell="34" id="celda-35"><h4 id="seccion-17"><strong>24.3.2.4. Capa Convolucional con Dos Filtros</strong></h4>
+</section><section class="cell" data-cell="35" id="celda-36"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="534" loading="lazy" src="../assets/2d8e6df5511ecb55da5fa682.webp" width="1024"/></div></section><section class="cell" data-cell="36" id="celda-37"><p>En el <strong>ejemplo anterior</strong>, la <strong>entrada tenía una profundidad de <math aria-label="3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn></mrow></math>, lo que significa que el tensor de entrada posee <math aria-label="3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn></mrow></math> canales.</strong></p>
+<blockquote>
+<p><strong>Importante: esto no siempre significa canales de colores (RGB); puede representar salida de una capa anterior de en la red.</strong></p>
+</blockquote>
+<p>Por tanto, cuando hablamos de <strong>entrada, nos referimos a la entrada de esta capa convolucional, no necesariamente a la entrada original del modelo.</strong></p>
+</section><section class="cell" data-cell="37" id="celda-38"><hr/>
+<p><strong>Caso con Dos Filtros <math aria-label="F_1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>F</mi><mn>1</mn></msub></mrow></math> y <math aria-label="F_2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>F</mi><mn>2</mn></msub></mrow></math></strong></p>
+<blockquote>
+<p>Supognamos ahora que decidimos usar <strong>dos filtros</strong> en esta <strong>capa convolucional.</strong> Dado que la entrada tiene <strong>profundidad <math aria-label="3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn></mrow></math>, cada filtro también debe tener profundidad <math aria-label="3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn></mrow></math> para que la operación de convolución sea válida.</strong></p>
+</blockquote>
+<ul>
+<li>
+<p><strong>Cálculo de parámetros:</strong></p>
+<ul>
+<li>
+<p>Cada <strong>filtro</strong> contiene:</p>
+<ul>
+<li>
+<p><math aria-label="3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn></mrow></math> kernels de tamaño <math aria-label="3\times \times 3 \times 1 = 9" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mo>×</mo><mo>×</mo><mn>3</mn><mo>×</mo><mn>1</mn><mo>=</mo><mn>9</mn></mrow></math> <strong>parámetros cada uno.</strong></p>
+</li>
+<li>
+<p>Es decir, <math aria-label="3\times 9 = 27" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mo>×</mo><mn>9</mn><mo>=</mo><mn>27</mn></mrow></math> <strong>pesos entrenables por filtro.</strong></p>
+</li>
+</ul>
+</li>
+<li>
+<p>Como tenemos <strong><math aria-label="2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math> filtros, el total de pesos es:</strong></p>
+<p><math aria-label="\begin{align}
+            2 \times 27 &amp;= 54 &amp; \text{pesos entrenables}
+        \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mn>2</mn><mo>×</mo><mn>27</mn><mi>&amp;</mi><mo>=</mo><mn>54</mn><mi>&amp;</mi><mtext>pesos entrenables</mtext></mrow></mrow></math></p>
+</li>
+<li>
+<p>A esto <strong>se suman 2 términos de sesgo (uno por cada filtro):</strong></p>
+<p><math aria-label="\begin{align}
+            54 + 2 &amp;= 56 &amp; \text{parámetros entrenables en total.}
+        \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mn>54</mn><mo>+</mo><mn>2</mn><mi>&amp;</mi><mo>=</mo><mn>56</mn><mi>&amp;</mi><mtext>parámetros entrenables en total.</mtext></mrow></mrow></math></p>
+</li>
+</ul>
+</li>
+<li>
+<p><strong>Resultado de la operación</strong></p>
+<ul>
+<li>
+<p>Cada <strong>filtro produce su propio mapa de activación:</strong></p>
+<ul>
+<li>
+<p>El <strong>Filtro 1 (<math aria-label="F_1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>F</mi><mn>1</mn></msub></mrow></math>) genera un mapa de activación <math aria-label="1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math>.</strong></p>
+</li>
+<li>
+<p>El <strong>Filtro 2 (<math aria-label="F_2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>F</mi><mn>2</mn></msub></mrow></math>) genera un mapa de activación <math aria-label="2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math>.</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+<blockquote>
+<p><strong>La salida final de esta capa convolucional es entonces un tensor con profundidad <math aria-label="2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn></mrow></math>, que contiene ambos mapas apilados.</strong></p>
+</blockquote>
+</li>
+</ul>
+<hr/>
+</section><section class="cell" data-cell="38" id="celda-39"><ul>
+<li><strong>Resumen General</strong></li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Concepto</th>
+<th>Descripción</th>
+<th>Ejemplo numérico</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Profundidad de entrada</strong></td>
+<td>Número de canales de la entrada a la capa</td>
+<td>3</td>
+</tr>
+<tr>
+<td><strong>Número de filtros</strong></td>
+<td>Cuántos mapas de activación queremos generar</td>
+<td>2</td>
+</tr>
+<tr>
+<td><strong>Parámetros por filtro</strong></td>
+<td>(3×3×3 = 27) pesos + 1 bias</td>
+<td>28</td>
+</tr>
+<tr>
+<td><strong>Total parámetros</strong></td>
+<td>(2×27 + 2 = 56)</td>
+<td>56</td>
+</tr>
+<tr>
+<td><strong>Salida (profundidad)</strong></td>
+<td>Igual al número de filtros</td>
+<td>2 mapas de activación</td>
+</tr>
+</tbody>
+</table>
+</section><section class="cell" data-cell="39" id="celda-40"><h4 id="seccion-18"><strong>24.3.2.5. Aprendizaje de Filtros Para Detectar Estructuras</strong></h4>
+<p>Podemos pensar en cada filtro como una fuente que alberga nuevo conocimiento de algo especial y único sobre los datos de entrada. Estos pesos (números) se aprenden durante el proceso de entrenamiento. Los canales individuales en los mapas de activación en cualquier punto de la red representan características extraídas de la imagen de entrada (tensor de entrada, ya que no necesariamente tiene que ser una imagen)</p>
+</section><section class="cell" data-cell="40" id="celda-41"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="318" loading="lazy" src="../assets/e181451d2f7a192a959208b5.webp" width="768"/></div></section><section class="cell" data-cell="41" id="celda-42"><p>En la imagen de arriba, tenemos una capa convolucional con <strong>tres filtros. Cada filtro aprende a detectar diferentes elementos estructurales (es decir, líneas horizontales, líneas verticales y líneas diagonales).</strong> Para ser más precisos, estas "líneas" representan estructuras de bordes en una imagen. En <strong>los mapas de activación de salida, enfatizamos las neuronas altamente activadas asociadas con cada filtro.</strong></p>
+</section><section class="cell" data-cell="42" id="celda-43"><h3 id="seccion-19"><strong>24.3.3. Capa ReLU</strong></h3>
+<blockquote>
+<p><strong>ReLU realiza una operación por elemento y establece todos los píxeles negativos en <math aria-label="0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0</mn></mrow></math>. Introduce una no linealidad a la red y la salida generada es un mapa de características rectificado.</strong></p>
+</blockquote>
+<p>Recordemos que, la <strong>no linealidad es necesaria para producir límites de decisión no lineales, de modo que la salida no pueda escribirse como una combinación lineal de las entradas.</strong></p>
+<ul>
+<li><strong>Si no existiera una función de activación no lineal, las arquitecturas CNN profundas se reducirían a una única capa convolucional equivalente, que no funcionaría tan bien.</strong></li>
+</ul>
+<p><math aria-label="\begin{align}
+    \text{ReLU}(x) &amp;= \text{max}(0,x)
+\end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mtext>ReLU</mtext><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mi>&amp;</mi><mo>=</mo><mtext>max</mtext><mo stretchy="false">(</mo><mn>0</mn><mo>,</mo><mi>x</mi><mo stretchy="false">)</mo></mrow></mrow></math></p>
+</section><section class="cell" data-cell="43" id="celda-44"><p><img alt="relu_graph.png" decoding="async" height="833" loading="lazy" src="../assets/ba719092ef5858eed9cf052e.webp" width="833"/></p>
+</section><section class="cell" data-cell="44" id="celda-45"><blockquote>
+<p>Esta función de activación <strong>se aplica elemento por elemnto a cada valor del tensor de entrada.</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Por ejemplo, si se aplica <math aria-label="\text{ReLU}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ReLU</mtext></mrow></math> al valor <math aria-label="2.24" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2.24</mn></mrow></math>, el resultado sería <math aria-label="2.24" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2.24</mn></mrow></math>, ya que <math aria-label="2.24" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2.24</mn></mrow></math> es mayor que <math aria-label="0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0</mn></mrow></math>.</p>
+</li>
+<li>
+<p>La función <math aria-label="\text{ReLU}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ReLU</mtext></mrow></math> <strong>se realiza después de cada capa convolucional en la arquitectura de red descrita anteriormente.</strong></p>
+</li>
+</ul>
+</section><section class="cell" data-cell="45" id="celda-46"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="506" loading="lazy" src="../assets/beba33000061bc5bce12466a.gif" width="1182"/></div></section><section class="cell" data-cell="46" id="celda-47"><details class="source-code"><summary>Código Python · celda 47</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">Video</span><span class="p">(</span><span class="s2">"./datos"</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>Output hidden; open in https://colab.research.google.com to view.</pre></div></section><section class="cell" data-cell="47" id="celda-48"><h3 id="seccion-20"><strong>24.3.4. Capa de Max Pooling</strong></h3>
+<blockquote>
+<p>En las arquitecturas de <strong>redes neuronales convolucionales (CNN), es común que las dimensaiones espaciales de los datos</strong> (ancho y alto de los <strong>mapas de activación</strong>) se <strong>reduzcan periódicamente mediante capas de pooling.</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Esta capas se <strong>intercalan después de varias capas convolucionales</strong> y cumplen un papel clave:</p>
+<ul>
+<li><strong>Resumir y condensar la información más importante</strong> de los <strong>mapas de activación, reduciendo su tamaño sin perder las características esenciales.</strong></li>
+</ul>
+</li>
+</ul>
+<hr/>
+</section><section class="cell" data-cell="48" data-editorial-edits="6fff1869ece9" id="celda-49"><p>El pooling con reducción espacial disminuye el número de activaciones y el coste de las capas posteriores. <strong>Max pooling no tiene parámetros entrenables</strong>; tampoco cambia por sí solo el número de pesos de una convolución posterior con igual número de canales y tamaño de kernel. Sí puede reducir los de una capa densa que recibe el mapa aplanado.</p>
+<p>Seleccionar máximos puede dar tolerancia local a pequeños desplazamientos, con pérdida de detalle. Reducir resolución no garantiza eliminar información irrelevante ni evitar el sobreajuste.</p>
+<p class="note editorial-source">Fuente de la revisión: <a href="https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html">D2L: convoluciones para imágenes</a></p></section><section class="cell" data-cell="49" id="celda-50"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="315" loading="lazy" src="../assets/d9999b0d184fce9d3291f5ad.webp" width="727"/></div></section><section class="cell" data-cell="50" id="celda-51"><p><strong>¿Qué es el Pooling y Cómo Funciona?</strong></p>
+<blockquote>
+<p>El <strong>Pooling</strong> es una técnica utilizada en redes convolucionales para <strong>reducir el tamaño de los mapas de activación.</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Lo hace <strong>aplicando un filtro deslizante 2D (sliding filter) sobre la salida de las capas convolucionales.</strong></p>
+</li>
+<li>
+<p>Este <strong>filtro</strong> <strong>se mueve a través de la imagen o mapa de activación</strong> y <strong>resume la información más importante</strong> de cada región que cubre.</p>
+</li>
+</ul>
+</section><section class="cell" data-cell="51" id="celda-52"><h4 id="seccion-21"><strong>24.3.4.1. El Parámetro Stride</strong></h4>
+<p>El <strong>desplazamiento del filtro</strong> está controlado por un parámetro llamado <strong>stride (paso).</strong></p>
+<ul>
+<li>
+<p>El <strong>stride</strong> indica <strong>cuántos píxeles se mueve el filtro cada vez que se aplica.</strong></p>
+</li>
+<li>
+<p>Por ejemplo:</p>
+<ul>
+<li>
+<p>Si <code>stride = 1</code>, el filtro <strong>se mueve un píxel a la vez (salida más detallada)</strong>.</p>
+</li>
+<li>
+<p>Si <code>stride = 2</code>, <strong>el filtro se mueve de dos en dos (salida más pequeña).</strong></p>
+</li>
+</ul>
+</li>
+</ul>
+</section><section class="cell" data-cell="52" id="celda-53"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="308" loading="lazy" src="../assets/f61b9bd747aaa978e33e121a.webp" width="900"/></div></section><section class="cell" data-cell="53" id="celda-54"><h4 id="seccion-22"><strong>24.3.4.2. Tipos de Pooling</strong></h4>
+<p>Existen dos operaciones principales de pooling:</p>
+<table>
+<thead>
+<tr>
+<th>Tipo</th>
+<th>Operación</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Max Pooling</strong></td>
+<td><code>max()</code></td>
+<td>Toma el valor máximo de la región analizada. Es el método más común, ya que conserva la característica más destacada.</td>
+</tr>
+<tr>
+<td><strong>Average Pooling</strong></td>
+<td><code>avg()</code></td>
+<td>Calcula el promedio de los valores dentro de la región. Suaviza las activaciones.</td>
+</tr>
+</tbody>
+</table>
+</section><section class="cell" data-cell="54" id="celda-55"><blockquote>
+<p>La operación <strong>Max-Pooling</strong> requiere seleccionar <strong>un tamaño de kernel y una longitud de paso durante el diseño de la arquitectura (<code>stride</code>).</strong> Una vez seleccionados, la operación <strong>desliza el núcleo según el <code>stride</code> sobre la entrada, seleccionando solo el valor más grande en cada segmento del kernel de la entrada para otener un valor para la salida.</strong></p>
+</blockquote>
+</section><section class="cell" data-cell="55" id="celda-56"><details class="source-code"><summary>Código Python · celda 56</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">Video</span><span class="p">(</span><span class="s2">"./datos"</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>Output hidden; open in https://colab.research.google.com to view.</pre></div></section><section class="cell" data-cell="56" id="celda-57"><p>Luego, <strong>la capa de pooling se aplica a cada mapa de activación rectificado (después de pasar por la capa <math aria-label="\text{ReLU}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ReLU</mtext></mrow></math>).</strong></p>
+</section><section class="cell" data-cell="57" id="celda-58"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="355" loading="lazy" src="../assets/1d5340dcfe5eaefe9948ea72.webp" width="1087"/></div></section><section class="cell" data-cell="58" id="celda-59"><h3 id="seccion-23"><strong>24.3.5. Bloque Convolucional Completo (Estructura General)</strong></h3>
+<p>Para comprender cómo se estructura una red convolucional profunda, podemos partir de un ejemplo simplificado. Supongamos que tenemos un bloque convolucional básico, compuesto únicamente por una capa convolucional seguida de una capa de max pooling.</p>
+</section><section class="cell" data-cell="59" id="celda-60"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="451" loading="lazy" src="../assets/662b1aa16c9b0e0eb0d93139.webp" width="768"/></div></section><section class="cell" data-cell="60" id="celda-61"><p>En este caso, <strong>la entrada a la capa convolucional es una imagen en color, representada por tres canales (RGB)</strong>. Cada canal (rojo, verde y azul) proporciona información complementaria de la misma escena, de modo que <em><strong>la red aprende a combinar dichas características espaciales y cromáticas en un mismo espacio de representación tridimensional.</strong></em></p>
+</section><section class="cell" data-cell="61" id="celda-62"><h3 id="seccion-24"><strong>24.3.6. Capa Flatten y Softmax</strong></h3>
+<blockquote>
+<p>Esta capa <strong>convierte una capa por ej., tridimensional en una capa totalmente conectada (fully-connected) para ajustarse a la entrada de una capa totalmente conectada para la clasificación.</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Por ej., un tensor de dimensión <math aria-label="(5,5,2)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mn>5</mn><mo>,</mo><mn>5</mn><mo>,</mo><mn>2</mn><mo stretchy="false">)</mo></mrow></math>, se convertiría en un <strong>vector de tamaño <math aria-label="5 \times 5 \times 2 = 50" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>5</mn><mo>×</mo><mn>5</mn><mo>×</mo><mn>2</mn><mo>=</mo><mn>50</mn></mrow></math>.</strong></p>
+</li>
+<li>
+<p>Las capas <strong>convolucionales anteriores de la red extrajeron las características de la imagen de entrada, pero ahora es el momento de clasificarlas.</strong></p>
+</li>
+<li>
+<p>Para la clasificación, se utiliza <strong>la función <math aria-label="\text{Softmax}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Softmax</mtext></mrow></math> para clasificar estas características, lo que requiere una entrada unidimensional. Por eso es necesaria la capa aplanada.</strong></p>
+</li>
+</ul>
+</section><section class="cell" data-cell="62" id="celda-63"><details class="source-code"><summary>Código Python · celda 63</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">Video</span><span class="p">(</span><span class="s2">"./datos"</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>Output hidden; open in https://colab.research.google.com to view.</pre></div></section><section class="cell" data-cell="63" id="celda-64"><blockquote>
+<p>Una operación <strong><math aria-label="\text{Softmax}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Softmax</mtext></mrow></math> tiene una función clave: garantizar que la suma de las salidas de la CNN sea <math aria-label="1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math> (ya que se están sumando probabilidades).</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Después de <strong>pasar por la función <math aria-label="\text{Softmax}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Softmax</mtext></mrow></math>, cada clase corresponde ahora a una probabilidad adecuada.</strong></p>
+</li>
+<li>
+<p>Recordar que la función softmax está definida como:</p>
+<p><math aria-label="\begin{align}
+        \text{Softmax}(x_i) &amp;= \frac{\text{exp}(x_i)}{\sum_j \text{exp}(x_j)}
+    \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mtext>Softmax</mtext><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mi>&amp;</mi><mo>=</mo><mfrac><mrow><mtext>exp</mtext><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow><mrow><msub><mo>∑</mo><mi>j</mi></msub><mtext>exp</mtext><mo stretchy="false">(</mo><msub><mi>x</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow></mrow></math></p>
+</li>
+</ul>
+</section><section class="cell" data-cell="64" id="celda-65"><h3 id="seccion-25"><strong>23.3.7. Entendiendo los Hiperpármatros</strong></h3>
+</section><section class="cell" data-cell="65" id="celda-66"><h4 id="seccion-26"><strong>23.3.7.1. Kernel Size</strong></h4>
+<blockquote>
+<p>El tamaño del kernel, <strong>a menudo denominado también el tamaño del filtro, se refiere a las dimensiones de la ventana deslizanta sobre la entrada.</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>Los tamaños de <strong>kernel pequeños son capaces de extraer una cantidad mucho mayor de información que contiene caractaerísticas altamente locales de la entrada.</strong></p>
+<blockquote>
+<p>También conduce a una <strong>menor reducción de las dimensiones de la capa, lo que permite una arquitectura más profunda.</strong></p>
+</blockquote>
+</li>
+</ul>
+</section><section class="cell" data-cell="66" id="celda-67"><details class="source-code"><summary>Código Python · celda 67</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">Video</span><span class="p">(</span><span class="s2">"./datos"</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>Output hidden; open in https://colab.research.google.com to view.</pre></div></section><section class="cell" data-cell="67" id="celda-68"><ul>
+<li>
+<p>Un tamaño de <strong>kernel más grande extrae menos información, lo que conduce a una reducción más rápida de las dimensiones de la capa, lo que a menudo conduce a un peor entrenamiento.</strong></p>
+<blockquote>
+<p>Los <strong>kernels más grandes son más adecuados para extraer características que son más grandes.</strong></p>
+</blockquote>
+</li>
+</ul>
+</section><section class="cell" data-cell="68" id="celda-69"><details class="source-code"><summary>Código Python · celda 69</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">Video</span><span class="p">(</span><span class="s2">"./datos"</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>Output hidden; open in https://colab.research.google.com to view.</pre></div></section><section class="cell" data-cell="69" id="celda-70"><h4 id="seccion-27"><strong>24.3.7.2. Padding</strong></h4>
+<blockquote>
+<p>El relleno (<strong>padding</strong>) suele <strong>ser necesario cuando el kernel se extiende más allá del mapa de activación.</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>El padding <strong>conserva los datos en los bordes de los mapas de activación, lo que mejora el rendimiento y ayuda a preservar el tamaño espacial de la entrada, lo que permite crear redes más profundas y de mayor rendimiento.</strong></p>
+</li>
+<li>
+<p>Existen muchas técnicas de padding, pero el enfoque más utilizado es el <strong>padding con ceros debido a su rendimiento, simplicidad y eficiencia computacional.</strong></p>
+<blockquote>
+<p>La técnica consiste en <strong>añadir ceros simétricamente alrededor de los bordes de una entrada.</strong></p>
+</blockquote>
+</li>
+</ul>
+</section><section class="cell" data-cell="70" id="celda-71"><details class="source-code"><summary>Código Python · celda 71</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">Video</span><span class="p">(</span><span class="s2">"./datos"</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>Output hidden; open in https://colab.research.google.com to view.</pre></div></section><section class="cell" data-cell="71" id="celda-72"><h4 id="seccion-28"><strong>24.3.7.3. Stride</strong></h4>
+<blockquote>
+<p>El stride indica <strong>cuántos píxeles (en el caso de una imagen) debe desplazarse el kernel cada vez.</strong></p>
+</blockquote>
+<ul>
+<li>
+<p>A medida que <strong>se reduce el stride, se aprenden más características porque extraen más datos, lo que también da lugar a capas de salida más grandes.</strong></p>
+</li>
+<li>
+<p>A medida que <strong>se aumenta el stride, se produce una extracción de característica más limitada y unas dimensiones de capa de salida más pequeñas.</strong></p>
+</li>
+</ul>
+</section><section class="cell" data-cell="72" id="celda-73"><details class="source-code"><summary>Código Python · celda 73</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">Video</span><span class="p">(</span><span class="s2">"./datos"</span><span class="p">,</span> <span class="n">embed</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>Output hidden; open in https://colab.research.google.com to view.</pre></div></section><section class="cell" data-cell="73" id="celda-74"><h3 id="seccion-29"><strong>23.3.8. Clasificador VGG-16</strong></h3>
+</section><section class="cell" data-cell="74" id="celda-75"><p><strong>Las capas totalmente conectadas (densas) en una arquitectura CNN transforman características en probabilidades de clase. En el caso de VGG-16, la salida del último bloque convolucional (Conv-5) es una serie de mapas de activación con forma (7x7x512). Para referencia, hemos indicado el número de canales en puntos clave de la arquitectura.</strong></p>
+</section><section class="cell" data-cell="75" id="celda-76"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="273" loading="lazy" src="../assets/359f747965f845a038473b19.webp" width="768"/></div></section><section class="cell" data-cell="76" id="celda-77"><p><strong>Antes de que los datos de la última capa convolucional en el extractor de características puedan fluir a través del clasificador, deben aplanarse a un vector unidimensional de longitud 25088 <math aria-label="()" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mo stretchy="false">)</mo></mrow></math>. Después de aplanarlos, esta capa unidimensional se conecta completamente a la capa FC-6.</strong></p>
+</section><section class="cell" data-cell="77" id="celda-78"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="437" loading="lazy" src="../assets/4c9328964d858736972d41ce.webp" width="768"/></div></section><section class="cell" data-cell="78" id="celda-79"><h4 id="seccion-30"><strong>23.3.8.1. Capa de Normalización por Lote (Batch Normalization - Batch Norm)</strong></h4>
+<blockquote>
+<p>Su objetivo principal es <strong>normalizar las activaciones intermedias</strong> (no sólo los datos de entrada) para <em><strong>mejorar la estabilidad numérica, acelerar la convergencia y reducir la sensibilidad del modelo a la inicialización de los pesos.</strong></em></p>
+</blockquote>
+</section><section class="cell" data-cell="79" data-editorial-edits="fe349cc2aeab" id="celda-80"><p>El <em>internal covariate shift</em> fue una motivación histórica de BatchNorm. No debe presentarse su eliminación como explicación definitiva de su eficacia. Santurkar et al. estudiaron cómo la normalización modifica y suaviza la optimización.</p>
+<p>En la práctica puede mejorar la estabilidad y permitir tasas de aprendizaje distintas, pero sus efectos dependen de la arquitectura, el lote y la tarea. No elimina automáticamente los gradientes explosivos o desvanecientes.</p>
+<p class="note editorial-source">Fuente de la revisión: <a href="https://arxiv.org/abs/1805.11604">Santurkar et al. (2018)</a></p></section><section class="cell" data-cell="80" data-editorial-edits="69ebc94a2eb2" id="celda-81"><h4 id="seccion-31"><strong>23.3.8.2. Funcionamiento Paso a Paso - Batch Norm</strong></h4>
+<p>Supongamos que tenemos una capa convolucional que produce <strong>un conjunto de mapas de activación <math aria-label="\mathbf{A} \in \mathbb{R} ^{(N \times C \times H \times W)}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>𝐀</mi><mo>∈</mo><msup><mi>ℝ</mi><mrow><mo stretchy="false">(</mo><mi>N</mi><mo>×</mo><mi>C</mi><mo>×</mo><mi>H</mi><mo>×</mo><mi>W</mi><mo stretchy="false">)</mo></mrow></msup></mrow></math>, donde</strong></p>
+<ul>
+<li>
+<p><math aria-label="N" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math> = <strong>tamaño del batch,</strong></p>
+</li>
+<li>
+<p><math aria-label="C" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>C</mi></mrow></math> = <strong>número de canales (filtros),</strong></p>
+</li>
+<li>
+<p><math aria-label="H \times W" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>H</mi><mo>×</mo><mi>W</mi></mrow></math> = <strong>dimensiones espaciales del mapa de activación.</strong></p>
+</li>
+</ul>
+<p>El proceso de <strong>Batch Normalization se realiza independientemente por canal, y consta de las siguientes etapas:</strong></p>
+<ol>
+<li>
+<p><strong>Cálculo de la media por canal</strong></p>
+<p><math aria-label="\begin{align}
+        \mu_c &amp;= \frac{1}{N \times H \times W} \sum_{i=1}^N \sum_{j=1}^H \sum_{k=1}^W \mathbf{A_{i,c,j,k}}
+    \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><msub><mi>μ</mi><mi>c</mi></msub><mi>&amp;</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>N</mi><mo>×</mo><mi>H</mi><mo>×</mo><mi>W</mi></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>W</mi></munderover><mrow><msub><mi mathvariant="bold">A</mi><mrow><mi mathvariant="bold">i</mi><mo mathvariant="bold">,</mo><mi mathvariant="bold">c</mi><mo mathvariant="bold">,</mo><mi mathvariant="bold">j</mi><mo mathvariant="bold">,</mo><mi mathvariant="bold">k</mi></mrow></msub></mrow></mrow></mrow></math></p>
+<blockquote>
+<p><strong>Esta media representa el valor promedio de las activaciones del canal <math aria-label="c" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi></mrow></math> en todo el batch.</strong></p>
+</blockquote>
+</li>
+<li>
+<p><strong>Cálculo de la varianza por canal</strong></p>
+<p><math aria-label="\begin{align}
+        \sigma_c &amp;= \frac{1}{N \times H \times W} \sum_{i=1}^N \sum_{j=1}^H \sum_{k=1}^W (\mathbf{A_{i,c,j,k} - \mu_c})^2
+    \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><msub><mi>σ</mi><mi>c</mi></msub><mi>&amp;</mi><mo>=</mo><mfrac><mrow><mn>1</mn></mrow><mrow><mi>N</mi><mo>×</mo><mi>H</mi><mo>×</mo><mi>W</mi></mrow></mfrac><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>N</mi></munderover><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>H</mi></munderover><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mi>W</mi></munderover><mo stretchy="false">(</mo><mrow><msub><mi mathvariant="bold">A</mi><mrow><mi mathvariant="bold">i</mi><mo mathvariant="bold">,</mo><mi mathvariant="bold">c</mi><mo mathvariant="bold">,</mo><mi mathvariant="bold">j</mi><mo mathvariant="bold">,</mo><mi mathvariant="bold">k</mi></mrow></msub><mo mathvariant="bold">−</mo><msub><mi mathvariant="bold">μ</mi><mi mathvariant="bold">c</mi></msub></mrow><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow></mrow></math></p>
+</li>
+<li>
+<p><strong>Normalización:</strong> Cada activación <strong>se normaliza restando la media y dividiendo por la desviación estándar (más un pequeño término <math aria-label="\epsilon" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>ϵ</mi></mrow></math> para evitar división por cero):</strong></p>
+<p><math aria-label="\begin{align}
+        \hat{\mathbf{A}}_{i,c,j,k} &amp;= \frac{\mathbf{A}_{i,c,j,k} - \mu_c}{\sqrt{\sigma_c^2 + \epsilon}}
+    \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><msub><mover accent="true"><mrow><mi>𝐀</mi></mrow><mo>^</mo></mover><mrow><mi>i</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>k</mi></mrow></msub><mi>&amp;</mi><mo>=</mo><mfrac><mrow><msub><mi>𝐀</mi><mrow><mi>i</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>−</mo><msub><mi>μ</mi><mi>c</mi></msub></mrow><mrow><msqrt><mrow><msubsup><mi>σ</mi><mi>c</mi><mn>2</mn></msubsup><mo>+</mo><mi>ϵ</mi></mrow></msqrt></mrow></mfrac></mrow></mrow></math></p>
+</li>
+<li>
+<p><strong>Escalado y desplazamiento (parámetros entrenables):</strong> La normalización pura <strong>restringe las activaciones a activaciones con media <math aria-label="0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0</mn></mrow></math> y varianza <math aria-label="1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math>, pero esto puede limitar la capacidad expresiva de la red.</strong></p>
+<ul>
+<li>
+<p>Por eso se introducen <strong>dos parámetros entrenables, uno de escalado (<math aria-label="\gamma" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>γ</mi></mrow></math>) y otro de desplazamiento (<math aria-label="\beta" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi></mrow></math>):</strong></p>
+<p><math aria-label="\begin{align}
+            \mathbf{Y}_{i,c,j,k} &amp;= \gamma_c \cdot \hat{\mathbf{A}}_{i,c,j,k} + \beta_c
+        \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><msub><mi>𝐘</mi><mrow><mi>i</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>k</mi></mrow></msub><mi>&amp;</mi><mo>=</mo><msub><mi>γ</mi><mi>c</mi></msub><mo>·</mo><msub><mover accent="true"><mrow><mi>𝐀</mi></mrow><mo>^</mo></mover><mrow><mi>i</mi><mo>,</mo><mi>c</mi><mo>,</mo><mi>j</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>+</mo><msub><mi>β</mi><mi>c</mi></msub></mrow></mrow></math></p>
+</li>
+</ul>
+<blockquote>
+<p><strong>Estos parámetros permiten que la red aprenda la distribución óptima de activaciones, si es que una normalización estricta no resulta ideal.</strong></p>
+</blockquote>
+</li>
+</ol>
+<p class="note editorial-source">Fuente de la revisión: <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html">PyTorch: BatchNorm2d</a></p></section><section class="cell" data-cell="81" data-editorial-edits="15bd4f057931" id="celda-82"><h4 id="seccion-32"><strong>23.3.8.3. Integración con Funciones de Activación <math aria-label="\text{ReLU}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ReLU</mtext></mrow></math></strong></h4><p>En este bloque se usa el orden Conv → BatchNorm → ReLU. BatchNorm y ReLU son capas distintas; otras arquitecturas eligen otros órdenes.</p>
+<p>ReLU tiene derivada 1 para entradas positivas y 0 para negativas. No evita todos los problemas del gradiente: puede producir unidades inactivas, y BatchNorm no garantiza impedirlo.</p>
+<p class="note editorial-source">Fuente de la revisión: <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html">PyTorch: BatchNorm2d</a></p></section><section class="cell" data-cell="82" data-editorial-edits="eccd0b4efc83" id="celda-83"><h4 id="seccion-33"><strong>23.3.8.4. Fase de Inferencia</strong></h4><p>Con <code>model.eval()</code> y <code>track_running_stats=True</code>, BatchNorm utiliza la media y la varianza acumuladas durante entrenamiento. Así la normalización de una muestra no depende de las otras muestras del lote de evaluación.</p>
+<p>Si <code>track_running_stats=False</code>, se utilizan estadísticas del lote también en evaluación. Cambiar de distribución de datos puede afectar al resultado en ambos casos; las estadísticas acumuladas no garantizan buena generalización.</p>
+<p class="note editorial-source">Fuente de la revisión: <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html">PyTorch: BatchNorm2d</a></p></section><section class="cell" data-cell="83" data-editorial-edits="600fae6dce41|079d3243603a" id="celda-84"><h4 id="seccion-34"><strong>23.3.8.5. Efectos prácticos en el rendimiento y la generalización</strong></h4>
+<p>Los beneficios más relevantes de Batch Normalization son:</p>
+<table>
+<thead>
+<tr>
+<th>Beneficio</th>
+<th>Descripción</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Estabiliza el entrenamiento</strong></td>
+<td>Reduce la variabilidad en las distribuciones internas de activaciones.</td>
+</tr>
+<tr>
+<td><strong>Acelera la convergencia</strong></td>
+<td>Permite usar learning rates más grandes en determinadas configuraciones; se debe comprobar la estabilidad.</td>
+</tr>
+<tr>
+<td><strong>Regulariza el modelo</strong></td>
+<td>Introduce ruido estocástico debido al cálculo batch-wise, actuando como regularizador implícito.</td>
+</tr>
+<tr>
+<td><strong>Puede regularizar</strong></td>
+<td>Puede disminuir la dependencia de otras técnicas como dropout.</td>
+</tr>
+</tbody>
+</table>
+<p class="note editorial-source">Fuente de la revisión: <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html">PyTorch: BatchNorm2d</a></p></section><section class="cell" data-cell="84" id="celda-85"><h2 id="seccion-35"><strong>24.4. Implementación de la Arquitectura VGG-16 Reducida</strong></h2>
+</section><section class="cell" data-cell="85" id="celda-86"><p>A continuación, vamos a implementar una versión reducida de la arquitectura VGG-16. En este caso, la arquitectura tendrá la siguiente estructura:</p>
+</section><section class="cell" data-cell="86" id="celda-87"><div class="output"><img alt="Figura conservada del notebook original" decoding="async" height="282" loading="lazy" src="../assets/9642c040c2c0025330fded22.webp" width="768"/></div></section><section class="cell" data-cell="87" id="celda-88"><p>Importamos las librerías necesarias:</p>
+</section><section class="cell" data-cell="88" id="celda-89"><details class="source-code"><summary>Código Python · celda 89</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optim</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torchvision.transforms</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">transforms</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torchvision.datasets</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">datasets</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+</pre></div>
+</details></section><section class="cell" data-cell="89" data-editorial-edits="d5b343484486" id="celda-90"><h3 id="seccion-36"><strong>24.4.1. Bloque Convolucional 1 - "Conv Block 1"</strong></h3>
+<ul>
+<li>
+<p>Objetivo: <strong>extraer patrones locales simples</strong> como bordes y gradientes de color.</p>
+</li>
+<li>
+<p>Configuración:</p>
+<ul>
+<li>
+<p>2 capas convolucionales con 32 filtros cada una, tamaño de kernel <math aria-label="3 \times 3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mo>×</mo><mn>3</mn></mrow></math>, padding "same" (padding=1).</p>
+</li>
+<li>
+<p>Función de activación ReLU, que introduce no linealidad y tiene derivada 1 en la rama positiva; puede anular el gradiente en la negativa.</p>
+</li>
+<li>
+<p>Una capa de MaxPooling <math aria-label="2 \times 2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mo>×</mo><mn>2</mn></mrow></math>, que reduce las dimensiones espaciales de <math aria-label="32 32" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>32</mn><mn>32</mn></mrow></math> → <math aria-label="16 \times 16" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>16</mn><mo>×</mo><mn>16</mn></mrow></math>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Salida del bloque</strong>: (batch_size, 32, 16, 16)</p>
+<p class="note editorial-source">Fuente de la revisión: <a href="https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html">D2L: convoluciones para imágenes</a></p></section><section class="cell" data-cell="90" id="celda-91"><details class="source-code"><summary>Código Python · celda 91</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CNNModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    CNNModel: Implementación de una red neuronal convolucional profunda</span>
+<span class="sd">    inspirada en la arquitectura VGG, diseñada para clasificación de imágenes</span>
+<span class="sd">    de entrada 3x32x32 (por ejemplo, CIFAR-10).</span>
+
+<span class="sd">    Estructura general:</span>
+<span class="sd">    -------------------</span>
+<span class="sd">    - Bloque 1: 2x Conv2D(3→32) + ReLU + MaxPooling(2×2)</span>
+<span class="sd">    - Bloque 2: 2x Conv2D(32→64) + ReLU + MaxPooling(2×2)</span>
+<span class="sd">    - Bloque 3: 2x Conv2D(64→64) + ReLU + MaxPooling(2×2)</span>
+<span class="sd">    - Flatten + 2 capas lineales (512 unidades ocultas → 10 clases)</span>
+
+<span class="sd">    Parámetros:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    input_shape : tuple, opcional</span>
+<span class="sd">        Forma del tensor de entrada. Por defecto (3, 32, 32).</span>
+
+<span class="sd">    Ejemplo de uso:</span>
+<span class="sd">    ---------------</span>
+<span class="sd">    &gt;&gt;&gt; model = CNNModel()</span>
+<span class="sd">    &gt;&gt;&gt; x = torch.randn(8, 3, 32, 32)</span>
+<span class="sd">    &gt;&gt;&gt; y = model(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(y.shape)</span>
+<span class="sd">    torch.Size([8, 10])</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CNNModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Bloque convolucional 1</span>
+        <span class="c1"># Dos convoluciones consecutivas con 32 filtros y activación ReLU.</span>
+        <span class="c1"># Se aplica MaxPooling para reducir las dimensiones espaciales a la mitad.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (32, 16, 16)</span>
+        <span class="p">)</span>
+</pre></div>
+</details></section><section class="cell" data-cell="91" id="celda-92"><h3 id="seccion-37"><strong>24.4.2. Bloque Convolucional 2 - "Conv Block 2"</strong></h3>
+<ul>
+<li>
+<p>Objetivo: <strong>capturar características más abstractas</strong>, combinando bordes y texturas.</p>
+</li>
+<li>
+<p>Configuración:</p>
+<ul>
+<li>
+<p>2 capas convolucionales con 64 filtros cada una.</p>
+</li>
+<li>
+<p>Misma configuración de kernel (<math aria-label="3 \times 3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>3</mn><mo>×</mo><mn>3</mn></mrow></math>, padding <math aria-label="1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1</mn></mrow></math>).</p>
+</li>
+<li>
+<p><math aria-label="\text{ReLU}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ReLU</mtext></mrow></math> en cada convolución.</p>
+</li>
+<li>
+<p>MaxPooling (<math aria-label="2 \times 2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mo>×</mo><mn>2</mn></mrow></math>) para reducir dimensiones de <math aria-label="16 \times 16" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>16</mn><mo>×</mo><mn>16</mn></mrow></math> → <math aria-label="8 \times 8" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>8</mn><mo>×</mo><mn>8</mn></mrow></math>.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Salida del bloque:</strong> <code>(batch_size, 64, 8, 8)</code></p>
+</section><section class="cell" data-cell="92" id="celda-93"><details class="source-code"><summary>Código Python · celda 93</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CNNModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Bloque convolucional 1</span>
+        <span class="c1"># Dos convoluciones consecutivas con 32 filtros y activación ReLU.</span>
+        <span class="c1"># Se aplica MaxPooling para reducir las dimensiones espaciales a la mitad.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (32, 16, 16)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 2</span>
+        <span class="c1"># Incrementa el número de canales a 64, preservando estructura espacial.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 8, 8)</span>
+        <span class="p">)</span>
+</pre></div>
+</details></section><section class="cell" data-cell="93" id="celda-94"><h3 id="seccion-38"><strong>24.4.3. Bloque Convolucional 3 - "Conv Block 3"</strong></h3>
+<ul>
+<li>
+<p>Objetivo: <strong>extraer patrones complejos y semánticos</strong> (formas, regiones de textura).</p>
+</li>
+<li>
+<p>Configuración:</p>
+<ul>
+<li>
+<p>2 capas convolucionales con 64 filtros.</p>
+</li>
+<li>
+<p>MaxPooling (2×2) para reducir 8×8 → 4×4.</p>
+</li>
+</ul>
+</li>
+</ul>
+<p><strong>Salida del bloque:</strong> <code>(batch_size, 64, 4, 4)</code></p>
+</section><section class="cell" data-cell="94" id="celda-95"><details class="source-code"><summary>Código Python · celda 95</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CNNModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Bloque convolucional 1</span>
+        <span class="c1"># Dos convoluciones consecutivas con 32 filtros y activación ReLU.</span>
+        <span class="c1"># Se aplica MaxPooling para reducir las dimensiones espaciales a la mitad.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (32, 16, 16)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 2</span>
+        <span class="c1"># Incrementa el número de canales a 64, preservando estructura espacial.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 8, 8)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 3</span>
+        <span class="c1"># Mantiene 64 canales pero profundiza la abstracción de características.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 8, 8)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 8, 8)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 4, 4)</span>
+        <span class="p">)</span>
+</pre></div>
+</details></section><section class="cell" data-cell="95" id="celda-96"><h3 id="seccion-39"><strong>24.4.4. Capa de aplanamiento (Flatten)</strong></h3>
+<blockquote>
+<p>Convierte el <strong>tensor de salida tridimensional (64×4×4) en un vector unidimensional de 1024 unidades por imagen</strong>, para alimentar las capas densas (fully connected).</p>
+</blockquote>
+</section><section class="cell" data-cell="96" id="celda-97"><details class="source-code"><summary>Código Python · celda 97</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CNNModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Bloque convolucional 1</span>
+        <span class="c1"># Dos convoluciones consecutivas con 32 filtros y activación ReLU.</span>
+        <span class="c1"># Se aplica MaxPooling para reducir las dimensiones espaciales a la mitad.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (32, 16, 16)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 2</span>
+        <span class="c1"># Incrementa el número de canales a 64, preservando estructura espacial.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 8, 8)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 3</span>
+        <span class="c1"># Mantiene 64 canales pero profundiza la abstracción de características.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 8, 8)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 8, 8)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 4, 4)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Aplanamiento de características convolucionales</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()</span>  <span class="c1"># Convierte (64, 4, 4) → 1024</span>
+</pre></div>
+</details></section><section class="cell" data-cell="97" id="celda-98"><h3 id="seccion-40"><strong>24.4.5. Capa Densa (FC1)</strong></h3>
+<ul>
+<li>
+<p><strong>Entrada</strong>: 1024 unidades.</p>
+</li>
+<li>
+<p><strong>Salida</strong>: 512 neuronas <strong>con activación <math aria-label="\text{ReLU}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ReLU</mtext></mrow></math></strong>.</p>
+</li>
+<li>
+<p>Actúa como un extractor de características de alto nivel.</p>
+</li>
+</ul>
+</section><section class="cell" data-cell="98" id="celda-99"><details class="source-code"><summary>Código Python · celda 99</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CNNModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Bloque convolucional 1</span>
+        <span class="c1"># Dos convoluciones consecutivas con 32 filtros y activación ReLU.</span>
+        <span class="c1"># Se aplica MaxPooling para reducir las dimensiones espaciales a la mitad.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (32, 16, 16)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 2</span>
+        <span class="c1"># Incrementa el número de canales a 64, preservando estructura espacial.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 8, 8)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 3</span>
+        <span class="c1"># Mantiene 64 canales pero profundiza la abstracción de características.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 8, 8)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 8, 8)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 4, 4)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Aplanamiento de características convolucionales</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()</span>  <span class="c1"># Convierte (64, 4, 4) → 1024</span>
+
+        <span class="c1"># Capas totalmente conectadas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>   <span class="c1"># Primera capa densa</span>
+</pre></div>
+</details></section><section class="cell" data-cell="99" id="celda-100"><h3 id="seccion-41"><strong>24.4.6. Capa Densa (FC2)</strong></h3>
+<ul>
+<li>
+<p><strong>Entrada</strong>: 512 unidades.</p>
+</li>
+<li>
+<p><strong>Salida</strong>: 10 clases.</p>
+</li>
+<li>
+<p>Activación Softmax, <strong>para producir una distribución de probabilidad sobre las clases</strong> (por ejemplo, las 10 categorías de CIFAR-10).</p>
+</li>
+</ul>
+</section><section class="cell" data-cell="100" id="celda-101"><details class="source-code"><summary>Código Python · celda 101</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CNNModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Bloque convolucional 1</span>
+        <span class="c1"># Dos convoluciones consecutivas con 32 filtros y activación ReLU.</span>
+        <span class="c1"># Se aplica MaxPooling para reducir las dimensiones espaciales a la mitad.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (32, 16, 16)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 2</span>
+        <span class="c1"># Incrementa el número de canales a 64, preservando estructura espacial.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 8, 8)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 3</span>
+        <span class="c1"># Mantiene 64 canales pero profundiza la abstracción de características.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 8, 8)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 8, 8)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 4, 4)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Aplanamiento de características convolucionales</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()</span>  <span class="c1"># Convierte (64, 4, 4) → 1024</span>
+
+        <span class="c1"># Capas totalmente conectadas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>   <span class="c1"># Primera capa densa</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>           <span class="c1"># Capa de salida (10 clases)</span>
+</pre></div>
+</details></section><section class="cell" data-cell="101" id="celda-102"><h3 id="seccion-42"><strong>24.4.7. Flujo Completo de Datos</strong></h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Etapa</th>
+<th style="text-align:left">Tipo de Capa</th>
+<th style="text-align:left">Forma de entrada</th>
+<th style="text-align:left">Forma de salida</th>
+<th style="text-align:left">Operación</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">Conv2d(3→32, k=3) + ReLU</td>
+<td style="text-align:left">(3, 32, 32)</td>
+<td style="text-align:left">(32, 32, 32)</td>
+<td style="text-align:left">Extracción local de bordes</td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">Conv2d(32→32, k=3) + ReLU</td>
+<td style="text-align:left">(32, 32, 32)</td>
+<td style="text-align:left">(32, 32, 32)</td>
+<td style="text-align:left">Refinamiento de patrones</td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">MaxPool2d(2×2)</td>
+<td style="text-align:left">(32, 32, 32)</td>
+<td style="text-align:left">(32, 16, 16)</td>
+<td style="text-align:left">Reducción espacial</td>
+</tr>
+<tr>
+<td style="text-align:left">4</td>
+<td style="text-align:left">Conv2d(32→64, k=3) + ReLU</td>
+<td style="text-align:left">(32, 16, 16)</td>
+<td style="text-align:left">(64, 16, 16)</td>
+<td style="text-align:left">Detección de texturas</td>
+</tr>
+<tr>
+<td style="text-align:left">5</td>
+<td style="text-align:left">Conv2d(64→64, k=3) + ReLU</td>
+<td style="text-align:left">(64, 16, 16)</td>
+<td style="text-align:left">(64, 16, 16)</td>
+<td style="text-align:left">Combinación de características</td>
+</tr>
+<tr>
+<td style="text-align:left">6</td>
+<td style="text-align:left">MaxPool2d(2×2)</td>
+<td style="text-align:left">(64, 16, 16)</td>
+<td style="text-align:left">(64, 8, 8)</td>
+<td style="text-align:left">Reducción espacial</td>
+</tr>
+<tr>
+<td style="text-align:left">7</td>
+<td style="text-align:left">Conv2d(64→64, k=3) + ReLU</td>
+<td style="text-align:left">(64, 8, 8)</td>
+<td style="text-align:left">(64, 8, 8)</td>
+<td style="text-align:left">Patrones semánticos</td>
+</tr>
+<tr>
+<td style="text-align:left">8</td>
+<td style="text-align:left">Conv2d(64→64, k=3) + ReLU</td>
+<td style="text-align:left">(64, 8, 8)</td>
+<td style="text-align:left">(64, 8, 8)</td>
+<td style="text-align:left">Mayor abstracción</td>
+</tr>
+<tr>
+<td style="text-align:left">9</td>
+<td style="text-align:left">MaxPool2d(2×2)</td>
+<td style="text-align:left">(64, 8, 8)</td>
+<td style="text-align:left">(64, 4, 4)</td>
+<td style="text-align:left">Compresión final</td>
+</tr>
+<tr>
+<td style="text-align:left">10</td>
+<td style="text-align:left">Flatten</td>
+<td style="text-align:left">(64, 4, 4)</td>
+<td style="text-align:left">(1024,)</td>
+<td style="text-align:left">Vectorización</td>
+</tr>
+<tr>
+<td style="text-align:left">11</td>
+<td style="text-align:left">Linear(1024→512) + ReLU</td>
+<td style="text-align:left">1024</td>
+<td style="text-align:left">512</td>
+<td style="text-align:left">Extracción de rasgos de alto nivel</td>
+</tr>
+<tr>
+<td style="text-align:left">12</td>
+<td style="text-align:left">Linear(512→10) + Softmax</td>
+<td style="text-align:left">512</td>
+<td style="text-align:left">10</td>
+<td style="text-align:left">Clasificación final</td>
+</tr>
+</tbody>
+</table>
+</section><section class="cell" data-cell="102" id="celda-103"><h3 id="seccion-43"><strong>24.4.8. Código Completo</strong></h3>
+</section><section class="cell" data-cell="103" id="celda-104"><details class="source-code"><summary>Código Python · celda 104</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">CNNModel</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    CNNModel: Implementación de una red neuronal convolucional profunda</span>
+<span class="sd">    inspirada en la arquitectura VGG, diseñada para clasificación de imágenes</span>
+<span class="sd">    de entrada 3x32x32 (por ejemplo, CIFAR-10).</span>
+
+<span class="sd">    Estructura general:</span>
+<span class="sd">    -------------------</span>
+<span class="sd">    - Bloque 1: 2x Conv2D(3→32) + ReLU + MaxPooling(2×2)</span>
+<span class="sd">    - Bloque 2: 2x Conv2D(32→64) + ReLU + MaxPooling(2×2)</span>
+<span class="sd">    - Bloque 3: 2x Conv2D(64→64) + ReLU + MaxPooling(2×2)</span>
+<span class="sd">    - Flatten + 2 capas lineales (512 unidades ocultas → 10 clases)</span>
+
+<span class="sd">    Parámetros:</span>
+<span class="sd">    -----------</span>
+<span class="sd">    input_shape : tuple, opcional</span>
+<span class="sd">        Forma del tensor de entrada. Por defecto (3, 32, 32).</span>
+
+<span class="sd">    Ejemplo de uso:</span>
+<span class="sd">    ---------------</span>
+<span class="sd">    &gt;&gt;&gt; model = CNNModel()</span>
+<span class="sd">    &gt;&gt;&gt; x = torch.randn(8, 3, 32, 32)</span>
+<span class="sd">    &gt;&gt;&gt; y = model(x)</span>
+<span class="sd">    &gt;&gt;&gt; print(y.shape)</span>
+<span class="sd">    torch.Size([8, 10])</span>
+<span class="sd">    """</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_shape</span><span class="o">=</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">)):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">CNNModel</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Bloque convolucional 1</span>
+        <span class="c1"># Dos convoluciones consecutivas con 32 filtros y activación ReLU.</span>
+        <span class="c1"># Se aplica MaxPooling para reducir las dimensiones espaciales a la mitad.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span>  <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (32, 32, 32)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (32, 16, 16)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 2</span>
+        <span class="c1"># Incrementa el número de canales a 64, preservando estructura espacial.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 16, 16)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 8, 8)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Bloque convolucional 3</span>
+        <span class="c1"># Mantiene 64 canales pero profundiza la abstracción de características.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 8, 8)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Conv2d</span><span class="p">(</span><span class="n">in_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">out_channels</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">kernel_size</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">padding</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span> <span class="c1"># → (64, 8, 8)</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">MaxPool2d</span><span class="p">(</span><span class="n">kernel_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">stride</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span>                                <span class="c1"># → (64, 4, 4)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Aplanamiento de características convolucionales</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Flatten</span><span class="p">()</span>  <span class="c1"># Convierte (64, 4, 4) → 1024</span>
+
+        <span class="c1"># Capas totalmente conectadas</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span> <span class="o">*</span> <span class="mi">4</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">512</span><span class="p">)</span>   <span class="c1"># Primera capa densa</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">512</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>           <span class="c1"># Capa de salida (10 clases)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Propagación hacia adelante (Forward Pass)</span>
+<span class="sd">        -----------------------------------------</span>
+<span class="sd">        x : torch.Tensor</span>
+<span class="sd">            Tensor de entrada con forma (N, 3, 32, 32)</span>
+<span class="sd">        return : torch.Tensor</span>
+<span class="sd">            Tensor de salida con probabilidades normalizadas (N, 10)</span>
+<span class="sd">        """</span>
+        <span class="c1"># Primer bloque convolucional</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>   <span class="c1"># → (N, 32, 16, 16)</span>
+
+        <span class="c1"># Segundo bloque convolucional</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>   <span class="c1"># → (N, 64, 8, 8)</span>
+
+        <span class="c1"># Tercer bloque convolucional</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">conv3</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>   <span class="c1"># → (N, 64, 4, 4)</span>
+
+        <span class="c1"># Aplanamiento para pasar a las capas densas</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">flatten</span><span class="p">(</span><span class="n">x</span><span class="p">)</span> <span class="c1"># → (N, 1024)</span>
+
+        <span class="c1"># Capa totalmente conectada + activación ReLU</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc1</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">ReLU</span><span class="p">(</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="c1"># Capa de salida + Softmax para clasificación multiclase</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fc2</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+        <span class="n">x</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Softmax</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)(</span><span class="n">x</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">x</span>
+</pre></div>
+</details></section><section class="cell" data-cell="104" id="celda-105"><details class="source-code"><summary>Código Python · celda 105</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">256</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">x</span>
+</pre></div>
+</details><div class="output"><pre>tensor([[[[-0.8627, -2.1573,  1.1629,  0.3980],
+          [ 0.4471,  0.7248,  1.1763, -0.8186],
+          [ 0.0803,  0.0522, -0.0678,  2.1156]],
+
+         [[ 1.5479,  1.7944, -0.9528, -1.1899],
+          [-1.3207,  0.5914,  0.9185,  0.9289],
+          [-0.9177,  0.5031,  1.0738, -0.6584]],
+
+         [[ 1.5079, -2.2578, -1.3137,  1.0548],
+          [-1.2600,  0.4345,  0.2196,  1.7676],
+          [-1.0457, -0.7758,  0.8439, -0.3734]],
+
+         ...,
+
+         [[ 0.4422, -0.5733, -0.9508,  0.4063],
+          [-0.2084, -0.7279,  0.9561,  0.0943],
+          [-1.5484,  0.6079, -0.0704,  1.7218]],
+
+         [[-0.4990,  0.8431, -0.4976,  0.7733],
+          [ 1.0273, -0.9542,  1.1340, -0.2190],
+          [-0.3086,  1.8819,  0.9326,  0.9510]],
+
+         [[ 0.3258,  0.8029, -0.9906,  0.3909],
+          [-1.4126,  0.2737,  0.6272, -1.5685],
+          [ 0.5996, -0.9322, -1.4646,  0.4695]]]])</pre></div></section><section class="cell" data-cell="105" id="celda-106"><h3 id="seccion-44"><strong>24.4.9. Dataset y Dataloaders</strong></h3>
+</section><section class="cell" data-cell="106" id="celda-107"><details class="source-code"><summary>Código Python · celda 107</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Descargar el conjunto de datos CIFAR-10</span>
+<span class="n">train_set</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">CIFAR10</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">())</span>
+<span class="n">test_set</span> <span class="o">=</span> <span class="n">datasets</span><span class="o">.</span><span class="n">CIFAR10</span><span class="p">(</span><span class="n">root</span><span class="o">=</span><span class="s1">'./data'</span><span class="p">,</span> <span class="n">train</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">download</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">transform</span><span class="o">=</span><span class="n">transforms</span><span class="o">.</span><span class="n">ToTensor</span><span class="p">())</span>
+
+<span class="c1"># Definir los cargadores de datos</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">train_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">DataLoader</span><span class="p">(</span><span class="n">test_set</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>100%|██████████| 170M/170M [00:04&lt;00:00, 34.2MB/s]
+</pre></div></section><section class="cell" data-cell="107" id="celda-108"><h3 id="seccion-45"><strong>24.4.10. Definición de Hiperparámetros</strong></h3>
+</section><section class="cell" data-cell="108" id="celda-109"><details class="source-code"><summary>Código Python · celda 109</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">model</span> <span class="o">=</span> <span class="n">CNNModel</span><span class="p">()</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">((</span><span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">32</span><span class="p">,</span> <span class="mi">32</span><span class="p">))</span>
+<span class="n">model</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>tensor([[0.1012, 0.1045, 0.0984, 0.0985, 0.1000, 0.0989, 0.0991, 0.0971, 0.1041,
+         0.0981]], grad_fn=&lt;SoftmaxBackward0&gt;)</pre></div></section><section class="cell" data-cell="109" id="celda-110"><details class="source-code"><summary>Código Python · celda 110</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="n">criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">CrossEntropyLoss</span><span class="p">()</span>
+<span class="n">optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">SGD</span><span class="p">(</span><span class="n">model</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.001</span><span class="p">,</span> <span class="n">momentum</span><span class="o">=</span><span class="mf">0.9</span><span class="p">)</span>
+</pre></div>
+</details></section><section class="cell" data-cell="110" id="celda-111"><h3 id="seccion-46"><strong>24.4.11. Entrenamiento</strong></h3>
+</section><section class="cell" data-cell="111" id="celda-112"><details class="source-code"><summary>Código Python · celda 112</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Entrenamiento de la red neuronal</span>
+<span class="k">for</span> <span class="n">epoch</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">10</span><span class="p">):</span>
+    <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">data</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">train_loader</span><span class="p">,</span> <span class="mi">0</span><span class="p">):</span>
+        <span class="n">inputs</span><span class="p">,</span> <span class="n">labels</span> <span class="o">=</span> <span class="n">data</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+
+        <span class="n">outputs</span> <span class="o">=</span> <span class="n">model</span><span class="p">(</span><span class="n">inputs</span><span class="p">)</span>
+        <span class="n">loss</span> <span class="o">=</span> <span class="n">criterion</span><span class="p">(</span><span class="n">outputs</span><span class="p">,</span> <span class="n">labels</span><span class="p">)</span>
+        <span class="n">loss</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="n">running_loss</span> <span class="o">+=</span> <span class="n">loss</span><span class="o">.</span><span class="n">item</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">i</span> <span class="o">%</span> <span class="mi">100</span> <span class="o">==</span> <span class="mi">99</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">'[</span><span class="si">%d</span><span class="s1">, </span><span class="si">%5d</span><span class="s1">] loss: </span><span class="si">%.3f</span><span class="s1">'</span> <span class="o">%</span> <span class="p">(</span><span class="n">epoch</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span> <span class="n">running_loss</span> <span class="o">/</span> <span class="mi">100</span><span class="p">))</span>
+            <span class="n">running_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+</pre></div>
+</details><div class="output"><pre>[1,   100] loss: 2.303
+[1,   200] loss: 2.303
+[1,   300] loss: 2.303
+[1,   400] loss: 2.303
+[1,   500] loss: 2.303
+[1,   600] loss: 2.303
+[1,   700] loss: 2.303
+[1,   800] loss: 2.303
+[1,   900] loss: 2.303
+</pre><details class="saved-error"><summary>Error registrado en la ejecución original</summary><pre>KeyboardInterrupt: </pre></details></div></section><div class="pager"><a href="clase-05-1-1-redes-convolucionales-teoria-simplificada.html">← 1.1. - Redes Convolucionales Teoría Simplificada</a><a href="clase-05-2-mecanismos-de-atencion.html">2 - Mecanismos de Atención →</a></div><footer><p>© 2026 Jacobo León Juárez. Material docente propio: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Código propio: Apache 2.0. Los materiales de terceros conservan sus autores y condiciones.</p><p><a href="../citar.html">Cómo citar · BibTeX</a> · <a href="https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026/archive/refs/heads/main.zip">Descargar repositorio</a></p><p class="third-party-notice">Los pasajes adaptados de Dive into Deep Learning conservan CC BY-SA 4.0 y su código MIT modificada. <a href="../citar.html">Créditos y condiciones de las fuentes</a></p><p><a href="../revision.html">Revisión técnica y criterios editoriales</a></p></footer></main><script src="../assets/site.js"></script></body></html>
