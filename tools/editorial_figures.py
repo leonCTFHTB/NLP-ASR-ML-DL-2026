@@ -1,4 +1,4 @@
-"""Esquemas vectoriales precisos; conservan las imágenes originales en assets."""
+"""Esquemas vectoriales del material docente vigente."""
 from pathlib import Path
 from html import escape
 import json,textwrap
@@ -79,34 +79,3 @@ def panel(title,cards,foot):
         for j,line in enumerate(lines):out.append(f'<text x="{x+22}" y="{174+j*37}" class="line">{escape(line)}</text>')
     for j,line in enumerate(textwrap.wrap(foot,143)):out.append(f'<text x="38" y="{height-42+j*23}" class="foot">{escape(line)}</text>')
     return ''.join(out)+'</svg>'
-
-def apply_figures():
-    """Sustituye referencias a diagramas ambiguos sin alterar los originales."""
-    out=ROOT/'docs/assets/figures';out.mkdir(exist_ok=True)
-    for key,args in PANELS.items():(out/(key+'.svg')).write_text(panel(*args))
-    patches=json.loads((ROOT/'reports/figure-patches.json').read_text())
-    mapping={Path(x['original']).name:x for x in patches};history=[]
-    for path in (ROOT/'docs/nlp').glob('*.html'):
-        soup=BeautifulSoup(path.read_text(),'html.parser');changed=False
-        for im in soup.find_all('img'):
-            patch=mapping.get(Path(im.get('src','')).name)
-            if not patch:continue
-            old=im['src'];key=Path(patch['replacement']).stem
-            im['data-original-src']=old;im['src']='../assets/figures/'+key+'.svg'
-            im['alt']=PANELS[key][0] if key in PANELS else 'Suma posicional: cambios geométricos sin garantía de pérdida semántica'
-            note=soup.new_tag('p',attrs={'class':'note figure-revision'});note.append('Esquema corregido: '+im['alt']+'. ')
-            a=soup.new_tag('a',href=old);a.string='Ver ilustración recibida';note.append(a);im.insert_after(note)
-            history.append({'page':str(path.relative_to(ROOT)),'original':old,'replacement':im['src'],'reason':patch['reason']});changed=True
-        if changed:path.write_text(str(soup))
-    # Reconstruir el registro completo también en ejecuciones incrementales.
-    history=[]
-    for path in (ROOT/'docs/nlp').glob('*.html'):
-        soup=BeautifulSoup(path.read_text(),'html.parser')
-        for im in soup.select('img[data-original-src]'):
-            patch=mapping.get(Path(im['data-original-src']).name)
-            if patch:
-                history.append({'page':str(path.relative_to(ROOT)),'original':im['data-original-src'],'replacement':im['src'],'reason':patch['reason']})
-    report=ROOT/'reports/auditoria-figuras.json'
-    report.write_text(json.dumps(history,ensure_ascii=False,indent=2))
-    print('Figuras de sustitución:',len(PANELS),'referencias corregidas:',len(history))
-if __name__=='__main__':apply_figures()

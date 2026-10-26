@@ -1,0 +1,21 @@
+{
+  "checks": [
+    "BahdanauAttention: batch 1/2, padding, pesos, gradiente y rechazo de máscara vacía",
+    "LuongAttention: batch 1/2, padding, pesos, gradiente y rechazo de máscara vacía",
+    "LocalAttention: batch 1/2, padding, pesos, gradiente y rechazo de máscara vacía",
+    "HardAttention: batch 1/2, padding, pesos, gradiente y rechazo de máscara vacía",
+    "Atenuación gaussiana: secuencia larga sin normalización nula",
+    "Clasificador unidireccional: invariancia al padding derecho",
+    "DecomposableAttention: máscara y suma de pesos",
+    "IntraAttention: máscara y suma de pesos",
+    "IoU continua y NMS: duplicados, clases, entrada intacta y salida vacía",
+    "Signo y fórmula del gradiente Word2Vec",
+    "RoPE: norma y producto relativo",
+    "Links: umbral en k=1 y límite asintótico",
+    "FFT real: reconstrucción de 512 muestras",
+    "Sintaxis de 395 celdas Python publicadas (magias tratadas como notebook)"
+  ],
+  "passed": 14,
+  "training_executed": false,
+  "datasets_downloaded": false
+}

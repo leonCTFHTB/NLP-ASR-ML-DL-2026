@@ -68,11 +68,11 @@ def run():
             prefix='../' if path.parent.name=='nlp' else ''
             if path.name=='404.html':prefix='/NLP-ASR-ML-DL-2026/'
             if not footer.find('a',href=prefix+'revision.html'):
-                p=soup.new_tag('p');a=soup.new_tag('a',href=prefix+'revision.html');a.string='Revisión técnica y criterios editoriales';p.append(a);footer.append(p)
+                p=soup.new_tag('p');a=soup.new_tag('a',href=prefix+'revision.html');a.string='Bibliografía y criterios del material';p.append(a);footer.append(p)
         path.write_text(str(soup))
     (ASSETS/'search-index.js').write_text('window.BOOK_SEARCH='+json.dumps(search,ensure_ascii=False)+';\n')
     # Una página legible ofrece acceso al informe y a las fuentes.
-    base=BeautifulSoup((DOCS/'index.html').read_text(),'html.parser');base.title.string='Revisión técnica y diseño · Jacobo León Juárez'
+    base=BeautifulSoup((DOCS/'index.html').read_text(),'html.parser');base.title.string='Bibliografía y criterios · Jacobo León Juárez'
     for script in list(base.find_all('script')):
         if 'search' in script.get('src',''):script.decompose()
     base.main.clear();base.main.append(BeautifulSoup(render((ROOT/'reports/REVISION.md').read_text()),'html.parser'))

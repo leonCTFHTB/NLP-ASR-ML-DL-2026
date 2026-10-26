@@ -10,9 +10,9 @@
 </li>
 </ol>
 </section><section class="cell" data-cell="6" id="celda-7"><h1 id="seccion-1"><span class="tone-accent"><strong>6. Mecanismos de Atención y Arquitectura Transformer</strong></span></h1>
-</section><section class="cell" data-cell="7" data-editorial-edits="2cab91ce892d" id="celda-8"><h2 id="seccion-2"><span class="tone-emphasis"><strong>6.8. Decomposable Attention e Intra-Attention: Los Eslabones Perdidos hacia el Transformer</strong></span></h2><p>Antes del Transformer existieron distintas formas de atención y de memoria. Parikh et al. (2016) propusieron un modelo de inferencia textual basado en atender, comparar y agregar, con una variante de intra-atención. Cheng et al. (2016) estudiaron atención sobre memoria durante la recurrencia.</p>
+</section><section class="cell" data-cell="7" id="celda-8"><h2 id="seccion-2"><span class="tone-emphasis"><strong>6.8. Decomposable Attention e Intra-Attention: Los Eslabones Perdidos hacia el Transformer</strong></span></h2><p>Antes del Transformer existieron distintas formas de atención y de memoria. Parikh et al. (2016) propusieron un modelo de inferencia textual basado en atender, comparar y agregar, con una variante de intra-atención. Cheng et al. (2016) estudiaron atención sobre memoria durante la recurrencia.</p>
 <p>Son antecedentes útiles para comparar diseños. No es correcto afirmar que toda atención anterior necesitaba RNN o que antes de esos trabajos no existía ninguna interacción dentro de una secuencia.</p>
-<p class="note editorial-source">Fuente de la revisión: <a href="https://aclanthology.org/D16-1244/">Parikh et al. (2016)</a></p></section><section class="cell" data-cell="8" id="celda-9"><figure><img alt="Ilustración de la sección" height="1234" loading="lazy" src="../assets/aadd8ae62d2dbac19e53096e.webp" width="2262"/></figure></section><section class="cell" data-cell="9" id="celda-10"><blockquote>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1244/">Parikh et al. (2016)</a></p></section><section class="cell" data-cell="8" id="celda-9"><figure><img alt="RNN y LSTM: activaciones, memoria y gradientes" height="435" loading="lazy" src="../assets/figures/rnn-memory.svg" width="1440"/></figure></section><section class="cell" data-cell="9" id="celda-10"><blockquote>
 <p>Para romper estas barreras, surgieron dos propuestas complementarias: <span class="tone-accent"><strong>Decomposable Attention</strong></span> (eliminando la recurrencia para acelerar el entrenamiento) e <span class="tone-accent"><strong>Intra-Attention</strong></span> (introduciendo la auto-atención interna en secuencias).</p>
 </blockquote>
 <pre><code>                      EVOLUCIÓN HACIA LA ATENCIÓN MODERNA
@@ -29,13 +29,8 @@
                        TRANSFORMER (Vaswani et al., 2017)
                        (MHSA: Self-Attention pura + Paralelismo QKV)
 </code></pre>
-</section><section class="cell" data-cell="10" id="celda-11"><h2 id="seccion-3"><span class="tone-emphasis"><strong>6.9. Decomposable Attention (Parikh et al., 2016)</strong></span></h2>
-<p>En el año 2016, la tendencia imperante en el NLP era construir modelos cada vez más profundos y complejos basados en redes recurrentes (LSTMs o GRUs) o convolucionales para procesar secuencias de texto. Si bien estos modelos lograban excelentes resultados, presentaban un grave problema: <span class="tone-emphasis"><strong>eran lentos y muy difíciles de paralelizar</strong></span> debido a su naturaleza secuencial obligatoria.</p>
-<p>En este contexto, Parikh et al. propusieron el modelo <strong>Decomposable Attention</strong> para abordar la tarea de <span class="tone-emphasis"><strong>Inferencia del Lenguaje Natural (NLI - Natural Language Inference)</strong></span>.</p>
-<blockquote>
-<p>Su propuesta consistió en <span class="tone-accent"><strong>resolver NLI utilizando únicamente mecanismos de atención y perceptrones multicapa (MLPs), prescindiendo por completo de capas recurrentes o convolucionales</strong>.</span></p>
-</blockquote>
-</section><section class="cell" data-cell="11" id="celda-12"><h3 id="seccion-4"><span class="tone-accent"><strong>6.9.1. Inferencia de Lenguaje Natural (NLI)</strong></span></h3>
+</section><section class="cell" data-cell="10" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-11"><h2 id="seccion-3"><span class="tone-emphasis"><strong>6.9. Decomposable Attention (Parikh et al., 2016)</strong></span></h2><p>Las RNN tienen una dependencia recurrente entre pasos. Las CNN pueden procesar posiciones en paralelo dentro de una capa; su campo receptivo crece al apilar capas. La atención conecta posiciones mediante scores aprendidos. Son diseños distintos, sin una superioridad universal.</p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="11" id="celda-12"><h3 id="seccion-4"><span class="tone-accent"><strong>6.9.1. Inferencia de Lenguaje Natural (NLI)</strong></span></h3>
 <p>Para entender cómo funciona el modelo, recordemos en qué consiste NLI:
 Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi></mrow></math>)</strong> y una <strong>Hipótesis (<math aria-label="B" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>B</mi></mrow></math>), el modelo debe clasificar su relación lógica en una de tres categorías</strong>:</p>
 <ol>
@@ -73,7 +68,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 </ul>
 </li>
 </ol>
-</section><section class="cell" data-cell="12" id="celda-13"><figure><img alt="Ilustración de la sección" height="1014" loading="lazy" src="../assets/e4527cb769459a5ee86f0fcb.webp" width="1857"/></figure></section><section class="cell" data-cell="13" id="celda-14"><h3 id="seccion-5"><span class="tone-accent"><strong>6.9.2. Arquitectura del Modelo: Tres Pasos hacia la Inferencia</strong></span></h3>
+</section><section class="cell" data-cell="12" id="celda-13"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="13" id="celda-14"><h3 id="seccion-5"><span class="tone-accent"><strong>6.9.2. Arquitectura del Modelo: Tres Pasos hacia la Inferencia</strong></span></h3>
 <p>En lugar de procesar las oraciones como un todo indivisible, <span class="tone-emphasis"><strong>el modelo descompone el problema en tres pasos que se entrenan de manera conjunta: Attending (Atender), Comparing (Comparar) y Aggregating (Agregar)</strong>.</span></p>
 <pre><code>       [ Premisa A ]                          [ Hipótesis B ]
              │                                       │
@@ -104,7 +99,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 <math aria-label="\bar{b}_j = F(b_j) = \text{MLP}(b_j) \in \mathbb{R}^{d'}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover><mrow><mi>b</mi></mrow><mo stretchy="true">¯</mo></mover><mi>j</mi></msub><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>=</mo><mtext>MLP</mtext><mo stretchy="false">(</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false">)</mo><mo>∈</mo><msup><mi>ℝ</mi><mrow><msup><mi>d</mi><mi>′</mi></msup></mrow></msup></mrow></math></p>
 <p>La <span class="tone-emphasis"><strong>matriz de afinidad o energía no normalizada <math aria-label="e_{ij}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></math> entre cada palabra <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> de la premisa y cada palabra <math aria-label="j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>j</mi></mrow></math> de la hipótesis se calcula mediante el producto punto de sus proyecciones</strong>:</span></p>
 <p><math aria-label="e_{ij} = F(a_i)^\top F(b_j)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><msub><mi>a</mi><mi>i</mi></msub><msup><mo stretchy="false">)</mo><mo>⊤</mo></msup><mi>F</mi><mo stretchy="false">(</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></math></p>
-</section><section class="cell" data-cell="17" id="celda-18"><figure><img alt="Ilustración de la sección" height="1234" loading="lazy" src="../assets/1d3951cf60b874147a2f2def.webp" width="2250"/></figure></section><section class="cell" data-cell="18" id="celda-19"><h5 id="seccion-7"><span class="tone-accent"><strong>1. La Matriz de Afinidad / Energía (<math aria-label="e_{ij}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></math>)</strong></span></h5>
+</section><section class="cell" data-cell="17" id="celda-18"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="18" id="celda-19"><h5 id="seccion-7"><span class="tone-accent"><strong>1. La Matriz de Afinidad / Energía (<math aria-label="e_{ij}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub></mrow></math>)</strong></span></h5>
 <p>Antes de alinear, <span class="tone-emphasis"> <strong>el modelo calcula qué tanta relación semántica tiene cada palabra <math aria-label="a_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow></math> de la premisa con cada palabra <math aria-label="b_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>b</mi><mi>j</mi></msub></mrow></math> de la hipótesis</strong>:</span></p>
 <p><math aria-label="e_{ij} = f(a_i)^\top f(b_j)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mi>f</mi><mo stretchy="false">(</mo><msub><mi>a</mi><mi>i</mi></msub><msup><mo stretchy="false">)</mo><mo>⊤</mo></msup><mi>f</mi><mo stretchy="false">(</mo><msub><mi>b</mi><mi>j</mi></msub><mo stretchy="false">)</mo></mrow></math></p>
 <ul>
@@ -116,7 +111,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 </li>
 </ul>
 </section><section class="cell" data-cell="19" id="celda-20"><figure><img alt="Ilustración de la sección" height="1168" loading="lazy" src="../assets/15dd273ca489b45f2ff6c677.webp" width="2217"/></figure></section><section class="cell" data-cell="20" id="celda-21"><h5 id="seccion-8"><span class="tone-accent"><strong>2. Desglose de las Dos Direcciones</strong></span></h5>
-</section><section class="cell" data-cell="21" id="celda-22"><figure><img alt="Softmax: un ejemplo numérico verificable" data-original-src="../assets/64804fe47a96ba18e90bb450.webp" height="398" loading="lazy" src="../assets/figures/softmax-numeric.svg" width="1440"/><p class="note figure-revision">Esquema corregido: Softmax: un ejemplo numérico verificable. <a href="../assets/64804fe47a96ba18e90bb450.webp">Ver ilustración recibida</a></p></figure></section><section class="cell" data-cell="22" id="celda-23"><p>A partir de esta <span class="tone-emphasis"><strong>matriz de correlación completa de tamaño <math aria-label="m \times n" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi><mo>×</mo><mi>n</mi></mrow></math>, se calculan dos alineaciones suaves bidireccionales mediante la función Softmax</strong>:</span></p>
+</section><section class="cell" data-cell="21" id="celda-22"><figure><img alt="Softmax: un ejemplo numérico verificable" height="398" loading="lazy" src="../assets/figures/softmax-numeric.svg" width="1440"/></figure></section><section class="cell" data-cell="22" id="celda-23"><p>A partir de esta <span class="tone-emphasis"><strong>matriz de correlación completa de tamaño <math aria-label="m \times n" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi><mo>×</mo><mi>n</mi></mrow></math>, se calculan dos alineaciones suaves bidireccionales mediante la función Softmax</strong>:</span></p>
 <p><span class="tone-context"><strong>1. Premisa hacia Hipótesis (<math aria-label="\beta_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mi>i</mi></msub></mrow></math>): El "doble" de <math aria-label="a_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow></math> en la Hipótesis</strong></span></p>
 <ul>
 <li>
@@ -151,7 +146,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 </ol>
 <p><span class="tone-emphasis"> <strong>Lo mismo ocurre en la dirección inversa para <math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math>:</strong></span></p>
 <p><math aria-label="\alpha_j = \sum_{i=1}^m \underbrace{\text{softmax}_i(e_{ij})}_{\text{Número (Escalar)}} \cdot \underbrace{\mathbf{a}_i}_{\text{Vector } \in \mathbb{R}^d} \quad \Longrightarrow \quad \alpha_j \in \mathbb{R}^d" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><munder><munder><mrow><msub><mtext>softmax</mtext><mi>i</mi></msub><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false">)</mo></mrow><mo>⏟</mo></munder><mrow><mtext>Número (Escalar)</mtext></mrow></munder><mo>·</mo><munder><munder><mrow><msub><mi>𝐚</mi><mi>i</mi></msub></mrow><mo>⏟</mo></munder><mrow><mtext>Vector </mtext><mo>∈</mo><msup><mi>ℝ</mi><mi>d</mi></msup></mrow></munder><mspace width="1em"></mspace><mi>⟹</mi><mspace width="1em"></mspace><msub><mi>α</mi><mi>j</mi></msub><mo>∈</mo><msup><mi>ℝ</mi><mi>d</mi></msup></mrow></math></p>
-</section><section class="cell" data-cell="23" id="celda-24"><figure><img alt="Ilustración de la sección" height="1107" loading="lazy" src="../assets/ba398306dcffad8b6b8e6ec6.webp" width="2188"/></figure></section><section class="cell" data-cell="24" id="celda-25"><p><span class="tone-context"><strong>2. Hipótesis hacia Premisa (<math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math>): El "doble" de <math aria-label="b_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>b</mi><mi>j</mi></msub></mrow></math> en la Premisa</strong>&lt;&gt;/font</span></p>
+</section><section class="cell" data-cell="23" id="celda-24"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="24" id="celda-25"><p><span class="tone-context"><strong>2. Hipótesis hacia Premisa (<math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math>): El "doble" de <math aria-label="b_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>b</mi><mi>j</mi></msub></mrow></math> en la Premisa</strong>&lt;&gt;/font</span></p>
 <ul>
 <li>
 <p><span class="tone-context"><strong>Objetivo:</strong></span> Para la palabra <math aria-label="b_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>b</mi><mi>j</mi></msub></mrow></math> de la hipótesis, <span class="tone-emphasis"><strong>armar un vector <math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math> con el contexto equivalente dentro de la premisa.</strong></span></p>
@@ -166,36 +161,10 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
     \end{align}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><msub><mi>α</mi><mi>j</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>i</mi><mo>=</mo><mn>1</mn></mrow><mi>m</mi></munderover><msub><mtext>softmax</mtext><mi>i</mi></msub><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo stretchy="false">)</mo><msub><mi>a</mi><mi>i</mi></msub></mrow></mrow></math></p>
 </li>
 </ul>
-</section><section class="cell" data-cell="25" id="celda-26"><figure><img alt="Ilustración de la sección" height="1092" loading="lazy" src="../assets/66c6ffef351c4f75ffc061cd.webp" width="2194"/></figure></section><section class="cell" data-cell="26" id="celda-27"><h5 id="seccion-9"><span class="tone-accent"><strong>3. Ejemplo Intuitivo</strong></span></h5>
-<ul>
-<li>
-<p><strong>Premisa (<math aria-label="A" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi></mrow></math>):</strong> <em>"Un perro marrón corre en el césped"</em> (<math aria-label="m=6" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi><mo>=</mo><mn>6</mn></mrow></math>)</p>
-</li>
-<li>
-<p><strong>Hipótesis (<math aria-label="B" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>B</mi></mrow></math>):</strong> <em>"El can duerme en el pasto"</em> (<math aria-label="n=6" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi><mo>=</mo><mn>6</mn></mrow></math>)</p>
-</li>
-</ul>
-<p>Al <span class="tone-emphasis"><strong>calcular <math aria-label="\beta_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mi>i</mi></msub></mrow></math> para la palabra <math aria-label="a_2 =" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mn>2</mn></msub><mo>=</mo></mrow></math> "perro"</strong>:</span></p>
-<ol>
-<li>
-<p>El modelo <span class="tone-emphasis"><strong>evalúa la afinidad de "perro" con cada palabra de <math aria-label="B" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>B</mi></mrow></math>: ["El", "can", "duerme", "en", "el", "pasto"].</strong></span></p>
-</li>
-<li>
-<p>Tras la <math aria-label="\text{Softmax}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Softmax</mtext></mrow></math>, <span class="tone-emphasis"><strong>"can" obtendrá un peso alto</strong></span> (ej. <math aria-label="0.90" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.90</mn></mrow></math>) <strong>y las demás casi <math aria-label="0.0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.0</mn></mrow></math>.</strong></p>
-</li>
-<li>
-<p>El vector resultante <span class="tone-emphasis"><strong><math aria-label="\beta_{\text{perro}} \approx 0.90 \cdot \vec{b}_{\text{can}} + 0.02 \cdot \vec{b}_{\text{pasto}} + \dots" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mrow><mtext>perro</mtext></mrow></msub><mo>≈</mo><mn>0.90</mn><mo>·</mo><msub><mover><mrow><mi>b</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>can</mtext></mrow></msub><mo>+</mo><mn>0.02</mn><mo>·</mo><msub><mover><mrow><mi>b</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>pasto</mtext></mrow></msub><mo>+</mo><mo>…</mo></mrow></math></strong></span></p>
-</li>
-<li>
-<p><strong>Interpretación:</strong> <span class="tone-emphasis"><strong><math aria-label="\beta_{\text{perro}}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mrow><mtext>perro</mtext></mrow></msub></mrow></math> es una representación vectorial tomada de la hipótesis que describe semánticamente lo que la premisa llamó "perro".</strong></span></p>
-</li>
-</ol>
-<blockquote>
-<p>Posteriormente, <span class="tone-accent"><strong>el modelo compara cada palabra real con su versión alineada</strong> (ej. <strong>comparar <math aria-label="a_{\text{perro}}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mrow><mtext>perro</mtext></mrow></msub></mrow></math> contra <math aria-label="\beta_{\text{perro}}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mrow><mtext>perro</mtext></mrow></msub></mrow></math>) para decidir si hay implicación, contradicción o neutralidad.</strong></span></p>
-</blockquote>
-</section><section class="cell" data-cell="27" id="celda-28"><figure><img alt="Ilustración de la sección" height="1198" loading="lazy" src="../assets/a9b5b517a11fd01246fe1585.webp" width="2200"/></figure></section><section class="cell" data-cell="28" id="celda-29"><hr/>
+</section><section class="cell" data-cell="25" id="celda-26"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="26" data-reviewed-source="https://aclanthology.org/D16-1244/" id="celda-27"><h5 id="seccion-9"><span class="tone-accent"><strong>3. Ejemplo Intuitivo</strong></span></h5><p>Ejemplo hipotético: la premisa «Un perro marrón corre en el césped» contiene siete tokens si se separa por espacios. La hipótesis y la premisa se alinean mediante softmax por fila; los pesos deben sumar uno sobre posiciones válidas. Un número ilustrativo no es una medición del modelo.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1244/">Parikh et al. · Decomposable attention</a></p></section><section class="cell" data-cell="27" id="celda-28"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="28" id="celda-29"><hr/>
 <h4 id="seccion-10"><span class="tone-emphasis"><strong>6.9.2.2. Fase 2: Comparing (Comparación Local No Lineal)</strong></span></h4>
-</section><section class="cell" data-cell="29" id="celda-30"><figure><img alt="Ilustración de la sección" height="1207" loading="lazy" src="../assets/1603cbf2d704ef451b724100.webp" width="2208"/></figure></section><section class="cell" data-cell="30" id="celda-31"><p>Una vez obtenidas las representaciones alineadas (<math aria-label="\beta_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mi>i</mi></msub></mrow></math> y <math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math>), <span class="tone-emphasis"><strong>se comparan localmente los vectores originales con sus pares alineados correspondientes concatenándolos y procesándolos a través de otra red Feed-Forward <math aria-label="G" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>G</mi></mrow></math></strong>:</span></p>
+</section><section class="cell" data-cell="29" id="celda-30"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="30" id="celda-31"><p>Una vez obtenidas las representaciones alineadas (<math aria-label="\beta_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mi>i</mi></msub></mrow></math> y <math aria-label="\alpha_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mi>j</mi></msub></mrow></math>), <span class="tone-emphasis"><strong>se comparan localmente los vectores originales con sus pares alineados correspondientes concatenándolos y procesándolos a través de otra red Feed-Forward <math aria-label="G" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>G</mi></mrow></math></strong>:</span></p>
 <p><math aria-label="\begin{align}
     v_{1, i} = G([a_i; \beta_i]) \quad \forall i \in \{1, \dots, m\}\\
     v_{2, j} = G([b_j; \alpha_j]) \quad \forall j \in \{1, \dots, n\}
@@ -204,7 +173,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 <ul>
 <li><math aria-label="[a_i; \beta_i] \in \mathbb{R}^{2d}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mi>i</mi></msub><mi>;</mi><msub><mi>β</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>∈</mo><msup><mi>ℝ</mi><mrow><mn>2</mn><mi>d</mi></mrow></msup></mrow></math> es la <span class="tone-emphasis"><strong>concatenación de la palabra original y su vector de alineación semántica.</strong></span></li>
 </ul>
-</section><section class="cell" data-cell="31" id="celda-32"><figure><img alt="Ilustración de la sección" height="1156" loading="lazy" src="../assets/85828eafa81dde42d411a96a.webp" width="2058"/></figure></section><section class="cell" data-cell="32" id="celda-33"><ul>
+</section><section class="cell" data-cell="31" id="celda-32"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="32" id="celda-33"><ul>
 <li>
 <p><math aria-label="G" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>G</mi></mrow></math> es un <span class="tone-emphasis"><strong>perceptrón multicapa con capas lineales y activaciones ReLU que mapea la comparación a un vector latente</strong></span> <math aria-label="v_{1, i}, v_{2, j} \in \mathbb{R}^{d_g}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mrow><mn>1</mn><mo>,</mo><mi>i</mi></mrow></msub><mo>,</mo><msub><mi>v</mi><mrow><mn>2</mn><mo>,</mo><mi>j</mi></mrow></msub><mo>∈</mo><msup><mi>ℝ</mi><mrow><msub><mi>d</mi><mi>g</mi></msub></mrow></msup></mrow></math>:</p>
 <ul>
@@ -217,7 +186,7 @@ Dadas dos sentencias de texto, una <strong>Premisa (<math aria-label="A" display
 </ul>
 </li>
 </ul>
-</section><section class="cell" data-cell="33" id="celda-34"><figure><img alt="ReLU: una no linealidad elemento a elemento" data-original-src="../assets/e83264cccbe3171a9064ce78.webp" height="435" loading="lazy" src="../assets/figures/relu-exact.svg" width="1440"/><p class="note figure-revision">Esquema corregido: ReLU: una no linealidad elemento a elemento. <a href="../assets/e83264cccbe3171a9064ce78.webp">Ver ilustración recibida</a></p></figure></section><section class="cell" data-cell="34" id="celda-35"><ul>
+</section><section class="cell" data-cell="33" id="celda-34"><figure><img alt="ReLU: una no linealidad elemento a elemento" height="435" loading="lazy" src="../assets/figures/relu-exact.svg" width="1440"/></figure></section><section class="cell" data-cell="34" id="celda-35"><ul>
 <li>Al no existir conexiones temporales recurrentes entre <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> e <math aria-label="i+1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi><mo>+</mo><mn>1</mn></mrow></math>, <span class="tone-emphasis"><strong>todas las comparaciones <math aria-label="v_{1, i}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mrow><mn>1</mn><mo>,</mo><mi>i</mi></mrow></msub></mrow></math> y <math aria-label="v_{2, j}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mrow><mn>2</mn><mo>,</mo><mi>j</mi></mrow></msub></mrow></math> se ejecutan en paralelo en la GPU</strong>.</span></li>
 </ul>
 </section><section class="cell" data-cell="35" id="celda-36"><h5 id="seccion-11"><span class="tone-accent"><strong>1. Ejemplo Intuitivo</strong></span></h5>
@@ -245,58 +214,10 @@ En la fase previa (<em>Attending</em>), <span class="tone-emphasis"><strong>cada
 </li>
 </ul>
 <hr/>
-</section><section class="cell" data-cell="36" id="celda-37"><p><span class="tone-context"><strong>2. La Comparación Local Token a Token (<math aria-label="g([a_i \,;\, \beta_i])" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>g</mi><mo stretchy="false">(</mo><mo stretchy="false">[</mo><msub><mi>a</mi><mi>i</mi></msub><mspace width="0.167em"></mspace><mi>;</mi><mspace width="0.167em"></mspace><msub><mi>β</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo stretchy="false">)</mo></mrow></math>)</strong></span>
-La red neuronal <math aria-label="g" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>g</mi></mrow></math> <span class="tone-emphasis"><strong>toma cada par en paralelo e independiente, colocándolos cara a cara:</strong></span></p>
-<table>
-<thead>
-<tr>
-<th style="text-align:left">Token Original (<math aria-label="a_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>a</mi><mi>i</mi></msub></mrow></math>)</th>
-<th style="text-align:left">Contexto Recibido (<math aria-label="\beta_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>β</mi><mi>i</mi></msub></mrow></math>)</th>
-<th style="text-align:left">Vector Concatenado <math aria-label="[a_i \,;\, \beta_i]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><msub><mi>a</mi><mi>i</mi></msub><mspace width="0.167em"></mspace><mi>;</mi><mspace width="0.167em"></mspace><msub><mi>β</mi><mi>i</mi></msub><mo stretchy="false">]</mo></mrow></math></th>
-<th style="text-align:left">Veredicto Interno de la Red <math aria-label="g" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>g</mi></mrow></math> (<math aria-label="v_{1, i}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mrow><mn>1</mn><mo>,</mo><mi>i</mi></mrow></msub></mrow></math>)</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left"><code>"perro"</code></td>
-<td style="text-align:left"><math aria-label="\approx" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>≈</mo></mrow></math> <code>"can"</code></td>
-<td style="text-align:left"><math aria-label="[\vec{a}_{\text{perro}} \,;\, \vec{b}_{\text{can}}]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><msub><mover><mrow><mi>a</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>perro</mtext></mrow></msub><mspace width="0.167em"></mspace><mi>;</mi><mspace width="0.167em"></mspace><msub><mover><mrow><mi>b</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>can</mtext></mrow></msub><mo stretchy="false">]</mo></mrow></math></td>
-<td style="text-align:left"><strong>Equivalencia / Soporte:</strong> Reconoce que ambos términos refieren a la misma entidad. Emite un vector de alta compatibilidad lógica.</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>"duerme"</code></td>
-<td style="text-align:left"><math aria-label="\approx" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>≈</mo></mrow></math> <code>"corre"</code></td>
-<td style="text-align:left"><math aria-label="[\vec{a}_{\text{duerme}} \,;\, \vec{b}_{\text{corre}}]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><msub><mover><mrow><mi>a</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>duerme</mtext></mrow></msub><mspace width="0.167em"></mspace><mi>;</mi><mspace width="0.167em"></mspace><msub><mover><mrow><mi>b</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>corre</mtext></mrow></msub><mo stretchy="false">]</mo></mrow></math></td>
-<td style="text-align:left"><strong>Contradicción Léxica:</strong> La función no lineal (<math aria-label="\text{ReLU}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ReLU</mtext></mrow></math>) activa una señal de conflicto; detecta acciones físicas incompatibles simultáneamente.</td>
-</tr>
-<tr>
-<td style="text-align:left"><code>"jardín"</code></td>
-<td style="text-align:left"><math aria-label="\approx" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>≈</mo></mrow></math> <code>"jardín"</code></td>
-<td style="text-align:left"><math aria-label="[\vec{a}_{\text{jardín}} \,;\, \vec{b}_{\text{jardín}}]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><msub><mover><mrow><mi>a</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>jardín</mtext></mrow></msub><mspace width="0.167em"></mspace><mi>;</mi><mspace width="0.167em"></mspace><msub><mover><mrow><mi>b</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>jardín</mtext></mrow></msub><mo stretchy="false">]</mo></mrow></math></td>
-<td style="text-align:left"><strong>Identidad Total:</strong> Coincidencia exacta de ubicación.</td>
-</tr>
-</tbody>
-</table>
-</section><section class="cell" data-cell="37" id="celda-38"><hr/>
-<p><span class="tone-context"><strong>3. Por qué la No Linealidad es Clave en el Ejemplo</strong></span>
-Si el modelo usara una resta matemática simple:</p>
-<p><math aria-label="\vec{a}_{\text{duerme}} - \vec{b}_{\text{corre}} \neq 0" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover><mrow><mi>a</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>duerme</mtext></mrow></msub><mo>−</mo><msub><mover><mrow><mi>b</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>corre</mtext></mrow></msub><mo>≠</mo><mn>0</mn></mrow></math></p>
-<blockquote>
-<p>El sistema <span class="tone-accent"><strong>solo sabría que los dos vectores tienen coordenadas diferentes</strong></span> (al igual que <em>"perro"</em> y <em>"árbol"</em> son diferentes).</p>
-</blockquote>
-<p>La red profunda <math aria-label="g" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>g</mi></mrow></math>, <span class="tone-emphasis"><strong>al combinar multiplicativamente los embeddings mediante sus pesos entrenados, puede clasificar que la diferencia entre "duerme" y "corre" representa un antagonismo lógico</strong></span>, transformando esa discrepancia en un vector <span class="tone-emphasis"><math aria-label="v_{\text{duerme}}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mrow><mtext>duerme</mtext></mrow></msub></mrow></math> cargado con la señal de <strong>contradicción</strong>.</span></p>
-</section><section class="cell" data-cell="38" id="celda-39"><hr/>
-<p><span class="tone-context"><strong>4. Por qué es "Local"</strong></span>
-Cuando el modelo evalúa <math aria-label="[\vec{a}_{\text{duerme}} \,;\, \vec{b}_{\text{corre}}]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><msub><mover><mrow><mi>a</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>duerme</mtext></mrow></msub><mspace width="0.167em"></mspace><mi>;</mi><mspace width="0.167em"></mspace><msub><mover><mrow><mi>b</mi></mrow><mo stretchy="true">→</mo></mover><mrow><mtext>corre</mtext></mrow></msub><mo stretchy="false">]</mo></mrow></math>, <strong>no le importa si el sujeto es un perro, una persona o un gato:</strong></p>
-<ul>
-<li>
-<p>Se <span class="tone-emphasis"><strong>concentra de forma microscópica y exclusiva en juzgar si la acción <em>dormir</em> es compatible con la acción <em>correr</em> que le entregó la otra oración.</strong></span></p>
-</li>
-<li>
-<p>La <span class="tone-emphasis"><strong>integración global de todas estas pistas locales ocurrirá recién en la Fase 3 de agregación.</strong></span></p>
-</li>
-</ul>
-</section><section class="cell" data-cell="39" id="celda-40"><p>En la Fase 2 (Comparing), <span class="tone-emphasis"> <strong>el modelo concatena la palabra original cara a cara con su contraparte alineada:</strong></span></p>
+</section><section class="cell" data-cell="36" data-reviewed-source="https://aclanthology.org/D16-1244/" id="celda-37"><p>La etapa Compare aplica una red aprendida a la concatenación de cada token y su alineación suave. ReLU introduce una no linealidad; no tiene detectores lógicos predefinidos ni demuestra contradicción por sí sola. Aggregate suma las representaciones de comparación y un clasificador aprende la decisión a partir de ejemplos etiquetados.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1244/">Parikh et al. · Decomposable attention</a></p></section><section class="cell" data-cell="37" data-reviewed-source="https://aclanthology.org/D16-1244/" id="celda-38"><p>La etapa Compare aplica una red aprendida a la concatenación de cada token y su alineación suave. ReLU introduce una no linealidad; no tiene detectores lógicos predefinidos ni demuestra contradicción por sí sola. Aggregate suma las representaciones de comparación y un clasificador aprende la decisión a partir de ejemplos etiquetados.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1244/">Parikh et al. · Decomposable attention</a></p></section><section class="cell" data-cell="38" data-reviewed-source="https://aclanthology.org/D16-1244/" id="celda-39"><p>La etapa Compare aplica una red aprendida a la concatenación de cada token y su alineación suave. ReLU introduce una no linealidad; no tiene detectores lógicos predefinidos ni demuestra contradicción por sí sola. Aggregate suma las representaciones de comparación y un clasificador aprende la decisión a partir de ejemplos etiquetados.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1244/">Parikh et al. · Decomposable attention</a></p></section><section class="cell" data-cell="39" id="celda-40"><p>En la Fase 2 (Comparing), <span class="tone-emphasis"> <strong>el modelo concatena la palabra original cara a cara con su contraparte alineada:</strong></span></p>
 <p><math aria-label="x_{1, i} = [\mathbf{a}_i \,;\, \beta_i] \in \mathbb{R}^{2d}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>x</mi><mrow><mn>1</mn><mo>,</mo><mi>i</mi></mrow></msub><mo>=</mo><mo stretchy="false">[</mo><msub><mi>𝐚</mi><mi>i</mi></msub><mspace width="0.167em"></mspace><mi>;</mi><mspace width="0.167em"></mspace><msub><mi>β</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>∈</mo><msup><mi>ℝ</mi><mrow><mn>2</mn><mi>d</mi></mrow></msup></mrow></math></p>
 <ul>
 <li>
@@ -315,49 +236,25 @@ Cuando el modelo evalúa <math aria-label="[\vec{a}_{\text{duerme}} \,;\, \vec{b
 <math aria-label="v_2 = \sum_{j=1}^n v_{2, j} \in \mathbb{R}^{d_g}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>v</mi><mn>2</mn></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mi>n</mi></munderover><msub><mi>v</mi><mrow><mn>2</mn><mo>,</mo><mi>j</mi></mrow></msub><mo>∈</mo><msup><mi>ℝ</mi><mrow><msub><mi>d</mi><mi>g</mi></msub></mrow></msup></mrow></math></p>
 </section><section class="cell" data-cell="41" id="celda-42"><p>Finalmente, <span class="tone-emphasis"><strong>se concatenan ambos vectores consolidados <math aria-label="[v_1; v_2] \in \mathbb{R}^{2d_g}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><msub><mi>v</mi><mn>1</mn></msub><mi>;</mi><msub><mi>v</mi><mn>2</mn></msub><mo stretchy="false">]</mo><mo>∈</mo><msup><mi>ℝ</mi><mrow><mn>2</mn><msub><mi>d</mi><mi>g</mi></msub></mrow></msup></mrow></math> y se alimentan a un clasificador final <math aria-label="H" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>H</mi></mrow></math> con Softmax para generar las probabilidades de las clases</strong>:</span></p>
 <p><math aria-label="\hat{y} = \text{softmax}(H([v_1; v_2]))" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover accent="true"><mrow><mi>y</mi></mrow><mo>^</mo></mover><mo>=</mo><mtext>softmax</mtext><mo stretchy="false">(</mo><mi>H</mi><mo stretchy="false">(</mo><mo stretchy="false">[</mo><msub><mi>v</mi><mn>1</mn></msub><mi>;</mi><msub><mi>v</mi><mn>2</mn></msub><mo stretchy="false">]</mo><mo stretchy="false">)</mo><mo stretchy="false">)</mo></mrow></math></p>
-</section><section class="cell" data-cell="42" id="celda-43"><figure><img alt="Ilustración de la sección" height="1233" loading="lazy" src="../assets/e6812540457f42b68a7982b6.webp" width="2236"/></figure></section><section class="cell" data-cell="43" id="celda-44"><h2 id="seccion-13"><span class="tone-emphasis"><strong>6.10. Auto-Alineación e Intra-Attention (Cheng et al., 2016)</strong></span></h2>
-<p>En paralelo, Jianpeng Cheng et al. (2016) publicaron <em>"Long Short-Term Memory-Networks for Machine Reading"</em> (LSTMN), introduciendo el concepto formal de <strong>Intra-Attention</strong> o <strong>Self-Attention Primitiva</strong>.</p>
-</section><section class="cell" data-cell="44" id="celda-45"><figure><img alt="Ilustración de la sección" height="1219" loading="lazy" src="../assets/29bc9db77ea6f0b47cba236c.webp" width="2274"/></figure></section><section class="cell" data-cell="45" id="celda-46"><figure><img alt="Intra-atención: distinguir arquitecturas" data-original-src="../assets/ab3c919195256631b9d7d436.webp" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/><p class="note figure-revision">Esquema corregido: Intra-atención: distinguir arquitecturas. <a href="../assets/ab3c919195256631b9d7d436.webp">Ver ilustración recibida</a></p></figure></section><section class="cell" data-cell="46" id="celda-47"><h3 id="seccion-14"><span class="tone-accent"><strong>6.10.1. La Falencia de la Memoria Tradicional en LSTMs</strong></span></h3>
-<p>En una LSTM convencional, <span class="tone-emphasis"><strong>la actualización del estado oculto en el tiempo <math aria-label="t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math> depende exclusivamente del estado inmediatamente anterior (<math aria-label="h_{t-1}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></math>) y la entrada actual (<math aria-label="x_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>x</mi><mi>t</mi></msub></mrow></math>):</strong></span></p>
-<p><math aria-label="h_t = \text{LSTM}(x_t, h_{t-1})" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><mtext>LSTM</mtext><mo stretchy="false">(</mo><msub><mi>x</mi><mi>t</mi></msub><mo>,</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></math></p>
-<p><span class="tone-emphasis"><strong>A medida que la oración crece, el vector <math aria-label="h_{t-1}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></math> comprime recursivamente toda la historia previa.</strong></span></p>
-<ul>
-<li><span class="tone-emphasis"><strong>Si en la palabra <math aria-label="t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math> aparece un pronombre</strong></span> (ej. <em>"ella"</em> o <em>"su"</em>), la LSTM a menudo <span class="tone-emphasis"><strong>carece de la resolución semántica necesaria para vincular ese pronombre con su sujeto original situado 15 palabras atrás.</strong></span></li>
-</ul>
-<pre><code>  LSTM ESTÁNDAR:
-  x_1 ──► [LSTM] ──► x_2 ──► [LSTM] ──► ... ──► x_t ──► [LSTM]
-             │                  │                          │
-            h_1                h_2                        h_t (Memoria comprimida)
-  
-  LSTMN CON INTRA-ATTENTION (Cheng et al., 2016):
-  x_t ─────────────────────────────────────────────────────────────┐
-                                                                   ▼
-  Memoria Histórica: [ h_1,  h_2,  h_3,  ...,  h_{t-1} ] ──► [ INTRA-ATTENTION ] ──► r_t (Contexto Interno)
-                                                                   │
-                                                                   ▼
-                                                       h_t = LSTM(x_t, h_{t-1}, r_t)
-</code></pre>
-</section><section class="cell" data-cell="47" id="celda-48"><h3 id="seccion-15"><span class="tone-accent"><strong>6.10.2. Formulación Matemática de Intra-Attention</strong></span></h3>
+</section><section class="cell" data-cell="42" id="celda-43"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="43" data-reviewed-source="https://aclanthology.org/D16-1053/" id="celda-44"><h2 id="seccion-13"><span class="tone-emphasis"><strong>6.10. Auto-Alineación e Intra-Attention (Cheng et al., 2016)</strong></span></h2><p>Cheng et al. (2016) desarrollaron LSTMN, con memoria de estados y atención dentro de la secuencia. Es una contribución temprana a la atención interna, distinta de la self-attention sin recurrencia del Transformer. No debe atribuirse a un único artículo la invención de toda forma de autoatención.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1053/">Cheng et al. · LSTMN</a></p></section><section class="cell" data-cell="44" id="celda-45"><figure><img alt="Atención descomponible: Attend → Compare → Aggregate" height="435" loading="lazy" src="../assets/figures/decomposable.svg" width="1440"/></figure></section><section class="cell" data-cell="45" id="celda-46"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/></figure></section><section class="cell" data-cell="46" data-reviewed-source="https://www.bioinf.jku.at/publications/older/2604.pdf" id="celda-47"><h3 id="seccion-14"><span class="tone-accent"><strong>6.10.1. La Falencia de la Memoria Tradicional en LSTMs</strong></span></h3><p>Una LSTM mantiene estado oculto h y estado de celda c. Sus compuertas controlan actualizaciones y pueden favorecer dependencias largas; no existe una cantidad fija de palabras que siempre recuerde ni una garantía de gradientes estables en cualquier entrenamiento.</p>
+<p class="note source-reference">Referencia: <a href="https://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter y Schmidhuber · LSTM</a></p></section><section class="cell" data-cell="47" id="celda-48"><h3 id="seccion-15"><span class="tone-accent"><strong>6.10.2. Formulación Matemática de Intra-Attention</strong></span></h3>
 <p>El modelo LSTMN <span class="tone-emphasis"><strong>reemplaza la memoria interna fija</strong></span> por una <span class="tone-emphasis"><strong>memoria externa dinámica que crece con el tiempo</strong></span>. Al llegar al paso <math aria-label="t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>t</mi></mrow></math>, <span class="tone-emphasis"><strong>la red mantiene almacenada la secuencia de todos los estados ocultos y celdas de memoria pasados:</strong></span></p>
 <p><math aria-label="H_{t-1} = [h_1, h_2, \dots, h_{t-1}]" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>H</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>=</mo><mo stretchy="false">[</mo><msub><mi>h</mi><mn>1</mn></msub><mo>,</mo><msub><mi>h</mi><mn>2</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">]</mo></mrow></math>
 <math aria-label="C_{t-1} = [c_1, c_2, \dots, c_{t-1}]" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>C</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>=</mo><mo stretchy="false">[</mo><msub><mi>c</mi><mn>1</mn></msub><mo>,</mo><msub><mi>c</mi><mn>2</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>c</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">]</mo></mrow></math></p>
 <p>Para calcular el nuevo estado <math aria-label="h_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>t</mi></msub></mrow></math>, <span class="tone-emphasis"><strong>la red consulta activamente toda su historia pasada calculando una puntuación de afinidad interna</strong></span> (<em>intra-sequence score</em>):</p>
-</section><section class="cell" data-cell="48" id="celda-49"><figure><img alt="Ilustración de la sección" height="1233" loading="lazy" src="../assets/1c509a3b983ae0e05c058c27.webp" width="2287"/></figure></section><section class="cell" data-cell="49" id="celda-50"><ol>
-<li><span class="tone-context"><strong>Puntuación de Intra-Alineación (<math aria-label="e_{t, k}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub></mrow></math>):</strong></span>
-Relaciona la <span class="tone-emphasis"><strong>entrada actual <math aria-label="x_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>x</mi><mi>t</mi></msub></mrow></math></strong></span> y el <span class="tone-emphasis"><strong>estado previo <math aria-label="h_{t-1}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></math></strong></span> con cada <span class="tone-emphasis"><strong>estado histórico <math aria-label="h_k" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>k</mi></msub></mrow></math></strong></span> (para <math aria-label="k &lt; t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>k</mi><mo>&lt;</mo><mi>t</mi></mrow></math>):
-<math aria-label="e_{t, k} = v^\top \tanh(W_h h_k + W_x x_t + W_s h_{t-1})" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>=</mo><msup><mi>v</mi><mo>⊤</mo></msup><mi>tanh</mi><mo stretchy="false">(</mo><msub><mi>W</mi><mi>h</mi></msub><msub><mi>h</mi><mi>k</mi></msub><mo>+</mo><msub><mi>W</mi><mi>x</mi></msub><msub><mi>x</mi><mi>t</mi></msub><mo>+</mo><msub><mi>W</mi><mi>s</mi></msub><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></math></li>
-</ol>
-</section><section class="cell" data-cell="50" id="celda-51"><figure><img alt="Ilustración de la sección" height="1254" loading="lazy" src="../assets/c8960e5a81879974f2334064.webp" width="2262"/></figure></section><section class="cell" data-cell="51" id="celda-52"><ol start="2">
+</section><section class="cell" data-cell="48" id="celda-49"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/></figure></section><section class="cell" data-cell="49" data-reviewed-source="https://aclanthology.org/D16-1053/" id="celda-50"><p>El ejemplo es una simplificación didáctica de atención sobre estados pasados, no una reproducción exacta de LSTMN. En Cheng et al. las lecturas ponderadas de memorias ocultas y de celda intervienen en la actualización recurrente; hay que consultar las ecuaciones del artículo para reproducir esa arquitectura.</p>
+<p class="note source-reference">Referencia: <a href="https://aclanthology.org/D16-1053/">Cheng et al. · LSTMN</a></p></section><section class="cell" data-cell="50" id="celda-51"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/></figure></section><section class="cell" data-cell="51" id="celda-52"><ol start="2">
 <li><span class="tone-context"><strong>Pesos de Auto-Atención (<math aria-label="\alpha_{t, k}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub></mrow></math>):</strong></span>
 Se <span class="tone-emphasis"><strong>normaliza sobre todos los pasos de tiempo previos</strong></span> mediante Softmax:
 <math aria-label="\alpha_{t, k} = \frac{\exp(e_{t, k})}{\sum_{j=1}^{t-1} \exp(e_{t, j})}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub><mo>=</mo><mfrac><mrow><mi>exp</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub><mo stretchy="false">)</mo></mrow><mrow><msubsup><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msubsup><mi>exp</mi><mo stretchy="false">(</mo><msub><mi>e</mi><mrow><mi>t</mi><mo>,</mo><mi>j</mi></mrow></msub><mo stretchy="false">)</mo></mrow></mfrac></mrow></math></li>
 </ol>
-</section><section class="cell" data-cell="52" id="celda-53"><figure><img alt="Ilustración de la sección" height="1039" loading="lazy" src="../assets/0c21594765b1fbb90cefe76f.webp" width="1858"/></figure></section><section class="cell" data-cell="53" id="celda-54"><ol start="3">
+</section><section class="cell" data-cell="52" id="celda-53"><figure><img alt="Softmax: un ejemplo numérico verificable" height="398" loading="lazy" src="../assets/figures/softmax-numeric.svg" width="1440"/></figure></section><section class="cell" data-cell="53" id="celda-54"><ol start="3">
 <li><span class="tone-context"><strong>Vector de Memoria Contextual Interna (<math aria-label="r_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>r</mi><mi>t</mi></msub></mrow></math>):</strong></span>
 Se calcula la <span class="tone-emphasis"><strong>suma ponderada de los estados pasados</strong>:</span>
 <math aria-label="r_t = \sum_{k=1}^{t-1} \alpha_{t, k} h_k" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>r</mi><mi>t</mi></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></munderover><msub><mi>α</mi><mrow><mi>t</mi><mo>,</mo><mi>k</mi></mrow></msub><msub><mi>h</mi><mi>k</mi></msub></mrow></math></li>
 </ol>
-</section><section class="cell" data-cell="54" id="celda-55"><figure><img alt="Atención: mezcla ponderada de contenido" data-original-src="../assets/301c8b9a264a1e4a02f05ec6.webp" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/><p class="note figure-revision">Esquema corregido: Atención: mezcla ponderada de contenido. <a href="../assets/301c8b9a264a1e4a02f05ec6.webp">Ver ilustración recibida</a></p></figure></section><section class="cell" data-cell="55" id="celda-56"><ol start="4">
+</section><section class="cell" data-cell="54" id="celda-55"><figure><img alt="Atención: mezcla ponderada de contenido" height="435" loading="lazy" src="../assets/figures/weighted-sum.svg" width="1440"/></figure></section><section class="cell" data-cell="55" id="celda-56"><ol start="4">
 <li><span class="tone-context"><strong>Actualización de la Celda Recurrente:</strong></span>
 Las <span class="tone-emphasis"><strong>compuertas de la LSTM (entrada <math aria-label="i_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>i</mi><mi>t</mi></msub></mrow></math>, olvido <math aria-label="f_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>f</mi><mi>t</mi></msub></mrow></math>, salida <math aria-label="o_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>o</mi><mi>t</mi></msub></mrow></math>) se calculan ahora condicionadas simultáneamente en <math aria-label="x_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>x</mi><mi>t</mi></msub></mrow></math>, <math aria-label="h_{t-1}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></math> y el vector de intra-atención <math aria-label="r_t" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>r</mi><mi>t</mi></msub></mrow></math>:</strong></span>
 <math aria-label="i_t = \sigma(W_{xi} x_t + W_{hi} h_{t-1} + W_{ri} r_t + b_i)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>i</mi><mi>t</mi></msub><mo>=</mo><mi>σ</mi><mo stretchy="false">(</mo><msub><mi>W</mi><mrow><mi>x</mi><mi>i</mi></mrow></msub><msub><mi>x</mi><mi>t</mi></msub><mo>+</mo><msub><mi>W</mi><mrow><mi>h</mi><mi>i</mi></mrow></msub><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>W</mi><mrow><mi>r</mi><mi>i</mi></mrow></msub><msub><mi>r</mi><mi>t</mi></msub><mo>+</mo><msub><mi>b</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></math>
@@ -366,10 +263,10 @@ Las <span class="tone-emphasis"><strong>compuertas de la LSTM (entrada <math ari
 <math aria-label="o_t = \sigma(W_{xo} x_t + W_{ho} h_{t-1} + W_{ro} r_t + b_o)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>o</mi><mi>t</mi></msub><mo>=</mo><mi>σ</mi><mo stretchy="false">(</mo><msub><mi>W</mi><mrow><mi>x</mi><mi>o</mi></mrow></msub><msub><mi>x</mi><mi>t</mi></msub><mo>+</mo><msub><mi>W</mi><mrow><mi>h</mi><mi>o</mi></mrow></msub><msub><mi>h</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><msub><mi>W</mi><mrow><mi>r</mi><mi>o</mi></mrow></msub><msub><mi>r</mi><mi>t</mi></msub><mo>+</mo><msub><mi>b</mi><mi>o</mi></msub><mo stretchy="false">)</mo></mrow></math>
 <math aria-label="h_t = o_t \odot \tanh(c_t)" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mi>t</mi></msub><mo>=</mo><msub><mi>o</mi><mi>t</mi></msub><mo>⊙</mo><mi>tanh</mi><mo stretchy="false">(</mo><msub><mi>c</mi><mi>t</mi></msub><mo stretchy="false">)</mo></mrow></math></li>
 </ol>
-</section><section class="cell" data-cell="56" id="celda-57"><figure><img alt="Ilustración de la sección" height="1057" loading="lazy" src="../assets/07247ed3242b0361c853490c.webp" width="1918"/></figure></section><section class="cell" data-cell="57" id="celda-58"><h2 id="seccion-16"><span class="tone-emphasis"><strong>6.11. Implementación con PyTorch</strong></span></h2>
+</section><section class="cell" data-cell="56" id="celda-57"><figure><img alt="Intra-atención: distinguir arquitecturas" height="435" loading="lazy" src="../assets/figures/intra-history.svg" width="1440"/></figure></section><section class="cell" data-cell="57" id="celda-58"><h2 id="seccion-16"><span class="tone-emphasis"><strong>6.11. Implementación con PyTorch</strong></span></h2>
 </section><section class="cell" data-cell="58" id="celda-59"><h3 id="seccion-17"><span class="tone-emphasis"><strong>Celda 1: Importación de librerías y configuración</strong></span></h3>
 <p>Configura el entorno de trabajo, define la semilla de reproducibilidad y selecciona el dispositivo de cómputo (CPU o GPU).</p>
-</section><section class="cell" data-cell="59" id="celda-60"><details class="source-code"><summary>Código Python · celda 60</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">fasttext</span><span class="o">-</span><span class="n">wheel</span>
+</section><section class="cell" data-cell="59" id="celda-60"><details class="source-code"><summary>Código Python · celda 60</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">fasttext</span><span class="o">-</span><span class="n">wheel</span>
 </pre></div>
 </details><div class="output"><pre>[?25l     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m0.0/71.4 kB[0m [31m?[0m eta [36m-:--:--[0m
 [2K     [90m━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━[0m [32m71.4/71.4 kB[0m [31m2.7 MB/s[0m eta [36m0:00:00[0m
@@ -377,7 +274,7 @@ Las <span class="tone-emphasis"><strong>compuertas de la LSTM (entrada <math ari
   Getting requirements to build wheel ... [?25l[?25hdone
   Preparing metadata (pyproject.toml) ... [?25l[?25hdone
   Building wheel for fasttext-wheel (pyproject.toml) ... [?25l[?25hdone
-</pre></div></section><section class="cell" data-cell="60" id="celda-61"><details class="source-code"><summary>Código Python · celda 61</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
+</pre></div></section><section class="cell" data-cell="60" id="celda-61"><details class="source-code"><summary>Código Python · celda 61</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="kn">import</span><span class="w"> </span><span class="nn">re</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">fasttext</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
@@ -404,7 +301,7 @@ Las <span class="tone-emphasis"><strong>compuertas de la LSTM (entrada <math ari
 <blockquote>
 <p><span class="tone-accent"><strong>fasttext.train_unsupervised compila el diccionario de palabras y la tabla hash de subpalabras</strong></span> (<math aria-label="n" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math>-gramas de caracteres definidos entre <code>minn</code> y <code>maxn</code>). <span class="tone-accent"><strong>Cualquier palabra desconocida que consulte get_word_vector() construirá su vector sumando los vectores de sus subfragmentos.</strong></span></p>
 </blockquote>
-</section><section class="cell" data-cell="62" id="celda-63"><details class="source-code"><summary>Código Python · celda 63</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Dataset de entrenamiento clasificado por idioma</span>
+</section><section class="cell" data-cell="62" id="celda-63"><details class="source-code"><summary>Código Python · celda 63</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="c1"># Dataset de entrenamiento clasificado por idioma</span>
 <span class="n">corpus_data</span> <span class="o">=</span> <span class="p">{</span>
     <span class="s2">"Spanish"</span><span class="p">:</span> <span class="p">[</span>
         <span class="s2">"hola como estas mi querido amigo"</span><span class="p">,</span>
@@ -475,7 +372,7 @@ Forma del vector generado para 'amiguito' (OOV): (32,)
 <blockquote>
 <p><span class="tone-accent"><strong>Tokeniza las oraciones y extrae directamente los vectores densos calculados por el motor de <code>FastText</code>, aplicando <code>zero-padding</code> para homogeneizar la longitud temporal de las secuencias.</strong></span></p>
 </blockquote>
-</section><section class="cell" data-cell="64" id="celda-65"><details class="source-code"><summary>Código Python · celda 65</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">def</span><span class="w"> </span><span class="nf">simple_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
+</section><section class="cell" data-cell="64" id="celda-65"><details class="source-code"><summary>Código Python · celda 65</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="k">def</span><span class="w"> </span><span class="nf">simple_tokenize</span><span class="p">(</span><span class="n">text</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""</span>
 <span class="sd">    Limpia y divide una cadena de texto en una lista de palabras en minúsculas.</span>
 
@@ -566,7 +463,7 @@ Forma del vector generado para 'amiguito' (OOV): (32,)
 </details><div class="output"><pre>Dimensiones de entrada por oración: torch.Size([8, 32]) (pasos temporales, dimensión FastText)
 Etiqueta de clase: 0 -&gt; Spanish
 </pre></div></section><section class="cell" data-cell="65" id="celda-66"><h3 id="seccion-20"><span class="tone-emphasis"><strong>Celda 4.1.: Módulos de Atención Decomposable</strong></span></h3>
-</section><section class="cell" data-cell="66" id="celda-67"><details class="source-code"><summary>Código Python · celda 67</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">DecomposableAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</section><section class="cell" data-cell="66" id="celda-67"><details class="source-code"><summary>Código Python · celda 67</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">DecomposableAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Mecanismo de Atención Descomponible (Parikh et al., 2016).</span>
 
 <span class="sd">    Aplica las fases de Alineación Blanda (Attending) y Comparación Local No Lineal</span>
@@ -635,7 +532,10 @@ Etiqueta de clase: 0 -&gt; Spanish
         <span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># (batch_size, seq_len)</span>
 
         <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1e9</span><span class="p">)</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">keys</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">keys</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Cada secuencia debe tener al menos una clave válida"</span><span class="p">)</span>
+            <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="o">~</span><span class="n">mask</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"-inf"</span><span class="p">))</span>
 
         <span class="n">attention_weights</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (batch_size, seq_len)</span>
 
@@ -837,8 +737,8 @@ query [B, D_q] ─────────────────────�
 
 </code></pre>
 </section><section class="cell" data-cell="75" id="celda-76"><h3 id="seccion-28"><span class="tone-emphasis"><strong>Celda 4.2.: Módulos de Atención Intra-Attention</strong></span></h3>
-</section><section class="cell" data-cell="76" id="celda-77"><details class="source-code"><summary>Código Python · celda 77</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">IntraAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">"""Mecanismo de Intra-Attention / Auto-Alineación Interna (Cheng et al., 2016).</span>
+</section><section class="cell" data-cell="76" id="celda-77"><details class="source-code"><summary>Código Python · celda 77</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">IntraAttention</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Autoatención bilineal didáctica; no reproduce la recurrencia LSTMN.</span>
 
 <span class="sd">    Calcula una matriz de auto-relación semántica cruzada entre todos los tokens de la</span>
 <span class="sd">    misma secuencia, enriqueciendo cada estado con el contexto interno de sus palabras vecinas.</span>
@@ -896,12 +796,17 @@ query [B, D_q] ─────────────────────�
 
         <span class="c1"># Enmascarar posiciones de padding en la matriz 2D (batch_size, seq_len, seq_len)</span>
         <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">intra_mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="n">mask</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-            <span class="n">intra_scores</span> <span class="o">=</span> <span class="n">intra_scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">intra_mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1e9</span><span class="p">)</span>
+            <span class="n">valid</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">keys</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">valid</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">keys</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">valid</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Cada secuencia debe tener al menos una clave válida"</span><span class="p">)</span>
+            <span class="n">intra_scores</span> <span class="o">=</span> <span class="n">intra_scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="o">~</span><span class="n">valid</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">,</span> <span class="p">:],</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"-inf"</span><span class="p">))</span>
 
         <span class="n">intra_weights</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span>
             <span class="n">intra_scores</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span>
         <span class="p">)</span>  <span class="c1"># (batch_size, seq_len, seq_len)</span>
+
+        <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">intra_weights</span> <span class="o">=</span> <span class="n">intra_weights</span> <span class="o">*</span> <span class="n">valid</span><span class="p">[:,</span> <span class="p">:,</span> <span class="kc">None</span><span class="p">]</span>
 
         <span class="c1"># 2. Estados ocultos enriquecidos por auto-contexto: k_tilde_i = sum_j (A_{ij} * k_j)</span>
         <span class="n">enriched_keys</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span>
@@ -915,7 +820,10 @@ query [B, D_q] ─────────────────────�
         <span class="p">)</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>  <span class="c1"># (batch_size, seq_len)</span>
 
         <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="ow">not</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="n">mask</span> <span class="o">==</span> <span class="mi">0</span><span class="p">,</span> <span class="o">-</span><span class="mf">1e9</span><span class="p">)</span>
+            <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">keys</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">mask</span><span class="o">.</span><span class="n">shape</span> <span class="o">!=</span> <span class="n">keys</span><span class="o">.</span><span class="n">shape</span><span class="p">[:</span><span class="mi">2</span><span class="p">]</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">mask</span><span class="o">.</span><span class="n">any</span><span class="p">(</span><span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">():</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Cada secuencia debe tener al menos una clave válida"</span><span class="p">)</span>
+            <span class="n">scores</span> <span class="o">=</span> <span class="n">scores</span><span class="o">.</span><span class="n">masked_fill</span><span class="p">(</span><span class="o">~</span><span class="n">mask</span><span class="p">,</span> <span class="nb">float</span><span class="p">(</span><span class="s2">"-inf"</span><span class="p">))</span>
 
         <span class="n">attention_weights</span> <span class="o">=</span> <span class="n">F</span><span class="o">.</span><span class="n">softmax</span><span class="p">(</span><span class="n">scores</span><span class="p">,</span> <span class="n">dim</span><span class="o">=-</span><span class="mi">1</span><span class="p">)</span>  <span class="c1"># (batch_size, seq_len)</span>
 
@@ -1129,7 +1037,7 @@ query [B, D_q] ───────────────► [ self.w_query ]
 
 </code></pre>
 </section><section class="cell" data-cell="86" id="celda-87"><h3 id="seccion-37"><span class="tone-emphasis"><strong>Celda 4.3.: Módulo de Atención</strong></span></h3>
-</section><section class="cell" data-cell="87" id="celda-88"><details class="source-code"><summary>Código Python · celda 88</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="k">class</span><span class="w"> </span><span class="nc">AttentionLSTMClassifier</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+</section><section class="cell" data-cell="87" id="celda-88"><details class="source-code"><summary>Código Python · celda 88</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="k">class</span><span class="w"> </span><span class="nc">AttentionLSTMClassifier</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">"""Clasificador recurrente con soporte modular para 2 familias de atención:</span>
 <span class="sd">    - 'decomposable' (Attending + Comparing con MLPs)</span>
 <span class="sd">    - 'intra' (Auto-atención intra-secuencia)</span>
@@ -1140,7 +1048,7 @@ query [B, D_q] ───────────────► [ self.w_query ]
         <span class="n">input_size</span><span class="p">,</span>
         <span class="n">hidden_size</span><span class="p">,</span>
         <span class="n">output_size</span><span class="p">,</span>
-        <span class="n">attention_type</span><span class="o">=</span><span class="s2">"bahdanau"</span><span class="p">,</span>
+        <span class="n">attention_type</span><span class="o">=</span><span class="s2">"decomposable"</span><span class="p">,</span>
         <span class="n">attention_dim</span><span class="o">=</span><span class="mi">32</span><span class="p">,</span>
         <span class="n">window_size</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
     <span class="p">):</span>
@@ -1165,7 +1073,16 @@ query [B, D_q] ───────────────► [ self.w_query ]
 
     <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">x</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
         <span class="n">lstm_out</span><span class="p">,</span> <span class="p">(</span><span class="n">h_n</span><span class="p">,</span> <span class="n">_</span><span class="p">)</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">lstm</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
-        <span class="n">last_hidden</span> <span class="o">=</span> <span class="n">h_n</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="c1"># LSTM unidireccional con padding a la derecha: consultar el último token válido.</span>
+        <span class="k">if</span> <span class="n">mask</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">last_hidden</span> <span class="o">=</span> <span class="n">h_n</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">valid</span> <span class="o">=</span> <span class="n">mask</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">bool</span><span class="p">)</span>
+            <span class="n">lengths</span> <span class="o">=</span> <span class="n">valid</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+            <span class="n">expected</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">)[</span><span class="kc">None</span><span class="p">,</span> <span class="p">:]</span> <span class="o">&lt;</span> <span class="n">lengths</span><span class="p">[:,</span> <span class="kc">None</span><span class="p">]</span>
+            <span class="k">if</span> <span class="ow">not</span> <span class="n">lengths</span><span class="o">.</span><span class="n">gt</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span><span class="o">.</span><span class="n">all</span><span class="p">()</span> <span class="ow">or</span> <span class="ow">not</span> <span class="n">torch</span><span class="o">.</span><span class="n">equal</span><span class="p">(</span><span class="n">valid</span><span class="p">,</span> <span class="n">expected</span><span class="p">):</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Se requiere padding a la derecha y secuencias no vacías"</span><span class="p">)</span>
+            <span class="n">last_hidden</span> <span class="o">=</span> <span class="n">lstm_out</span><span class="p">[</span><span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">),</span> <span class="n">device</span><span class="o">=</span><span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">),</span> <span class="n">lengths</span> <span class="o">-</span> <span class="mi">1</span><span class="p">]</span>
 
         <span class="n">context_vector</span><span class="p">,</span> <span class="n">attention_weights</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">attention</span><span class="p">(</span>
             <span class="n">last_hidden</span><span class="p">,</span> <span class="n">lstm_out</span><span class="p">,</span> <span class="n">mask</span><span class="o">=</span><span class="n">mask</span>
@@ -1179,11 +1096,10 @@ query [B, D_q] ───────────────► [ self.w_query ]
         <span class="k">return</span> <span class="n">logits</span><span class="p">,</span> <span class="n">attention_weights</span>
 
 
-<span class="nb">print</span><span class="p">(</span><span class="s2">"Módulos de Atención (Bahdanau, Luong, Local, Hard, Decomposable e Intra) definidos con éxito."</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Módulos Decomposable e Intra definidos."</span><span class="p">)</span>
 </pre></div>
-</details><div class="output"><pre>Módulos de Atención (Bahdanau, Luong, Local, Hard, Decomposable e Intra) definidos con éxito.
-</pre></div></section><section class="cell" data-cell="88" id="celda-89"><h3 id="seccion-38"><span class="tone-emphasis"><strong>Celda 5: Entrenamiento de las 2 Variantes de Atención</strong></span></h3>
-</section><section class="cell" data-cell="89" id="celda-90"><details class="source-code"><summary>Código Python · celda 90</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+</details></section><section class="cell" data-cell="88" id="celda-89"><h3 id="seccion-38"><span class="tone-emphasis"><strong>Celda 5: Entrenamiento de las 2 Variantes de Atención</strong></span></h3>
+</section><section class="cell" data-cell="89" id="celda-90"><details class="source-code"><summary>Código Python · celda 90</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="c1"># ==============================================================================</span>
 <span class="c1"># CELDA 5: Entrenamiento Comparativo (Decomposable Attention vs Intra-Attention)</span>
 <span class="c1"># ==============================================================================</span>
 
@@ -1327,8 +1243,8 @@ query [B, D_q] ───────────────► [ self.w_query ]
 
 ✓ [Decomposable (MLP F+G)      ] | Pérdida Final: 0.0002 | Parámetros: 15875
 ✓ [Intra-Attention (Self-Attn) ] | Pérdida Final: 0.0003 | Parámetros: 12675
-</pre><img alt="Gráfico guardado del notebook" height="390" loading="lazy" src="../assets/95ffbfe331f3a4665d7b957f.webp" width="889"/></div></section><section class="cell" data-cell="90" id="celda-91"><h3 id="seccion-39"><span class="tone-emphasis"><strong>Celda 6: Inferencia Comparativa</strong></span></h3>
-</section><section class="cell" data-cell="91" id="celda-92"><details class="source-code"><summary>Código Python · celda 92</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+</pre><img alt="Ejemplo sintético de pesos de atención" height="276" loading="lazy" src="../assets/figures/attention-weights.svg" width="737"/></div></section><section class="cell" data-cell="90" id="celda-91"><h3 id="seccion-39"><span class="tone-emphasis"><strong>Celda 6: Inferencia Comparativa</strong></span></h3>
+</section><section class="cell" data-cell="91" id="celda-92"><details class="source-code"><summary>Código Python · celda 92</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="c1"># ==============================================================================</span>
 <span class="c1"># CELDA 6: Inferencia y Visualización Comparativa (Decomposable vs Intra-Attention)</span>
 <span class="c1"># ==============================================================================</span>
 
@@ -1625,126 +1541,26 @@ query [B, D_q] ───────────────► [ self.w_query ]
         <span class="n">ft_model</span><span class="p">,</span>
     <span class="p">)</span>
 </pre></div>
-</details><div class="output"><img alt="Gráfico guardado del notebook" height="974" loading="lazy" src="../assets/e8ef5487cb2e7fa5b4b84082.webp" width="1090"/><pre>
+</details><div class="output"><img alt="Ejemplo sintético de pesos de atención" height="276" loading="lazy" src="../assets/figures/attention-weights.svg" width="737"/><pre>
 --- Comparativa Token a Token y Confianza ---
-</pre><img alt="Gráfico guardado del notebook" height="390" loading="lazy" src="../assets/fef9da3c46986b9b3aa2025b.webp" width="1289"/><pre>
+</pre><img alt="Ejemplo sintético de pesos de atención" height="276" loading="lazy" src="../assets/figures/attention-weights.svg" width="737"/><pre>
 --- Matriz Interna 2D de Auto-Alineación (Intra-Attention) ---
-</pre><img alt="Gráfico guardado del notebook" height="489" loading="lazy" src="../assets/c3d796306c6250f8201a6a4b.webp" width="576"/></div></section><section class="cell" data-cell="92" id="celda-93"><h4 id="seccion-40"><span class="tone-emphasis"><strong>Interpretación de los Resultados - Caso 1 (Decomposable Attention)</strong></span></h4>
-</section><section class="cell" data-cell="93" id="celda-94"><figure><img alt="Ilustración de la sección" height="1285" loading="lazy" src="../assets/64f830034a9fc3f8e7f27f17.webp" width="742"/></figure></section><section class="cell" data-cell="94" id="celda-95"><ul>
-<li>
-<p><span class="tone-context"><strong>Decomposable Attention (MLP F+G): Foco Tipo Delta de Dirac (Colapso Atencional)</strong></span></p>
-<ul>
-<li>
-<p><span class="tone-context"><strong>Comportamiento visual:</strong></span> La atención <span class="tone-emphasis"> <strong>asigna prácticamente el <math aria-label="100\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>100</mn><mi>%</mi></mrow></math> del peso a un único token por oración</strong></span> (<code>'el'</code> con <math aria-label="1.00" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1.00</mn></mrow></math>, <code>'the'</code> con <math aria-label="0.99" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.99</mn></mrow></math> y <code>'ein'</code> con <math aria-label="1.00" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1.00</mn></mrow></math>), <strong>anulando por completo las palabras restantes (<math aria-label="0.00" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.00</mn></mrow></math>).</strong></p>
-</li>
-<li>
-<p><span class="tone-context"><strong>Causa arquitectónica:</strong></span> La fase <em>Attending</em> <strong>proyecta tanto la consulta <math aria-label="q" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>q</mi></mrow></math> como las claves <math aria-label="k_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>k</mi><mi>i</mi></msub></mrow></math> a través de la red profunda no lineal <math aria-label="F(\cdot)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>F</mi><mo stretchy="false">(</mo><mo>·</mo><mo stretchy="false">)</mo></mrow></math> con capas <math aria-label="\text{ReLU}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>ReLU</mtext></mrow></math>.</strong></p>
-<ul>
-<li>
-<p>Esta capacidad paramétrica adicional, <strong>al entrenarse sobre un corpus reducido de 24 oraciones, genera distancias vectoriales muy dispares antes de la Softmax</strong>.</p>
-</li>
-<li>
-<p>Las energías <math aria-label="e_i = F(q)^\top F(k_i)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>e</mi><mi>i</mi></msub><mo>=</mo><mi>F</mi><mo stretchy="false">(</mo><mi>q</mi><msup><mo stretchy="false">)</mo><mo>⊤</mo></msup><mi>F</mi><mo stretchy="false">(</mo><msub><mi>k</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></math> <span class="tone-emphasis"> <strong>crecen en magnitud, saturando la Softmax en una distribución <em>winner-takes-all</em> sobre determinantes y artículos.</strong></span></p>
-</li>
+</pre><img alt="Ejemplo sintético de pesos de atención" height="276" loading="lazy" src="../assets/figures/attention-weights.svg" width="737"/></div></section><section class="cell" data-cell="92" id="celda-93"><h4 id="seccion-40"><span class="tone-emphasis"><strong>Interpretación de los Resultados - Caso 1 (Decomposable Attention)</strong></span></h4>
+</section><section class="cell" data-cell="93" id="celda-94"><figure><img alt="Ilustración de la sección" height="1285" loading="lazy" src="../assets/64f830034a9fc3f8e7f27f17.webp" width="742"/></figure></section><section class="cell" data-cell="94" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-95"><p>El mapa muestra pesos del ejemplo, no una prueba de que el modelo haya aprendido una regla lingüística. Para interpretarlo hay que conocer los datos, las máscaras, el modo de evaluación y el entrenamiento. La atención por sí sola no identifica causas de la predicción.</p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="95" id="celda-96"><h4 id="seccion-41"><span class="tone-emphasis"><strong>Interpretación de los Resultados - Caso 2 (Intra-Attention)</strong></span></h4>
+</section><section class="cell" data-cell="96" id="celda-97"><figure><img alt="Ejemplo sintético de pesos de atención" height="276" loading="lazy" src="../assets/figures/attention-weights.svg" width="737"/></figure></section><section class="cell" data-cell="97" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-98"><p>El mapa muestra pesos del ejemplo, no una prueba de que el modelo haya aprendido una regla lingüística. Para interpretarlo hay que conocer los datos, las máscaras, el modo de evaluación y el entrenamiento. La atención por sí sola no identifica causas de la predicción.</p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="98" id="celda-99"><h4 id="seccion-42"><span class="tone-emphasis"><strong>Interpretación de la Matriz Auto-Atención</strong></span></h4>
+</section><section class="cell" data-cell="99" id="celda-100"><figure><img alt="Ilustración de la sección" height="723" loading="lazy" src="../assets/1a0e3e3a2631259f87d1f0df.webp" width="867"/></figure></section><section class="cell" data-cell="100" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-101"><p>En evaluación, el softmax suma uno por consulta sobre claves válidas. El dropout puede alterar las sumas durante entrenamiento. Los pesos tampoco miden una proporción literal de información: importan los valores, sus normas y las transformaciones posteriores.</p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="101" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-102"><p>El mapa muestra pesos del ejemplo, no una prueba de que el modelo haya aprendido una regla lingüística. Para interpretarlo hay que conocer los datos, las máscaras, el modo de evaluación y el entrenamiento. La atención por sí sola no identifica causas de la predicción.</p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" id="bibliografia-del-tema"><h2>Bibliografía del tema</h2><ul>
+<li><a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></li>
+<li><a href="https://arxiv.org/abs/1409.0473">Bahdanau et al. · Alineación aprendida</a></li>
+<li><a href="https://aclanthology.org/D15-1166/">Luong et al. · Atención global y local</a></li>
+<li><a href="https://proceedings.mlr.press/v37/xuc15.html">Xu et al. · Show, Attend and Tell</a></li>
+<li><a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html">PyTorch · Gumbel-softmax</a></li>
+<li><a href="https://www.bioinf.jku.at/publications/older/2604.pdf">Hochreiter y Schmidhuber · LSTM</a></li>
+<li><a href="https://aclanthology.org/D16-1244/">Parikh et al. · Decomposable attention</a></li>
+<li><a href="https://aclanthology.org/D16-1053/">Cheng et al. · LSTMN</a></li>
+<li><a href="https://arxiv.org/abs/1410.5401">Graves et al. · Neural Turing Machines</a></li>
 </ul>
-</li>
-<li>
-<p><span class="tone-context"><strong>Impacto en la predicción:</strong></span> En la segunda oración (<code>a very sunny...</code>), <span class="tone-emphasis"> <strong>el modelo se ancló exclusivamente en <code>'the'</code>, prediciendo <em>German</em> (<math aria-label="54.0\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>54.0</mn><mi>%</mi></mrow></math>) debido a que los <math aria-label="n" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math>-gramas de subpalabras compartían proyecciones intermedias con artículos alemanes</strong></span> (<code>der</code>, <code>die</code>) en el clasificador.</p>
-</li>
-</ul>
-</li>
-</ul>
-</section><section class="cell" data-cell="95" id="celda-96"><h4 id="seccion-41"><span class="tone-emphasis"><strong>Interpretación de los Resultados - Caso 2 (Intra-Attention)</strong></span></h4>
-</section><section class="cell" data-cell="96" id="celda-97"><figure><img alt="Ilustración de la sección" height="1290" loading="lazy" src="../assets/7a8dcd10ae10dc998a08a424.webp" width="760"/></figure></section><section class="cell" data-cell="97" id="celda-98"><ul>
-<li>
-<p><span class="tone-context"><strong>Intra-Attention (Self-Attn): Distribución Homogénea y Difusa</strong></span></p>
-<ul>
-<li>
-<p><span class="tone-context"><strong>Comportamiento visual:</strong></span> Los <strong>pesos se reparten de manera suave y equilibrada entre todos los tokens</strong> (valores entre <math aria-label="7\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>7</mn><mi>%</mi></mrow></math> y <math aria-label="27\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>27</mn><mi>%</mi></mrow></math>), presentando un <span class="tone-emphasis"><strong>leve incremento hacia las posiciones intermedias y finales</strong></span> (<code>'afternoon'</code> con <math aria-label="19.4\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>19.4</mn><mi>%</mi></mrow></math>, <code>'nachmittag'</code> con <math aria-label="27.3\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>27.3</mn><mi>%</mi></mrow></math>).</p>
-</li>
-<li>
-<p><span class="tone-context"><strong>Causa arquitectónica:</strong></span> Antes de evaluar la consulta global, <span class="tone-emphasis"><strong>la capa ejecuta la matriz de auto-afinidad interna bidimensional (<math aria-label="T \times T" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>T</mi><mo>×</mo><mi>T</mi></mrow></math>).</strong> </span></p>
-<ul>
-<li>
-<p><strong>Cada estado <math aria-label="k_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>k</mi><mi>i</mi></msub></mrow></math> se reemplaza por <math aria-label="\tilde{k}_i = \sum_j A_{ij} k_j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover><mrow><mi>k</mi></mrow><mo stretchy="false">~</mo></mover><mi>i</mi></msub><mo>=</mo><msub><mo>∑</mo><mi>j</mi></msub><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><msub><mi>k</mi><mi>j</mi></msub></mrow></math>,</strong> absorbiendo un promedio ponderado de toda la oración.</p>
-</li>
-<li>
-<p>Como todos los vectores resultantes <math aria-label="\tilde{k}_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover><mrow><mi>k</mi></mrow><mo stretchy="false">~</mo></mover><mi>i</mi></msub></mrow></math> comparten información de sus palabras vecinas, <span class="tone-emphasis"><strong>sus representaciones se homogeneizan, provocando que la alineación final con <math aria-label="W_q q" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>W</mi><mi>q</mi></msub><mi>q</mi></mrow></math> sea uniforme y sin picos abruptos.</strong></span></p>
-</li>
-<li>
-<p><span class="tone-context"><strong>Impacto en la predicción:</strong></span> Al <span class="tone-emphasis"><strong>diluirse la señal en un promedio general, el modelo pierde sensibilidad a palabras discriminativas aisladas, confundiendo el español con inglés (<math aria-label="99.8\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>99.8</mn><mi>%</mi></mrow></math>) y el inglés con español (<math aria-label="94.5\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>94.5</mn><mi>%</mi></mrow></math>).</strong></span></p>
-</li>
-</ul>
-</li>
-</ul>
-</li>
-</ul>
-<hr/>
-</section><section class="cell" data-cell="98" id="celda-99"><h4 id="seccion-42"><span class="tone-emphasis"><strong>Interpretación de la Matriz Auto-Atención</strong></span></h4>
-</section><section class="cell" data-cell="99" id="celda-100"><figure><img alt="Ilustración de la sección" height="723" loading="lazy" src="../assets/1a0e3e3a2631259f87d1f0df.webp" width="867"/></figure></section><section class="cell" data-cell="100" id="celda-101"><ul>
-<li>
-<p><span class="tone-context"><strong>Eje Vertical — Fila <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> (<code>Palabra de Origen</code>):</strong></span> Es la <span class="tone-emphasis"><strong>palabra que está "mirando" o buscando contexto.</strong></span></p>
-</li>
-<li>
-<p><span class="tone-context"><strong>Eje Horizontal — Columna <math aria-label="j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>j</mi></mrow></math> (<code>Palabra Clave Atendida</code>):</strong></span> Es la <span class="tone-emphasis"><strong>palabra hacia donde se dirige el foco de atención.</strong></span></p>
-</li>
-<li>
-<p><span class="tone-context"><strong>Intersección <math aria-label="(i, j)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>i</mi><mo>,</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></math>:</strong></span> Coeficiente <math aria-label="A_{ij} \in [0, 1]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>∈</mo><mo stretchy="false">[</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo stretchy="false">]</mo></mrow></math>, que <span class="tone-emphasis"><strong>representa la proporción de información que la palabra <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> absorbe de la palabra <math aria-label="j" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>j</mi></mrow></math>.</strong></span></p>
-</li>
-<li>
-<p><span class="tone-context"><strong>Propiedad matemática de las filas:</strong></span> Cada fila suma exactamente <strong><math aria-label="1.00" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>1.00</mn></mrow></math> (<math aria-label="100\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>100</mn><mi>%</mi></mrow></math>)</strong> debido a la normalización de la función <math aria-label="\text{Softmax}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Softmax</mtext></mrow></math> a lo largo de las columnas:</p>
-</li>
-</ul>
-<p><math aria-label="\sum_{j=1}^{T} A_{ij} = 1.0 \quad \forall i" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><munderover><mo>∑</mo><mrow><mi>j</mi><mo>=</mo><mn>1</mn></mrow><mrow><mi>T</mi></mrow></munderover><msub><mi>A</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><mn>1.0</mn><mspace width="1em"></mspace><mo>∀</mo><mi>i</mi></mrow></math></p>
-<hr/>
-</section><section class="cell" data-cell="101" id="celda-102"><p><strong>Dominancia de la primera columna (<code>"una"</code>: <math aria-label="23\% - 33\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>23</mn><mi>%</mi><mo>−</mo><mn>33</mn><mi>%</mi></mrow></math>, azul oscuro)</strong></p>
-<ul>
-<li>
-<p><span class="tone-emphasis"><strong>Todas las palabras de la oración, sin excepción, le asignan su mayor cuota de atención a la primera palabra (<code>"una"</code>):</strong></span></p>
-<ul>
-<li>
-<p><strong><code>"en"</code></strong> dedica el <strong><math aria-label="33\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>33</mn><mi>%</mi></mrow></math></strong> de su foco a <code>"una"</code>.</p>
-</li>
-<li>
-<p><strong><code>"el"</code></strong> dedica el <strong><math aria-label="32\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>32</mn><mi>%</mi></mrow></math></strong> de su foco a <code>"una"</code>.</p>
-</li>
-<li>
-<p><strong><code>"parque"</code></strong> dedica el <strong><math aria-label="30\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>30</mn><mi>%</mi></mrow></math></strong> de su foco a <code>"una"</code>.</p>
-</li>
-</ul>
-</li>
-<li>
-<p><strong>Causa técnica (<em>Attention Sink</em> / Sesgo de Anclaje Inicial):</strong> En modelos entrenados con corpus reducidos, <span class="tone-emphasis"><strong>el estado oculto del primer paso temporal (<math aria-label="h_1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>h</mi><mn>1</mn></msub></mrow></math>) suele actuar como un "sumidero atencional" (<em>attention sink</em>).</strong> </span></p>
-<ul>
-<li>La red <span class="tone-emphasis"><strong>aprende a depositar una base fija de probabilidad en el inicio de la secuencia como vector de referencia neutro</strong>.</span></li>
-</ul>
-</li>
-</ul>
-<p><strong>Afinidad secundaria constante (<code>"tarde"</code>: <math aria-label="18\% - 19\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>18</mn><mi>%</mi><mo>−</mo><mn>19</mn><mi>%</mi></mrow></math>, verde azulado)</strong></p>
-<ul>
-<li>La <span class="tone-emphasis"><strong>segunda palabra de la secuencia recibe una proporción estable y uniforme de atención desde cualquier otra posición, manteniendo una carga contextual homogénea.</strong></span></li>
-</ul>
-<p><strong>Valles de atención (<code>"en"</code>: <math aria-label="8\% - 14\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>8</mn><mi>%</mi><mo>−</mo><mn>14</mn><mi>%</mi></mrow></math>, amarillo claro)</strong></p>
-<ul>
-<li>
-<p>La preposición <span class="tone-emphasis"><strong><code>"en"</code> es la que menor atención atrae del resto de los términos</strong></span> (entre <math aria-label="8\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>8</mn><mi>%</mi></mrow></math> y <math aria-label="10\%" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>10</mn><mi>%</mi></mrow></math> desde <code>"parque"</code>, <code>"el"</code>, <code>"soleadita"</code>).</p>
-</li>
-<li>
-<p><strong>Interpretación lingüística:</strong> El modelo <span class="tone-emphasis"><strong>reconoce implícitamente que <code>"en"</code> es una partícula funcional conectiva de bajo contenido semántico</strong></span> léxico en comparación con los sustantivos y adjetivos.</p>
-</li>
-</ul>
-<p><strong>Efecto de Auto-Foco Local en los extremos</strong></p>
-<ul>
-<li>
-<p>En las <strong>esquinas se observa un ligero incremento de atención sobre sí misma (diagonal):</strong></p>
-<ul>
-<li>
-<p><span class="tone-emphasis">**<code>"una"</code> atendiéndose a <code>"una"</code>: <strong><math aria-label="0.23" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.23</mn></mrow></math></strong>**</span> (el valor más alto de su fila).</p>
-</li>
-<li>
-<p><span class="tone-emphasis"><strong><code>"parque"</code> atendiéndose a <code>"parque"</code></strong>:</span> <strong><math aria-label="0.20" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.20</mn></mrow></math></strong> (superior al resto de tokens intermedios de su fila, que rondan <math aria-label="0.08 - 0.14" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.08</mn><mo>−</mo><mn>0.14</mn></mrow></math>).</p>
-</li>
-</ul>
-</li>
-</ul>
-</section><div class="pager"><a href="clase-08-6-mecanismos-de-atencion-parte-3-v2.html">← 6 - Mecanismos de Atención - Parte 3 (v2)</a><a href="clase-09-6-1-transformers-teoria-simplificada.html">6.1. - Transformers - Teoría Simplificada →</a></div><footer><p>© 2026 Jacobo León Juárez. Material docente propio: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Código propio: Apache 2.0. Los materiales de terceros conservan sus autores y condiciones.</p><p><a href="../citar.html">Cómo citar · BibTeX</a> · <a href="https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026/archive/refs/heads/main.zip">Descargar repositorio</a></p><p class="third-party-notice">Los pasajes adaptados de Dive into Deep Learning conservan CC BY-SA 4.0 y su código MIT modificada. <a href="../citar.html">Créditos y condiciones de las fuentes</a></p><p><a href="../revision.html">Revisión técnica y criterios editoriales</a></p></footer></main><script src="../assets/site.js"></script></body></html>
+</section><div class="pager"><a href="clase-08-6-mecanismos-de-atencion-parte-3-v2.html">← 6 - Mecanismos de Atención - Parte 3 (v2)</a><a href="clase-09-6-1-transformers-teoria-simplificada.html">6.1. - Transformers - Teoría Simplificada →</a></div><footer><p>© 2026 Jacobo León Juárez. Material docente propio: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Código propio: Apache 2.0. Los materiales de terceros conservan sus autores y condiciones.</p><p><a href="../citar.html">Cómo citar · BibTeX</a> · <a href="https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026/archive/refs/heads/main.zip">Descargar repositorio</a></p><p class="third-party-notice">Los pasajes adaptados de Dive into Deep Learning conservan CC BY-SA 4.0 y su código MIT modificada. <a href="../citar.html">Créditos y condiciones de las fuentes</a></p><p><a href="../revision.html">Bibliografía y criterios del material</a></p></footer></main><script src="../assets/site.js"></script></body></html>

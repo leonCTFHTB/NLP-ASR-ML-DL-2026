@@ -1,0 +1,480 @@
+{
+  "pages": [
+    {
+      "page": "nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+      "title": "1 - Introducción al NLP  - Parte 1 - Word2Vec",
+      "references": [
+        "https://arxiv.org/abs/1310.4546",
+        "https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html",
+        "https://aclanthology.org/D14-1162/",
+        "https://jmlr.org/papers/v12/duchi11a.html",
+        "https://aclanthology.org/Q17-1010/",
+        "https://github.com/facebookresearch/fastText/tree/main/src",
+        "https://aclanthology.org/E17-2068/",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.EmbeddingBag.html",
+        "https://arxiv.org/abs/1711.05101",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
+      ],
+      "text_cells": 134,
+      "images": 29
+    },
+    {
+      "page": "nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+      "title": "1 - Introducción al NLP  - Parte 2 - GloVe",
+      "references": [
+        "https://arxiv.org/abs/1310.4546",
+        "https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html",
+        "https://aclanthology.org/D14-1162/",
+        "https://jmlr.org/papers/v12/duchi11a.html",
+        "https://aclanthology.org/Q17-1010/",
+        "https://github.com/facebookresearch/fastText/tree/main/src",
+        "https://aclanthology.org/E17-2068/",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.EmbeddingBag.html",
+        "https://arxiv.org/abs/1711.05101",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
+      ],
+      "text_cells": 83,
+      "images": 17
+    },
+    {
+      "page": "nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+      "title": "1 - Introducción al NLP  - Parte 3 - FastText",
+      "references": [
+        "https://arxiv.org/abs/1310.4546",
+        "https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html",
+        "https://aclanthology.org/D14-1162/",
+        "https://jmlr.org/papers/v12/duchi11a.html",
+        "https://aclanthology.org/Q17-1010/",
+        "https://github.com/facebookresearch/fastText/tree/main/src",
+        "https://aclanthology.org/E17-2068/",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.EmbeddingBag.html",
+        "https://arxiv.org/abs/1711.05101",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
+      ],
+      "text_cells": 125,
+      "images": 20
+    },
+    {
+      "page": "nlp/clase-05-1-1-redes-convolucionales-teoria-simplificada.html",
+      "title": "1.1. - Redes Convolucionales Teoría Simplificada",
+      "references": [
+        "https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html",
+        "https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html",
+        "https://d2l.ai/chapter_convolutional-neural-networks/pooling.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html",
+        "https://arxiv.org/abs/1409.1556",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
+      ],
+      "text_cells": 88,
+      "images": 25
+    },
+    {
+      "page": "nlp/clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
+      "title": "1.2. Redes Convolucionales - V2",
+      "references": [
+        "https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html",
+        "https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html",
+        "https://d2l.ai/chapter_convolutional-neural-networks/pooling.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html",
+        "https://arxiv.org/abs/1409.1556",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
+      ],
+      "text_cells": 112,
+      "images": 18
+    },
+    {
+      "page": "nlp/clase-05-1-2-redes-convolucionales-v2.html",
+      "title": "1.2. Redes Convolucionales - V2",
+      "references": [
+        "https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html",
+        "https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html",
+        "https://d2l.ai/chapter_convolutional-neural-networks/pooling.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html",
+        "https://arxiv.org/abs/1409.1556",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
+      ],
+      "text_cells": 112,
+      "images": 18
+    },
+    {
+      "page": "nlp/clase-05-1-cnn-teoria-completa.html",
+      "title": "1 - CNN - Teoría Completa",
+      "references": [
+        "https://d2l.ai/chapter_convolutional-neural-networks/conv-layer.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.Conv2d.html",
+        "https://d2l.ai/chapter_convolutional-neural-networks/padding-and-strides.html",
+        "https://d2l.ai/chapter_convolutional-neural-networks/pooling.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html",
+        "https://arxiv.org/abs/1409.1556",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
+      ],
+      "text_cells": 65,
+      "images": 5
+    },
+    {
+      "page": "nlp/clase-05-2-mecanismos-de-atencion.html",
+      "title": "2 - Mecanismos de Atención",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 63,
+      "images": 16
+    },
+    {
+      "page": "nlp/clase-05-3-1-vision-por-computadora-introduccion.html",
+      "title": "3.1. Visión Por Computadora - Introducción",
+      "references": [
+        "https://d2l.ai/chapter_computer-vision/ssd.html",
+        "https://arxiv.org/abs/1311.2524",
+        "https://arxiv.org/abs/1504.08083",
+        "https://arxiv.org/abs/1506.01497",
+        "https://arxiv.org/abs/1703.06870",
+        "https://arxiv.org/abs/1612.08242",
+        "https://arxiv.org/abs/1804.02767",
+        "https://arxiv.org/abs/1708.02002",
+        "https://docs.pytorch.org/vision/stable/transforms.html",
+        "https://docs.pytorch.org/vision/stable/generated/torchvision.ops.batched_nms.html"
+      ],
+      "text_cells": 149,
+      "images": 26
+    },
+    {
+      "page": "nlp/clase-05-3-2-vision-por-computadora-r-cnns.html",
+      "title": "3.2. - Visión Por Computadora - R-CNNs",
+      "references": [
+        "https://d2l.ai/chapter_computer-vision/ssd.html",
+        "https://arxiv.org/abs/1311.2524",
+        "https://arxiv.org/abs/1504.08083",
+        "https://arxiv.org/abs/1506.01497",
+        "https://arxiv.org/abs/1703.06870",
+        "https://arxiv.org/abs/1612.08242",
+        "https://arxiv.org/abs/1804.02767",
+        "https://arxiv.org/abs/1708.02002",
+        "https://docs.pytorch.org/vision/stable/transforms.html",
+        "https://docs.pytorch.org/vision/stable/generated/torchvision.ops.batched_nms.html"
+      ],
+      "text_cells": 94,
+      "images": 20
+    },
+    {
+      "page": "nlp/clase-05-3-3-vision-por-computadora-yolov3.html",
+      "title": "3.3. - Visión por Computadora - YOLOv3",
+      "references": [
+        "https://d2l.ai/chapter_computer-vision/ssd.html",
+        "https://arxiv.org/abs/1311.2524",
+        "https://arxiv.org/abs/1504.08083",
+        "https://arxiv.org/abs/1506.01497",
+        "https://arxiv.org/abs/1703.06870",
+        "https://arxiv.org/abs/1612.08242",
+        "https://arxiv.org/abs/1804.02767",
+        "https://arxiv.org/abs/1708.02002",
+        "https://docs.pytorch.org/vision/stable/transforms.html",
+        "https://docs.pytorch.org/vision/stable/generated/torchvision.ops.batched_nms.html"
+      ],
+      "text_cells": 101,
+      "images": 7
+    },
+    {
+      "page": "nlp/clase-05-3-vision-por-computadora-cnns.html",
+      "title": "3 - Visión Por Computadora - CNNs",
+      "references": [
+        "https://d2l.ai/chapter_computer-vision/ssd.html",
+        "https://arxiv.org/abs/1311.2524",
+        "https://arxiv.org/abs/1504.08083",
+        "https://arxiv.org/abs/1506.01497",
+        "https://arxiv.org/abs/1703.06870",
+        "https://arxiv.org/abs/1612.08242",
+        "https://arxiv.org/abs/1804.02767",
+        "https://arxiv.org/abs/1708.02002",
+        "https://docs.pytorch.org/vision/stable/transforms.html",
+        "https://docs.pytorch.org/vision/stable/generated/torchvision.ops.batched_nms.html"
+      ],
+      "text_cells": 75,
+      "images": 3
+    },
+    {
+      "page": "nlp/clase-05-4-1-transformers-teoria-simplificada.html",
+      "title": "4.1 - Transformers - Teoría Simplificada",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 114,
+      "images": 29
+    },
+    {
+      "page": "nlp/clase-05-4-transformers-y-mecanismos-de-atencion.html",
+      "title": "4 - Transformers y Mecanismos de Atención",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 135,
+      "images": 34
+    },
+    {
+      "page": "nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+      "title": "6 - Mecanismos de Atención - Parte 1 (v2)",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 113,
+      "images": 28
+    },
+    {
+      "page": "nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+      "title": "6 - Mecanismos de Atención - Parte 2 (v2)",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 150,
+      "images": 48
+    },
+    {
+      "page": "nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+      "title": "6 - Mecanismos de Atención - Parte 2 (v2)",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 118,
+      "images": 39
+    },
+    {
+      "page": "nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+      "title": "6 - Mecanismos de Atención - Parte 3 (v2)",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 82,
+      "images": 25
+    },
+    {
+      "page": "nlp/clase-09-6-1-transformers-teoria-simplificada.html",
+      "title": "6.1. - Transformers - Teoría Simplificada",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 114,
+      "images": 29
+    },
+    {
+      "page": "nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+      "title": "6 - Mecanismos de Atención - Parte 4 (v2)",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 98,
+      "images": 27
+    },
+    {
+      "page": "nlp/clase-10-10-transformers-teoria-simplificada.html",
+      "title": "10 - Transformers - Teoría Simplificada",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 114,
+      "images": 29
+    },
+    {
+      "page": "nlp/clase-11-clase-12-transformers-teoria-simplificada.html",
+      "title": "Clase 12 - Transformers - Teoría Simplificada",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/1409.0473",
+        "https://aclanthology.org/D15-1166/",
+        "https://proceedings.mlr.press/v37/xuc15.html",
+        "https://docs.pytorch.org/docs/stable/generated/torch.nn.functional.gumbel_softmax.html",
+        "https://www.bioinf.jku.at/publications/older/2604.pdf",
+        "https://aclanthology.org/D16-1244/",
+        "https://aclanthology.org/D16-1053/",
+        "https://arxiv.org/abs/1410.5401"
+      ],
+      "text_cells": 114,
+      "images": 29
+    },
+    {
+      "page": "nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+      "title": "11 - Positional Encoding (PE) y GPT - Parte 1",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/2104.09864",
+        "https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.Animation.html#matplotlib.animation.Animation.to_jshtml"
+      ],
+      "text_cells": 56,
+      "images": 17
+    },
+    {
+      "page": "nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+      "title": "13 - Introducción a GPT - RoPE - Parte 2",
+      "references": [
+        "https://arxiv.org/abs/1706.03762",
+        "https://arxiv.org/abs/2104.09864",
+        "https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.Animation.html#matplotlib.animation.Animation.to_jshtml"
+      ],
+      "text_cells": 140,
+      "images": 34
+    },
+    {
+      "page": "nlp/clase-14-1-2-speaker-diarization-test.html",
+      "title": "_1_2_Speaker_Diarization_Test",
+      "references": [
+        "https://arxiv.org/abs/1710.10467",
+        "https://google.github.io/speaker-id/publications/GE2E/",
+        "https://arxiv.org/abs/1710.10468",
+        "https://arxiv.org/abs/1801.10123"
+      ],
+      "text_cells": 41,
+      "images": 4
+    },
+    {
+      "page": "nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+      "title": "14 - Introducción a ASR - Parte 1",
+      "references": [
+        "https://docs.scipy.org/doc/scipy/tutorial/fft.html",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.ShortTimeFFT.html",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.check_NOLA.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.filters.mel.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.feature.mfcc.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.icqt.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.effects.preemphasis.html",
+        "https://proceedings.mlr.press/v202/radford23a.html",
+        "https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/"
+      ],
+      "text_cells": 49,
+      "images": 13
+    },
+    {
+      "page": "nlp/clase-14-attentioncnn-ser-01.html",
+      "title": "AttentionCNN_SER_01",
+      "references": [
+        "https://docs.scipy.org/doc/scipy/tutorial/fft.html",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.ShortTimeFFT.html",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.check_NOLA.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.filters.mel.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.feature.mfcc.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.icqt.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.effects.preemphasis.html",
+        "https://proceedings.mlr.press/v202/radford23a.html",
+        "https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/"
+      ],
+      "text_cells": 43,
+      "images": 14
+    },
+    {
+      "page": "nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+      "title": "15 - Introducción a ASR - Parte 2",
+      "references": [
+        "https://docs.scipy.org/doc/scipy/tutorial/fft.html",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.ShortTimeFFT.html",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.check_NOLA.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.filters.mel.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.feature.mfcc.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.icqt.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.effects.preemphasis.html",
+        "https://proceedings.mlr.press/v202/radford23a.html",
+        "https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/"
+      ],
+      "text_cells": 194,
+      "images": 42
+    },
+    {
+      "page": "nlp/clase-16-16-radix-2.html",
+      "title": "16 - Radix-2",
+      "references": [
+        "https://docs.scipy.org/doc/scipy/tutorial/fft.html",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.ShortTimeFFT.html",
+        "https://docs.scipy.org/doc/scipy/reference/generated/scipy.signal.check_NOLA.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.filters.mel.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.feature.mfcc.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.icqt.html",
+        "https://librosa.org/doc/0.10.2/generated/librosa.effects.preemphasis.html",
+        "https://proceedings.mlr.press/v202/radford23a.html",
+        "https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/"
+      ],
+      "text_cells": 25,
+      "images": 8
+    }
+  ],
+  "notebook_pages": 29
+}

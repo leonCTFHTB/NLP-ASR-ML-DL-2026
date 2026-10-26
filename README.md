@@ -1,36 +1,39 @@
 # Portafolio docente · NLP y reconocimiento del habla
 
-**Jacobo León Juárez** · 2026
+**Jacobo León Juárez · 2026**
 
-Libro web con 29 notebooks correspondientes a las clases 2–16 y sus recursos complementarios.
+Libro web con 29 páginas de clases sobre embeddings, CNN, atención, Transformers, posiciones, audio y diarización.
 
-- [Sitio previsto en GitHub Pages](https://leonctfhtb.github.io/NLP-ASR-ML-DL-2026/)
+- [Leer el libro](https://leonctfhtb.github.io/NLP-ASR-ML-DL-2026/)
+- [Bibliografía y criterios](https://leonctfhtb.github.io/NLP-ASR-ML-DL-2026/revision.html)
 - [LinkedIn](https://www.linkedin.com/in/lic-jacobo-leon-juarez/)
 - [Portafolio de Notion](https://app.notion.com/p/leon-ctf/Portafolio-4034120b17c880048026ec0abf21f685)
 
-El sitio ofrece índice por clases, búsqueda dentro del material, navegación anterior/siguiente, código desplegable y fórmulas MathML que no requieren una conexión externa. Los HTML y sus recursos están en `docs/`; pueden abrirse localmente tras descargar y descomprimir el repositorio. Algunas visualizaciones heredadas que dependen de JavaScript externo o de un kernel pueden requerir su entorno original; las salidas estáticas y los audios guardados se conservan.
+Las páginas y sus recursos se mantienen en `docs/`, que GitHub Pages publica desde `main`. El sitio incluye búsqueda local, navegación por clases, código desplegable y fórmulas MathML sin CDN. Para consultar sin conexión se necesita el repositorio completo.
 
-## Reproducir la conversión
+## Mantenimiento y comprobaciones
 
-Instalar las dependencias de `tools/requirements.txt` y extraer los ZIP originales en una carpeta `extracted/`, preservando su estructura. El conversor recibe esa carpeta y una caché opcional de imágenes externas:
+Los HTML de `docs/nlp/` constituyen la edición vigente. Las explicaciones enlazan artículos y documentación oficial. Las figuras vectoriales se generan con `tools/review_figures.py` y `tools/scientific_figures.py`; las gráficas sintéticas declaran sus datos y supuestos.
+
+Después de editar el contenido:
 
 ```bash
-python tools/positional_plots.py
-python tools/build.py --inputs /ruta/extracted --external /ruta/external
-python tools/finalize.py
-python tools/theme.py
-python tools/editorial.py
-python tools/editorial_figures.py
+python -m pip install -r tools/requirements.txt
+python tools/current_edition.py
 python tools/postprocess.py
+python tools/clean_resources.py
 python tools/validate.py
 ```
 
-## Licencia y cita
+Las pruebas pequeñas de los ejemplos requieren PyTorch y no descargan datos ni entrenan modelos:
 
-Material docente **propio**: CC BY 4.0. Código **propio**: Apache 2.0. Las adaptaciones de D2L conservan CC BY-SA 4.0 y su código la licencia MIT modificada de D2L; otros materiales ajenos conservan sus condiciones. Véanse `LICENCIAS.md` y `THIRD_PARTY.md`.
+```bash
+python -m pip install torch
+python tools/check_examples.py
+```
 
-Si reutilizás o adaptás las aportaciones propias, conservá la atribución. Para trabajos académicos se solicita citar con el registro de `CITATION.bib`; también se incluye `CITATION.cff`.
+`reports/cobertura.json` enumera las 29 páginas y su bibliografía. `reports/revision-integral.json`, `reports/figuras-vigentes.json` y `reports/codigo-vigente.json` identifican el contenido actualizado. `reports/validacion.json` y `reports/pruebas-ejemplos.json` contienen los resultados de las comprobaciones. Las modificaciones se explican en los commits.
 
-## Edición para GitHub Pages · 26 de octubre de 2026
+## Licencias y cita
 
-La revisión y sus límites están explicados en [reports/REVISION.md](reports/REVISION.md) y en `docs/revision.html`. Los cambios nuevos están separados de los registros recibidos: `reports/auditoria-editorial.json` y `reports/auditoria-figuras.json`. La revisión no certifica cada afirmación ni reproduce entrenamientos. Las escalas científicas y las imágenes de terceros conservan sus colores originales.
+Material docente propio: **CC BY 4.0**. Código propio: **Apache 2.0**. Las adaptaciones de D2L mantienen CC BY-SA 4.0 y su código MIT modificada; los demás materiales de terceros conservan sus autores y condiciones. Véanse `LICENCIAS.md`, `THIRD_PARTY.md`, `CITATION.bib` y `CITATION.cff`.

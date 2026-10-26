@@ -1,0 +1,1432 @@
+[
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-18",
+    "figure": "onehot"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-21",
+    "figure": "onehot"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-25",
+    "figure": "cosine"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-28",
+    "figure": "cosine"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-31",
+    "figure": "onehot"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-46",
+    "figure": "cbow"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-49",
+    "figure": "cbow"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-52",
+    "figure": "word2vec-score"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-56",
+    "figure": "word2vec-score"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-59",
+    "figure": "loss-gradient"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-64",
+    "figure": "cbow"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-68",
+    "figure": "loss-gradient"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-72",
+    "figure": "word2vec-score"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-75",
+    "figure": "loss-gradient"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-100",
+    "figure": "cbow"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-103",
+    "figure": "cbow"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-106",
+    "figure": "cbow"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-109",
+    "figure": "word2vec-score"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-113",
+    "figure": "word2vec-score"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-118",
+    "figure": "word2vec-score"
+  },
+  {
+    "page": "docs/nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+    "cell": "celda-121",
+    "figure": "cbow"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-11",
+    "figure": "cbow"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-14",
+    "figure": "word2vec-glove"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-18",
+    "figure": "glove"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-22",
+    "figure": "glove"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-26",
+    "figure": "exp"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-28",
+    "figure": "ratios"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-33",
+    "figure": "ratios"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-37",
+    "figure": "glove"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-41",
+    "figure": "glove"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-44",
+    "figure": "weight"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-47",
+    "figure": "gradient"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-50",
+    "figure": "gradient"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-53",
+    "figure": "gradient"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-56",
+    "figure": "weight"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-61",
+    "figure": "gradient"
+  },
+  {
+    "page": "docs/nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
+    "cell": "celda-72",
+    "figure": "symmetry"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-10",
+    "figure": "subword-limits"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-13",
+    "figure": "subword-limits"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-15",
+    "figure": "subword-limits"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-20",
+    "figure": "subword-limits"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-21",
+    "figure": "dot"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-23",
+    "figure": "cbow"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-26",
+    "figure": "loss-gradient"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-28",
+    "figure": "dot"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-32",
+    "figure": "word2vec-score"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-34",
+    "figure": "subword-limits"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-35",
+    "figure": "subword-limits"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-39",
+    "figure": "bpe-limits"
+  },
+  {
+    "page": "docs/nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
+    "cell": "celda-41",
+    "figure": "subword-limits"
+  },
+  {
+    "page": "docs/nlp/clase-05-1-1-redes-convolucionales-teoria-simplificada.html",
+    "cell": "celda-76",
+    "figure": "batchnorm"
+  },
+  {
+    "page": "docs/nlp/clase-05-1-1-redes-convolucionales-teoria-simplificada.html",
+    "cell": "celda-80",
+    "figure": "cnn-shapes"
+  },
+  {
+    "page": "docs/nlp/clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
+    "cell": "celda-87",
+    "figure": "cnn-shapes"
+  },
+  {
+    "page": "docs/nlp/clase-05-1-2-redes-convolucionales-v2.html",
+    "cell": "celda-87",
+    "figure": "cnn-shapes"
+  },
+  {
+    "page": "docs/nlp/clase-05-4-1-transformers-teoria-simplificada.html",
+    "cell": "celda-115",
+    "figure": "decode"
+  },
+  {
+    "page": "docs/nlp/clase-05-4-transformers-y-mecanismos-de-atencion.html",
+    "cell": "celda-135",
+    "figure": "decode"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-9",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-14",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-17",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-19",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-25",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-29",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-34",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-42",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-76",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-78",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-89",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-93",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
+    "cell": "celda-111",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-13",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-20",
+    "figure": "qkv"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-22",
+    "figure": "weighted-sum"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-24",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-25",
+    "figure": "dot"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-27",
+    "figure": "softmax-numeric"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-29",
+    "figure": "weighted-sum"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-30",
+    "figure": "qkv"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-33",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-35",
+    "figure": "linear-map"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-37",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-39",
+    "figure": "linear-map"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-40",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-43",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-44",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-46",
+    "figure": "dot"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-50",
+    "figure": "dot"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-53",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-55",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-57",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-59",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-60",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-62",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-64",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-66",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-68",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-70",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-71",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-109",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-111",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-120",
+    "figure": "attention-experiment"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-125",
+    "figure": "weighted-sum"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-127",
+    "figure": "weighted-sum"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-132",
+    "figure": "hard-attention"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-134",
+    "figure": "hard-attention"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-136",
+    "figure": "sampling"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-137",
+    "figure": "hard-attention"
+  },
+  {
+    "page": "docs/nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-139",
+    "figure": "sampling"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-13",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-20",
+    "figure": "qkv"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-22",
+    "figure": "weighted-sum"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-24",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-25",
+    "figure": "dot"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-27",
+    "figure": "softmax-numeric"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-29",
+    "figure": "weighted-sum"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-30",
+    "figure": "qkv"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-33",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-35",
+    "figure": "linear-map"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-37",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-39",
+    "figure": "linear-map"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-40",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-43",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-44",
+    "figure": "additive-attention"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-46",
+    "figure": "dot"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-50",
+    "figure": "dot"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-53",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-55",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-57",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-59",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-60",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-62",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-64",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-66",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-68",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-70",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-71",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-109",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-111",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
+    "cell": "celda-120",
+    "figure": "attention-experiment"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-9",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-11",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-13",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-15",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-16",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-18",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-20",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-22",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-24",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-26",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-27",
+    "figure": "local-window"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-30",
+    "figure": "weighted-sum"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-32",
+    "figure": "weighted-sum"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-37",
+    "figure": "hard-attention"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-39",
+    "figure": "hard-attention"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-41",
+    "figure": "sampling"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-42",
+    "figure": "hard-attention"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-44",
+    "figure": "sampling"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-79",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-82",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-84",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
+    "cell": "celda-86",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-1-transformers-teoria-simplificada.html",
+    "cell": "celda-115",
+    "figure": "decode"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-9",
+    "figure": "rnn-memory"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-13",
+    "figure": "decomposable"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-18",
+    "figure": "decomposable"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-22",
+    "figure": "softmax-numeric"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-24",
+    "figure": "decomposable"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-26",
+    "figure": "decomposable"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-28",
+    "figure": "decomposable"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-30",
+    "figure": "decomposable"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-32",
+    "figure": "decomposable"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-34",
+    "figure": "relu-exact"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-43",
+    "figure": "decomposable"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-45",
+    "figure": "decomposable"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-46",
+    "figure": "intra-history"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-49",
+    "figure": "intra-history"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-51",
+    "figure": "intra-history"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-53",
+    "figure": "softmax-numeric"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-55",
+    "figure": "weighted-sum"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-57",
+    "figure": "intra-history"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-90",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-92",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-92",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-92",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
+    "cell": "celda-97",
+    "figure": "attention-weights"
+  },
+  {
+    "page": "docs/nlp/clase-10-10-transformers-teoria-simplificada.html",
+    "cell": "celda-115",
+    "figure": "decode"
+  },
+  {
+    "page": "docs/nlp/clase-11-clase-12-transformers-teoria-simplificada.html",
+    "cell": "celda-115",
+    "figure": "decode"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-11",
+    "figure": "equivariance"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-13",
+    "figure": "equivariance"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-17",
+    "figure": "sum"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-20",
+    "figure": "pe"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-22",
+    "figure": "pe"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-24",
+    "figure": "pe"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-27",
+    "figure": "pe"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-38",
+    "figure": "pe-37"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-40",
+    "figure": "pe-39"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-42",
+    "figure": "pe-41"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-47",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-52",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-54",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-56",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
+    "cell": "celda-58",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-11",
+    "figure": "equivariance"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-13",
+    "figure": "equivariance"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-17",
+    "figure": "sum"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-20",
+    "figure": "pe"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-22",
+    "figure": "pe"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-24",
+    "figure": "pe"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-27",
+    "figure": "pe"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-38",
+    "figure": "pe-37"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-40",
+    "figure": "pe-39"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-42",
+    "figure": "pe-41"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-47",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-50",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-53",
+    "figure": "pe-add"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-57",
+    "figure": "ape"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-59",
+    "figure": "ape"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-62",
+    "figure": "ape"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-64",
+    "figure": "ape"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-69",
+    "figure": "weighted-sum"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-71",
+    "figure": "ape"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-78",
+    "figure": "ape"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-82",
+    "figure": "ape"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-87",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-92",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-107",
+    "figure": "ape"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-109",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-110",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-113",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-123",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-124",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-125",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-126",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
+    "cell": "celda-129",
+    "figure": "position-limits"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-17",
+    "figure": "fourier-time"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-19",
+    "figure": "source-filter"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-22",
+    "figure": "fourier-time"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-24",
+    "figure": "dft"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-26",
+    "figure": "dft"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-33",
+    "figure": "dft"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-39",
+    "figure": "dft"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-44",
+    "figure": "window"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-46",
+    "figure": "window"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-49",
+    "figure": "fourier-time"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-51",
+    "figure": "fourier-time"
+  },
+  {
+    "page": "docs/nlp/clase-14-14-inotroduccion-a-asr-parte-1.html",
+    "cell": "celda-53",
+    "figure": "logmel-pipeline"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-10",
+    "figure": "fourier-time"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-12",
+    "figure": "dft"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-14",
+    "figure": "dft"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-15",
+    "figure": "dft"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-21",
+    "figure": "dft"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-25",
+    "figure": "window"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-27",
+    "figure": "window"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-30",
+    "figure": "fourier-time"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-32",
+    "figure": "fourier-time"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-37",
+    "figure": "fft-exact"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-73",
+    "figure": "fft-exact"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-76",
+    "figure": "fft-exact"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-82",
+    "figure": "fft-exact"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-85",
+    "figure": "fft-exact"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-88",
+    "figure": "fft-exact"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-91",
+    "figure": "fft-exact"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-94",
+    "figure": "fourier-time"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-96",
+    "figure": "fourier-time"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-102",
+    "figure": "window"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-107",
+    "figure": "window"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-109",
+    "figure": "window"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-114",
+    "figure": "window"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-117",
+    "figure": "window"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-125",
+    "figure": "time-frequency"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-127",
+    "figure": "time-frequency"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-160",
+    "figure": "logmel-pipeline"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-163",
+    "figure": "logmel-pipeline"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-170",
+    "figure": "db"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-172",
+    "figure": "db"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-176",
+    "figure": "mel-scale"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-179",
+    "figure": "mel-scale"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-182",
+    "figure": "mel-scale"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-185",
+    "figure": "logmel-pipeline"
+  },
+  {
+    "page": "docs/nlp/clase-15-15-introduccion-a-asr-parte-2.html",
+    "cell": "celda-187",
+    "figure": "logmel-pipeline"
+  },
+  {
+    "page": "docs/nlp/clase-16-16-radix-2.html",
+    "cell": "celda-12",
+    "figure": "fft-exact"
+  },
+  {
+    "page": "docs/nlp/clase-16-16-radix-2.html",
+    "cell": "celda-14",
+    "figure": "fft"
+  },
+  {
+    "page": "docs/nlp/clase-16-16-radix-2.html",
+    "cell": "celda-17",
+    "figure": "fft"
+  },
+  {
+    "page": "docs/nlp/clase-16-16-radix-2.html",
+    "cell": "celda-20",
+    "figure": "fft"
+  },
+  {
+    "page": "docs/nlp/clase-16-16-radix-2.html",
+    "cell": "celda-23",
+    "figure": "fft"
+  },
+  {
+    "page": "docs/nlp/clase-16-16-radix-2.html",
+    "cell": "celda-26",
+    "figure": "fft"
+  },
+  {
+    "page": "docs/nlp/clase-16-16-radix-2.html",
+    "cell": "celda-29",
+    "figure": "fft"
+  }
+]
