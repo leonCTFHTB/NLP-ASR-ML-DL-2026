@@ -259,7 +259,18 @@ Los pares recorren distintas frecuencias angulares. Una dimensión no representa
 <p>Finalmente, <strong>después de pasar por todas las capas, el decoder genera un vector de salida que representa la secuencia de salida, similar a la energía eléctrica generada por la central</strong>. Este vector <strong>se puede utilizar para predecir la siguiente palabra en una oración, por ejemplo.</strong></p>
 </section><section class="cell" data-cell="112" id="celda-113"><h2 id="seccion-22"><strong>1.5. Capa Lineal y Softmax</strong></h2>
 </section><section class="cell" data-cell="113" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-114"><p>La proyección de salida produce un logit por token del vocabulario. Softmax los convierte en una distribución sobre ese eje. Greedy decoding elige el máximo; también se pueden usar muestreo o beam search. El vocabulario suele contener subpalabras, no necesariamente palabras completas.</p>
-<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="114" id="celda-115"><p><img alt="Del estado del decoder al siguiente token" decoding="async" height="435" loading="lazy" src="../assets/figures/decode.svg" width="1440"/></p>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="114" id="celda-115"><p><img alt="Del estado del decoder al siguiente token" decoding="async" height="435" loading="lazy" src="../assets/figures/decode.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-115-decode"><h4 id="imagen-celda-115-decode">Diagrama visual · Los logits se convierten en una elección de token</h4><figure><img alt="Barras de probabilidades destacan la alternativa de mayor valor antes de generar el token." decoding="async" height="760" loading="lazy" src="../assets/visuals/decode.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/decode.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>El estado del decoder atraviesa una proyección que produce logits sobre el vocabulario. Softmax los convierte en probabilidades sobre tokens.</p>
+</li>
+<li>
+<p>El ejemplo usa probabilidades [0.1,0.6,0.3]. La flecha dorada ilustra greedy decoding: elige el token B, que tiene el máximo.</p>
+</li>
+<li>
+<p>La distribución también puede usarse para muestrear, y beam search mantiene hipótesis. El dibujo de la elección greedy no convierte esa regla en la única forma de generación.</p>
+</li>
+</ol>
+</section></p>
 </section><section class="cell" id="bibliografia-del-tema"><h2>Bibliografía del tema</h2><ul>
 <li><a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></li>
 <li><a href="https://arxiv.org/abs/1409.0473">Bahdanau et al. · Alineación aprendida</a></li>

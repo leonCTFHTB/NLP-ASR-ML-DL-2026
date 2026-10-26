@@ -29,23 +29,89 @@
 <p><math aria-label="\text{Attention}(Q, K, V) = \text{softmax}\left(\frac{QK^T}{\sqrt{d_k}}\right)V" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Attention</mtext><mo stretchy="false">(</mo><mi>Q</mi><mo>,</mo><mi>K</mi><mo>,</mo><mi>V</mi><mo stretchy="false">)</mo><mo>=</mo><mtext>softmax</mtext><mrow><mo fence="true" form="prefix" stretchy="true">(</mo><mfrac><mrow><mi>Q</mi><msup><mi>K</mi><mi>T</mi></msup></mrow><mrow><msqrt><mrow><msub><mi>d</mi><mi>k</mi></msub></mrow></msqrt></mrow></mfrac><mo fence="true" form="postfix" stretchy="true">)</mo></mrow><mi>V</mi></mrow></math></p>
 <p>Si <span class="tone-emphasis"><strong>permutamos el orden de las palabras de la secuencia de entrada mediante una matriz de permutación <math aria-label="P" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>P</mi></mrow></math>, las matrices de Queries <math aria-label="Q' = PQ" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi>Q</mi><mi>′</mi></msup><mo>=</mo><mi>P</mi><mi>Q</mi></mrow></math> y Keys <math aria-label="K' = PK" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi>K</mi><mi>′</mi></msup><mo>=</mo><mi>P</mi><mi>K</mi></mrow></math> producen:</strong></span></p>
 <p><math aria-label="Q' K'^T = (PQ)(PK)^T = P Q K^T P^T" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi>Q</mi><mi>′</mi></msup><msup><mi>K</mi><mrow><mi>′</mi><mi>T</mi></mrow></msup><mo>=</mo><mo stretchy="false">(</mo><mi>P</mi><mi>Q</mi><mo stretchy="false">)</mo><mo stretchy="false">(</mo><mi>P</mi><mi>K</mi><msup><mo stretchy="false">)</mo><mi>T</mi></msup><mo>=</mo><mi>P</mi><mi>Q</mi><msup><mi>K</mi><mi>T</mi></msup><msup><mi>P</mi><mi>T</mi></msup></mrow></math></p>
-</section><section class="cell" data-cell="10" id="celda-11"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/equivariance.svg" width="1440"/></figure></section><section class="cell" data-cell="11" id="celda-12"><p>Sin posiciones ni máscara dependiente del orden, la atención por filas verifica <math aria-label="\mathrm{SA}(PX)=P\mathrm{SA}(X)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">A</mi></mrow><mo stretchy="false">(</mo><mi>P</mi><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mi>P</mi><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">A</mi></mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></math>. Al permutar los tokens se permutan las filas de salida: <strong>es equivariancia, no invariancia</strong>. Una agregación simétrica posterior puede producir invariancia. La propiedad no se aplica sin cambios a una máscara causal fija.</p>
-</section><section class="cell" data-cell="12" id="celda-13"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/equivariance.svg" width="1440"/></figure></section><section class="cell" data-cell="13" id="celda-14"><blockquote>
+</section><section class="cell" data-cell="10" id="celda-11"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/equivariance.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-11-equivariance"><h4 id="imagen-celda-11-equivariance">Diagrama visual · Permutar la entrada permuta las filas de salida</h4><figure><img alt="Dos filas de tokens pasan por el mismo bloque de self-attention y conservan su correspondencia." decoding="async" height="760" loading="lazy" src="../assets/visuals/equivariance.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/equivariance.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>La primera fila ordena A,B,C y produce zA,zB,zC. En la segunda se cambia el orden a C,A,B.</p>
+</li>
+<li>
+<p>Sin información posicional ni una máscara que fije el orden, la misma self-attention devuelve las filas correspondientes como zC,zA,zB. Los colores siguen al token.</p>
+</li>
+<li>
+<p>Esto es equivariancia: la salida se reordena con la entrada. No significa salida idéntica. La codificación posicional y una máscara causal fija cambian los supuestos de este dibujo.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="11" id="celda-12"><p>Sin posiciones ni máscara dependiente del orden, la atención por filas verifica <math aria-label="\mathrm{SA}(PX)=P\mathrm{SA}(X)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">A</mi></mrow><mo stretchy="false">(</mo><mi>P</mi><mi>X</mi><mo stretchy="false">)</mo><mo>=</mo><mi>P</mi><mrow><mi mathvariant="normal">S</mi><mi mathvariant="normal">A</mi></mrow><mo stretchy="false">(</mo><mi>X</mi><mo stretchy="false">)</mo></mrow></math>. Al permutar los tokens se permutan las filas de salida: <strong>es equivariancia, no invariancia</strong>. Una agregación simétrica posterior puede producir invariancia. La propiedad no se aplica sin cambios a una máscara causal fija.</p>
+</section><section class="cell" data-cell="12" id="celda-13"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/equivariance.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-13-equivariance"><h4 id="imagen-celda-13-equivariance">Diagrama visual · Permutar la entrada permuta las filas de salida</h4><figure><img alt="Dos filas de tokens pasan por el mismo bloque de self-attention y conservan su correspondencia." decoding="async" height="760" loading="lazy" src="../assets/visuals/equivariance.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/equivariance.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>La primera fila ordena A,B,C y produce zA,zB,zC. En la segunda se cambia el orden a C,A,B.</p>
+</li>
+<li>
+<p>Sin información posicional ni una máscara que fije el orden, la misma self-attention devuelve las filas correspondientes como zC,zA,zB. Los colores siguen al token.</p>
+</li>
+<li>
+<p>Esto es equivariancia: la salida se reordena con la entrada. No significa salida idéntica. La codificación posicional y una máscara causal fija cambian los supuestos de este dibujo.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="13" id="celda-14"><blockquote>
 <p><strong>Self-attention sin información posicional y sin máscara de orden es equivariante a permutaciones.</strong> Los vectores por token cambian de lugar con la entrada. Incorporar posiciones permite distinguir órdenes; una máscara causal también introduce estructura de orden.</p>
 </blockquote>
 </section><section class="cell" data-cell="14" id="celda-15"><h2 id="seccion-4"><span class="tone-emphasis"><strong>11.2. Decisión Arquitectónica: Suma vs. Concatenación</strong></span></h2>
 </section><section class="cell" data-cell="15" id="celda-16"><h3 id="seccion-5"><strong>11.2.1. ¿Por qué sumar <math aria-label="E_{tok}+PE" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>E</mi><mrow><mi>t</mi><mi>o</mi><mi>k</mi></mrow></msub><mo>+</mo><mi>P</mi><mi>E</mi></mrow></math>?</strong></h3>
 <p>La suma mantiene <math aria-label="d_{model}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>d</mi><mrow><mi>m</mi><mi>o</mi><mi>d</mi><mi>e</mi><mi>l</mi></mrow></msub></mrow></math> constante y permite usar las mismas dimensiones en las capas posteriores. Concatenar también es posible, pero cambia el ancho salvo que se añada una proyección. <strong>La suma no es invertible en general y no garantiza separar perfectamente contenido y posición.</strong> Los parámetros se aprenden con esa representación conjunta; no se presupone ortogonalidad entre ambos componentes.</p>
-</section><section class="cell" data-cell="16" id="celda-17"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/sum.svg" width="1440"/></figure></section><section class="cell" data-cell="17" id="celda-18"><h2 id="seccion-6"><span class="tone-emphasis"><strong>11.3. Formulación Matemática de la Codificación Sinusoidal</strong></span></h2>
+</section><section class="cell" data-cell="16" id="celda-17"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/sum.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-17-sum"><h4 id="imagen-celda-17-sum">Diagrama visual · Posición y contenido se combinan por coordenadas</h4><figure><img alt="Bloques coloreados muestran suma y concatenación de dos vectores de dos componentes." decoding="async" height="760" loading="lazy" src="../assets/visuals/sum.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/sum.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>El contenido ilustrativo e=(1,−1) y la posición p=(0.5,1) tienen el mismo ancho. La suma coordenada a coordenada da (1.5,0).</p>
+</li>
+<li>
+<p>Concatenar conserva las dos parejas como cuatro coordenadas: [1,−1,0.5,1]. Es una operación distinta que aumenta el ancho; podría seguirla una proyección aprendida.</p>
+</li>
+<li>
+<p>Los valores de esta figura son sintéticos. La suma puede cambiar norma y ángulo sin que eso demuestre daño semántico; la arquitectura se entrena con su forma de incorporar la posición.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="17" id="celda-18"><h2 id="seccion-6"><span class="tone-emphasis"><strong>11.3. Formulación Matemática de la Codificación Sinusoidal</strong></span></h2>
 </section><section class="cell" data-cell="18" id="celda-19"><h3 id="seccion-7"><strong>11.3.1. Las ecuaciones sinusoidales</strong></h3>
 <p><math aria-label="PE_{pos,2i}=\sin(pos/10000^{2i/d}),\quad PE_{pos,2i+1}=\cos(pos/10000^{2i/d})." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>P</mi><msub><mi>E</mi><mrow><mi>p</mi><mi>o</mi><mi>s</mi><mo>,</mo><mn>2</mn><mi>i</mi></mrow></msub><mo>=</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>p</mi><mi>o</mi><mi>s</mi><mo>/</mo><msup><mn>10000</mn><mrow><mn>2</mn><mi>i</mi><mo>/</mo><mi>d</mi></mrow></msup><mo stretchy="false">)</mo><mo>,</mo><mspace width="1em"></mspace><mi>P</mi><msub><mi>E</mi><mrow><mi>p</mi><mi>o</mi><mi>s</mi><mo>,</mo><mn>2</mn><mi>i</mi><mo>+</mo><mn>1</mn></mrow></msub><mo>=</mo><mi>cos</mi><mo stretchy="false">(</mo><mi>p</mi><mi>o</mi><mi>s</mi><mo>/</mo><msup><mn>10000</mn><mrow><mn>2</mn><mi>i</mi><mo>/</mo><mi>d</mi></mrow></msup><mo stretchy="false">)</mo><mo>.</mo></mrow></math></p>
 <p><math aria-label="pos" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mi>o</mi><mi>s</mi></mrow></math> es el índice del token e <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> el índice del par seno–coseno. La base 10000 controla el rango de frecuencias: <math aria-label="\lambda_i=2\pi\,10000^{2i/d}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>λ</mi><mi>i</mi></msub><mo>=</mo><mn>2</mn><mi>π</mi><mspace width="0.167em"></mspace><msup><mn>10000</mn><mrow><mn>2</mn><mi>i</mi><mo>/</mo><mi>d</mi></mrow></msup></mrow></math>, <strong>no una longitud máxima exactamente igual a 10000</strong>. Seno y coseno están intercalados por dimensiones en esta convención.</p>
-</section><section class="cell" data-cell="19" id="celda-20"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/pe.svg" width="1440"/></figure></section><section class="cell" data-cell="20" id="celda-21"><h4 id="seccion-8"><strong>11.3.1.1. Propiedad de desplazamiento lineal</strong></h4>
+</section><section class="cell" data-cell="19" id="celda-20"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/pe.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-20-pe"><h4 id="imagen-celda-20-pe">Diagrama visual · Una posición, varios pares de frecuencias</h4><figure><img alt="Dos parejas seno-coseno de distintas frecuencias se muestrean en una posición común." decoding="async" height="760" loading="lazy" src="../assets/visuals/pe.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/pe.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>Las curvas muestran dos parejas: sin(pω) y cos(pω), con ω=1 y ω=0.2 para facilitar la lectura. Son frecuencias ilustrativas; la ficha superior da la regla 10000^(−2i/d).</p>
+</li>
+<li>
+<p>La línea vertical fija p=3. En cada frecuencia se toman dos valores y se intercalan las componentes seno y coseno del mismo par.</p>
+</li>
+<li>
+<p>Las parejas cambian a distintas velocidades. Ninguna componente representa un bit ni una función lingüística fija; el orden de las dimensiones debe mantenerse coherente con el modelo.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="20" id="celda-21"><h4 id="seccion-8"><strong>11.3.1.1. Propiedad de desplazamiento lineal</strong></h4>
 <p>Cada par seno–coseno admite una transformación lineal para un desplazamiento fijo <math aria-label="k" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>k</mi></mrow></math>:</p>
 <p><math aria-label="\begin{bmatrix}\sin((pos+k)\omega_i)\\\cos((pos+k)\omega_i)\end{bmatrix}=\begin{bmatrix}\cos(k\omega_i)&amp;\sin(k\omega_i)\\-\sin(k\omega_i)&amp;\cos(k\omega_i)\end{bmatrix}\begin{bmatrix}\sin(pos\omega_i)\\\cos(pos\omega_i)\end{bmatrix}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>[</mo><mtable><mtr><mtd><mi>sin</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>p</mi><mi>o</mi><mi>s</mi><mo>+</mo><mi>k</mi><mo stretchy="false">)</mo><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mtd></mtr><mtr><mtd><mi>cos</mi><mo stretchy="false">(</mo><mo stretchy="false">(</mo><mi>p</mi><mi>o</mi><mi>s</mi><mo>+</mo><mi>k</mi><mo stretchy="false">)</mo><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mtd></mtr></mtable><mo>]</mo><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mi>cos</mi><mo stretchy="false">(</mo><mi>k</mi><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mtd><mtd><mi>sin</mi><mo stretchy="false">(</mo><mi>k</mi><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mtd></mtr><mtr><mtd><mo>−</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>k</mi><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mtd><mtd><mi>cos</mi><mo stretchy="false">(</mo><mi>k</mi><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mtd></mtr></mtable><mo>]</mo><mo>[</mo><mtable><mtr><mtd><mi>sin</mi><mo stretchy="false">(</mo><mi>p</mi><mi>o</mi><mi>s</mi><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mtd></mtr><mtr><mtd><mi>cos</mi><mo stretchy="false">(</mo><mi>p</mi><mi>o</mi><mi>s</mi><msub><mi>ω</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mtd></mtr></mtable><mo>]</mo><mo>.</mo></mrow></math></p>
 <p>Esto facilita representar desplazamientos, pero <strong>no obliga al producto punto de consultas y claves aprendidas a depender solo de la distancia relativa</strong>. RoPE impone esa estructura de manera explícita en sus rotaciones.</p>
-</section><section class="cell" data-cell="21" id="celda-22"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/pe.svg" width="1440"/></figure></section><section class="cell" data-cell="22" id="celda-23"><h5 id="seccion-9"><span class="tone-accent"> <strong>Presevando la Señal: Conexiones Residuales</strong></span></h5>
-</section><section class="cell" data-cell="23" id="celda-24"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/pe.svg" width="1440"/></figure></section><section class="cell" data-cell="24" id="celda-25"><h4 id="seccion-10"><span class="tone-emphasis"><strong>11.3.1.2. Ejemplo Numérico</strong></span></h4>
+</section><section class="cell" data-cell="21" id="celda-22"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/pe.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-22-pe"><h4 id="imagen-celda-22-pe">Diagrama visual · Una posición, varios pares de frecuencias</h4><figure><img alt="Dos parejas seno-coseno de distintas frecuencias se muestrean en una posición común." decoding="async" height="760" loading="lazy" src="../assets/visuals/pe.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/pe.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>Las curvas muestran dos parejas: sin(pω) y cos(pω), con ω=1 y ω=0.2 para facilitar la lectura. Son frecuencias ilustrativas; la ficha superior da la regla 10000^(−2i/d).</p>
+</li>
+<li>
+<p>La línea vertical fija p=3. En cada frecuencia se toman dos valores y se intercalan las componentes seno y coseno del mismo par.</p>
+</li>
+<li>
+<p>Las parejas cambian a distintas velocidades. Ninguna componente representa un bit ni una función lingüística fija; el orden de las dimensiones debe mantenerse coherente con el modelo.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="22" id="celda-23"><h5 id="seccion-9"><span class="tone-accent"> <strong>Presevando la Señal: Conexiones Residuales</strong></span></h5>
+</section><section class="cell" data-cell="23" id="celda-24"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/pe.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-24-pe"><h4 id="imagen-celda-24-pe">Diagrama visual · Una posición, varios pares de frecuencias</h4><figure><img alt="Dos parejas seno-coseno de distintas frecuencias se muestrean en una posición común." decoding="async" height="760" loading="lazy" src="../assets/visuals/pe.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/pe.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>Las curvas muestran dos parejas: sin(pω) y cos(pω), con ω=1 y ω=0.2 para facilitar la lectura. Son frecuencias ilustrativas; la ficha superior da la regla 10000^(−2i/d).</p>
+</li>
+<li>
+<p>La línea vertical fija p=3. En cada frecuencia se toman dos valores y se intercalan las componentes seno y coseno del mismo par.</p>
+</li>
+<li>
+<p>Las parejas cambian a distintas velocidades. Ninguna componente representa un bit ni una función lingüística fija; el orden de las dimensiones debe mantenerse coherente con el modelo.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="24" id="celda-25"><h4 id="seccion-10"><span class="tone-emphasis"><strong>11.3.1.2. Ejemplo Numérico</strong></span></h4>
 <blockquote>
 <p>Para entender cómo se distribuyen las funciones trigonométricas en las dimensiones del vector, <span class="tone-emphasis"><strong>conviene analizar el rol exacto de los índices <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math>, <math aria-label="2i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mi>i</mi></mrow></math> y <math aria-label="2i+1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mi>i</mi><mo>+</mo><mn>1</mn></mrow></math>, y luego desarrollar el cálculo numérico completo con <math aria-label="d_{\text{model}} = 6" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>d</mi><mrow><mtext>model</mtext></mrow></msub><mo>=</mo><mn>6</mn></mrow></math></strong></span></p>
 </blockquote>
@@ -65,7 +131,18 @@
 <p><span class="tone-context"><strong><math aria-label="2i+1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mi>i</mi><mo>+</mo><mn>1</mn></mrow></math> (Dimensión impar):</strong></span> Selecciona el <span class="tone-emphasis"><strong>índice impar consecutivo donde se evalúa la función coseno con la misma frecuencia que su dimensión par compañera.</strong> </span></p>
 </li>
 </ul>
-</section><section class="cell" data-cell="26" id="celda-27"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/pe.svg" width="1440"/></figure></section><section class="cell" data-cell="27" id="celda-28"><blockquote>
+</section><section class="cell" data-cell="26" id="celda-27"><figure><img alt="Ilustración de la sección" height="372" loading="lazy" src="../assets/figures/pe.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-27-pe"><h4 id="imagen-celda-27-pe">Diagrama visual · Una posición, varios pares de frecuencias</h4><figure><img alt="Dos parejas seno-coseno de distintas frecuencias se muestrean en una posición común." decoding="async" height="760" loading="lazy" src="../assets/visuals/pe.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/pe.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>Las curvas muestran dos parejas: sin(pω) y cos(pω), con ω=1 y ω=0.2 para facilitar la lectura. Son frecuencias ilustrativas; la ficha superior da la regla 10000^(−2i/d).</p>
+</li>
+<li>
+<p>La línea vertical fija p=3. En cada frecuencia se toman dos valores y se intercalan las componentes seno y coseno del mismo par.</p>
+</li>
+<li>
+<p>Las parejas cambian a distintas velocidades. Ninguna componente representa un bit ni una función lingüística fija; el orden de las dimensiones debe mantenerse coherente con el modelo.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="27" id="celda-28"><blockquote>
 <p>Las <span class="tone-accent"><strong>3 parejas (<math aria-label="i=0, 1, 2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi><mo>=</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn></mrow></math>) cubren los 6 índices del vector: <math aria-label="\{0, 1, 2, 3, 4, 5\}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">{</mo><mn>0</mn><mo>,</mo><mn>1</mn><mo>,</mo><mn>2</mn><mo>,</mo><mn>3</mn><mo>,</mo><mn>4</mn><mo>,</mo><mn>5</mn><mo stretchy="false">}</mo></mrow></math>.</strong></span></p>
 </blockquote>
 </section><section class="cell" data-cell="28" id="celda-29"><hr/>
@@ -484,22 +561,77 @@ Matriz PE generada: Forma (7, 32)
 <p><span class="tone-context"><strong>GPT (Decoder-Only):</strong></span> <span class="tone-emphasis"><strong>Elimina el codificador y la atención cruzada (Cross-Attention), empleando exclusivamente una pila de bloques decodificadores causales</strong></span>. Su única tarea es predecir el siguiente token dada la historia pasada.</p>
 </li>
 </ul>
-</section><section class="cell" data-cell="46" id="celda-47"><figure><img alt="RoPE: lo que conserva y lo que no garantiza" height="435" loading="lazy" src="../assets/figures/position-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="47" id="celda-48"><h2 id="seccion-22"><span class="tone-emphasis"><strong>12.2. Flujo de Entrada: Tokenización y Representación Espacial</strong></span></h2>
+</section><section class="cell" data-cell="46" id="celda-47"><figure><img alt="RoPE: lo que conserva y lo que no garantiza" height="435" loading="lazy" src="../assets/figures/position-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-47-position-limits"><h4 id="imagen-celda-47-position-limits">Diagrama visual · Una posición rota cada pareja de coordenadas</h4><figure><img alt="Cuatro flechas de igual norma muestran rotaciones sucesivas de un vector fijo." decoding="async" height="760" loading="lazy" src="../assets/visuals/position-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/position-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>Se mantiene fijo el contenido q=(1,0) y se cambia la posición p. La pareja se rota un ángulo pθ, con θ=π/6 en este ejemplo.</p>
+</li>
+<li>
+<p>Las puntas de las flechas permanecen sobre una circunferencia: la norma no cambia. La igualdad expresa isometría, no una conservación demostrada del significado.</p>
+</li>
+<li>
+<p>Al rotar consulta y clave, el factor de rotación de su producto punto depende de la diferencia de posiciones. Con contenido distinto, los vectores de tokens distintos no siguen necesariamente esta misma trayectoria.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="47" id="celda-48"><h2 id="seccion-22"><span class="tone-emphasis"><strong>12.2. Flujo de Entrada: Tokenización y Representación Espacial</strong></span></h2>
 </section><section class="cell" data-cell="48" id="celda-49"><h3 id="seccion-23"><span class="tone-accent"><strong>12.2.1. Tokenización Sub-léxica (BPE &amp; Tiktoken)</strong></span></h3>
 </section><section class="cell" data-cell="49" id="celda-50"><ul>
 <li>El tokenizador convierte texto en una secuencia de IDs; <strong><math aria-label="V" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>V</mi></mrow></math> es el tamaño del vocabulario, no la longitud de la secuencia</strong>.</li>
 <li>GPT-2 emplea BPE a nivel de bytes con 50257 tokens. Las codificaciones de tiktoken dependen del modelo; <code>cl100k_base</code> incluye tokens especiales y no es un vocabulario de exactamente 100000 IDs. No debe atribuirse una única codificación a todas las versiones de GPT.</li>
 </ul>
 </section><section class="cell" data-cell="50" data-reviewed-source="https://arxiv.org/abs/1706.03762" id="celda-51"><h3 id="seccion-24"><span class="tone-accent"><strong>12.2.2. Matriz de Posicional Embeddings (<math aria-label="W_p" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>W</mi><mi>p</mi></msub></mrow></math>)</strong></span></h3><p>Este ejemplo describe GPT-2: suma embeddings de token y posición aprendida antes de sus bloques. No todos los modelos llamados GPT usan ese esquema; la codificación depende de la arquitectura concreta.</p>
-<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="51" id="celda-52"><figure><img alt="RoPE: lo que conserva y lo que no garantiza" height="435" loading="lazy" src="../assets/figures/position-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="52" id="celda-53"><h2 id="seccion-25"><span class="tone-emphasis"><strong>12.3. Fundamentos Matemáticos de RoPE Paso a Paso</strong></span></h2>
+<p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></p></section><section class="cell" data-cell="51" id="celda-52"><figure><img alt="RoPE: lo que conserva y lo que no garantiza" height="435" loading="lazy" src="../assets/figures/position-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-52-position-limits"><h4 id="imagen-celda-52-position-limits">Diagrama visual · Una posición rota cada pareja de coordenadas</h4><figure><img alt="Cuatro flechas de igual norma muestran rotaciones sucesivas de un vector fijo." decoding="async" height="760" loading="lazy" src="../assets/visuals/position-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/position-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>Se mantiene fijo el contenido q=(1,0) y se cambia la posición p. La pareja se rota un ángulo pθ, con θ=π/6 en este ejemplo.</p>
+</li>
+<li>
+<p>Las puntas de las flechas permanecen sobre una circunferencia: la norma no cambia. La igualdad expresa isometría, no una conservación demostrada del significado.</p>
+</li>
+<li>
+<p>Al rotar consulta y clave, el factor de rotación de su producto punto depende de la diferencia de posiciones. Con contenido distinto, los vectores de tokens distintos no siguen necesariamente esta misma trayectoria.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="52" id="celda-53"><h2 id="seccion-25"><span class="tone-emphasis"><strong>12.3. Fundamentos Matemáticos de RoPE Paso a Paso</strong></span></h2>
 <p>En lugar de sumar un vector de posición en la entrada del modelo, <span class="tone-emphasis"><strong>RoPE toma los vectores proyectados <math aria-label="q" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>q</mi></mrow></math> y <math aria-label="k" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>k</mi></mrow></math> en el espacio bidimensional (o pares de dimensiones)</strong></span> y los <span class="tone-emphasis"><strong>rota en el plano complejo un ángulo proporcional a su posición física <math aria-label="m" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi></mrow></math> en la secuencia.</strong></span></p>
-</section><section class="cell" data-cell="53" id="celda-54"><figure><img alt="RoPE: lo que conserva y lo que no garantiza" height="435" loading="lazy" src="../assets/figures/position-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="54" id="celda-55"><h3 id="seccion-26"><span class="tone-accent"><strong>12.3.1. El Caso Bidimensional (2D)</strong></span></h3>
+</section><section class="cell" data-cell="53" id="celda-54"><figure><img alt="RoPE: lo que conserva y lo que no garantiza" height="435" loading="lazy" src="../assets/figures/position-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-54-position-limits"><h4 id="imagen-celda-54-position-limits">Diagrama visual · Una posición rota cada pareja de coordenadas</h4><figure><img alt="Cuatro flechas de igual norma muestran rotaciones sucesivas de un vector fijo." decoding="async" height="760" loading="lazy" src="../assets/visuals/position-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/position-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>Se mantiene fijo el contenido q=(1,0) y se cambia la posición p. La pareja se rota un ángulo pθ, con θ=π/6 en este ejemplo.</p>
+</li>
+<li>
+<p>Las puntas de las flechas permanecen sobre una circunferencia: la norma no cambia. La igualdad expresa isometría, no una conservación demostrada del significado.</p>
+</li>
+<li>
+<p>Al rotar consulta y clave, el factor de rotación de su producto punto depende de la diferencia de posiciones. Con contenido distinto, los vectores de tokens distintos no siguen necesariamente esta misma trayectoria.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="54" id="celda-55"><h3 id="seccion-26"><span class="tone-accent"><strong>12.3.1. El Caso Bidimensional (2D)</strong></span></h3>
 <p>Consideremos un <span class="tone-emphasis"><strong>vector bidimensional <math aria-label="x = [x_1, x_2]^T \in \mathbb{R}^2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo stretchy="false">[</mo><msub><mi>x</mi><mn>1</mn></msub><mo>,</mo><msub><mi>x</mi><mn>2</mn></msub><msup><mo stretchy="false">]</mo><mi>T</mi></msup><mo>∈</mo><msup><mi>ℝ</mi><mn>2</mn></msup></mrow></math>.</strong></span> Para codificar la posición <math aria-label="m" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi></mrow></math>, <span class="tone-emphasis"><strong>multiplicamos <math aria-label="x" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math> por una matriz de rotación ortogonal <math aria-label="R_{\Theta, m}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>R</mi><mrow><mi>Θ</mi><mo>,</mo><mi>m</mi></mrow></msub></mrow></math>:</strong></span></p>
 <p><math aria-label="R_{\Theta, m} = \begin{bmatrix} \cos(m\theta) &amp; -\sin(m\theta) \\ \sin(m\theta) &amp; \cos(m\theta) \end{bmatrix}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>R</mi><mrow><mi>Θ</mi><mo>,</mo><mi>m</mi></mrow></msub><mo>=</mo><mo>[</mo><mtable><mtr><mtd><mi>cos</mi><mo stretchy="false">(</mo><mi>m</mi><mi>θ</mi><mo stretchy="false">)</mo></mtd><mtd><mo>−</mo><mi>sin</mi><mo stretchy="false">(</mo><mi>m</mi><mi>θ</mi><mo stretchy="false">)</mo></mtd></mtr><mtr><mtd><mi>sin</mi><mo stretchy="false">(</mo><mi>m</mi><mi>θ</mi><mo stretchy="false">)</mo></mtd><mtd><mi>cos</mi><mo stretchy="false">(</mo><mi>m</mi><mi>θ</mi><mo stretchy="false">)</mo></mtd></mtr></mtable><mo>]</mo></mrow></math></p>
 <p>El vector rotado resulta en:</p>
 <p><math aria-label="\mathbf{R}_{\Theta, m} x = \begin{bmatrix} x_1 \cos(m\theta) - x_2 \sin(m\theta) \\ x_1 \sin(m\theta) + x_2 \cos(m\theta) \end{bmatrix}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>𝐑</mi><mrow><mi>Θ</mi><mo>,</mo><mi>m</mi></mrow></msub><mi>x</mi><mo>=</mo><mo>[</mo><mtable><mtr><mtd><msub><mi>x</mi><mn>1</mn></msub><mi>cos</mi><mo stretchy="false">(</mo><mi>m</mi><mi>θ</mi><mo stretchy="false">)</mo><mo>−</mo><msub><mi>x</mi><mn>2</mn></msub><mi>sin</mi><mo stretchy="false">(</mo><mi>m</mi><mi>θ</mi><mo stretchy="false">)</mo></mtd></mtr><mtr><mtd><msub><mi>x</mi><mn>1</mn></msub><mi>sin</mi><mo stretchy="false">(</mo><mi>m</mi><mi>θ</mi><mo stretchy="false">)</mo><mo>+</mo><msub><mi>x</mi><mn>2</mn></msub><mi>cos</mi><mo stretchy="false">(</mo><mi>m</mi><mi>θ</mi><mo stretchy="false">)</mo></mtd></mtr></mtable><mo>]</mo></mrow></math></p>
-</section><section class="cell" data-cell="55" id="celda-56"><figure><img alt="RoPE: lo que conserva y lo que no garantiza" height="435" loading="lazy" src="../assets/figures/position-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="56" id="celda-57"><p>Geométricamente, esto <span class="tone-emphasis"><strong>corresponde a girar el vector en un ángulo <math aria-label="\alpha = m\theta" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mi>m</mi><mi>θ</mi></mrow></math> sobre el origen del sistema de coordenadas.</strong></span></p>
-</section><section class="cell" data-cell="57" id="celda-58"><figure><img alt="RoPE: lo que conserva y lo que no garantiza" height="435" loading="lazy" src="../assets/figures/position-limits.svg" width="1440"/></figure></section><section class="cell" data-cell="58" id="celda-59"><h3 id="seccion-27"><span class="tone-accent"><strong>12.3.2. ¿Por qué el Producto Punto Preserva la Distancia Relativa?</strong></span></h3>
+</section><section class="cell" data-cell="55" id="celda-56"><figure><img alt="RoPE: lo que conserva y lo que no garantiza" height="435" loading="lazy" src="../assets/figures/position-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-56-position-limits"><h4 id="imagen-celda-56-position-limits">Diagrama visual · Una posición rota cada pareja de coordenadas</h4><figure><img alt="Cuatro flechas de igual norma muestran rotaciones sucesivas de un vector fijo." decoding="async" height="760" loading="lazy" src="../assets/visuals/position-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/position-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>Se mantiene fijo el contenido q=(1,0) y se cambia la posición p. La pareja se rota un ángulo pθ, con θ=π/6 en este ejemplo.</p>
+</li>
+<li>
+<p>Las puntas de las flechas permanecen sobre una circunferencia: la norma no cambia. La igualdad expresa isometría, no una conservación demostrada del significado.</p>
+</li>
+<li>
+<p>Al rotar consulta y clave, el factor de rotación de su producto punto depende de la diferencia de posiciones. Con contenido distinto, los vectores de tokens distintos no siguen necesariamente esta misma trayectoria.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="56" id="celda-57"><p>Geométricamente, esto <span class="tone-emphasis"><strong>corresponde a girar el vector en un ángulo <math aria-label="\alpha = m\theta" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>α</mi><mo>=</mo><mi>m</mi><mi>θ</mi></mrow></math> sobre el origen del sistema de coordenadas.</strong></span></p>
+</section><section class="cell" data-cell="57" id="celda-58"><figure><img alt="RoPE: lo que conserva y lo que no garantiza" height="435" loading="lazy" src="../assets/figures/position-limits.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-58-position-limits"><h4 id="imagen-celda-58-position-limits">Diagrama visual · Una posición rota cada pareja de coordenadas</h4><figure><img alt="Cuatro flechas de igual norma muestran rotaciones sucesivas de un vector fijo." decoding="async" height="760" loading="lazy" src="../assets/visuals/position-limits.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/position-limits.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>Se mantiene fijo el contenido q=(1,0) y se cambia la posición p. La pareja se rota un ángulo pθ, con θ=π/6 en este ejemplo.</p>
+</li>
+<li>
+<p>Las puntas de las flechas permanecen sobre una circunferencia: la norma no cambia. La igualdad expresa isometría, no una conservación demostrada del significado.</p>
+</li>
+<li>
+<p>Al rotar consulta y clave, el factor de rotación de su producto punto depende de la diferencia de posiciones. Con contenido distinto, los vectores de tokens distintos no siguen necesariamente esta misma trayectoria.</p>
+</li>
+</ol>
+</section></figure></section><section class="cell" data-cell="58" id="celda-59"><h3 id="seccion-27"><span class="tone-accent"><strong>12.3.2. ¿Por qué el Producto Punto Preserva la Distancia Relativa?</strong></span></h3>
 </section><section class="cell" id="bibliografia-del-tema"><h2>Bibliografía del tema</h2><ul>
 <li><a href="https://arxiv.org/abs/1706.03762">Vaswani et al. · Attention Is All You Need</a></li>
 <li><a href="https://arxiv.org/abs/2104.09864">Su et al. · RoFormer</a></li>

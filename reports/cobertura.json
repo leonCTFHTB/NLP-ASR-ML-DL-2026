@@ -16,7 +16,7 @@
         "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
       ],
       "text_cells": 134,
-      "images": 29
+      "images": 50
     },
     {
       "page": "nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html",
@@ -34,7 +34,7 @@
         "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
       ],
       "text_cells": 83,
-      "images": 17
+      "images": 33
     },
     {
       "page": "nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html",
@@ -52,7 +52,7 @@
         "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
       ],
       "text_cells": 125,
-      "images": 20
+      "images": 33
     },
     {
       "page": "nlp/clase-05-1-1-redes-convolucionales-teoria-simplificada.html",
@@ -67,7 +67,7 @@
         "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
       ],
       "text_cells": 88,
-      "images": 25
+      "images": 27
     },
     {
       "page": "nlp/clase-05-1-2-redes-convolucionales-v2-recurso-2.html",
@@ -82,7 +82,7 @@
         "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
       ],
       "text_cells": 112,
-      "images": 18
+      "images": 19
     },
     {
       "page": "nlp/clase-05-1-2-redes-convolucionales-v2.html",
@@ -97,7 +97,7 @@
         "https://docs.pytorch.org/docs/stable/generated/torch.nn.CrossEntropyLoss.html"
       ],
       "text_cells": 112,
-      "images": 18
+      "images": 19
     },
     {
       "page": "nlp/clase-05-1-cnn-teoria-completa.html",
@@ -218,7 +218,7 @@
         "https://arxiv.org/abs/1410.5401"
       ],
       "text_cells": 114,
-      "images": 29
+      "images": 30
     },
     {
       "page": "nlp/clase-05-4-transformers-y-mecanismos-de-atencion.html",
@@ -235,7 +235,7 @@
         "https://arxiv.org/abs/1410.5401"
       ],
       "text_cells": 135,
-      "images": 34
+      "images": 35
     },
     {
       "page": "nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html",
@@ -252,7 +252,7 @@
         "https://arxiv.org/abs/1410.5401"
       ],
       "text_cells": 113,
-      "images": 28
+      "images": 40
     },
     {
       "page": "nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html",
@@ -269,7 +269,7 @@
         "https://arxiv.org/abs/1410.5401"
       ],
       "text_cells": 150,
-      "images": 48
+      "images": 84
     },
     {
       "page": "nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html",
@@ -286,7 +286,7 @@
         "https://arxiv.org/abs/1410.5401"
       ],
       "text_cells": 118,
-      "images": 39
+      "images": 68
     },
     {
       "page": "nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html",
@@ -303,7 +303,7 @@
         "https://arxiv.org/abs/1410.5401"
       ],
       "text_cells": 82,
-      "images": 25
+      "images": 43
     },
     {
       "page": "nlp/clase-09-6-1-transformers-teoria-simplificada.html",
@@ -320,7 +320,7 @@
         "https://arxiv.org/abs/1410.5401"
       ],
       "text_cells": 114,
-      "images": 29
+      "images": 30
     },
     {
       "page": "nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html",
@@ -337,7 +337,7 @@
         "https://arxiv.org/abs/1410.5401"
       ],
       "text_cells": 98,
-      "images": 27
+      "images": 45
     },
     {
       "page": "nlp/clase-10-10-transformers-teoria-simplificada.html",
@@ -354,7 +354,7 @@
         "https://arxiv.org/abs/1410.5401"
       ],
       "text_cells": 114,
-      "images": 29
+      "images": 30
     },
     {
       "page": "nlp/clase-11-clase-12-transformers-teoria-simplificada.html",
@@ -371,7 +371,7 @@
         "https://arxiv.org/abs/1410.5401"
       ],
       "text_cells": 114,
-      "images": 29
+      "images": 30
     },
     {
       "page": "nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html",
@@ -382,7 +382,7 @@
         "https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.Animation.html#matplotlib.animation.Animation.to_jshtml"
       ],
       "text_cells": 56,
-      "images": 17
+      "images": 29
     },
     {
       "page": "nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html",
@@ -393,7 +393,7 @@
         "https://matplotlib.org/stable/api/_as_gen/matplotlib.animation.Animation.html#matplotlib.animation.Animation.to_jshtml"
       ],
       "text_cells": 140,
-      "images": 34
+      "images": 63
     },
     {
       "page": "nlp/clase-14-1-2-speaker-diarization-test.html",
@@ -422,7 +422,7 @@
         "https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/"
       ],
       "text_cells": 49,
-      "images": 13
+      "images": 25
     },
     {
       "page": "nlp/clase-14-attentioncnn-ser-01.html",
@@ -456,7 +456,7 @@
         "https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/"
       ],
       "text_cells": 194,
-      "images": 42
+      "images": 74
     },
     {
       "page": "nlp/clase-16-16-radix-2.html",
@@ -473,7 +473,7 @@
         "https://ocw.mit.edu/courses/18-103-fourier-analysis-fall-2013/"
       ],
       "text_cells": 25,
-      "images": 8
+      "images": 15
     }
   ],
   "notebook_pages": 29

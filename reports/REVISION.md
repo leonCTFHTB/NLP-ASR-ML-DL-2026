@@ -69,6 +69,10 @@ Se comprueban enlaces y recursos internos, fórmulas MathML y sintaxis del códi
 
 Las animaciones se inspeccionan mediante fotogramas representativos. Los códigos, recursos y referencias vigentes forman parte del repositorio. Las modificaciones se documentan en sus commits.
 
+## Diagramas y explicación visual
+
+Las fichas de texto se acompañan con diagramas de operaciones, vectores, matrices o gráficos según el tema. Cada imagen nueva tiene una explicación «Cómo leer esta imagen», con sus datos ilustrativos y sus límites. Las fichas y el texto que las acompañaba se conservan.
+
 ## Autoría y licencias
 
 Las aportaciones propias y los materiales de terceros conservan sus condiciones de uso y atribución. Las adaptaciones de D2L mantienen su licencia específica. Consultá [cómo citar y las licencias](citar.html).

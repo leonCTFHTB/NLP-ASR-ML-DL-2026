@@ -351,7 +351,18 @@ Ejemplos: (n,k,p,s,d)=(5,3,0,2,1) da 2; (5,3,2,2,1) da 4; (64,3,0,1,1) da 62. Do
 </table>
 <p class="note source-reference">Referencia: <a href="https://docs.pytorch.org/docs/stable/generated/torch.nn.BatchNorm2d.html">PyTorch: BatchNorm2d</a></p></section><section class="cell" data-cell="84" data-reviewed-source="https://arxiv.org/abs/1409.1556" id="celda-85"><h2 id="seccion-35">24.4. Implementación de una CNN reducida inspirada en VGG</h2><p>El laboratorio usa seis convoluciones y dos capas densas. Se inspira en bloques de VGG, pero no reproduce VGG-16. Sus formas y el número de clases corresponden a la configuración didáctica de entrada 32×32.</p>
 <p class="note source-reference">Referencia: <a href="https://arxiv.org/abs/1409.1556">Simonyan y Zisserman · VGG</a></p></section><section class="cell" data-cell="85" id="celda-86"><p>A continuación, vamos a implementar una versión reducida de la arquitectura VGG-16. En este caso, la arquitectura tendrá la siguiente estructura:</p>
-</section><section class="cell" data-cell="86" id="celda-87"><div class="output"><img alt="CNN: canales, espacio y clasificación" decoding="async" height="435" loading="lazy" src="../assets/figures/cnn-shapes.svg" width="1440"/></div></section><section class="cell" data-cell="87" id="celda-88"><p>Importamos las librerías necesarias:</p>
+</section><section class="cell" data-cell="86" id="celda-87"><div class="output"><img alt="CNN: canales, espacio y clasificación" decoding="async" height="435" loading="lazy" src="../assets/figures/cnn-shapes.svg" width="1440"/><section class="visual-explanation" data-visual-explanation="celda-87-cnn-shapes"><h4 id="imagen-celda-87-cnn-shapes">Diagrama visual · Un filtro produce un canal de salida</h4><figure><img alt="Tres mapas de entrada se combinan con un filtro de tres planos para obtener un mapa de salida." decoding="async" height="760" loading="lazy" src="../assets/visuals/cnn-shapes.svg" width="1400"/><figcaption>Ejemplo ilustrativo. <a href="../assets/visuals/cnn-shapes.svg" rel="noopener" target="_blank">Ampliar diagrama</a></figcaption></figure><h4>Cómo leer esta imagen</h4><ol>
+<li>
+<p>El ejemplo tiene tres canales de entrada, espacio 5×5 y un filtro con tres planos 3×3. En cada ubicación se suman los productos sobre espacio y canales.</p>
+</li>
+<li>
+<p>Con stride uno, dilatación uno y sin padding, el resultado espacial es 3×3. Un filtro completo produce un canal de salida; dos filtros producirían dos canales.</p>
+</li>
+<li>
+<p>El diagrama omite el eje del batch. Los pesos se comparten entre posiciones; el número de canales no se obtiene sumando la altura y el ancho ni corresponde necesariamente a colores después de la entrada.</p>
+</li>
+</ol>
+</section></div></section><section class="cell" data-cell="87" id="celda-88"><p>Importamos las librerías necesarias:</p>
 </section><section class="cell" data-cell="88" id="celda-89"><details class="source-code"><summary>Código Python · celda 89</summary><button class="copy-code" type="button">Copiar código</button><div class="highlight"><pre><span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
 <span class="kn">import</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optim</span>
