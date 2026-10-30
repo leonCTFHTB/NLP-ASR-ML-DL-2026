@@ -8,10 +8,46 @@ from bs4 import BeautifulSoup
 from editorial import render
 ROOT=Path(__file__).resolve().parents[1];DOCS=ROOT/'docs';ASSETS=DOCS/'assets'
 
+def update_home_index(catalog):
+    """Sincroniza la portada con el catálogo de páginas realmente publicadas."""
+    path=DOCS/'index.html';soup=BeautifulSoup(path.read_text(),'html.parser')
+    intro=soup.select_one('.intro-grid')
+    for block in list(intro.find_all('div',recursive=False))[1:]:block.decompose()
+    intro.select_one('.eyebrow').string='Biblioteca de NLP y reconocimiento del habla'
+    intro.select_one('p').string=f'{len(catalog)} páginas publicadas de clases y complementos, con teoría, código y recursos visuales. Incluye el notebook de Whisper de las clases 20–23.'
+    index=soup.select_one('#indice')
+    for row in index.select('.catalog-row'):
+        if not row.find('a'):
+            note=row.select_one('.note')
+            if note:note.string='Material pendiente de incorporar.'
+    for item in catalog.values():
+        label=item.get('class_label',f"{int(item['class']):02d}")
+        row_id='clase-'+label.replace('–','-')
+        row=index.find(id=row_id)
+        if row is None:
+            row=soup.new_tag('article',id=row_id,attrs={'class':'catalog-row'})
+            number=soup.new_tag('span',attrs={'class':'number'});number.string=label;row.append(number)
+            body=soup.new_tag('div');heading=soup.new_tag('h3');heading.string=item['title'];body.append(heading);row.append(body);index.append(row)
+        if '–' in label:row['class']=['catalog-row','catalog-row-range']
+        listing=row.find('ul')
+        if listing is None:listing=soup.new_tag('ul');row.find('div',recursive=False).append(listing)
+        href='nlp/'+item['filename'];link=listing.find('a',href=href)
+        if link is None:
+            li=soup.new_tag('li');link=soup.new_tag('a',href=href);li.append(link);listing.append(li)
+            if item.get('annex')=='True':
+                badge=soup.new_tag('span',attrs={'class':'label'});badge.string='Complemento';li.append(' ');li.append(badge)
+        link.string=item['title']
+    expected={'nlp/'+name for name in catalog}
+    links=[a['href'] for a in index.select('a[href]')]
+    if set(links)!=expected or len(links)!=len(expected):raise ValueError('El índice y el catálogo no coinciden')
+    path.write_text(str(soup))
+
 def run():
     """Prepara los exportados para servir desde /docs en GitHub Pages."""
     search=[];videos=0;dimensions={}
     catalog={x['filename']:x for x in json.loads((ROOT/'reports/catalogo.json').read_text())}
+    if set(catalog)!={p.name for p in (DOCS/'nlp').glob('*.html')}:raise ValueError('El catálogo no coincide con las páginas publicadas')
+    update_home_index(catalog)
     for path in sorted(DOCS.rglob('*.html')):
         soup=BeautifulSoup(path.read_text(),'html.parser')
         # Reservar el espacio de imágenes lazy evita desplazar un ancla al
@@ -63,7 +99,9 @@ def run():
             item=catalog[path.name];copy_soup=BeautifulSoup(str(soup.main),'html.parser')
             for node in copy_soup.select('script,style,.source-code,footer,.hero,.pager'):node.decompose()
             for m in copy_soup.find_all('math'):m.replace_with(m.get('aria-label',m.get_text(' ',strip=True)))
-            search.append({'title':soup.h1.get_text(' ',strip=True),'class':int(item['class']),'url':'nlp/'+path.name,'text':copy_soup.get_text(' ',strip=True)})
+            entry={'title':soup.h1.get_text(' ',strip=True),'class':int(item['class']),'url':'nlp/'+path.name,'text':copy_soup.get_text(' ',strip=True)}
+            if item.get('class_label'):entry['class_label']=item['class_label']
+            search.append(entry)
         for footer in soup.select('footer'):
             prefix='../' if path.parent.name=='nlp' else ''
             if path.name=='404.html':prefix='/NLP-ASR-ML-DL-2026/'

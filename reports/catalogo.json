@@ -50,7 +50,7 @@
   },
   {
     "class": "5",
-    "title": "2 - Mecanísmos de Atención",
+    "title": "2 - Mecanismos de Atención",
     "slug": "2-mecanismos-de-atencion",
     "annex": "True",
     "filename": "clase-05-2-mecanismos-de-atencion.html"
@@ -85,7 +85,7 @@
   },
   {
     "class": "5",
-    "title": "4 - Transformers y Mecanísmos de Atención",
+    "title": "4 - Transformers y Mecanismos de Atención",
     "slug": "4-transformers-y-mecanismos-de-atencion",
     "annex": "True",
     "filename": "clase-05-4-transformers-y-mecanismos-de-atencion.html"
@@ -169,7 +169,7 @@
   },
   {
     "class": "14",
-    "title": "14 - Inotroducción a ASR - Parte 1",
+    "title": "14 - Introducción a ASR - Parte 1",
     "slug": "14-inotroduccion-a-asr-parte-1",
     "annex": "False",
     "filename": "clase-14-14-inotroduccion-a-asr-parte-1.html"
@@ -207,6 +207,7 @@
     "title": "20–23 · Whisper: datasets, entrenamiento e inferencia",
     "slug": "whisper-datasets-entrenamiento-inferencia",
     "annex": "False",
-    "filename": "clase-20-23-whisper-datasets-entrenamiento-inferencia.html"
+    "filename": "clase-20-23-whisper-datasets-entrenamiento-inferencia.html",
+    "class_label": "20–23"
   }
 ]

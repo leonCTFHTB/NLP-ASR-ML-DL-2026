@@ -159,7 +159,7 @@ def main(notebook, zip_dir):
     catalog_path = ROOT/'reports/catalogo.json'
     catalog = json.loads(catalog_path.read_text())
     if not any(x['filename']==FILENAME for x in catalog):
-        catalog.append({'class':'20','title':TITLE,'slug':'whisper-datasets-entrenamiento-inferencia','annex':'False','filename':FILENAME})
+        catalog.append({'class':'20','class_label':'20–23','title':TITLE,'slug':'whisper-datasets-entrenamiento-inferencia','annex':'False','filename':FILENAME})
     catalog_path.write_text(json.dumps(catalog,indent=2,ensure_ascii=False)+'\n')
     for path in DOCS.rglob('*.html'):
         soup = fragment(path.read_text())
@@ -186,7 +186,6 @@ def main(notebook, zip_dir):
             old=soup.select_one('#clase-20-23')
             if old:old.decompose()
             soup.select_one('#indice').append(fragment(f'<article class="catalog-row" id="clase-20-23"><span class="number">20–23</span><div><h3>Whisper: datasets, entrenamiento e inferencia</h3><ul><li><a href="nlp/{FILENAME}">{TITLE}</a></li></ul></div></article>'))
-            soup.select_one('.intro-grid > div > p').string='30 páginas de clases y complementos: NLP, audio y el notebook de Whisper de las clases 20–23. La clase 1 está pendiente de incorporar.'
         path.write_text(str(soup))
     report = {'source_notebook':notebook.name,'source_sha256':hashlib.sha256(raw).hexdigest(),
               'html':'nlp/'+FILENAME,'cells':len(nb['cells']),
