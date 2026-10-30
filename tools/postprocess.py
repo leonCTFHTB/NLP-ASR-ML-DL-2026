@@ -1,7 +1,7 @@
 """Repara multimedia y reconstruye búsqueda y documentación de revisión."""
 from pathlib import Path
 from urllib.parse import urlsplit
-import copy,html,json,re
+import copy,hashlib,html,json,re
 import xml.etree.ElementTree as ET
 from PIL import Image
 from bs4 import BeautifulSoup
@@ -109,6 +109,16 @@ def run():
                 p=soup.new_tag('p');a=soup.new_tag('a',href=prefix+'revision.html');a.string='Bibliografía y criterios del material';p.append(a);footer.append(p)
         path.write_text(str(soup))
     (ASSETS/'search-index.js').write_text('window.BOOK_SEARCH='+json.dumps(search,ensure_ascii=False)+';\n')
+    # Cambiar la URL cuando cambia un recurso evita mezclar la portada nueva
+    # con una versión del buscador o de los estilos retenida en caché.
+    home=BeautifulSoup((DOCS/'index.html').read_text(),'html.parser')
+    for node,attr in [(n,'href') for n in home.select('link[rel="stylesheet"]')]+[(n,'src') for n in home.select('script[src]')]:
+        url=urlsplit(node[attr])
+        if url.scheme or not url.path.startswith('assets/'):continue
+        asset=DOCS/url.path
+        version=hashlib.sha256(asset.read_bytes()).hexdigest()[:12]
+        node[attr]=url.path+'?v='+version
+    (DOCS/'index.html').write_text(str(home))
     # Una página legible ofrece acceso al informe y a las fuentes.
     base=BeautifulSoup((DOCS/'index.html').read_text(),'html.parser');base.title.string='Bibliografía y criterios · Jacobo León Juárez'
     for script in list(base.find_all('script')):
