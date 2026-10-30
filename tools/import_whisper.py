@@ -11,8 +11,8 @@ from pygments.lexers import PythonLexer
 from editorial import render, ROOT, DOCS
 from latex2mathml.converter import convert
 
-FILENAME = 'clase-20-23-whisper-datasets-entrenamiento-inferencia.html'
-TITLE = '20–23 · Whisper: datasets, entrenamiento e inferencia'
+FILENAME = 'clase-17-whisper-datasets-entrenamiento-inferencia.html'
+TITLE = '17 · Whisper: datasets, entrenamiento e inferencia'
 ASSET = DOCS / 'assets' / 'whisper'
 COLORS = {'#de9f68':'tone-emphasis', '#a79fe3':'tone-accent',
           '#d6a487':'tone-emphasis', '#dfc5cf':'tone-accent',
@@ -76,7 +76,7 @@ def main(notebook, zip_dir):
     main_tag.clear()
     main_tag.append(hero)
     hero.h1.string = TITLE
-    hero.select_one('.eyebrow').string = 'Procesamiento del Lenguaje Natural y Reconocimiento del Habla · Clases 20–23'
+    hero.select_one('.eyebrow').string = 'Procesamiento del Lenguaje Natural y Reconocimiento del Habla · Clase 17'
     hero.select_one('p.note').string = 'Contenido convertido sin ejecutar Python. Se conservan el texto, el código y las salidas guardadas del notebook; los tiempos y resultados corresponden a su ejecución original. Las rutas personales de Google Drive se muestran como /content/images y /content/audio.'
     hero.select_one('.toolbar a')['href'] = FILENAME
     toc = hero.select_one('.page-toc')
@@ -159,7 +159,7 @@ def main(notebook, zip_dir):
     catalog_path = ROOT/'reports/catalogo.json'
     catalog = json.loads(catalog_path.read_text())
     if not any(x['filename']==FILENAME for x in catalog):
-        catalog.append({'class':'20','class_label':'20–23','title':TITLE,'slug':'whisper-datasets-entrenamiento-inferencia','annex':'False','filename':FILENAME})
+        catalog.append({'class':'17','title':TITLE,'slug':'whisper-datasets-entrenamiento-inferencia','annex':'False','filename':FILENAME})
     catalog_path.write_text(json.dumps(catalog,indent=2,ensure_ascii=False)+'\n')
     for path in DOCS.rglob('*.html'):
         soup = fragment(path.read_text())
@@ -171,7 +171,7 @@ def main(notebook, zip_dir):
             prefix='/NLP-ASR-ML-DL-2026/nlp/'
         for old in nav.select('[data-whisper]'):
             old.decompose()
-        entry = fragment(f'<details class="chapter" data-whisper=""><summary>20–23 · Whisper</summary><a href="{prefix+FILENAME}">{TITLE}</a></details>')
+        entry = fragment(f'<details class="chapter" data-whisper=""><summary>17 · Whisper</summary><a href="{prefix+FILENAME}">{TITLE}</a></details>')
         if path.name==FILENAME:
             for opened in nav.select('details[open]'):opened.attrs.pop('open',None)
             for active in nav.select('a.active'):
@@ -183,9 +183,9 @@ def main(notebook, zip_dir):
             pager=soup.select_one('.pager')
             if not pager.find('a',href=FILENAME):pager.append(fragment(f'<a href="{FILENAME}">{TITLE} →</a>'))
         if path.name=='index.html':
-            old=soup.select_one('#clase-20-23')
+            old=soup.select_one('#clase-17')
             if old:old.decompose()
-            soup.select_one('#indice').append(fragment(f'<article class="catalog-row" id="clase-20-23"><span class="number">20–23</span><div><h3>Whisper: datasets, entrenamiento e inferencia</h3><ul><li><a href="nlp/{FILENAME}">{TITLE}</a></li></ul></div></article>'))
+            soup.select_one('#indice').append(fragment(f'<article class="catalog-row" id="clase-17"><span class="number">17</span><div><h3>Whisper: datasets, entrenamiento e inferencia</h3><ul><li><a href="nlp/{FILENAME}">{TITLE}</a></li></ul></div></article>'))
         path.write_text(str(soup))
     report = {'source_notebook':notebook.name,'source_sha256':hashlib.sha256(raw).hexdigest(),
               'html':'nlp/'+FILENAME,'cells':len(nb['cells']),

@@ -39,7 +39,7 @@ python tools/check_examples.py
 
 ## Importar el notebook de Whisper
 
-La página de las clases 20–23 conserva las 244 celdas y las salidas estáticas del notebook recibido. No se ejecutó su código. Las imágenes referenciadas se toman de los ZIP de las clases 18 y 21; las imágenes de los otros ZIP no se insertan si no están referenciadas. Las rutas personales de Drive se sustituyen por `/content/images` y `/content/audio` en el código mostrado.
+La página de la clase 17 conserva las 244 celdas y las salidas estáticas del notebook recibido. No se ejecutó su código. Las imágenes referenciadas se toman de los ZIP de las clases 18 y 21; las imágenes de los otros ZIP no se insertan si no están referenciadas. Las rutas personales de Drive se sustituyen por `/content/images` y `/content/audio` en el código mostrado.
 
 ```bash
 python tools/import_whisper.py /ruta/notebook.ipynb /ruta/directorio-de-zips

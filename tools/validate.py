@@ -35,6 +35,11 @@ for p,s in soups.items():
 catalog={x['filename']:x for x in json.loads((root/'reports/catalogo.json').read_text())}
 numbering_errors=[]
 for p,s in soups.items():
+    redirect=s.find('meta',attrs={'name':'class-redirect'})
+    if redirect:
+        target=redirect.get('content','')
+        if target not in catalog or p.parent.name!='nlp':numbering_errors.append([p.name,'invalid class redirect'])
+        continue
     if s.select('nav .chapter.pending'):
         numbering_errors.append([str(p.relative_to(docs)),'unpublished navigation entry'])
     nav=s.select_one('nav[aria-label="Clases"]')
@@ -58,6 +63,6 @@ home=soups[docs/'index.html']
 if any(not row.find('a') for row in home.select('#indice .catalog-row')):numbering_errors.append(['index.html','unpublished index entry'])
 if {Path(urlsplit(a['href']).path).name for a in home.select('#indice a[href]')}!=set(catalog):numbering_errors.append(['index.html','index/catalog mismatch'])
 errors.extend(numbering_errors)
-result={'html_pages':len(files),'notebook_pages':len(list((docs/'nlp').glob('*.html'))),'formula_instances':formulas,'image_instances':images,'class_numbering_verified':not numbering_errors,'errors':errors,'external_media':external,'python_training_executed':False}
+result={'html_pages':len(files),'notebook_pages':len(catalog),'class_redirects':sum(bool(s.find('meta',attrs={'name':'class-redirect'})) for s in soups.values()),'formula_instances':formulas,'image_instances':images,'class_numbering_verified':not numbering_errors,'errors':errors,'external_media':external,'python_training_executed':False}
 (root/'reports/validacion.json').write_text(json.dumps(result,indent=2,ensure_ascii=False))
 print(json.dumps(result,indent=2,ensure_ascii=False));sys.exit(bool(errors))

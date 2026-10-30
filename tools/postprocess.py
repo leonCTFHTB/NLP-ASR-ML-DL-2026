@@ -14,7 +14,7 @@ def update_home_index(catalog):
     intro=soup.select_one('.intro-grid')
     for block in list(intro.find_all('div',recursive=False))[1:]:block.decompose()
     intro.select_one('.eyebrow').string='Biblioteca de NLP y reconocimiento del habla'
-    intro.select_one('p').string=f'{len(catalog)} páginas publicadas de clases y complementos, con teoría, código y recursos visuales. Incluye el notebook de Whisper de las clases 20–23.'
+    intro.select_one('p').string=f'{len(catalog)} páginas publicadas de clases y complementos, con teoría, código y recursos visuales. Incluye el notebook de Whisper de la clase 17.'
     index=soup.select_one('#indice')
     for row in index.select('.catalog-row'):
         if not row.find('a'):
@@ -75,10 +75,12 @@ def run():
     """Prepara los exportados para servir desde /docs en GitHub Pages."""
     search=[];videos=0;dimensions={}
     catalog={x['filename']:x for x in json.loads((ROOT/'reports/catalogo.json').read_text())}
-    if set(catalog)!={p.name for p in (DOCS/'nlp').glob('*.html')}:raise ValueError('El catálogo no coincide con las páginas publicadas')
+    published={p.name for p in (DOCS/'nlp').glob('*.html') if 'name="class-redirect"' not in p.read_text()}
+    if set(catalog)!=published:raise ValueError('El catálogo no coincide con las páginas publicadas')
     update_home_index(catalog)
     for path in sorted(DOCS.rglob('*.html')):
         soup=BeautifulSoup(path.read_text(),'html.parser')
+        if soup.find('meta',attrs={'name':'class-redirect'}):continue
         synchronize_class_labels(soup,path,catalog)
         # Reservar el espacio de imágenes lazy evita desplazar un ancla al
         # cargar ilustraciones que aparecen antes de ella en páginas largas.

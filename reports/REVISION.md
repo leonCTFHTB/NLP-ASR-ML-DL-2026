@@ -73,6 +73,6 @@ Las animaciones se inspeccionan mediante fotogramas representativos. Los código
 
 Las aportaciones propias y los materiales de terceros conservan sus condiciones de uso y atribución. Las adaptaciones de D2L mantienen su licencia específica. Consultá [cómo citar y las licencias](citar.html).
 
-## Incorporación de las clases 20–23 · Whisper
+## Incorporación de la clase 17 · Whisper
 
 El notebook adjunto se incorporó como una página adicional con 244 celdas, nueve imágenes referenciadas de los ZIP, una gráfica de salida y una muestra de audio guardada. Se conservaron el orden, las explicaciones, el código y las salidas estáticas. Las rutas personales de Google Drive se muestran como `/content/images` y `/content/audio`, los colores se adaptan al tema y se omiten los widgets de progreso exclusivos de Colab. La importación no ejecutó entrenamiento ni volvió a comprobar sus resultados experimentales. El registro de importación conserva el SHA-256 del archivo fuente. La revisión bibliográfica descrita anteriormente corresponde a las 29 páginas previas.
