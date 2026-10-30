@@ -1,203 +1,203 @@
 [
   {
     "class": "2",
-    "title": "1 - Introducción al NLP  - Parte 1 - Word2Vec",
+    "title": "02 · Introducción al NLP  - Parte 1 - Word2Vec",
     "slug": "1-introduccion-al-nlp-parte-1-word2vec",
     "annex": "False",
     "filename": "clase-02-1-introduccion-al-nlp-parte-1-word2vec.html"
   },
   {
     "class": "3",
-    "title": "1 - Introducción al NLP  - Parte 2 - GloVe",
+    "title": "03 · Introducción al NLP  - Parte 2 - GloVe",
     "slug": "1-introduccion-al-nlp-parte-2-glove",
     "annex": "False",
     "filename": "clase-03-1-introduccion-al-nlp-parte-2-glove.html"
   },
   {
     "class": "4",
-    "title": "1 - Introducción al NLP  - Parte 3 - FastText",
+    "title": "04 · Introducción al NLP  - Parte 3 - FastText",
     "slug": "1-introduccion-al-nlp-parte-3-fasttext",
     "annex": "False",
     "filename": "clase-04-1-introduccion-al-nlp-parte-3-fasttext.html"
   },
   {
     "class": "5",
-    "title": "1.2. Redes Convolucionales - V2",
+    "title": "05 · Redes Convolucionales - V2",
     "slug": "1-2-redes-convolucionales-v2",
     "annex": "False",
     "filename": "clase-05-1-2-redes-convolucionales-v2.html"
   },
   {
     "class": "5",
-    "title": "1 - CNN - Teoría Completa",
+    "title": "05 · CNN - Teoría Completa",
     "slug": "1-cnn-teoria-completa",
     "annex": "True",
     "filename": "clase-05-1-cnn-teoria-completa.html"
   },
   {
     "class": "5",
-    "title": "1.1. - Redes Convolucionales Teoría Simplificada",
+    "title": "05 · Redes Convolucionales Teoría Simplificada",
     "slug": "1-1-redes-convolucionales-teoria-simplificada",
     "annex": "True",
     "filename": "clase-05-1-1-redes-convolucionales-teoria-simplificada.html"
   },
   {
     "class": "5",
-    "title": "1.2. Redes Convolucionales - V2",
+    "title": "05 · Redes Convolucionales - V2",
     "slug": "1-2-redes-convolucionales-v2",
     "annex": "True",
     "filename": "clase-05-1-2-redes-convolucionales-v2-recurso-2.html"
   },
   {
     "class": "5",
-    "title": "2 - Mecanismos de Atención",
+    "title": "05 · Mecanismos de Atención",
     "slug": "2-mecanismos-de-atencion",
     "annex": "True",
     "filename": "clase-05-2-mecanismos-de-atencion.html"
   },
   {
     "class": "5",
-    "title": "3 - Visión Por Computadora - CNNs",
+    "title": "05 · Visión Por Computadora - CNNs",
     "slug": "3-vision-por-computadora-cnns",
     "annex": "True",
     "filename": "clase-05-3-vision-por-computadora-cnns.html"
   },
   {
     "class": "5",
-    "title": "3.1. Visión Por Computadora - Introducción",
+    "title": "05 · Visión Por Computadora - Introducción",
     "slug": "3-1-vision-por-computadora-introduccion",
     "annex": "True",
     "filename": "clase-05-3-1-vision-por-computadora-introduccion.html"
   },
   {
     "class": "5",
-    "title": "3.2. - Visión Por Computadora - R-CNNs",
+    "title": "05 · Visión Por Computadora - R-CNNs",
     "slug": "3-2-vision-por-computadora-r-cnns",
     "annex": "True",
     "filename": "clase-05-3-2-vision-por-computadora-r-cnns.html"
   },
   {
     "class": "5",
-    "title": "3.3. - Visión por Computadora - YOLOv3",
+    "title": "05 · Visión por Computadora - YOLOv3",
     "slug": "3-3-vision-por-computadora-yolov3",
     "annex": "True",
     "filename": "clase-05-3-3-vision-por-computadora-yolov3.html"
   },
   {
     "class": "5",
-    "title": "4 - Transformers y Mecanismos de Atención",
+    "title": "05 · Transformers y Mecanismos de Atención",
     "slug": "4-transformers-y-mecanismos-de-atencion",
     "annex": "True",
     "filename": "clase-05-4-transformers-y-mecanismos-de-atencion.html"
   },
   {
     "class": "5",
-    "title": "4.1 - Transformers - Teoría Simplificada",
+    "title": "05 · Transformers - Teoría Simplificada",
     "slug": "4-1-transformers-teoria-simplificada",
     "annex": "True",
     "filename": "clase-05-4-1-transformers-teoria-simplificada.html"
   },
   {
     "class": "6",
-    "title": "6 - Mecanismos de Atención - Parte 1 (v2)",
+    "title": "06 · Mecanismos de Atención - Parte 1 (v2)",
     "slug": "6-mecanismos-de-atencion-parte-1-v2",
     "annex": "False",
     "filename": "clase-06-6-mecanismos-de-atencion-parte-1-v2.html"
   },
   {
     "class": "6",
-    "title": "6 - Mecanismos de Atención - Parte 2 (v2)",
+    "title": "06 · Mecanismos de Atención - Parte 2 (v2)",
     "slug": "6-mecanismos-de-atencion-parte-2-v2",
     "annex": "False",
     "filename": "clase-06-6-mecanismos-de-atencion-parte-2-v2.html"
   },
   {
     "class": "7",
-    "title": "6 - Mecanismos de Atención - Parte 2 (v2)",
+    "title": "07 · Mecanismos de Atención - Parte 2 (v2)",
     "slug": "6-mecanismos-de-atencion-parte-2-v2",
     "annex": "False",
     "filename": "clase-07-6-mecanismos-de-atencion-parte-2-v2.html"
   },
   {
     "class": "8",
-    "title": "6 - Mecanismos de Atención - Parte 3 (v2)",
+    "title": "08 · Mecanismos de Atención - Parte 3 (v2)",
     "slug": "6-mecanismos-de-atencion-parte-3-v2",
     "annex": "False",
     "filename": "clase-08-6-mecanismos-de-atencion-parte-3-v2.html"
   },
   {
     "class": "9",
-    "title": "6 - Mecanismos de Atención - Parte 4 (v2)",
+    "title": "09 · Mecanismos de Atención - Parte 4 (v2)",
     "slug": "6-mecanismos-de-atencion-parte-4-v2",
     "annex": "False",
     "filename": "clase-09-6-mecanismos-de-atencion-parte-4-v2.html"
   },
   {
     "class": "9",
-    "title": "6.1. - Transformers - Teoría Simplificada",
+    "title": "09 · Transformers - Teoría Simplificada",
     "slug": "6-1-transformers-teoria-simplificada",
     "annex": "False",
     "filename": "clase-09-6-1-transformers-teoria-simplificada.html"
   },
   {
     "class": "10",
-    "title": "10 - Transformers - Teoría Simplificada",
+    "title": "10 · Transformers - Teoría Simplificada",
     "slug": "10-transformers-teoria-simplificada",
     "annex": "False",
     "filename": "clase-10-10-transformers-teoria-simplificada.html"
   },
   {
     "class": "11",
-    "title": "Clase 12 - Transformers - Teoría Simplificada",
+    "title": "11 · Transformers - Teoría Simplificada",
     "slug": "clase-12-transformers-teoria-simplificada",
     "annex": "False",
     "filename": "clase-11-clase-12-transformers-teoria-simplificada.html"
   },
   {
     "class": "12",
-    "title": "11 - Positional Encoding (PE) y GPT - Parte 1",
+    "title": "12 · Positional Encoding (PE) y GPT - Parte 1",
     "slug": "11-positional-encoding-pe-y-gpt-parte-1",
     "annex": "False",
     "filename": "clase-12-11-positional-encoding-pe-y-gpt-parte-1.html"
   },
   {
     "class": "13",
-    "title": "13 - Introducción a GPT - RoPE - Parte 2",
+    "title": "13 · Introducción a GPT - RoPE - Parte 2",
     "slug": "13-introduccion-a-gpt-rope-parte-2",
     "annex": "False",
     "filename": "clase-13-13-introduccion-a-gpt-rope-parte-2.html"
   },
   {
     "class": "14",
-    "title": "14 - Introducción a ASR - Parte 1",
+    "title": "14 · Introducción a ASR - Parte 1",
     "slug": "14-inotroduccion-a-asr-parte-1",
     "annex": "False",
     "filename": "clase-14-14-inotroduccion-a-asr-parte-1.html"
   },
   {
     "class": "14",
-    "title": "AttentionCNN_SER_01",
+    "title": "14 · Reconocimiento de emociones · AttentionCNN",
     "slug": "attentioncnn-ser-01",
     "annex": "True",
     "filename": "clase-14-attentioncnn-ser-01.html"
   },
   {
     "class": "14",
-    "title": "_1_2_Speaker_Diarization_Test",
+    "title": "14 · Diarización de hablantes · Prueba",
     "slug": "1-2-speaker-diarization-test",
     "annex": "True",
     "filename": "clase-14-1-2-speaker-diarization-test.html"
   },
   {
     "class": "15",
-    "title": "15 - Introducción a ASR - Parte 2",
+    "title": "15 · Introducción a ASR - Parte 2",
     "slug": "15-introduccion-a-asr-parte-2",
     "annex": "False",
     "filename": "clase-15-15-introduccion-a-asr-parte-2.html"
   },
   {
     "class": "16",
-    "title": "16 - Radix-2",
+    "title": "16 · Radix-2",
     "slug": "16-radix-2",
     "annex": "False",
     "filename": "clase-16-16-radix-2.html"

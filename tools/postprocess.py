@@ -18,8 +18,7 @@ def update_home_index(catalog):
     index=soup.select_one('#indice')
     for row in index.select('.catalog-row'):
         if not row.find('a'):
-            note=row.select_one('.note')
-            if note:note.string='Material pendiente de incorporar.'
+            row.decompose()
     for item in catalog.values():
         label=item.get('class_label',f"{int(item['class']):02d}")
         row_id='clase-'+label.replace('–','-')
@@ -42,6 +41,36 @@ def update_home_index(catalog):
     if set(links)!=expected or len(links)!=len(expected):raise ValueError('El índice y el catálogo no coinciden')
     path.write_text(str(soup))
 
+def synchronize_class_labels(soup,path,catalog):
+    """Usa el número de clase del catálogo en los títulos y la navegación."""
+    for placeholder in soup.select('nav .chapter.pending'):
+        placeholder.decompose()
+    nav=soup.select_one('nav[aria-label="Clases"]')
+    if nav:
+        for link in nav.select('a[href]'):
+            filename=Path(urlsplit(link['href']).path).name
+            item=catalog.get(filename)
+            if not item:continue
+            link.clear();link.append(item['title'])
+            if item.get('annex')=='True':
+                badge=soup.new_tag('small');badge.string='Complemento';link.append(' ');link.append(badge)
+            chapter=link.find_parent('details',class_='chapter')
+            if chapter:
+                summary=chapter.find('summary')
+                label=item.get('class_label',f"{int(item['class']):02d}")
+                topic=re.sub(r'^\d+(?:[–-]\d+)?\s*·\s*','',summary.get_text(' ',strip=True))
+                summary.string=label+' · '+topic
+    if path.parent.name=='nlp':
+        item=catalog[path.name];hero=soup.select_one('.hero')
+        hero.h1.string=item['title'];soup.title.string=item['title']+' · Jacobo León Juárez'
+        label=item.get('class_label',f"{int(item['class']):02d}")
+        hero.select_one('.eyebrow').string='Procesamiento del Lenguaje Natural y Reconocimiento del Habla · '+('Clases ' if '–' in label else 'Clase ')+label
+    for link in soup.select('.pager a[href]'):
+        filename=Path(urlsplit(link['href']).path).name
+        if filename not in catalog:continue
+        label=catalog[filename]['title'];old=link.get_text(' ',strip=True)
+        link.string=('← ' if old.startswith('←') else '')+label+(' →' if old.endswith('→') else '')
+
 def run():
     """Prepara los exportados para servir desde /docs en GitHub Pages."""
     search=[];videos=0;dimensions={}
@@ -50,6 +79,7 @@ def run():
     update_home_index(catalog)
     for path in sorted(DOCS.rglob('*.html')):
         soup=BeautifulSoup(path.read_text(),'html.parser')
+        synchronize_class_labels(soup,path,catalog)
         # Reservar el espacio de imágenes lazy evita desplazar un ancla al
         # cargar ilustraciones que aparecen antes de ella en páginas largas.
         for im in soup.find_all('img'):

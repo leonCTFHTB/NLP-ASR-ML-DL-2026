@@ -15,6 +15,8 @@ Las páginas y sus recursos se mantienen en `docs/`, que GitHub Pages publica de
 
 Los HTML de `docs/nlp/` constituyen la edición vigente. Las explicaciones enlazan artículos y documentación oficial. Las figuras vectoriales se generan con `tools/review_figures.py` y `tools/scientific_figures.py`; las gráficas sintéticas declaran sus datos y supuestos.
 
+El número de clase del catálogo coincide con el prefijo `clase-NN` del archivo HTML. `tools/postprocess.py` sincroniza ese número en la portada, las barras laterales, los títulos, la navegación y la búsqueda. Los apartados internos conservan la numeración temática del material. Solo se muestran entradas con contenido publicado.
+
 Después de editar el contenido:
 
 ```bash
