@@ -19,7 +19,6 @@ Después de editar el contenido:
 
 ```bash
 python -m pip install -r tools/requirements.txt
-python tools/current_edition.py
 python tools/postprocess.py
 python tools/clean_resources.py
 python tools/validate.py
@@ -31,6 +30,8 @@ Las pruebas pequeñas de los ejemplos requieren PyTorch y no descargan datos ni 
 python -m pip install torch
 python tools/check_examples.py
 ```
+
+`tools/current_edition.py` regenera la revisión editorial original; no debe usarse como paso general de importación porque sustituye bibliografías y su informe.
 
 `reports/cobertura.json` enumera las 29 páginas y su bibliografía. `reports/revision-integral.json`, `reports/figuras-vigentes.json` y `reports/codigo-vigente.json` identifican el contenido actualizado. `reports/validacion.json` y `reports/pruebas-ejemplos.json` contienen los resultados de las comprobaciones. Las modificaciones se explican en los commits.
 

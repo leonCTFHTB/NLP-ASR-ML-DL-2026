@@ -21,6 +21,7 @@
   "adaptations": [
     "Rutas personales de Google Drive mostradas como /content/images y /content/audio.",
     "Colores del notebook adaptados al tema existente.",
+    "Dos entornos align sin delimitadores renderizados como MathML y una etiqueta font mal cerrada reparada.",
     "Widgets de progreso de Colab omitidos; texto, audio y gráficas conservados."
   ]
 }

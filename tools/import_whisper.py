@@ -9,6 +9,7 @@ from pygments import highlight
 from pygments.formatters import HtmlFormatter
 from pygments.lexers import PythonLexer
 from editorial import render, ROOT, DOCS
+from latex2mathml.converter import convert
 
 FILENAME = 'clase-20-23-whisper-datasets-entrenamiento-inferencia.html'
 TITLE = '20–23 · Whisper: datasets, entrenamiento e inferencia'
@@ -35,6 +36,15 @@ def markdown(source):
         protected[key] = value
         return '\n\n'+key+'\n\n' if match[2] is not None else key
     source = re.sub(r'^```([^\n]*)\n([\s\S]*?)^```\s*$|`([^`\n]+)`', save, source, flags=re.M)
+    # El notebook contiene dos entornos align sin delimitadores $. CommonMark
+    # interpretaría su signo igual como un encabezado en vez de una ecuación.
+    def align(match):
+        key = f'CODIGOWHISPER{len(protected)}FINAL'
+        latex = match[0]
+        protected[key] = convert(latex.replace(r'\_', '_'), display='block').replace('<math ', '<math aria-label="'+html.escape(latex,quote=True)+'" ')
+        return key
+    source = re.sub(r'\\begin\{align\}[\s\S]*?\\end\{align\}', align, source)
+    source = source.replace('**/font>', '**</font>')
     value = render(source)
     for key, code in protected.items():
         value = value.replace('<p>'+key+'</p>', code).replace(key, code)
@@ -186,6 +196,7 @@ def main(notebook, zip_dir):
               'python_training_executed':False,
               'adaptations':['Rutas personales de Google Drive mostradas como /content/images y /content/audio.',
                              'Colores del notebook adaptados al tema existente.',
+                             'Dos entornos align sin delimitadores renderizados como MathML y una etiqueta font mal cerrada reparada.',
                              'Widgets de progreso de Colab omitidos; texto, audio y gráficas conservados.']}
     (ROOT/'reports/importacion-whisper.json').write_text(json.dumps(report,indent=2,ensure_ascii=False)+'\n')
     print(json.dumps(report,indent=2,ensure_ascii=False))

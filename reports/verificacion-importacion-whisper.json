@@ -6,7 +6,9 @@
   "saved_plot_byte_verified": 1,
   "saved_audio_byte_verified": 1,
   "legacy_pages_content_unchanged": 29,
-  "unique_html_ids": 366,
+  "unique_html_ids": 365,
   "errors": [],
-  "python_training_executed": false
+  "python_training_executed": false,
+  "bare_align_environments_rendered": 2,
+  "malformed_font_closings_repaired": 1
 }
