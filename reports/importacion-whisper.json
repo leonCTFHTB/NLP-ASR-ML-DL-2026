@@ -1,0 +1,26 @@
+{
+  "source_notebook": "Clase_20_23_Whisper_Datasets_Entrenamiento_Inferencia(2).ipynb",
+  "source_sha256": "29d38c8706337fe07ce38bf9b358039e0734d8fa8a94fb40d412d89e3d963ab7",
+  "html": "nlp/clase-20-23-whisper-datasets-entrenamiento-inferencia.html",
+  "cells": 244,
+  "markdown_cells": 205,
+  "code_cells": 39,
+  "archive_images": [
+    "clase-18/a1.png",
+    "clase-18/d3.png",
+    "clase-18/d1.png",
+    "clase-18/d2.png",
+    "clase-21/h1.png",
+    "clase-21/h2.png",
+    "clase-21/h3.png",
+    "clase-21/h4.png",
+    "clase-21/h5.png"
+  ],
+  "saved_output_blocks": 24,
+  "python_training_executed": false,
+  "adaptations": [
+    "Rutas personales de Google Drive mostradas como /content/images y /content/audio.",
+    "Colores del notebook adaptados al tema existente.",
+    "Widgets de progreso de Colab omitidos; texto, audio y gráficas conservados."
+  ]
+}

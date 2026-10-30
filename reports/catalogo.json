@@ -201,5 +201,12 @@
     "slug": "16-radix-2",
     "annex": "False",
     "filename": "clase-16-16-radix-2.html"
+  },
+  {
+    "class": "20",
+    "title": "20–23 · Whisper: datasets, entrenamiento e inferencia",
+    "slug": "whisper-datasets-entrenamiento-inferencia",
+    "annex": "False",
+    "filename": "clase-20-23-whisper-datasets-entrenamiento-inferencia.html"
   }
 ]

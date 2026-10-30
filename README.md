@@ -2,7 +2,7 @@
 
 **Jacobo León Juárez · 2026**
 
-Libro web con 29 páginas de clases sobre embeddings, CNN, atención, Transformers, posiciones, audio y diarización.
+Libro web con 30 páginas de clases sobre embeddings, CNN, atención, Transformers, posiciones, audio, diarización y Whisper.
 
 - [Leer el libro](https://leonctfhtb.github.io/NLP-ASR-ML-DL-2026/)
 - [Bibliografía y criterios](https://leonctfhtb.github.io/NLP-ASR-ML-DL-2026/revision.html)
@@ -33,6 +33,18 @@ python tools/check_examples.py
 ```
 
 `reports/cobertura.json` enumera las 29 páginas y su bibliografía. `reports/revision-integral.json`, `reports/figuras-vigentes.json` y `reports/codigo-vigente.json` identifican el contenido actualizado. `reports/validacion.json` y `reports/pruebas-ejemplos.json` contienen los resultados de las comprobaciones. Las modificaciones se explican en los commits.
+
+## Importar el notebook de Whisper
+
+La página de las clases 20–23 conserva las 244 celdas y las salidas estáticas del notebook recibido. No se ejecutó su código. Las imágenes referenciadas se toman de los ZIP de las clases 18 y 21; las imágenes de los otros ZIP no se insertan si no están referenciadas. Las rutas personales de Drive se sustituyen por `/content/images` y `/content/audio` en el código mostrado.
+
+```bash
+python tools/import_whisper.py /ruta/notebook.ipynb /ruta/directorio-de-zips
+python tools/postprocess.py
+python tools/validate.py
+```
+
+`reports/importacion-whisper.json` registra la procedencia, el hash del notebook y el alcance de la conversión. Las comprobaciones de importación verifican texto, código, imágenes y audio; no equivalen a ejecutar el entrenamiento. La revisión bibliográfica documentada de las 29 páginas anteriores se conserva.
 
 ## Licencias y cita
 
