@@ -33,6 +33,8 @@ python -m pip install torch
 python tools/check_examples.py
 ```
 
+Los 24 diagramas numerados de Word2Vec se mantienen con `python tools/word2vec_figures.py`, seguido del posprocesado y la validación habituales. El generador comprueba las probabilidades, la pérdida y los gradientes de sus ejemplos, y registra la correspondencia con las imágenes del notebook en `reports/figuras-word2vec.json`.
+
 `tools/current_edition.py` regenera la revisión editorial original; no debe usarse como paso general de importación porque sustituye bibliografías y su informe.
 
 `reports/cobertura.json` enumera las 29 páginas y su bibliografía. `reports/revision-integral.json`, `reports/figuras-vigentes.json` y `reports/codigo-vigente.json` identifican el contenido actualizado. `reports/validacion.json` y `reports/pruebas-ejemplos.json` contienen los resultados de las comprobaciones. Las modificaciones se explican en los commits.

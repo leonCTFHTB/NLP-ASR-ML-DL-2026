@@ -69,6 +69,8 @@ Se comprueban enlaces y recursos internos, fórmulas MathML y sintaxis del códi
 
 Las animaciones se inspeccionan mediante fotogramas representativos. Los códigos, recursos y referencias vigentes forman parte del repositorio. Las modificaciones se documentan en sus commits.
 
+La clase 02 de Word2Vec incluye 24 diagramas específicos con sus pies y explicaciones. Los ejemplos de coseno, ventanas de contexto, softmax, verosimilitud y gradientes de Skip-gram y CBOW se contrastan con D2L y los artículos originales de Word2Vec. Sus valores ilustrativos se comprueban mediante identidades numéricas y diferencias finitas; el código y las animaciones del laboratorio se conservan.
+
 ## Autoría y licencias
 
 Las aportaciones propias y los materiales de terceros conservan sus condiciones de uso y atribución. Las adaptaciones de D2L mantienen su licencia específica. Consultá [cómo citar y las licencias](citar.html).

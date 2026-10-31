@@ -1,0 +1,290 @@
+{
+  "page": "nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html",
+  "source_notebook": "1 - Introducción al NLP  - Parte 1 - Word2Vec.ipynb",
+  "sources": [
+    "https://d2l.ai/chapter_natural-language-processing-pretraining/word2vec.html",
+    "https://arxiv.org/abs/1301.3781",
+    "https://arxiv.org/abs/1310.4546"
+  ],
+  "specific_figures": 24,
+  "cbow_intro_replaced": true,
+  "original_numbering_preserved": true,
+  "figures": [
+    {
+      "number": 2,
+      "cell": 18,
+      "caption_cell": 19,
+      "original_image": "a1.png",
+      "file": "fig-1-02.svg",
+      "title": "One-hot: del token al vector aprendido",
+      "caption": "El one-hot selecciona una fila de la tabla de embeddings.",
+      "explanation": "Cada fila de la matriz de la izquierda identifica un token distinto. El índice de «gato» selecciona la segunda fila de $E$; el resultado es un vector de dos componentes, no un indicador ortogonal. Los valores de $E$ son ilustrativos. La consulta $E[i]$ evita construir explícitamente el one-hot.",
+      "sha256": "150612bf45b9f69f1354458b5305739f01342b872c7b5d6efb1fb5184e3d3ff8"
+    },
+    {
+      "number": 3,
+      "cell": 21,
+      "caption_cell": 22,
+      "original_image": "a2.png",
+      "file": "fig-1-03.svg",
+      "title": "One-hot: todas las parejas distintas empatan",
+      "caption": "Los indicadores distintos tienen coseno 0 y distancia √2.",
+      "explanation": "La diagonal de la matriz vale 1 porque cada indicador se compara consigo mismo. Fuera de la diagonal, todos los cosenos valen 0; las tres barras muestran la misma distancia. Esta geometría no expresa relaciones lingüísticas. Una transformación aprendida posterior sí puede distinguirlas.",
+      "sha256": "0935f944eb378bb92172bdbb50c8270a7094c31b8a544b2ac79c9655fd21cb00"
+    },
+    {
+      "number": 4,
+      "cell": 25,
+      "caption_cell": 26,
+      "original_image": "a3.png",
+      "file": "fig-1-04.svg",
+      "title": "Coseno: comparar dirección, no longitud",
+      "caption": "Escalar positivamente un vector conserva su dirección y su coseno.",
+      "explanation": "A la izquierda, $x=(2,2)$ e $y=(4,4)$ tienen longitudes distintas. Al dividir cada vector por su norma, ambos terminan en el mismo punto de la circunferencia unidad. Por eso su coseno vale 1. Esto describe una igualdad de direcciones; la interpretación semántica requiere un modelo y una tarea.",
+      "sha256": "d25b8eba2cadca719c08ba6cd6a040c778e5a3d9573706a2e907d972d06a9581"
+    },
+    {
+      "number": 5,
+      "cell": 28,
+      "caption_cell": 29,
+      "original_image": "a4.png",
+      "file": "fig-1-05.svg",
+      "title": "Tres relaciones geométricas del coseno",
+      "caption": "Coseno 1, 0 y −1: misma dirección, ortogonalidad y oposición.",
+      "explanation": "Cada panel compara dos vectores no nulos de la misma longitud. El ángulo determina el coseno indicado. Los rótulos describen geometría: no deben sustituirse por «sinónimos», «sin relación» y «antónimos». En particular, compartir contextos puede acercar palabras con significados opuestos.",
+      "sha256": "613fb2573882484934eaad5713e3ec3c1b11b45c03925762c92fc084007fcd36"
+    },
+    {
+      "number": 6,
+      "cell": 31,
+      "caption_cell": 32,
+      "original_image": "a5.png",
+      "file": "fig-1-06.svg",
+      "title": "Búsqueda por coseno: un ranking ilustrativo",
+      "caption": "Las coordenadas definen el ranking; los nombres no prueban una relación semántica.",
+      "explanation": "La consulta apunta hacia $(1,0)$. Todos los candidatos tienen norma 1: su coordenada horizontal coincide aquí con su coseno respecto a la consulta. El orden obtenido es 0.8, 0 y −0.6. Son coordenadas construidas para explicar el cálculo, no resultados aprendidos ni garantías sobre esas palabras.",
+      "sha256": "eb7cbf2651d3c27bda25e5f16e130a1a9919d56813aa26fcf7d84c8e549c8839"
+    },
+    {
+      "number": 7,
+      "cell": 34,
+      "caption_cell": 35,
+      "original_image": "a6.png",
+      "file": "fig-1-07.svg",
+      "title": "Dos direcciones de predicción",
+      "caption": "Skip-gram parte del centro; CBOW combina los contextos.",
+      "explanation": "En Skip-gram se forman pares entre «loves» y cada vecino. En CBOW se reúnen los cuatro vecinos para predecir la palabra central. Las flechas indican qué dato entra y qué objetivo se predice. No representan una causalidad del lenguaje ni aseguran que el contexto determine una única palabra.",
+      "sha256": "1a98a1c811e0b9776a93a94dc53219ba55ac183b23e71c8391200b5493951c15"
+    },
+    {
+      "number": 8,
+      "cell": 38,
+      "caption_cell": 39,
+      "original_image": "a8.png",
+      "file": "fig-1-08.svg",
+      "title": "La ventana avanza y respeta los bordes",
+      "caption": "Radio m = 2: cuatro vecinos en el centro y tres junto al borde.",
+      "explanation": "La fila superior centra la ventana en «loves»: se usan los índices 0, 1, 3 y 4. Al avanzar a «his», solo quedan los índices 1, 2 y 4 dentro de la secuencia. El centro se excluye siempre. El radio $m=2$ permite hasta $2m$ contextos, no exige que existan cuatro en todos los casos.",
+      "sha256": "1ba5dae1d75116a6ae3c762926cd29c953b2d77f718ba10dc3b375c73551c600"
+    },
+    {
+      "number": 9,
+      "cell": 43,
+      "caption_cell": 44,
+      "original_image": "a9.png",
+      "file": "fig-1-09.svg",
+      "title": "Skip-gram: un centro, varios objetivos",
+      "caption": "Cada flecha representa un par centro–contexto observado.",
+      "explanation": "«Loves» proporciona la entrada compartida. Las cuatro salidas son objetivos de entrenamiento distintos: «the», «man», «his» y «son». La distribución de candidatos se calcula a partir del mismo centro. Observar varios vecinos no obliga a que una sola salida softmax los convierta simultáneamente en una etiqueta one-hot.",
+      "sha256": "d4dbc70192e44c7ddbc25649b5b1cdfae0e9d4f746dccf8eacbd653598e9caef"
+    },
+    {
+      "number": 10,
+      "cell": 46,
+      "caption_cell": 47,
+      "original_image": "a10.png",
+      "file": "fig-1-10.svg",
+      "title": "De una ventana a cuatro pares positivos",
+      "caption": "La posición central no forma un par consigo misma.",
+      "explanation": "La fila superior conserva el orden del texto. La tabla inferior enumera los cuatro ejemplos positivos que salen de esa ventana: el centro se repite y cambia el objetivo. Los índices corresponden a este vocabulario de cinco tokens; no son distancias ni puntuaciones del modelo.",
+      "sha256": "876d021ec2e9a591c5a392d496ff07be7e1d2e267d47507ad1d0a3ec49bc174e"
+    },
+    {
+      "number": 11,
+      "cell": 49,
+      "caption_cell": 50,
+      "original_image": "a11.png",
+      "file": "fig-1-11.svg",
+      "title": "La independencia condicional es una hipótesis",
+      "caption": "El modelo factoriza la verosimilitud del contexto dado el centro.",
+      "explanation": "Con el centro fijado, el modelo multiplica las probabilidades asignadas a los vecinos observados. Los cuatro valores del ejemplo dejan probabilidad para otros candidatos y su producto vale 0.0009. La factorización es una decisión del modelo: no afirma que las palabras del lenguaje sean independientes.",
+      "sha256": "ce60573d606a740d2de16d6beb2d84e445fa9b4016920c3775003a05751affb2"
+    },
+    {
+      "number": 12,
+      "cell": 52,
+      "caption_cell": 53,
+      "original_image": "a12.png",
+      "file": "fig-1-12.svg",
+      "title": "Skip-gram: vectores → scores → probabilidades",
+      "caption": "El softmax completo normaliza sobre los tres tokens del ejemplo.",
+      "explanation": "Se fija $v_c=(1,0)$ para «loves». Los vectores de salida de «man», «loves» y «son» son $(1,0)$, $(0,1)$ y $(-1,0)$: sus productos punto valen 1, 0 y −1. Tras exponenciar y normalizar se obtiene aproximadamente 0.665, 0.245 y 0.090. Este es un ejemplo independiente de las ventanas anteriores.",
+      "sha256": "2c224630b77c764bedac27749b1f4be4261e3ff9c6fde4cded7f8722b82bd21e"
+    },
+    {
+      "number": 13,
+      "cell": 56,
+      "caption_cell": 57,
+      "original_image": "a13.png",
+      "file": "fig-1-13.svg",
+      "title": "Un mayor score no implica un menor ángulo",
+      "caption": "El producto punto depende de la dirección y de las normas.",
+      "explanation": "Con $v_c=(1,0)$, el candidato A tiene norma 1 y ángulo 0°: su score es 1. El candidato B tiene norma 3 y ángulo 60°: su score es 1.5, aunque su coseno es menor. El numerador usa la exponencial de ese score. Por tanto, ordenar por producto punto no equivale a ordenar por coseno.",
+      "sha256": "769c59398a360ed4185a66ba94191b5bdfc3905700a1654c9ba517386ca3e495"
+    },
+    {
+      "number": 14,
+      "cell": 59,
+      "caption_cell": 60,
+      "original_image": "a14.png",
+      "file": "fig-1-14.svg",
+      "title": "El denominador reúne a todos los candidatos",
+      "caption": "Z suma pesos positivos y los convierte en una distribución.",
+      "explanation": "Los pesos $e^1$, $e^0$ y $e^{-1}$ suman $Z\\approx4.086$. Dividir cada uno por esa misma suma produce el reparto inferior, cuya suma es 1. El denominador incluye también el candidato observado y todos los demás tokens del vocabulario, incluido «loves». Negative sampling usa un objetivo distinto.",
+      "sha256": "aed9092326747e358356602c4640230e12b6ab8eee5c14d133fdda9babf80d04"
+    },
+    {
+      "number": 15,
+      "cell": 64,
+      "caption_cell": 65,
+      "original_image": "a15.png",
+      "file": "fig-1-15.svg",
+      "title": "Verosimilitud: recorrer los pares del corpus",
+      "caption": "La productoria es una verosimilitud del modelo, no una pérdida.",
+      "explanation": "Este corpus de tres tokens y radio 1 produce cuatro pares: uno en cada borde y dos en el centro. Los valores se agrupan por la posición central y después se multiplican: $\\mathcal{L}=0.2(0.3\\cdot0.4)0.5=0.012$. Maximizar esa verosimilitud equivale a minimizar su logaritmo negativo.",
+      "sha256": "a98e4bf49fca636cb55e3a8d3613ac54c3af0489ac7db12de3abcb40abd00184"
+    },
+    {
+      "number": 16,
+      "cell": 68,
+      "caption_cell": 69,
+      "original_image": "a16.png",
+      "file": "fig-1-16.svg",
+      "title": "Del producto de probabilidades a la suma de pérdidas",
+      "caption": "El logaritmo negativo convierte los cuatro factores en cuatro sumandos.",
+      "explanation": "Cada flecha aplica $-\\log$ a una probabilidad. La fila inferior suma aproximadamente 1.609 + 1.204 + 0.916 + 0.693 = 4.423. Es el mismo objetivo que $-\\log(0.012)$. Para el cálculo estable se trabaja con log-softmax o log-sum-exp, sin formar primero una productoria minúscula.",
+      "sha256": "9a5ad13efa670274a6f9295aabd80627b9e57288116b18cc2f73bc95c7a940d5"
+    },
+    {
+      "number": 17,
+      "cell": 72,
+      "caption_cell": 73,
+      "original_image": "a17.png",
+      "file": "fig-1-17.svg",
+      "title": "Un paso de descenso del gradiente",
+      "caption": "Se resta el gradiente de la pérdida, manteniendo U fijo en este ejemplo.",
+      "explanation": "El punto inicial es (0.200, 0.400) y el gradiente de la pérdida es (−0.886, 0.422). Con una tasa $\\eta=0.5$, el paso termina en (0.643, 0.189). Las barras muestran la pérdida calculada antes y después. La flecha de actualización va en sentido opuesto al gradiente; no representa una fuerza física ni asegura descenso para cualquier tasa.",
+      "sha256": "798ef5af5e0d296f0cf7564212b55be5d65acf38e90a0e8270c719bc6a243387"
+    },
+    {
+      "number": 18,
+      "cell": 75,
+      "caption_cell": 76,
+      "original_image": "a18.png",
+      "file": "fig-1-18.svg",
+      "title": "El gradiente como diferencia de vectores",
+      "caption": "Gradiente de L = esperado bajo p − vector del objetivo.",
+      "explanation": "La flecha dorada es el vector observado $u_o=(1,0)$. La azul representa el promedio ponderado $\\sum_jp_j u_j=(0.114, 0.422)$. La flecha entre sus puntas es su diferencia, $\\nabla L=(−0.886, 0.422)$. Para la log-verosimilitud, el signo se invierte. La suma recorre todo el vocabulario, incluido el objetivo.",
+      "sha256": "1521cf2b03151eea4bb7d3c4049891d79cc931c06ba01e3539bb12df43b3aa0b"
+    },
+    {
+      "number": 19,
+      "cell": 100,
+      "caption_cell": 101,
+      "original_image": "c2.png",
+      "file": "fig-1-19.svg",
+      "title": "Dos arquitecturas: entradas y tablas aprendidas",
+      "caption": "Ambas usan tablas de entrada y salida; cambia cómo se construye el predictor.",
+      "explanation": "En Skip-gram se consulta una fila de $V$ para el centro y se calculan $U v_c$. En CBOW se consultan las filas de los vecinos y se promedian antes de calcular $U\\bar v$. Las tablas $V$ y $U$ tienen forma $N\\times d$; las puntuaciones tienen $N$ componentes. Aquí $v$ nombra vectores de entrada y $u$ vectores de salida en ambas rutas.",
+      "sha256": "c73784d4b38c4e4b0710b41f2dcfde43c6b0e2af7dbe9dde2cabf9790f8e2eba"
+    },
+    {
+      "number": 20,
+      "cell": 103,
+      "caption_cell": 104,
+      "original_image": "c3.png",
+      "file": "fig-1-20.svg",
+      "title": "CBOW: ocultar el centro, conservar sus vecinos",
+      "caption": "El token objetivo se excluye de los datos de entrada.",
+      "explanation": "Los cuatro tokens azules son la entrada. El hueco dorado marca la posición cuyo token se debe predecir: «loves». Al avanzar la ventana se repite el mismo procedimiento con un nuevo centro. La cantidad $C$ de vecinos disponibles puede disminuir junto a los extremos de la secuencia.",
+      "sha256": "9e49e7c8d34d0d594888be2903ac49e6c0d8e99b42edca665b7cbf78011c4c8d"
+    },
+    {
+      "number": 21,
+      "cell": 106,
+      "caption_cell": 107,
+      "original_image": "c4.png",
+      "file": "fig-1-21.svg",
+      "title": "CBOW: sumar y dividir por la cantidad real",
+      "caption": "Cuatro vectores de entrada producen el promedio (1, 0.5).",
+      "explanation": "Las filas ilustrativas suman $(4,2)$; dividir por $C=4$ da $(1,0.5)$. El punto dorado queda dentro de la región convexa de los cuatro vectores. Promediar combina componentes, pero no garantiza un «significado central» perfecto. Si el borde deja tres vecinos, el divisor pasa a ser 3.",
+      "sha256": "75eafd8ef56e5221b53c6c93ccb23238ea310e2b68b7d3a8eb9d3032a0c74603"
+    },
+    {
+      "number": 22,
+      "cell": 109,
+      "caption_cell": 110,
+      "original_image": "c5.png",
+      "file": "fig-1-22.svg",
+      "title": "CBOW: puntuar todas las palabras candidatas",
+      "caption": "El promedio se compara con cinco vectores de salida y se normaliza.",
+      "explanation": "Se usa $\\bar v=(1,0.5)$ y, en el orden mostrado, $U=[(1,1),(1,0),(0,1),(-1,0),(0,-1)]$. Los scores son 1.5, 1, 0.5, −1 y −0.5. El softmax da las probabilidades dibujadas. «Loves» es el máximo en este ejemplo, pero recibe una probabilidad menor que 1.",
+      "sha256": "71e387f84adab8011b525fb3d5b35658b3d878d44bb0419c93da9a6575479bb1"
+    },
+    {
+      "number": 23,
+      "cell": 113,
+      "caption_cell": 114,
+      "original_image": "c6.png",
+      "file": "fig-1-23.svg",
+      "title": "CBOW: objetivo one-hot y predicción softmax",
+      "caption": "La pérdida usa la probabilidad del centro observado.",
+      "explanation": "La etiqueta señala una sola palabra central: «loves». La distribución predicha reparte masa entre los cinco candidatos y asigna al objetivo aproximadamente 0.456. La pérdida de esta ventana es $L=-\\log p_c\\approx0.785$. La etiqueta one-hot no obliga a que los ceros y el uno aparezcan exactamente en la salida softmax con logits finitos.",
+      "sha256": "9d8fde5517aaac5b8395610540b124ff0b98f8112f62ea71cdff04e9573e7546"
+    },
+    {
+      "number": 24,
+      "cell": 118,
+      "caption_cell": 119,
+      "original_image": "c7.png",
+      "file": "fig-1-24.svg",
+      "title": "CBOW: repartir el gradiente del promedio",
+      "caption": "Cada aparición recibe 1/C del gradiente que llega al vector promedio.",
+      "explanation": "Para el ejemplo anterior, $\\nabla_{\\bar v}L=(−0.304, −0.438)$. Como $C=4$, cada aparición recibe (−0.076, −0.109). El Jacobiano del promedio respecto de cada entrada es $I_d/C$. Si un token aparece varias veces, su fila compartida acumula las contribuciones de todas sus apariciones. Para maximizar la log-verosimilitud se usa el signo opuesto.",
+      "sha256": "3b4b4d6aafe03ec64d92ee3dd8de2a2a3b94e2981ecf934188c86332cf91eaa9"
+    },
+    {
+      "number": 25,
+      "cell": 121,
+      "caption_cell": null,
+      "original_image": "c8.png",
+      "file": "fig-1-25.svg",
+      "title": "La misma ventana, dos lotes de entrenamiento",
+      "caption": "Skip-gram produce cuatro pares; CBOW produce un contexto y un centro.",
+      "explanation": "Con los índices the=0, man=1, loves=2, his=3 y son=4, Skip-gram repite 2 como entrada y usa cuatro objetivos. CBOW reúne [0,1,3,4] en una entrada y usa 2 como objetivo. Estas son formas de lote de un ejemplo mínimo; no prueban por sí solas qué arquitectura será más rápida o mejor en otra tarea.",
+      "sha256": "e1edc947e9be71fd52fd85e4458e0264111dbf247ec6ff9381b488bfa69ad63a"
+    }
+  ],
+  "numeric_checks": {
+    "softmax_sums": true,
+    "likelihood_products": true,
+    "log_loss_identity": true,
+    "window_boundaries": true,
+    "skipgram_gradient_finite_differences": true,
+    "cbow_gradient_finite_differences": true,
+    "cbow_mean_jacobian_finite_differences": true,
+    "illustrative_sgd_step_decreases_loss": true,
+    "python_training_executed": false
+  },
+  "training_code_changed": false
+}
