@@ -78,3 +78,10 @@ Las aportaciones propias y los materiales de terceros conservan sus condiciones 
 ## Incorporación de la clase 17 · Whisper
 
 El notebook adjunto se incorporó como una página adicional con 244 celdas, nueve imágenes referenciadas de los ZIP, una gráfica de salida y una muestra de audio guardada. Se conservaron el orden, las explicaciones, el código y las salidas estáticas. Las rutas personales de Google Drive se muestran como `/content/images` y `/content/audio`, los colores se adaptan al tema y se omiten los widgets de progreso exclusivos de Colab. La importación no ejecutó entrenamiento ni volvió a comprobar sus resultados experimentales. El registro de importación conserva el SHA-256 del archivo fuente. La revisión bibliográfica descrita anteriormente corresponde a las 29 páginas previas.
+
+
+## Clase 03 · GloVe: figuras y revisión conceptual
+
+La actualización incorpora una portada y 16 diagramas específicos con leyendas únicas. Revisa los cocientes con contexto fijo, la dependencia del producto punto respecto a normas y ángulo, el filtrado previo a log(0), los sesgos, los gradientes, AdaGrad y la combinación de embeddings. Conserva los datos originales de la animación de 200 actualizaciones y añade controles locales sin dependencias externas. Se preservan el índice, los títulos y la numeración vigentes y se actualiza la búsqueda.
+
+Comprobaciones: 17 recursos visuales; ninguna referencia local faltante ni leyenda duplicada; controles interactivos verificados programáticamente. La validación numérica previa de los gradientes por diferencias finitas registró un error máximo inferior a 1e-9. No se reejecutó el entrenamiento de PyTorch. Véanse `validacion-glove.json`, `figuras-glove.json` e `integracion-glove.json`.

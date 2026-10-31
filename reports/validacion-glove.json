@@ -1,0 +1,24 @@
+{
+  "figuras_numeradas": 16,
+  "portada": 1,
+  "imagenes_duplicadas": 0,
+  "archivos_locales_faltantes": 0,
+  "errores_conversion_matematica": 0,
+  "attachments_notebook": 17,
+  "celdas_codigo_con_sintaxis_valida": 6,
+  "gradientes_error_maximo": 6.557274723206774e-10,
+  "ratios": [
+    8.636363636363637,
+    0.08461538461538462,
+    1.3636363636363635,
+    0.9444444444444444
+  ],
+  "perdida_ejemplo": 0.3185940917542762,
+  "historial_guardado": {
+    "estados": 200,
+    "perdida_inicial": 11.188583374023438,
+    "perdida_final": 0.30451837182044983
+  },
+  "ejecucion_pytorch_en_este_entorno": false,
+  "nota": "Las salidas de entrenamiento proceden del notebook original. Se validaron derivadas por diferencias finitas con NumPy y la integridad de los recursos; PyTorch no está instalado en este entorno."
+}
