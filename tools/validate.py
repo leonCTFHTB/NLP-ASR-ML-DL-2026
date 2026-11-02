@@ -53,7 +53,7 @@ for p,s in soups.items():
             chapter=a.find_parent('details',class_='chapter')
             if not a.get_text(' ',strip=True).startswith(item['title']):numbering_errors.append([str(p.relative_to(docs)),name,'sidebar title mismatch'])
             if chapter and not chapter.summary.get_text(' ',strip=True).startswith(label+' · '):numbering_errors.append([str(p.relative_to(docs)),name,'sidebar number mismatch'])
-    if p.parent.name=='nlp':
+    if p.parent.name in ['nlp','pytorch']:
         item=catalog.get(p.name);match=re.match(r'clase-(\d+)-',p.name)
         if not item or not match or int(match[1])!=int(item['class']):
             numbering_errors.append([p.name,'filename/catalog number mismatch']);continue
@@ -66,3 +66,4 @@ errors.extend(numbering_errors)
 result={'html_pages':len(files),'notebook_pages':len(catalog),'class_redirects':sum(bool(s.find('meta',attrs={'name':'class-redirect'})) for s in soups.values()),'formula_instances':formulas,'image_instances':images,'class_numbering_verified':not numbering_errors,'errors':errors,'external_media':external,'python_training_executed':False}
 (root/'reports/validacion.json').write_text(json.dumps(result,indent=2,ensure_ascii=False))
 print(json.dumps(result,indent=2,ensure_ascii=False));sys.exit(bool(errors))
+

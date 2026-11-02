@@ -1,0 +1,257 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="PyTorch Intermedio: tensores, memoria, operaciones y arquitectura c10/ATen."><title>PT02 · Arquitectura de tensores en C++: c10/ATen · Jacobo León Juárez</title><link rel="stylesheet" href="../assets/site.css?v=f94598739813"><link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"></head><body><a class="skip" href="#contenido">Saltar al contenido</a><div class="progress"></div><button id="menu" aria-expanded="false" aria-controls="library-nav">☰ Índice</button><aside id="library-nav"><a class="brand" href="../index.html">PORTAFOLIO DOCENTE</a><h2>Inteligencia artificial<br/><span>Teoría, código<br/>y práctica</span></h2><p class="note">Jacobo León Juárez · 2026</p><a class="search-link" href="../index.html#buscar">⌕ Buscar en el libro</a><nav aria-label="Clases"><details class="subject-group" data-subject="nlp"><summary>NLP y ASR</summary><details class="chapter"><summary>02 · Word2Vec</summary><a class="" href="../nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html">02 · Introducción al NLP  - Parte 1 - Word2Vec</a></details><details class="chapter"><summary>03 · GloVe</summary><a class="" href="../nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html">03 · Introducción al NLP  - Parte 2 - GloVe</a></details><details class="chapter"><summary>04 · fastText</summary><a class="" href="../nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html">04 · Introducción al NLP  - Parte 3 - FastText</a></details><details class="chapter"><summary>05 · Redes convolucionales</summary><a class="" href="../nlp/clase-05-1-2-redes-convolucionales-v2.html">05 · Redes Convolucionales - V2</a><a class="" href="../nlp/clase-05-1-cnn-teoria-completa.html">05 · CNN - Teoría Completa <small>Complemento</small></a><a class="" href="../nlp/clase-05-1-1-redes-convolucionales-teoria-simplificada.html">05 · Redes Convolucionales Teoría Simplificada <small>Complemento</small></a><a class="" href="../nlp/clase-05-1-2-redes-convolucionales-v2-recurso-2.html">05 · Redes Convolucionales - V2 <small>Complemento</small></a><a class="" href="../nlp/clase-05-2-mecanismos-de-atencion.html">05 · Mecanismos de Atención <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-vision-por-computadora-cnns.html">05 · Visión Por Computadora - CNNs <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-1-vision-por-computadora-introduccion.html">05 · Visión Por Computadora - Introducción <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-2-vision-por-computadora-r-cnns.html">05 · Visión Por Computadora - R-CNNs <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-3-vision-por-computadora-yolov3.html">05 · Visión por Computadora - YOLOv3 <small>Complemento</small></a><a class="" href="../nlp/clase-05-4-transformers-y-mecanismos-de-atencion.html">05 · Transformers y Mecanismos de Atención <small>Complemento</small></a><a class="" href="../nlp/clase-05-4-1-transformers-teoria-simplificada.html">05 · Transformers - Teoría Simplificada <small>Complemento</small></a></details><details class="chapter"><summary>06 · Mecanismos de atención · Parte 1</summary><a class="" href="../nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html">06 · Mecanismos de Atención - Parte 1 (v2)</a><a class="" href="../nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html">06 · Mecanismos de Atención - Parte 2 (v2)</a></details><details class="chapter"><summary>07 · Mecanismos de atención · Parte 2</summary><a class="" href="../nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html">07 · Mecanismos de Atención - Parte 2 (v2)</a></details><details class="chapter"><summary>08 · Mecanismos de atención · Parte 3</summary><a class="" href="../nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html">08 · Mecanismos de Atención - Parte 3 (v2)</a></details><details class="chapter"><summary>09 · Mecanismos de atención · Parte 4</summary><a class="" href="../nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html">09 · Mecanismos de Atención - Parte 4 (v2)</a><a class="" href="../nlp/clase-09-6-1-transformers-teoria-simplificada.html">09 · Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>10 · Introducción a Transformers · Parte 1</summary><a class="" href="../nlp/clase-10-10-transformers-teoria-simplificada.html">10 · Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>11 · Introducción a Transformers · Parte 2</summary><a class="" href="../nlp/clase-11-clase-12-transformers-teoria-simplificada.html">11 · Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>12 · GPT y codificación posicional · Parte 1</summary><a class="" href="../nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html">12 · Positional Encoding (PE) y GPT - Parte 1</a></details><details class="chapter"><summary>13 · GPT y RoPE · Parte 2</summary><a class="" href="../nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html">13 · Introducción a GPT - RoPE - Parte 2</a></details><details class="chapter"><summary>14 · Introducción a ASR · Parte 1</summary><a class="" href="../nlp/clase-14-14-inotroduccion-a-asr-parte-1.html">14 · Introducción a ASR - Parte 1</a><a class="" href="../nlp/clase-14-attentioncnn-ser-01.html">14 · Reconocimiento de emociones · AttentionCNN <small>Complemento</small></a><a class="" href="../nlp/clase-14-1-2-speaker-diarization-test.html">14 · Diarización de hablantes · Prueba <small>Complemento</small></a></details><details class="chapter"><summary>15 · Introducción a ASR · Parte 2</summary><a class="" href="../nlp/clase-15-15-introduccion-a-asr-parte-2.html">15 · Introducción a ASR - Parte 2</a></details><details class="chapter"><summary>16 · FFT Radix-2</summary><a class="" href="../nlp/clase-16-16-radix-2.html">16 · Radix-2</a></details><details class="chapter" data-whisper=""><summary>17 · Whisper</summary><a class="" href="../nlp/clase-17-whisper-datasets-entrenamiento-inferencia.html">17 · Whisper: datasets, entrenamiento e inferencia</a></details></details><details class="subject-group" data-subject="pytorch" open=""><summary>PyTorch Intermedio</summary><details class="chapter"><summary>PT01 · Tensores y operaciones</summary><a href="../pytorch/clase-01-tensores-y-operaciones.html">PT01 · PyTorch: tensores y operaciones</a></details><details class="chapter" open=""><summary>PT02 · Arquitectura c10/ATen</summary><a aria-current="page" class="active" href="../pytorch/clase-02-arquitectura-c10-aten.html">PT02 · Arquitectura de tensores en C++: c10/ATen</a></details></details></nav><div class="aside-links"><a href="https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026">GitHub ↗</a><a href="https://www.linkedin.com/in/lic-jacobo-leon-juarez/">LinkedIn ↗</a><a href="https://app.notion.com/p/leon-ctf/Portafolio-4034120b17c880048026ec0abf21f685">Notion ↗</a></div></aside><main id="contenido"><header class="hero"><div class="eyebrow">PyTorch Intermedio · PT02</div><h1>PT02 · Arquitectura de tensores en C++: c10/ATen</h1><p class="note">Del handle al almacenamiento · C++ compilado y ejecutado · Layout binario dependiente de la compilación.</p><div class="toolbar"><button id="expand">Mostrar código</button><button id="collapse">Plegar código</button><button id="print">Imprimir / PDF</button><a download href="clase-02-arquitectura-c10-aten.html">Descargar HTML</a></div><details class="page-toc"><summary>En esta página</summary><a href="#seccion-0">1. Introducción</a><a href="#seccion-1">2. Desacoplamiento de diseño: TensorImpl y StorageImpl</a><a href="#seccion-2">2.1. at::Tensor : el handle C++</a><a href="#seccion-3">2.1.1. ¿Por qué un puntero intrusivo?</a><a href="#seccion-4">2.1.2. Copiar el handle, crear una vista y clonar</a><a href="#seccion-5">2.2. c10::TensorImpl : metadatos y estado</a><a href="#seccion-6">2.2.1. Componentes de la interpretación geométrica</a><a href="#seccion-11">2.3. c10::StorageImpl : propiedad del almacenamiento</a><a href="#seccion-12">2.3.1. Componentes de propiedad y asignación</a><a href="#seccion-18">2.4. Resumen de responsabilidades</a><a href="#seccion-19">3. Fuentes y lectura relacionada</a></details></header><section class="cell"><h1 id="seccion-0">1. Introducción</h1>
+<p>Esta página sigue las capas que permiten representar un tensor denso de PyTorch en C++: <strong><code>at::Tensor</code>, <code>c10::TensorImpl</code>, <code>c10::StorageImpl</code> y <code>c10::DataPtr</code></strong>. Conecta el código de alto nivel con los metadatos y la propiedad del almacenamiento.</p>
+<p><code>ATen</code> proporciona una parte central de la API de tensores y operadores; <code>c10</code> reúne abstracciones compartidas de bajo nivel. El objeto <code>torch.Tensor</code> de Python incorpora además su propia envoltura. No deben confundirse el tamaño de un objeto Python, el handle C++, el descriptor y los bytes del tensor.</p>
+<p><strong>Alcance:</strong> ejemplos densos con <code>layout=torch.strided</code>. Otros layouts, tensores <code>meta</code>, subclases y backends pueden requerir otra descripción. Los campos privados y el layout binario no constituyen una interfaz estable entre todas las versiones.</p>
+<figure id="fig-c01-portada"><a aria-label="Ampliar: Separación entre handle, metadatos, almacenamiento y propiedad del bloque." href="../assets/pytorch/c01-portada.svg" rel="noopener" target="_blank"><img alt="Separación entre handle, metadatos, almacenamiento y propiedad del bloque." height="650" loading="lazy" src="../assets/pytorch/c01-portada.svg" width="1200"/></a><figcaption>Fig. 2.1. Separación entre handle, metadatos, almacenamiento y propiedad del bloque.</figcaption></figure>
+<h1 id="seccion-1">2. Desacoplamiento de diseño: TensorImpl y StorageImpl</h1>
+<p>La separación evita copiar los datos al crear muchas vistas. El descriptor conserva una interpretación lógica; el almacenamiento gestiona el bloque que la respalda.</p>
+<p><strong>Analogía:</strong> un plano de lectura indica dónde buscar cada elemento en un depósito. Cambiar el plano no exige mover los objetos del depósito. Dos planos distintos pueden seguir apuntando al mismo bloque.</p>
+<h2 id="seccion-2">2.1. <code>at::Tensor</code>: el handle C++</h2>
+<p><code>at::Tensor</code> ofrece una interfaz de valor sobre una implementación compartida. En su jerarquía interviene <code>TensorBase</code>, que conserva un <code>c10::intrusive_ptr</code> a <code>TensorImpl</code>.</p>
+<p>Un handle local puede vivir en la pila, pero también puede ser miembro de otro objeto o estar en el heap. <strong>No existe una regla que obligue a todo <code>at::Tensor</code> a vivir en la pila.</strong> Su tamaño debe medirse en la compilación analizada; no se debe atribuir al objeto Python el tamaño del handle C++.</p>
+<figure id="fig-c02-handle"><a aria-label="Ampliar: Copiar un handle comparte la implementación; no copia el búfer numérico." href="../assets/pytorch/c02-handle.svg" rel="noopener" target="_blank"><img alt="Copiar un handle comparte la implementación; no copia el búfer numérico." height="650" loading="lazy" src="../assets/pytorch/c02-handle.svg" width="1200"/></a><figcaption>Fig. 2.2. Copiar un handle comparte la implementación; no copia el búfer numérico.</figcaption></figure>
+<h3 id="seccion-3">2.1.1. ¿Por qué un puntero intrusivo?</h3>
+<p>Un puntero intrusivo conserva la información necesaria de conteo dentro del objeto administrado. Esto permite un diseño de propiedad compartida adaptado a las necesidades del runtime. La forma concreta de los contadores depende de la revisión; en las cabeceras de la compilación verificada aparece un contador combinado atómico.</p>
+<p>No corresponde justificarlo diciendo que <code>std::shared_ptr</code> siempre requiere dos asignaciones: <strong><code>std::make_shared</code> puede agrupar objeto y control en una sola asignación</strong>. Tampoco puede garantizarse una mejora universal de caché o un costo fijo en nanosegundos sin medir.</p>
+<h3 id="seccion-4">2.1.2. Copiar el handle, crear una vista y clonar</h3>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Operación</th>
+<th style="text-align:left">Metadatos</th>
+<th style="text-align:left">Datos numéricos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>at::Tensor b = a</code></td>
+<td style="text-align:left">Comparte la implementación referenciada</td>
+<td style="text-align:left">Comparte los datos</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>a.transpose(0,1)</code></td>
+<td style="text-align:left">Crea una interpretación de vista</td>
+<td style="text-align:left">Comparte el almacenamiento del caso denso</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>a.clone()</code></td>
+<td style="text-align:left">Produce otro tensor</td>
+<td style="text-align:left">Copia los datos</td>
+</tr>
+</tbody>
+</table>
+<p>Pasar por valor copia el handle y gestiona su referencia; no copia la matriz. Mover un handle tiene otra semántica. Para evitar copias de handles cuando no son necesarias, una función puede recibir <code>const at::Tensor&amp;</code>, según su contrato.</p>
+<h2 id="seccion-5">2.2. <code>c10::TensorImpl</code>: metadatos y estado</h2>
+<p>El descriptor conserva información necesaria para interpretar el tensor y ejecutar operaciones. La lista siguiente expresa responsabilidades: <strong>no fija offsets privados portables</strong>.</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Componente</th>
+<th style="text-align:left">Responsabilidad</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Sizes y strides</td>
+<td style="text-align:left">Forma y saltos del recorrido lógico</td>
+</tr>
+<tr>
+<td style="text-align:left">Offset de almacenamiento</td>
+<td style="text-align:left">Comienzo de la vista en unidades de elemento</td>
+</tr>
+<tr>
+<td style="text-align:left">Dtype</td>
+<td style="text-align:left">Interpretación y tamaño de los elementos</td>
+</tr>
+<tr>
+<td style="text-align:left">Dispositivo y claves de despacho</td>
+<td style="text-align:left">Selección y validación de implementaciones</td>
+</tr>
+<tr>
+<td style="text-align:left">Autograd y versión</td>
+<td style="text-align:left">Estado requerido por diferenciación y seguimiento de modificaciones</td>
+</tr>
+<tr>
+<td style="text-align:left">Handle de almacenamiento</td>
+<td style="text-align:left">Propiedad compartida del bloque en el caso denso</td>
+</tr>
+</tbody>
+</table>
+<p>Los gradientes de Autograd no están incrustados como valores numéricos dentro de un pequeño campo del descriptor: el estado se administra mediante estructuras asociadas y puede crearse cuando se necesita.</p>
+<figure id="fig-c03-metadatos"><a aria-label="Ampliar: Una transposición comparte el almacenamiento y cambia sus metadatos de vista." href="../assets/pytorch/c03-metadatos.svg" rel="noopener" target="_blank"><img alt="Una transposición comparte el almacenamiento y cambia sus metadatos de vista." height="650" loading="lazy" src="../assets/pytorch/c03-metadatos.svg" width="1200"/></a><figcaption>Fig. 2.3. Una transposición comparte el almacenamiento y cambia sus metadatos de vista.</figcaption></figure>
+<h3 id="seccion-6">2.2.1. Componentes de la interpretación geométrica</h3>
+<h4 id="seccion-7">2.2.1.1. Sizes, strides y storage_offset</h4>
+<p>Para índices válidos en un tensor denso <code>strided</code>:</p>
+<p><math aria-label="o=\operatorname{storage\_offset}+\sum_{k=0}^{N-1}i_k\operatorname{stride}_k." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>o</mi><mo>=</mo><mo></mo><mrow><mi>s</mi><mi>t</mi><mi>o</mi><mi>r</mi><mi>a</mi><mi>g</mi><mi>e</mi><mi>_</mi><mi>o</mi><mi>f</mi><mi>f</mi><mi>s</mi><mi>e</mi><mi>t</mi></mrow><mo>+</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></munderover><msub><mi>i</mi><mi>k</mi></msub><msub><mo>stride</mo><mi>k</mi></msub><mo>.</mo></mrow></math></p>
+<p>El resultado está en <strong>elementos</strong>. Si se parte del puntero al inicio del almacenamiento, la dirección de byte es <code>base + o * element_size</code>. Si se parte de <code>tensor.data_ptr()</code>, el offset inicial de la vista ya está incorporado.</p>
+<p>Las direcciones observadas son direcciones del proceso o del dispositivo. Identificarlas como «direcciones físicas de RAM» es incorrecto en el modelo normal de memoria virtual.</p>
+<h4 id="seccion-8">2.2.1.2. Optimización de vectores pequeños</h4>
+<p>La estructura interna <code>c10::impl::SizesAndStrides</code> agrupa tamaños y strides. Las cabeceras examinadas de <strong>PyTorch 2.15.0+cpu</strong> definen capacidad inline para <strong>cinco ejes</strong>. Cuando hay más ejes, esa implementación utiliza almacenamiento auxiliar para esos metadatos.</p>
+<p>Este umbral no es una propiedad matemática de los tensores ni un requisito de la API. Tampoco dice dónde viven los datos numéricos: lo inline se refiere a <strong>metadatos dentro del objeto</strong>, no a alojar los números del tensor en la pila.</p>
+<figure id="fig-c04-inline"><a aria-label="Ampliar: Metadatos inline y almacenamiento auxiliar al superar la capacidad de la implementación." href="../assets/pytorch/c04-inline.svg" rel="noopener" target="_blank"><img alt="Metadatos inline y almacenamiento auxiliar al superar la capacidad de la implementación." height="650" loading="lazy" src="../assets/pytorch/c04-inline.svg" width="1200"/></a><figcaption>Fig. 2.4. Metadatos inline y almacenamiento auxiliar al superar la capacidad de la implementación.</figcaption></figure>
+<h4 id="seccion-9">2.2.1.3. El dispatcher y <code>DispatchKeySet</code></h4>
+<p>Las claves de despacho ayudan a seleccionar una implementación registrada de un operador. Intervienen los conjuntos asociados a las entradas, el estado local del hilo, las inclusiones y exclusiones de modos y las prioridades del sistema.</p>
+<p>El despacho no se reduce a una única operación AND/OR. Los caminos de Autograd pueden envolver o volver a despachar operaciones; un modo de tensores ficticios no debe describirse simplemente como otra pieza de hardware. Las representaciones y los detalles de prioridad son internos.</p>
+<figure id="fig-c05-dispatch"><a aria-label="Ampliar: La selección de un kernel combina características de las entradas y estado del despacho." href="../assets/pytorch/c05-dispatch.svg" rel="noopener" target="_blank"><img alt="La selección de un kernel combina características de las entradas y estado del despacho." height="650" loading="lazy" src="../assets/pytorch/c05-dispatch.svg" width="1200"/></a><figcaption>Fig. 2.5. La selección de un kernel combina características de las entradas y estado del despacho.</figcaption></figure>
+<h4 id="seccion-10">2.2.1.4. Banderas y formatos de memoria</h4>
+<p>El descriptor puede conservar banderas y propiedades precalculadas sobre contigüidad, tamaños simbólicos y políticas internas. El número de bits, su orden y sus offsets dependen de la versión y compilación.</p>
+<p><code>channels_last</code> describe una disposición de memoria. Un tensor de imágenes puede mantener su forma lógica <code>(N,C,H,W)</code> mientras sus strides representan ese formato; no se debe afirmar que la forma lógica pasa necesariamente a <code>(N,H,W,C)</code>.</p>
+<h2 id="seccion-11">2.3. <code>c10::StorageImpl</code>: propiedad del almacenamiento</h2>
+<p>En el caso estudiado, <code>StorageImpl</code> administra el puntero de datos, la capacidad en bytes, información del asignador y políticas como la posibilidad de redimensionar el almacenamiento. No conoce la forma matricial de cada tensor que lo utiliza.</p>
+<p><strong>Descriptor y datos son objetos diferentes.</strong> Los metadatos del runtime residen en memoria del host; el bloque numérico administrado puede pertenecer a CPU, CUDA u otro backend. No se debe situar todo <code>StorageImpl</code> en VRAM solo porque el tensor esté en GPU.</p>
+<p>El almacenamiento también conoce el dispositivo mediante su <code>DataPtr</code>. Una tabla que le atribuya desconocimiento absoluto del dispositivo sería incorrecta.</p>
+<h3 id="seccion-12">2.3.1. Componentes de propiedad y asignación</h3>
+<h4 id="seccion-13">2.3.1.1. <code>c10::DataPtr</code>: datos, contexto y liberación</h4>
+<p><code>DataPtr</code> combina un dispositivo con un objeto de propiedad que distingue:</p>
+<ul>
+<li><strong>Puntero de datos:</strong> dirección del bloque que leen los kernels.</li>
+<li><strong>Contexto:</strong> objeto o estado que conserva lo necesario para liberar o devolver ese recurso.</li>
+<li><strong>Deleter:</strong> función que recibe el contexto cuando corresponde liberar su propiedad.</li>
+</ul>
+<p>En el código examinado, <code>UniqueVoidPtr</code> contiene <code>void* data_</code> y un <code>std::unique_ptr&lt;void, DeleterFnPtr&gt;</code> para el contexto. El deleter recibe <strong>el contexto</strong>, que puede coincidir o no con el puntero de datos.</p>
+<figure id="fig-c06-dataptr"><a aria-label="Ampliar: La dirección de los datos y el contexto de liberación tienen papeles distintos." href="../assets/pytorch/c06-dataptr.svg" rel="noopener" target="_blank"><img alt="La dirección de los datos y el contexto de liberación tienen papeles distintos." height="650" loading="lazy" src="../assets/pytorch/c06-dataptr.svg" width="1200"/></a><figcaption>Fig. 2.6. La dirección de los datos y el contexto de liberación tienen papeles distintos.</figcaption></figure>
+<h4 id="seccion-14">2.3.1.2. Tamaños, offsets y ABI</h4>
+<p>Las capturas originales de IDA muestran una compilación particular. No basta con ellas para asignar sus offsets a todas las versiones de PyTorch 2.x. Incluso el orden físico de un <code>std::unique_ptr</code> con deleter puede variar entre implementaciones de la biblioteca estándar.</p>
+<p>Por eso sustituimos la tabla de offsets absolutos por una inspección reproducible de <strong>la compilación que se está usando</strong>. Al comparar una captura con código fuente, deben conservarse la revisión, arquitectura, compilador, ABI, STL y opciones del binario.</p>
+<p>La tabla explicativa original también mezclaba tamaños y posiciones incompatibles entre sí. <code>numel</code> de 8 bytes no puede describirse mediante un intervalo de solo cuatro bytes. Esa información se debe contrastar con símbolos o un layout medido, en lugar de completar los huecos por intuición.</p>
+<figure id="fig-c08-abi"><a aria-label="Ampliar: El layout binario se verifica sobre una compilación identificada, no sobre un esquema genérico." href="../assets/pytorch/c08-abi.svg" rel="noopener" target="_blank"><img alt="El layout binario se verifica sobre una compilación identificada, no sobre un esquema genérico." height="650" loading="lazy" src="../assets/pytorch/c08-abi.svg" width="1200"/></a><figcaption>Fig. 2.7. El layout binario se verifica sobre una compilación identificada, no sobre un esquema genérico.</figcaption></figure>
+<h5 id="seccion-15">Inspección práctica con C++</h5>
+<p>El siguiente programa utiliza las cabeceras de ATen/LibTorch y muestra <code>sizeof</code>, <code>alignof</code> y propiedades del almacenamiento. Los tamaños impresos corresponden a esa compilación: no son constantes recomendadas para acceder manualmente a memoria privada.</p>
+<details class="source-code"><summary>Código C++ · inspección reproducible</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1">// Incluir la API de tensores de ATen y los tipos internos que se inspeccionan.</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;ATen/ATen.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;c10/core/Storage.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;c10/core/TensorImpl.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;c10/core/impl/SizesAndStrides.h&gt;</span>
+<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
+<p><span class="cm">/**</span>
+<span class="cm"> * Inspecciona tamaños de tipos y propiedad de datos de esta compilación.</span>
+<span class="cm"> *</span>
+<span class="cm"> * No presupone offsets privados ni dereferencia direcciones de otro proceso.</span>
+<span class="cm"> * Los valores de sizeof y alignof son resultados del compilador y ABI usados.</span>
+<span class="cm"> *</span>
+<span class="cm"> * @return Cero cuando la inspección termina correctamente.</span>
+<span class="cm"> */</span>
+<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="c1">// Crear un tensor denso float32 de CPU con seis valores.</span>
+<span class="w">    </span><span class="n">at</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">tensor</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">at</span><span class="o">::</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">at</span><span class="o">::</span><span class="n">TensorOptions</span><span class="p">().</span><span class="n">dtype</span><span class="p">(</span><span class="n">at</span><span class="o">::</span><span class="n">kFloat</span><span class="p">)).</span><span class="n">reshape</span><span class="p">({</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">});</span>
+<span class="w">    </span><span class="c1">// Conservar un handle del almacenamiento mientras se inspecciona su DataPtr.</span>
+<span class="w">    </span><span class="n">c10</span><span class="o">::</span><span class="n">Storage</span><span class="w"> </span><span class="n">storage</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor</span><span class="p">.</span><span class="n">storage</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Obtener una referencia; DataPtr representa propiedad única y no se copia aquí.</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="n">c10</span><span class="o">::</span><span class="n">DataPtr</span><span class="o">&amp;</span><span class="w"> </span><span class="n">dataptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">storage</span><span class="p">.</span><span class="n">data_ptr</span><span class="p">();</span>
+<span class="w">    </span><span class="c1">// Medir los tipos de esta compilación, sin presentarlos como constantes portables.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"sizeof(at::Tensor) = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">at</span><span class="o">::</span><span class="n">Tensor</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"sizeof(c10::TensorImpl) = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">c10</span><span class="o">::</span><span class="n">TensorImpl</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"sizeof(c10::StorageImpl) = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">c10</span><span class="o">::</span><span class="n">StorageImpl</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"sizeof(c10::DataPtr) = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">c10</span><span class="o">::</span><span class="n">DataPtr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"alignof(c10::DataPtr) = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">alignof</span><span class="p">(</span><span class="n">c10</span><span class="o">::</span><span class="n">DataPtr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"sizeof(SizesAndStrides) = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="k">sizeof</span><span class="p">(</span><span class="n">c10</span><span class="o">::</span><span class="n">impl</span><span class="o">::</span><span class="n">SizesAndStrides</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Mostrar propiedades públicas del almacenamiento y del puntero de datos.</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Bytes de datos = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">storage</span><span class="p">.</span><span class="n">nbytes</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Dispositivo = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">dataptr</span><span class="p">.</span><span class="n">device</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Contexto presente = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">dataptr</span><span class="p">.</span><span class="n">get_context</span><span class="p">()</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="nb">nullptr</span><span class="p">)</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Obtener otra vista y comprobar que apunta al mismo bloque.</span>
+<span class="w">    </span><span class="n">at</span><span class="o">::</span><span class="n">Tensor</span><span class="w"> </span><span class="n">vista</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tensor</span><span class="p">.</span><span class="n">transpose</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">);</span>
+<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"Vista comparte bloque = "</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="p">(</span><span class="n">vista</span><span class="p">.</span><span class="n">storage</span><span class="p">().</span><span class="n">data_ptr</span><span class="p">().</span><span class="n">get</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">dataptr</span><span class="p">.</span><span class="n">get</span><span class="p">())</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">;</span>
+<span class="w">    </span><span class="c1">// Indicar que el programa terminó sin errores.</span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
+<span class="p">}</span>
+</p></pre></div>
+</details>
+<p class="note">Salida medida con PyTorch 2.15.0+cpu, Linux x86-64 y el compilador de esta edición. No define un ABI universal.</p><div class="output"><pre>sizeof(at::Tensor) = 8
+sizeof(c10::TensorImpl) = 176
+sizeof(c10::StorageImpl) = 96
+sizeof(c10::DataPtr) = 32
+alignof(c10::DataPtr) = 8
+sizeof(SizesAndStrides) = 88
+Bytes de datos = 24
+Dispositivo = cpu
+Contexto presente = 1
+Vista comparte bloque = 1
+</pre></div>
+<p>Para compilar con una distribución compatible de LibTorch puede utilizarse CMake. Deben coincidir la arquitectura y el ABI de la biblioteca y el compilador.</p>
+<details class="source-code"><summary>Código CMake</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.18</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s">inspeccion_tensor</span><span class="w"> </span><span class="s">LANGUAGES</span><span class="w"> </span><span class="s">CXX</span><span class="p">)</span>
+<span class="nb">find_package</span><span class="p">(</span><span class="s">Torch</span><span class="w"> </span><span class="s">REQUIRED</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s">inspeccion_dataptr</span><span class="w"> </span><span class="s">inspeccion_dataptr.cpp</span><span class="p">)</span>
+<span class="nb">target_link_libraries</span><span class="p">(</span><span class="s">inspeccion_dataptr</span><span class="w"> </span><span class="s2">"${TORCH_LIBRARIES}"</span><span class="p">)</span>
+<span class="nb">set_property</span><span class="p">(</span><span class="s">TARGET</span><span class="w"> </span><span class="s">inspeccion_dataptr</span><span class="w"> </span><span class="s">PROPERTY</span><span class="w"> </span><span class="s">CXX_STANDARD</span><span class="w"> </span><span class="s">20</span><span class="p">)</span>
+<span class="nb">set</span><span class="p">(</span><span class="s">CMAKE_CXX_FLAGS</span><span class="w"> </span><span class="s2">"${CMAKE_CXX_FLAGS} ${TORCH_CXX_FLAGS}"</span><span class="p">)</span>
+</pre></div>
+</details>
+<p>Configurar con <code>CMAKE_PREFIX_PATH</code> apuntando a LibTorch, o al prefijo CMake indicado por <code>torch.utils.cmake_prefix_path</code> si se usa una instalación Python compatible.</p>
+<h4 id="seccion-16">2.3.1.3. Asignadores según el backend</h4>
+<p>Un asignador CPU puede aplicar requisitos de alineación; no hay que convertir un valor de una implementación concreta en una obligación universal ni afirmar que una alineación determinada por sí sola garantiza vectorización.</p>
+<p>En CUDA, el asignador de caché permite reutilizar bloques. Su comportamiento depende del backend y puede incluir mecanismos basados en <code>cudaMallocAsync</code>. La reserva de memoria responde a las solicitudes y a sus políticas, no necesariamente a una preasignación de toda la VRAM al arrancar.</p>
+<p>La memoria <strong>asignada a tensores</strong> y la memoria <strong>reservada por el asignador</strong> son medidas diferentes. La liberación de referencias puede dejar bloques en caché o pendientes de sincronización con streams. <code>empty_cache()</code> puede devolver bloques de caché sin uso al sistema CUDA; no libera tensores que siguen vivos.</p>
+<h4 id="seccion-17">2.3.1.4. Vistas, alias y copy-on-write</h4>
+<p>Las vistas ordinarias comparten almacenamiento y <strong>no ofrecen aislamiento mediante copy-on-write automático</strong>. Modificar una vista permitida puede cambiar el tensor original. <code>clone()</code> crea datos independientes; <code>reshape()</code> puede ser vista o copia.</p>
+<p>El código fuente contiene mecanismos internos de COW para caminos específicos del runtime. Su existencia no cambia el contrato habitual de las vistas de PyTorch. Las restricciones de Autograd sobre operaciones in-place tampoco son una implementación de COW.</p>
+<figure id="fig-c07-alias"><a aria-label="Ampliar: Una escritura en una vista modifica los datos compartidos; clone produce una copia independiente." href="../assets/pytorch/c07-alias.svg" rel="noopener" target="_blank"><img alt="Una escritura en una vista modifica los datos compartidos; clone produce una copia independiente." height="650" loading="lazy" src="../assets/pytorch/c07-alias.svg" width="1200"/></a><figcaption>Fig. 2.8. Una escritura en una vista modifica los datos compartidos; clone produce una copia independiente.</figcaption></figure>
+<details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Crear los datos originales y una vista de dos filas.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="n">a</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span>
+<span class="n">v</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># Modificar un elemento compartido en un caso sin Autograd.</span>
+<span class="n">v</span><span class="p">[</span><span class="mi">0</span><span class="p">,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="mi">99</span>
+<span class="c1"># El cambio es visible desde el tensor original.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>  <span class="c1"># [99, 1, 2, 3, 4, 5]</span>
+<span class="c1"># Crear datos independientes antes de volver a modificar.</span>
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span><span class="o">.</span><span class="n">clone</span><span class="p">()</span>
+<span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="o">-</span><span class="mi">1</span>
+<span class="c1"># El original conserva 99 y la copia contiene -1.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">a</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">(),</span> <span class="n">c</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">item</span><span class="p">())</span>  <span class="c1"># 99 -1</span>
+</pre></div>
+</details>
+<h2 id="seccion-18">2.4. Resumen de responsabilidades</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Capa</th>
+<th style="text-align:left">Responsabilidad</th>
+<th style="text-align:left">¿Comparte o posee?</th>
+<th style="text-align:left">Qué conviene medir</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>at::Tensor</code></td>
+<td style="text-align:left">Handle e interfaz C++</td>
+<td style="text-align:left">Referencia una implementación</td>
+<td style="text-align:left"><code>sizeof</code> del handle</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>TensorImpl</code></td>
+<td style="text-align:left">Metadatos, estado y despacho</td>
+<td style="text-align:left">Referencia almacenamiento en el caso denso</td>
+<td style="text-align:left">Layout de la revisión analizada</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>StorageImpl</code></td>
+<td style="text-align:left">Capacidad y propiedad del almacenamiento</td>
+<td style="text-align:left">Administra el bloque mediante DataPtr</td>
+<td style="text-align:left">Capacidad en bytes, resizabilidad</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>DataPtr</code></td>
+<td style="text-align:left">Dirección de datos, contexto, deleter y dispositivo</td>
+<td style="text-align:left">Gestiona la vida útil del contexto</td>
+<td style="text-align:left"><code>sizeof</code>, <code>alignof</code>, dispositivo</td>
+</tr>
+<tr>
+<td style="text-align:left">Datos</td>
+<td style="text-align:left">Valores que leen y escriben los kernels</td>
+<td style="text-align:left">Pueden compartirse entre vistas</td>
+<td style="text-align:left">Bytes lógicos frente a capacidad</td>
+</tr>
+</tbody>
+</table>
+<p>La separación permite vistas eficientes, pero obliga a distinguir <strong>identidad del handle, identidad de los metadatos y alias del almacenamiento</strong>.</p>
+<h1 id="seccion-19">3. Fuentes y lectura relacionada</h1>
+<ul>
+<li><a href="clase-01-tensores-y-operaciones.html">Guía de tensores y operaciones</a>: ejemplos de strides, transposición, broadcasting y productos matriciales.</li>
+<li><a href="https://docs.pytorch.org/docs/stable/tensor_view.html">Tensor Views</a> y <a href="https://docs.pytorch.org/docs/stable/storage.html">Storage</a>.</li>
+<li><a href="https://docs.pytorch.org/docs/stable/notes/cuda.html">CUDA semantics</a>: asignación, caché y streams.</li>
+<li>Cabeceras de la compilación examinada: <code>TensorImpl.h</code>, <code>StorageImpl.h</code>, <code>Allocator.h</code>, <code>UniqueVoidPtr.h</code>, <code>intrusive_ptr.h</code> y <code>impl/SizesAndStrides.h</code>.</li>
+<li><a href="https://github.com/pytorch/pytorch/tree/v2.15.0/c10">Repositorio oficial de PyTorch</a>: consultar una revisión identificada al estudiar layouts internos.</li>
+</ul>
+</section><nav class="pager"><a href="../index.html#pytorch-intermedio">← PyTorch Intermedio</a><a href="clase-01-tensores-y-operaciones.html">PT01 · PyTorch: tensores y operaciones →</a></nav><footer><p>© 2026 Jacobo León Juárez. Material docente propio: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Código propio: Apache 2.0. Los materiales de terceros conservan sus autores y condiciones.</p><p><a href="../citar.html">Cómo citar · BibTeX</a> · <a href="https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026/archive/refs/heads/main.zip">Descargar repositorio</a></p><p class="third-party-notice">Los pasajes adaptados de Dive into Deep Learning conservan CC BY-SA 4.0 y su código MIT modificada. <a href="../citar.html">Créditos y condiciones de las fuentes</a></p><p><a href="../revision.html">Bibliografía y criterios del material</a></p></footer></main><script src="../assets/site.js"></script></body></html>

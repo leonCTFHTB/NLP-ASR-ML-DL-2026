@@ -1,0 +1,14 @@
+{
+  "pages": [
+    "pytorch/clase-01-tensores-y-operaciones.html",
+    "pytorch/clase-02-arquitectura-c10-aten.html"
+  ],
+  "source_notebook": "2_PyTorch_Guía_para_Básica_Intermedia.ipynb",
+  "source_notion": "Arquitectura de Bajo Nivel: Implementación de Tensores en C++ (c10/ATen)",
+  "source_figures": 23,
+  "new_diagrams": 23,
+  "navigation_updated_pages": 36,
+  "python_examples_executed": 8,
+  "cpp_compiled_and_executed": true,
+  "math_errors": []
+}

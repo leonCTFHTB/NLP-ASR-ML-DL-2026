@@ -15,3 +15,7 @@ pre{overflow:auto;padding:22px;background:#0e1015;border:1px solid var(--line);b
 .catalog-row.catalog-row-range{grid-template-columns:60px minmax(0,1fr)}
 .catalog-row-range .number{font-size:18px;white-space:nowrap;padding-top:5px}
 
+
+
+/* Secciones docentes: NLP y ASR / PyTorch Intermedio. */
+.subject-group{margin:16px 0 24px}.subject-group>summary{cursor:pointer;padding:12px 10px;border:1px solid var(--line);border-radius:6px;background:var(--panel);color:var(--gold);font-size:14px;font-weight:650}.subject-group[open]>summary{color:var(--accent);border-color:#625574}.subject-group>.chapter{margin-left:8px}.subject-group .chapter a[aria-current=page]{color:var(--accent);background:#242131;border-left-color:var(--accent)}.intro-grid{grid-template-columns:repeat(2,minmax(0,1fr))}#pytorch-intermedio{margin-top:55px;padding-top:15px;border-top:1px solid var(--line)}#pytorch-intermedio .catalog-row{grid-template-columns:70px minmax(0,1fr)}#pytorch-intermedio .number{font-size:22px}figure>a{display:block}figure>a img{width:100%}@media(max-width:780px){.intro-grid{grid-template-columns:1fr}.subject-group{margin:12px 0 18px}}

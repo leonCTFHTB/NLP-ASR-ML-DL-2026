@@ -85,3 +85,11 @@ El notebook adjunto se incorporó como una página adicional con 244 celdas, nue
 La actualización incorpora una portada y 16 diagramas específicos con leyendas únicas. Revisa los cocientes con contexto fijo, la dependencia del producto punto respecto a normas y ángulo, el filtrado previo a log(0), los sesgos, los gradientes, AdaGrad y la combinación de embeddings. Conserva los datos originales de la animación de 200 actualizaciones y añade controles locales sin dependencias externas. Se preservan el índice, los títulos y la numeración vigentes y se actualiza la búsqueda.
 
 Comprobaciones: 17 recursos visuales; ninguna referencia local faltante ni leyenda duplicada; controles interactivos verificados programáticamente. La validación numérica previa de los gradientes por diferencias finitas registró un error máximo inferior a 1e-9. No se reejecutó el entrenamiento de PyTorch. Véanse `validacion-glove.json`, `figuras-glove.json` e `integracion-glove.json`.
+
+
+
+## PyTorch Intermedio: guía de tensores y arquitectura c10/ATen
+
+Se incorporan dos páginas a partir del notebook y el export de Notion proporcionados. El menú está agrupado estáticamente en NLP y ASR y PyTorch Intermedio en todas las páginas con navegación. Se añaden 23 diagramas específicos, un notebook ejecutado con imágenes integradas, el código C++ de inspección y entradas de búsqueda.
+
+Se corrigen compatibilidad de view/reshape, costo de vistas, direcciones virtuales, offsets en elementos/bytes, bytes lógicos frente a almacenamiento, squeeze y lotes unitarios, broadcasting y stride cero, alcance de matmul/bmm, alias y COW, propiedad de DataPtr, inline de metadatos y dependencia del ABI. Los ejemplos Python se ejecutaron con PyTorch 2.15.0+cpu: 20 comprobaciones de comportamiento. El C++ se compiló y ejecutó en Linux x86-64 con C++20. Los tamaños medidos se presentan como datos de esa compilación.

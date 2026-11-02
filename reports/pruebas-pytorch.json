@@ -1,0 +1,38 @@
+{
+  "torch_version": "2.15.0+cpu",
+  "device": "cpu",
+  "python_cells_executed": 8,
+  "checks": [
+    "La transpuesta comparte almacenamiento",
+    "La transpuesta tiene strides (1,4)",
+    "El aplanado incompatible de la transpuesta falla",
+    "Una vista no contigua admite un view compatible",
+    "reshape de la transpuesta conserva el orden lógico",
+    "contiguous devuelve el propio tensor cuando ya cumple el formato",
+    "La vista recortada conserva un storage_offset distinto de cero",
+    "data_ptr ya incluye el offset inicial",
+    "Las vistas normales no aíslan la escritura mediante COW",
+    "clone mantiene datos independientes",
+    "expand utiliza stride cero",
+    "expand conserva 12 bytes de almacenamiento para 48 bytes lógicos",
+    "El resultado broadcast se materializa",
+    "squeeze(-1) conserva el eje de lote de tamaño uno",
+    "squeeze sin dim puede producir un escalar",
+    "zeros_like no hereda requires_grad por defecto",
+    "Producto matricial numérico",
+    "matmul aplica broadcasting en ejes de lote",
+    "bmm no expande tamaños de lote desiguales",
+    "Bytes little-endian de 10.0 en este host"
+  ],
+  "passed": true,
+  "cpp_compiled": true,
+  "cpp_output": "sizeof(at::Tensor) = 8\nsizeof(c10::TensorImpl) = 176\nsizeof(c10::StorageImpl) = 96\nsizeof(c10::DataPtr) = 32\nalignof(c10::DataPtr) = 8\nsizeof(SizesAndStrides) = 88\nBytes de datos = 24\nDispositivo = cpu\nContexto presente = 1\nVista comparte bloque = 1\n",
+  "source_headers": [
+    "c10/core/TensorImpl.h",
+    "c10/core/StorageImpl.h",
+    "c10/core/Allocator.h",
+    "c10/util/UniqueVoidPtr.h",
+    "c10/core/impl/SizesAndStrides.h",
+    "c10/util/intrusive_ptr.h"
+  ]
+}

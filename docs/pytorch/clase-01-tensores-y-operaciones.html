@@ -1,0 +1,659 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="PyTorch Intermedio: tensores, memoria, operaciones y arquitectura c10/ATen."><title>PT01 · PyTorch: tensores y operaciones · Jacobo León Juárez</title><link rel="stylesheet" href="../assets/site.css?v=f94598739813"><link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"></head><body><a class="skip" href="#contenido">Saltar al contenido</a><div class="progress"></div><button id="menu" aria-expanded="false" aria-controls="library-nav">☰ Índice</button><aside id="library-nav"><a class="brand" href="../index.html">PORTAFOLIO DOCENTE</a><h2>Inteligencia artificial<br/><span>Teoría, código<br/>y práctica</span></h2><p class="note">Jacobo León Juárez · 2026</p><a class="search-link" href="../index.html#buscar">⌕ Buscar en el libro</a><nav aria-label="Clases"><details class="subject-group" data-subject="nlp"><summary>NLP y ASR</summary><details class="chapter"><summary>02 · Word2Vec</summary><a class="" href="../nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html">02 · Introducción al NLP  - Parte 1 - Word2Vec</a></details><details class="chapter"><summary>03 · GloVe</summary><a class="" href="../nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html">03 · Introducción al NLP  - Parte 2 - GloVe</a></details><details class="chapter"><summary>04 · fastText</summary><a class="" href="../nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html">04 · Introducción al NLP  - Parte 3 - FastText</a></details><details class="chapter"><summary>05 · Redes convolucionales</summary><a class="" href="../nlp/clase-05-1-2-redes-convolucionales-v2.html">05 · Redes Convolucionales - V2</a><a class="" href="../nlp/clase-05-1-cnn-teoria-completa.html">05 · CNN - Teoría Completa <small>Complemento</small></a><a class="" href="../nlp/clase-05-1-1-redes-convolucionales-teoria-simplificada.html">05 · Redes Convolucionales Teoría Simplificada <small>Complemento</small></a><a class="" href="../nlp/clase-05-1-2-redes-convolucionales-v2-recurso-2.html">05 · Redes Convolucionales - V2 <small>Complemento</small></a><a class="" href="../nlp/clase-05-2-mecanismos-de-atencion.html">05 · Mecanismos de Atención <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-vision-por-computadora-cnns.html">05 · Visión Por Computadora - CNNs <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-1-vision-por-computadora-introduccion.html">05 · Visión Por Computadora - Introducción <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-2-vision-por-computadora-r-cnns.html">05 · Visión Por Computadora - R-CNNs <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-3-vision-por-computadora-yolov3.html">05 · Visión por Computadora - YOLOv3 <small>Complemento</small></a><a class="" href="../nlp/clase-05-4-transformers-y-mecanismos-de-atencion.html">05 · Transformers y Mecanismos de Atención <small>Complemento</small></a><a class="" href="../nlp/clase-05-4-1-transformers-teoria-simplificada.html">05 · Transformers - Teoría Simplificada <small>Complemento</small></a></details><details class="chapter"><summary>06 · Mecanismos de atención · Parte 1</summary><a class="" href="../nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html">06 · Mecanismos de Atención - Parte 1 (v2)</a><a class="" href="../nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html">06 · Mecanismos de Atención - Parte 2 (v2)</a></details><details class="chapter"><summary>07 · Mecanismos de atención · Parte 2</summary><a class="" href="../nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html">07 · Mecanismos de Atención - Parte 2 (v2)</a></details><details class="chapter"><summary>08 · Mecanismos de atención · Parte 3</summary><a class="" href="../nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html">08 · Mecanismos de Atención - Parte 3 (v2)</a></details><details class="chapter"><summary>09 · Mecanismos de atención · Parte 4</summary><a class="" href="../nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html">09 · Mecanismos de Atención - Parte 4 (v2)</a><a class="" href="../nlp/clase-09-6-1-transformers-teoria-simplificada.html">09 · Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>10 · Introducción a Transformers · Parte 1</summary><a class="" href="../nlp/clase-10-10-transformers-teoria-simplificada.html">10 · Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>11 · Introducción a Transformers · Parte 2</summary><a class="" href="../nlp/clase-11-clase-12-transformers-teoria-simplificada.html">11 · Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>12 · GPT y codificación posicional · Parte 1</summary><a class="" href="../nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html">12 · Positional Encoding (PE) y GPT - Parte 1</a></details><details class="chapter"><summary>13 · GPT y RoPE · Parte 2</summary><a class="" href="../nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html">13 · Introducción a GPT - RoPE - Parte 2</a></details><details class="chapter"><summary>14 · Introducción a ASR · Parte 1</summary><a class="" href="../nlp/clase-14-14-inotroduccion-a-asr-parte-1.html">14 · Introducción a ASR - Parte 1</a><a class="" href="../nlp/clase-14-attentioncnn-ser-01.html">14 · Reconocimiento de emociones · AttentionCNN <small>Complemento</small></a><a class="" href="../nlp/clase-14-1-2-speaker-diarization-test.html">14 · Diarización de hablantes · Prueba <small>Complemento</small></a></details><details class="chapter"><summary>15 · Introducción a ASR · Parte 2</summary><a class="" href="../nlp/clase-15-15-introduccion-a-asr-parte-2.html">15 · Introducción a ASR - Parte 2</a></details><details class="chapter"><summary>16 · FFT Radix-2</summary><a class="" href="../nlp/clase-16-16-radix-2.html">16 · Radix-2</a></details><details class="chapter" data-whisper=""><summary>17 · Whisper</summary><a class="" href="../nlp/clase-17-whisper-datasets-entrenamiento-inferencia.html">17 · Whisper: datasets, entrenamiento e inferencia</a></details></details><details class="subject-group" data-subject="pytorch" open=""><summary>PyTorch Intermedio</summary><details class="chapter" open=""><summary>PT01 · Tensores y operaciones</summary><a aria-current="page" class="active" href="../pytorch/clase-01-tensores-y-operaciones.html">PT01 · PyTorch: tensores y operaciones</a></details><details class="chapter"><summary>PT02 · Arquitectura c10/ATen</summary><a href="../pytorch/clase-02-arquitectura-c10-aten.html">PT02 · Arquitectura de tensores en C++: c10/ATen</a></details></details></nav><div class="aside-links"><a href="https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026">GitHub ↗</a><a href="https://www.linkedin.com/in/lic-jacobo-leon-juarez/">LinkedIn ↗</a><a href="https://app.notion.com/p/leon-ctf/Portafolio-4034120b17c880048026ec0abf21f685">Notion ↗</a></div></aside><main id="contenido"><header class="hero"><div class="eyebrow">PyTorch Intermedio · PT01</div><h1>PT01 · PyTorch: tensores y operaciones</h1><p class="note">Ejemplos ejecutados en CPU · Diagramas ampliables · Vistas, strides, bytes y álgebra lineal.</p><div class="toolbar"><button id="expand">Mostrar código</button><button id="collapse">Plegar código</button><button id="print">Imprimir / PDF</button><a download href="clase-01-tensores-y-operaciones.html">Descargar HTML</a><a download href="guia-tensores.ipynb">Descargar notebook</a><a href="https://colab.research.google.com/github/leonCTFHTB/NLP-ASR-ML-DL-2026/blob/main/docs/pytorch/guia-tensores.ipynb" target="_blank" rel="noopener">Abrir en Colab ↗</a></div><details class="page-toc"><summary>En esta página</summary><a href="#seccion-0">Referencias</a><a href="#seccion-1">1. Cimientos y runtime de PyTorch</a><a href="#seccion-2">1.1. Anatomía de un tensor ( torch.Tensor )</a><a href="#seccion-3">2. Operaciones con tensores</a><a href="#seccion-4">2.1. Atributos fundamentales</a><a href="#seccion-5">2.1.1. Sizes, strides y almacenamiento</a><a href="#seccion-6">2.1.2. La ecuación de direccionamiento</a><a href="#seccion-7">2.1.3. Interpretar el búfer de bytes</a><a href="#seccion-12">2.2. Creación e inicialización de tensores</a><a href="#seccion-13">2.3. Creación basada en otros tensores ( *_like )</a><a href="#seccion-14">2.4. Modificar la geometría y distinguir vistas de copias</a><a href="#seccion-15">2.4.1. view() frente a reshape()</a><a href="#seccion-21">2.4.2. Ejes unitarios: squeeze y unsqueeze</a><a href="#seccion-26">2.5. Operaciones y broadcasting</a><a href="#seccion-27">2.5.1. El mecanismo de broadcasting</a><a href="#seccion-33">2.6. Álgebra lineal y transposición</a><a href="#seccion-34">2.6.1. Productos matriciales en PyTorch</a></details></header><section class="cell" data-cell="0"><h1 id="seccion-0">Referencias</h1>
+<ol>
+<li><a href="https://drive.google.com/file/d/1fxbhCJ6f9nTZXvzaqboVLrMFQE1AlXZv/view?usp=share_link">Tesis de grado — referencia del material original</a>.</li>
+<li><a href="https://d2l.ai/">Dive into Deep Learning</a>.</li>
+<li><a href="https://docs.pytorch.org/docs/stable/tensor_view.html">PyTorch: Tensor Views</a>.</li>
+<li><a href="https://docs.pytorch.org/docs/stable/generated/torch.Tensor.view.html">PyTorch: Tensor.view</a>.</li>
+<li><a href="https://docs.pytorch.org/docs/stable/notes/broadcasting.html">PyTorch: Broadcasting semantics</a>.</li>
+<li><a href="https://docs.pytorch.org/docs/stable/storage.html">PyTorch: Storage</a>.</li>
+<li><a href="https://docs.pytorch.org/docs/stable/generated/torch.matmul.html">PyTorch: torch.matmul</a>.</li>
+</ol>
+<p>Los ejemplos de esta edición se verificaron en <strong>PyTorch 2.15.0+cpu</strong>, con tensores densos y <code>layout=torch.strided</code>. Los detalles internos pueden variar entre versiones.</p>
+</section><section class="cell" data-cell="6"><h1 id="seccion-1">1. Cimientos y runtime de PyTorch</h1>
+</section><section class="cell" data-cell="7"><figure id="fig-t01-portada"><a aria-label="Ampliar: Cimientos de PyTorch: metadatos, datos y operaciones." href="../assets/pytorch/t01-portada.svg" rel="noopener" target="_blank"><img alt="Cimientos de PyTorch: metadatos, datos y operaciones." height="650" loading="lazy" src="../assets/pytorch/t01-portada.svg" width="1200"/></a><figcaption>Fig. 1.1. Cimientos de PyTorch: metadatos, datos y operaciones.</figcaption></figure></section><section class="cell" data-cell="8"><h2 id="seccion-2">1.1. Anatomía de un tensor (<code>torch.Tensor</code>)</h2>
+<p>Un tensor representa valores con una <strong>forma</strong>, un <strong>tipo de dato</strong>, un <strong>dispositivo</strong> y un <strong>layout</strong>. En los tensores densos <code>strided</code> de esta guía, un descriptor indica cómo recorrer un almacenamiento mediante tamaños, strides y un offset inicial.</p>
+<p>PyTorch añade operaciones aceleradas en distintos dispositivos y diferenciación automática. El registro de gradientes requiere condiciones como <code>requires_grad=True</code>, un modo con gradientes habilitados y operaciones diferenciables; <strong>no se rastrea cualquier operación sobre cualquier tensor</strong>.</p>
+<p>Una GPU puede acelerar determinados cálculos, pero la ventaja depende del tamaño, las transferencias y el tipo de operación. Para ejemplos pequeños, CPU suele ser suficiente.</p>
+</section><section class="cell" data-cell="9"><p><strong>Analogía:</strong> el almacenamiento es una fila de casilleros; el tensor aporta el plano para leerlos. Dos planos pueden describir formas diferentes sin duplicar los casilleros. Esta separación es similar a las vistas de NumPy.</p>
+<p>El plano no obliga a que el recorrido lógico sea consecutivo: una transposición, un recorte o una expansión pueden reutilizar datos con strides distintos.</p>
+</section><section class="cell" data-cell="10"><p>En C++, <code>at::Tensor</code> es un handle que referencia una implementación. <code>c10::TensorImpl</code> conserva metadatos y estado; para el caso denso considerado, un <code>c10::Storage</code> referencia un <code>c10::StorageImpl</code> que administra el bloque de datos. El objeto <code>torch.Tensor</code> de Python añade su propia envoltura.</p>
+<p>La página <a href="clase-02-arquitectura-c10-aten.html">Arquitectura de tensores en C++</a> profundiza en esas responsabilidades.</p>
+</section><section class="cell" data-cell="11"><figure id="fig-t02-storage"><a aria-label="Ampliar: Dos descriptores pueden interpretar el mismo almacenamiento." href="../assets/pytorch/t02-storage.svg" rel="noopener" target="_blank"><img alt="Dos descriptores pueden interpretar el mismo almacenamiento." height="650" loading="lazy" src="../assets/pytorch/t02-storage.svg" width="1200"/></a><figcaption>Fig. 1.2. Dos descriptores pueden interpretar el mismo almacenamiento.</figcaption></figure></section><section class="cell" data-cell="12"><h1 id="seccion-3">2. Operaciones con tensores</h1>
+</section><section class="cell" data-cell="13"><figure id="fig-t03-operaciones"><a aria-label="Ampliar: Tres preguntas para observar el efecto de una operación." href="../assets/pytorch/t03-operaciones.svg" rel="noopener" target="_blank"><img alt="Tres preguntas para observar el efecto de una operación." height="650" loading="lazy" src="../assets/pytorch/t03-operaciones.svg" width="1200"/></a><figcaption>Fig. 1.3. Tres preguntas para observar el efecto de una operación.</figcaption></figure></section><section class="cell" data-cell="14"><h2 id="seccion-4">2.1. Atributos fundamentales</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Atributo</th>
+<th style="text-align:left">Qué informa</th>
+<th style="text-align:left">Ejemplo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>shape</code> / <code>size()</code></td>
+<td style="text-align:left">Longitud de cada eje</td>
+<td style="text-align:left"><code>(2, 3)</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>ndim</code></td>
+<td style="text-align:left">Cantidad de ejes</td>
+<td style="text-align:left"><code>2</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>dtype</code></td>
+<td style="text-align:left">Representación de cada elemento</td>
+<td style="text-align:left"><code>torch.float32</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>device</code></td>
+<td style="text-align:left">Dispositivo asociado</td>
+<td style="text-align:left"><code>cpu</code>, <code>cuda:0</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>layout</code></td>
+<td style="text-align:left">Organización general</td>
+<td style="text-align:left"><code>torch.strided</code></td>
+</tr>
+</tbody>
+</table>
+<p><code>device</code> también existe en tensores especiales, como <code>meta</code>, que no tienen un bloque de datos materializado. Aquí trabajaremos con CPU y layout denso.</p>
+</section><section class="cell" data-cell="15"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Importar PyTorch para trabajar con tensores.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Fijar explícitamente el dtype del ejemplo.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="c1"># Mostrar la forma y la cantidad de ejes.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Forma:"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="s2">"| ndim:"</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">ndim</span><span class="p">)</span>
+<span class="c1"># Mostrar el tipo, el dispositivo y el layout.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"dtype:"</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="s2">"| device:"</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">device</span><span class="p">,</span> <span class="s2">"| layout:"</span><span class="p">,</span> <span class="n">x</span><span class="o">.</span><span class="n">layout</span><span class="p">)</span>
+<span class="c1"># Mostrar los valores del tensor.</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>Forma: (2, 3) | ndim: 2
+dtype: torch.float32 | device: cpu | layout: torch.strided
+tensor([[1., 2., 3.],
+        [4., 5., 6.]])
+</pre></div></section><section class="cell" data-cell="16"><h3 id="seccion-5">2.1.1. Sizes, strides y almacenamiento</h3>
+<p>El almacenamiento de un tensor denso representa un bloque de bytes. Sus metadatos describen cuántos elementos hay en cada eje y cuántas <strong>posiciones de elemento</strong> se avanza al incrementar un índice.</p>
+<p>Un stride no se expresa directamente en bytes. Para convertirlo a bytes hay que multiplicarlo por <code>element_size()</code>. Los punteros que observamos desde Python son direcciones del espacio de direcciones del proceso o del dispositivo; <strong>no son direcciones físicas de RAM</strong>.</p>
+</section><section class="cell" data-cell="17"><figure id="fig-t04-capas"><a aria-label="Ampliar: Responsabilidades del handle, TensorImpl, StorageImpl y los datos." href="../assets/pytorch/t04-capas.svg" rel="noopener" target="_blank"><img alt="Responsabilidades del handle, TensorImpl, StorageImpl y los datos." height="650" loading="lazy" src="../assets/pytorch/t04-capas.svg" width="1200"/></a><figcaption>Fig. 1.4. Responsabilidades del handle, TensorImpl, StorageImpl y los datos.</figcaption></figure></section><section class="cell" data-cell="18"><h3 id="seccion-6">2.1.2. La ecuación de direccionamiento</h3>
+<p>Para un tensor denso <code>strided</code>, el offset del elemento de índices <math aria-label="(i_0,\dots,i_{N-1})" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><msub><mi>i</mi><mn>0</mn></msub><mo>,</mo><mo>…</mo><mo>,</mo><msub><mi>i</mi><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">)</mo></mrow></math> respecto al inicio del almacenamiento es:</p>
+<p><math aria-label="o=\operatorname{storage\_offset}+\sum_{k=0}^{N-1} i_k\operatorname{stride}_k." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>o</mi><mo>=</mo><mo></mo><mrow><mi>s</mi><mi>t</mi><mi>o</mi><mi>r</mi><mi>a</mi><mi>g</mi><mi>e</mi><mi>_</mi><mi>o</mi><mi>f</mi><mi>f</mi><mi>s</mi><mi>e</mi><mi>t</mi></mrow><mo>+</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>N</mi><mo>−</mo><mn>1</mn></mrow></munderover><msub><mi>i</mi><mi>k</mi></msub><msub><mo>stride</mo><mi>k</mi></msub><mo>.</mo></mrow></math></p>
+<p>La dirección de byte correspondiente es:</p>
+<p><math aria-label="p_{\mathrm{elemento}}=p_{\mathrm{storage}}+o\cdot\operatorname{element\_size}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>p</mi><mrow><mrow><mi mathvariant="normal">e</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">e</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">o</mi></mrow></mrow></msub><mo>=</mo><msub><mi>p</mi><mrow><mrow><mi mathvariant="normal">s</mi><mi mathvariant="normal">t</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">r</mi><mi mathvariant="normal">a</mi><mi mathvariant="normal">g</mi><mi mathvariant="normal">e</mi></mrow></mrow></msub><mo>+</mo><mi>o</mi><mo>·</mo><mo></mo><mrow><mi>e</mi><mi>l</mi><mi>e</mi><mi>m</mi><mi>e</mi><mi>n</mi><mi>t</mi><mi>_</mi><mi>s</mi><mi>i</mi><mi>z</mi><mi>e</mi></mrow><mo>.</mo></mrow></math></p>
+<p><code>tensor.data_ptr()</code> ya apunta al primer elemento de esa vista. Por tanto, si se parte de ese puntero, <strong>no se suma de nuevo <code>storage_offset()</code></strong>.</p>
+<p>En <code>[[10,20,30],[40,50,60]]</code>, con strides <code>(3,1)</code> y offset 0, el elemento <code>[1,2]</code> ocupa la posición 5 del almacenamiento. Si el dtype es <code>float32</code>, su desplazamiento desde la base es 20 bytes.</p>
+</section><section class="cell" data-cell="19"><figure id="fig-t05-offset"><a aria-label="Ampliar: Cálculo del offset de elemento y su conversión a bytes." href="../assets/pytorch/t05-offset.svg" rel="noopener" target="_blank"><img alt="Cálculo del offset de elemento y su conversión a bytes." height="650" loading="lazy" src="../assets/pytorch/t05-offset.svg" width="1200"/></a><figcaption>Fig. 1.5. Cálculo del offset de elemento y su conversión a bytes.</figcaption></figure></section><section class="cell" data-cell="20"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Importar las operaciones de tensores, decodificación binaria y datos del host.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">struct</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">sys</span>
+
+<span class="c1"># Crear seis valores float32 contiguos en CPU.</span>
+<span class="n">t</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">40.0</span><span class="p">,</span> <span class="mf">50.0</span><span class="p">,</span> <span class="mf">60.0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="c1"># Obtener el almacenamiento completo de este ejemplo pequeño.</span>
+<span class="n">storage</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span>
+<span class="c1"># Convertir sus bytes a un objeto inmutable de Python.</span>
+<span class="n">bytes_raw</span> <span class="o">=</span> <span class="nb">bytes</span><span class="p">(</span><span class="n">storage</span><span class="p">)</span>
+<span class="c1"># Obtener el tamaño en bytes de cada elemento.</span>
+<span class="n">bytes_per_elem</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">element_size</span><span class="p">()</span>
+<span class="c1"># Usar la base del almacenamiento para no contar dos veces el offset inicial.</span>
+<span class="n">base_ptr</span> <span class="o">=</span> <span class="n">storage</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">()</span>
+<span class="c1"># Informar las propiedades que intervienen en el direccionamiento.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"shape:"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="s2">"| stride:"</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">stride</span><span class="p">(),</span> <span class="s2">"| storage_offset:"</span><span class="p">,</span> <span class="n">t</span><span class="o">.</span><span class="n">storage_offset</span><span class="p">())</span>
+<span class="c1"># Aclarar el orden de bytes utilizado por el host.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Orden de bytes:"</span><span class="p">,</span> <span class="n">sys</span><span class="o">.</span><span class="n">byteorder</span><span class="p">,</span> <span class="s2">"| bytes de datos:"</span><span class="p">,</span> <span class="n">storage</span><span class="o">.</span><span class="n">nbytes</span><span class="p">())</span>
+<span class="c1"># Recorrer la matriz en orden lógico.</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">]):</span>
+    <span class="k">for</span> <span class="n">col</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">t</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">]):</span>
+        <span class="c1"># Calcular el offset dentro del almacenamiento en unidades de elemento.</span>
+        <span class="n">offset</span> <span class="o">=</span> <span class="n">t</span><span class="o">.</span><span class="n">storage_offset</span><span class="p">()</span> <span class="o">+</span> <span class="n">row</span> <span class="o">*</span> <span class="n">t</span><span class="o">.</span><span class="n">stride</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">col</span> <span class="o">*</span> <span class="n">t</span><span class="o">.</span><span class="n">stride</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+        <span class="c1"># Convertir el offset a bytes.</span>
+        <span class="n">start</span> <span class="o">=</span> <span class="n">offset</span> <span class="o">*</span> <span class="n">bytes_per_elem</span>
+        <span class="c1"># Extraer exactamente un valor float32.</span>
+        <span class="n">chunk</span> <span class="o">=</span> <span class="n">bytes_raw</span><span class="p">[</span><span class="n">start</span><span class="p">:</span><span class="n">start</span> <span class="o">+</span> <span class="n">bytes_per_elem</span><span class="p">]</span>
+        <span class="c1"># Decodificar usando orden nativo y tamaño estándar de float32.</span>
+        <span class="n">value</span> <span class="o">=</span> <span class="n">struct</span><span class="o">.</span><span class="n">unpack</span><span class="p">(</span><span class="s2">"=f"</span><span class="p">,</span> <span class="n">chunk</span><span class="p">)[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="c1"># Mostrar la dirección calculada, los bytes y el valor recuperado.</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"t[</span><span class="si">{</span><span class="n">row</span><span class="si">}</span><span class="s2">,</span><span class="si">{</span><span class="n">col</span><span class="si">}</span><span class="s2">] | offset=</span><span class="si">{</span><span class="n">offset</span><span class="si">}</span><span class="s2"> | bytes=</span><span class="si">{</span><span class="nb">list</span><span class="p">(</span><span class="n">chunk</span><span class="p">)</span><span class="si">}</span><span class="s2"> | valor=</span><span class="si">{</span><span class="n">value</span><span class="si">:</span><span class="s2">.1f</span><span class="si">}</span><span class="s2"> | dirección=</span><span class="si">{</span><span class="nb">hex</span><span class="p">(</span><span class="n">base_ptr</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">start</span><span class="p">)</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>shape: (2, 3) | stride: (3, 1) | storage_offset: 0
+Orden de bytes: little | bytes de datos: 24
+t[0,0] | offset=0 | bytes=[0, 0, 32, 65] | valor=10.0 | dirección=0x… (varía por ejecución)
+t[0,1] | offset=1 | bytes=[0, 0, 160, 65] | valor=20.0 | dirección=0x… (varía por ejecución)
+t[0,2] | offset=2 | bytes=[0, 0, 240, 65] | valor=30.0 | dirección=0x… (varía por ejecución)
+t[1,0] | offset=3 | bytes=[0, 0, 32, 66] | valor=40.0 | dirección=0x… (varía por ejecución)
+t[1,1] | offset=4 | bytes=[0, 0, 72, 66] | valor=50.0 | dirección=0x… (varía por ejecución)
+t[1,2] | offset=5 | bytes=[0, 0, 112, 66] | valor=60.0 | dirección=0x… (varía por ejecución)
+</pre></div></section><section class="cell" data-cell="21"><h3 id="seccion-7">2.1.3. Interpretar el búfer de bytes</h3>
+<p>El ejemplo crea seis valores <code>float32</code>: cada uno utiliza cuatro bytes, de modo que el almacenamiento de este tensor contiguo tiene 24 bytes de datos.</p>
+<p>En una máquina <strong>little-endian</strong>, los seis grupos de bytes, expresados en hexadecimal, son:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:right">Valor</th>
+<th style="text-align:left">Bytes en orden de almacenamiento</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:right">10.0</td>
+<td style="text-align:left"><code>00 00 20 41</code></td>
+</tr>
+<tr>
+<td style="text-align:right">20.0</td>
+<td style="text-align:left"><code>00 00 A0 41</code></td>
+</tr>
+<tr>
+<td style="text-align:right">30.0</td>
+<td style="text-align:left"><code>00 00 F0 41</code></td>
+</tr>
+<tr>
+<td style="text-align:right">40.0</td>
+<td style="text-align:left"><code>00 00 20 42</code></td>
+</tr>
+<tr>
+<td style="text-align:right">50.0</td>
+<td style="text-align:left"><code>00 00 48 42</code></td>
+</tr>
+<tr>
+<td style="text-align:right">60.0</td>
+<td style="text-align:left"><code>00 00 70 42</code></td>
+</tr>
+</tbody>
+</table>
+<p>Un almacenamiento puede ser mayor que los datos lógicos de una vista. Para medirlo se usa <code>untyped_storage().nbytes()</code>; <code>numel()*element_size()</code> mide el tamaño lógico de los elementos de la vista.</p>
+</section><section class="cell" data-cell="22"><h4 id="seccion-8">Paso 1: agrupar cuatro bytes por elemento</h4>
+<p>Cada <code>float32</code> ocupa 32 bits = 4 bytes. Separamos el búfer en seis grupos de cuatro bytes. Un valor de <code>uint8</code> muestra un byte de 0 a 255; por sí solo no representa el flotante completo.</p>
+</section><section class="cell" data-cell="23"><figure id="fig-t06-bytes"><a aria-label="Ampliar: Representación little-endian de seis valores float32." href="../assets/pytorch/t06-bytes.svg" rel="noopener" target="_blank"><img alt="Representación little-endian de seis valores float32." height="650" loading="lazy" src="../assets/pytorch/t06-bytes.svg" width="1200"/></a><figcaption>Fig. 1.6. Representación little-endian de seis valores float32.</figcaption></figure></section><section class="cell" data-cell="24"><h4 id="seccion-9">Paso 2: reconocer el orden de bytes</h4>
+<p>En little-endian, el byte menos significativo aparece primero. Los bytes <code>00 00 20 41</code> corresponden al patrón de bits que suele escribirse como <code>0x41200000</code>.</p>
+<p>No se invierten los bits dentro de cada byte. El ejemplo informa <code>sys.byteorder</code>; su decodificación con <code>struct.unpack("=f", ...)</code> utiliza el orden nativo del host. No todas las plataformas deben suponerse little-endian.</p>
+</section><section class="cell" data-cell="25"><h4 id="seccion-10">Paso 3: decodificar IEEE 754</h4>
+<p>Un <code>float32</code> tiene un bit de signo, ocho de exponente y 23 de fracción. Para un número <strong>normal</strong>, con exponente almacenado entre 1 y 254:</p>
+<p><math aria-label="x=(-1)^s(1+f)2^{E-127}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo stretchy="false">(</mo><mo>−</mo><mn>1</mn><msup><mo stretchy="false">)</mo><mi>s</mi></msup><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>f</mi><mo stretchy="false">)</mo><msup><mn>2</mn><mrow><mi>E</mi><mo>−</mo><mn>127</mn></mrow></msup><mo>.</mo></mrow></math></p>
+<p>Los exponentes 0 y 255 se utilizan para subnormales/ceros y para infinitos/NaN, respectivamente. Por eso la fórmula anterior no se aplica a todos los patrones de bits.</p>
+</section><section class="cell" data-cell="26"><figure id="fig-t07-ieee"><a aria-label="Ampliar: Decodificación del valor normal 10.0 mediante IEEE 754." href="../assets/pytorch/t07-ieee.svg" rel="noopener" target="_blank"><img alt="Decodificación del valor normal 10.0 mediante IEEE 754." height="650" loading="lazy" src="../assets/pytorch/t07-ieee.svg" width="1200"/></a><figcaption>Fig. 1.7. Decodificación del valor normal 10.0 mediante IEEE 754.</figcaption></figure></section><section class="cell" data-cell="27"><p>Para <code>0x41200000</code>, el signo es <math aria-label="s=0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi><mo>=</mo><mn>0</mn></mrow></math>, el exponente es <math aria-label="E=130" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>E</mi><mo>=</mo><mn>130</mn></mrow></math> y la fracción es <math aria-label="f=1/4" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>f</mi><mo>=</mo><mn>1</mn><mo>/</mo><mn>4</mn></mrow></math>:</p>
+<p><math aria-label="x=(1+1/4)\,2^{130-127}=1.25\times8=10." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mn>1</mn><mo>/</mo><mn>4</mn><mo stretchy="false">)</mo><mspace width="0.167em"></mspace><msup><mn>2</mn><mrow><mn>130</mn><mo>−</mo><mn>127</mn></mrow></msup><mo>=</mo><mn>1.25</mn><mo>×</mo><mn>8</mn><mo>=</mo><mn>10</mn><mo>.</mo></mrow></math></p>
+<p>El exponente aporta la escala; la fracción aporta la parte adicional del significando.</p>
+</section><section class="cell" data-cell="28"><h4 id="seccion-11">Paso 4: reconstruir la matriz 2 × 3</h4>
+<p>La primera fila lee los offsets de elemento <code>0,1,2</code>; la segunda, <code>3,4,5</code>. Los strides <code>(3,1)</code> explican esta organización. Los bytes no contienen separadores de fila: esa interpretación pertenece al descriptor del tensor.</p>
+</section><section class="cell" data-cell="29"><figure id="fig-t08-mapeo"><a aria-label="Ampliar: Reconstrucción de una matriz usando shape y stride." href="../assets/pytorch/t08-mapeo.svg" rel="noopener" target="_blank"><img alt="Reconstrucción de una matriz usando shape y stride." height="650" loading="lazy" src="../assets/pytorch/t08-mapeo.svg" width="1200"/></a><figcaption>Fig. 1.8. Reconstrucción de una matriz usando shape y stride.</figcaption></figure></section><section class="cell" data-cell="30"><h2 id="seccion-12">2.2. Creación e inicialización de tensores</h2>
+</section><section class="cell" data-cell="31"><figure id="fig-t09-inicializar"><a aria-label="Ampliar: Inicialización vacía, constante o aleatoria." href="../assets/pytorch/t09-inicializar.svg" rel="noopener" target="_blank"><img alt="Inicialización vacía, constante o aleatoria." height="650" loading="lazy" src="../assets/pytorch/t09-inicializar.svg" width="1200"/></a><figcaption>Fig. 1.9. Inicialización vacía, constante o aleatoria.</figcaption></figure></section><section class="cell" data-cell="32"><p>Las funciones de creación determinan la forma y cómo se inicializan los datos:</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Función</th>
+<th style="text-align:left">Inicialización</th>
+<th style="text-align:left">Nota</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>torch.empty</code></td>
+<td style="text-align:left">Valores no especificados</td>
+<td style="text-align:left">Escribir antes de utilizarlos</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>torch.zeros</code></td>
+<td style="text-align:left">Ceros</td>
+<td style="text-align:left">Puede fijarse <code>dtype</code> y <code>device</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>torch.ones</code></td>
+<td style="text-align:left">Unos</td>
+<td style="text-align:left">Puede fijarse <code>dtype</code> y <code>device</code></td>
+</tr>
+<tr>
+<td style="text-align:left"><code>torch.rand</code></td>
+<td style="text-align:left">Uniforme en <code>[0,1)</code></td>
+<td style="text-align:left">Para dtypes flotantes compatibles</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>torch.randn</code></td>
+<td style="text-align:left">Normal estándar</td>
+<td style="text-align:left">Media 0 y desviación estándar 1</td>
+</tr>
+</tbody>
+</table>
+<p>Fijar una semilla ayuda a repetir una secuencia en el mismo entorno. No garantiza identidad entre cualquier dispositivo, versión y algoritmo.</p>
+</section><section class="cell" data-cell="33"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Importar las fábricas de tensores.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Fijar la semilla de esta demostración en el entorno actual.</span>
+<span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="c1"># Reservar datos sin especificar sus valores iniciales.</span>
+<span class="n">x_empty</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">empty</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># Inspeccionar la forma sin leer los valores no inicializados.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"empty: forma"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">x_empty</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="s2">"— valores aún no especificados"</span><span class="p">)</span>
+<span class="c1"># Inicializar esos datos antes de utilizarlos.</span>
+<span class="n">x_empty</span><span class="o">.</span><span class="n">fill_</span><span class="p">(</span><span class="mf">7.0</span><span class="p">)</span>
+<span class="c1"># Mostrar el resultado ya inicializado.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"empty después de fill_(7):"</span><span class="p">,</span> <span class="n">x_empty</span><span class="p">)</span>
+<span class="c1"># Crear y mostrar un tensor de ceros.</span>
+<span class="n">x_zeros</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"zeros:"</span><span class="p">,</span> <span class="n">x_zeros</span><span class="p">)</span>
+<span class="c1"># Crear y mostrar un tensor de unos.</span>
+<span class="n">x_ones</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"ones:"</span><span class="p">,</span> <span class="n">x_ones</span><span class="p">)</span>
+<span class="c1"># Crear números uniformes en el intervalo [0, 1).</span>
+<span class="n">x_rand</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">rand</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># Mostrar una salida de la semilla y el entorno utilizados.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"rand:"</span><span class="p">,</span> <span class="n">x_rand</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>empty: forma (2, 3) — valores aún no especificados
+empty después de fill_(7): tensor([[7., 7., 7.],
+        [7., 7., 7.]])
+zeros: tensor([[0., 0., 0.],
+        [0., 0., 0.]])
+ones: tensor([[1., 1., 1.],
+        [1., 1., 1.],
+        [1., 1., 1.]])
+rand: tensor([[0.8823, 0.9150, 0.3829],
+        [0.9593, 0.3904, 0.6009]])
+</pre></div></section><section class="cell" data-cell="34"><h2 id="seccion-13">2.3. Creación basada en otros tensores (<code>*_like</code>)</h2>
+</section><section class="cell" data-cell="35"><p><code>zeros_like</code>, <code>ones_like</code> y <code>empty_like</code> usan por defecto la forma, el dtype, el layout y el dispositivo del tensor de referencia. La conservación de formato sigue las reglas de <code>memory_format=torch.preserve_format</code>; no debe confundirse con copiar sus valores o todos sus strides.</p>
+<p>Son tensores nuevos: <strong>no comparten automáticamente el almacenamiento ni heredan <code>requires_grad=True</code></strong>. Los argumentos explícitos permiten cambiar los valores por defecto.</p>
+</section><section class="cell" data-cell="36"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Importar las fábricas basadas en otros tensores.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="c1"># Crear una referencia con dtype explícito y seguimiento de gradientes habilitado.</span>
+<span class="n">origen</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float64</span><span class="p">,</span> <span class="n">device</span><span class="o">=</span><span class="s2">"cpu"</span><span class="p">,</span> <span class="n">requires_grad</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="c1"># Crear datos nuevos de ceros con los atributos por defecto de la referencia.</span>
+<span class="n">ceros_copia</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">origen</span><span class="p">)</span>
+<span class="c1"># Mostrar los atributos heredados.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Referencia:"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">origen</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">origen</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">origen</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"zeros_like:"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">ceros_copia</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="n">ceros_copia</span><span class="o">.</span><span class="n">dtype</span><span class="p">,</span> <span class="n">ceros_copia</span><span class="o">.</span><span class="n">device</span><span class="p">)</span>
+<span class="c1"># Comprobar que requires_grad no se hereda por defecto.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"requires_grad:"</span><span class="p">,</span> <span class="n">origen</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">,</span> <span class="s2">"→"</span><span class="p">,</span> <span class="n">ceros_copia</span><span class="o">.</span><span class="n">requires_grad</span><span class="p">)</span>
+<span class="c1"># Comprobar que ambos tensores no vacíos tienen datos independientes.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Almacenamientos diferentes:"</span><span class="p">,</span> <span class="n">origen</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">()</span> <span class="o">!=</span> <span class="n">ceros_copia</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">())</span>
+</pre></div>
+</details><div class="output"><pre>Referencia: (3, 4) torch.float64 cpu
+zeros_like: (3, 4) torch.float64 cpu
+requires_grad: True → False
+Almacenamientos diferentes: True
+</pre></div></section><section class="cell" data-cell="37"><h2 id="seccion-14">2.4. Modificar la geometría y distinguir vistas de copias</h2>
+<p>Una vista reutiliza los datos y crea un descriptor con una interpretación diferente. No copia el búfer numérico, pero sí tiene un costo de gestión de metadatos. Ese costo puede depender de la cantidad de ejes: <strong>zero-copy no significa tiempo ni memoria total exactamente cero</strong>.</p>
+<p><code>transpose</code> y <code>unsqueeze</code> son ejemplos de vistas. <code>reshape</code> puede devolver una vista o copiar, según la compatibilidad de la forma con los strides.</p>
+</section><section class="cell" data-cell="38"><h3 id="seccion-15">2.4.1. <code>view()</code> frente a <code>reshape()</code></h3>
+</section><section class="cell" data-cell="39"><figure id="fig-t10-forma"><a aria-label="Ampliar: Cambiar la forma requiere conservar la cantidad de elementos." href="../assets/pytorch/t10-forma.svg" rel="noopener" target="_blank"><img alt="Cambiar la forma requiere conservar la cantidad de elementos." height="650" loading="lazy" src="../assets/pytorch/t10-forma.svg" width="1200"/></a><figcaption>Fig. 1.10. Cambiar la forma requiere conservar la cantidad de elementos.</figcaption></figure></section><section class="cell" data-cell="40"><ul>
+<li><strong><code>view(*shape)</code></strong> devuelve una vista si la nueva forma es compatible con el tamaño y los strides. Ser contiguo es una condición suficiente para muchos cambios de forma, <strong>pero no es un requisito universal</strong>.</li>
+<li><strong><code>reshape(*shape)</code></strong> devuelve una vista cuando es posible y copia cuando hace falta. No se debe escribir código que dependa de que siempre ocurra una de esas dos opciones.</li>
+</ul>
+<p>Para fusionar un tramo de dimensiones, la condición relevante de compatibilidad incluye:</p>
+<p><math aria-label="\operatorname{stride}[i]=\operatorname{stride}[i+1]\operatorname{size}[i+1]." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>stride</mo><mo stretchy="false">[</mo><mi>i</mi><mo stretchy="false">]</mo><mo>=</mo><mo>stride</mo><mo stretchy="false">[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo><mo>size</mo><mo stretchy="false">[</mo><mi>i</mi><mo>+</mo><mn>1</mn><mo stretchy="false">]</mo><mo>.</mo></mrow></math></p>
+<p>El número de elementos debe conservarse. <code>view</code> también tiene una sobrecarga para reinterpretar el dtype; aquí estudiamos únicamente el cambio de forma.</p>
+</section><section class="cell" data-cell="41"><figure id="fig-t11-view"><a aria-label="Ampliar: view exige compatibilidad de strides; reshape puede copiar." href="../assets/pytorch/t11-view.svg" rel="noopener" target="_blank"><img alt="view exige compatibilidad de strides; reshape puede copiar." height="650" loading="lazy" src="../assets/pytorch/t11-view.svg" width="1200"/></a><figcaption>Fig. 1.11. view exige compatibilidad de strides; reshape puede copiar.</figcaption></figure></section><section class="cell" data-cell="42"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Importar PyTorch para inspeccionar vistas y copias.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">inspeccionar_tensor</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">tensor</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Muestra metadatos y offsets de una matriz densa en CPU.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nombre: Etiqueta de la demostración.</span>
+<span class="sd">        tensor: Tensor bidimensional con layout torch.strided y dispositivo CPU.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None. Imprime valores, strides, offset y recorrido lógico del ejemplo.</span>
+
+<span class="sd">    Raises:</span>
+<span class="sd">        ValueError: Si la entrada no es una matriz densa strided en CPU.</span>
+<span class="sd">    """</span>
+    <span class="c1"># Delimitar el ejemplo al formato que se inspecciona.</span>
+    <span class="k">if</span> <span class="n">tensor</span><span class="o">.</span><span class="n">ndim</span> <span class="o">!=</span> <span class="mi">2</span> <span class="ow">or</span> <span class="n">tensor</span><span class="o">.</span><span class="n">layout</span> <span class="o">!=</span> <span class="n">torch</span><span class="o">.</span><span class="n">strided</span> <span class="ow">or</span> <span class="n">tensor</span><span class="o">.</span><span class="n">device</span><span class="o">.</span><span class="n">type</span> <span class="o">!=</span> <span class="s2">"cpu"</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">"Se requiere una matriz densa strided en CPU."</span><span class="p">)</span>
+    <span class="c1"># Calcular los offsets incluyendo el comienzo de la vista.</span>
+    <span class="n">offsets</span> <span class="o">=</span> <span class="p">[</span><span class="n">tensor</span><span class="o">.</span><span class="n">storage_offset</span><span class="p">()</span> <span class="o">+</span> <span class="n">r</span> <span class="o">*</span> <span class="n">tensor</span><span class="o">.</span><span class="n">stride</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span> <span class="o">+</span> <span class="n">c</span> <span class="o">*</span> <span class="n">tensor</span><span class="o">.</span><span class="n">stride</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+               <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="k">for</span> <span class="n">c</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">[</span><span class="mi">1</span><span class="p">])]</span>
+    <span class="c1"># Mostrar los valores y sus propiedades.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">tensor</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"shape:"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="s2">"| stride:"</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">stride</span><span class="p">(),</span> <span class="s2">"| offset:"</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">storage_offset</span><span class="p">())</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Contiguo estándar:"</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">is_contiguous</span><span class="p">(),</span> <span class="s2">"| offsets:"</span><span class="p">,</span> <span class="n">offsets</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Base del almacenamiento:"</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">()))</span>
+
+<span class="c1"># Crear la matriz contigua de referencia.</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="c1"># Mostrar su recorrido estándar.</span>
+<span class="n">inspeccionar_tensor</span><span class="p">(</span><span class="s2">"Original"</span><span class="p">,</span> <span class="n">x</span><span class="p">)</span>
+<span class="c1"># Crear una vista transpuesta sin copiar los datos.</span>
+<span class="n">xt</span> <span class="o">=</span> <span class="n">x</span><span class="o">.</span><span class="n">t</span><span class="p">()</span>
+<span class="c1"># Mostrar el nuevo recorrido lógico.</span>
+<span class="n">inspeccionar_tensor</span><span class="p">(</span><span class="s2">"Transpuesta"</span><span class="p">,</span> <span class="n">xt</span><span class="p">)</span>
+<span class="c1"># Comprobar el fallo de este aplanado concreto.</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">xt</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="k">except</span> <span class="ne">RuntimeError</span><span class="p">:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"xt.view(12): forma incompatible con los strides; error esperado."</span><span class="p">)</span>
+<span class="c1"># Obtener una copia contigua de la transpuesta.</span>
+<span class="n">x_contiguo</span> <span class="o">=</span> <span class="n">xt</span><span class="o">.</span><span class="n">contiguous</span><span class="p">()</span>
+<span class="c1"># Mostrar la reorganización de los datos.</span>
+<span class="n">inspeccionar_tensor</span><span class="p">(</span><span class="s2">"Transpuesta contigua"</span><span class="p">,</span> <span class="n">x_contiguo</span><span class="p">)</span>
+<span class="c1"># Aplanar conservando el orden lógico de la transpuesta.</span>
+<span class="n">x_reshape</span> <span class="o">=</span> <span class="n">xt</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"xt.reshape(12):"</span><span class="p">,</span> <span class="n">x_reshape</span><span class="o">.</span><span class="n">tolist</span><span class="p">())</span>
+<span class="c1"># Crear una vista no contigua con recorrido compatible con un stride 1D.</span>
+<span class="n">saltado</span> <span class="o">=</span> <span class="n">x</span><span class="p">[:,</span> <span class="p">::</span><span class="mi">2</span><span class="p">]</span>
+<span class="c1"># Mostrar la forma y el stride de esa vista.</span>
+<span class="n">inspeccionar_tensor</span><span class="p">(</span><span class="s2">"Vista con salto de dos elementos"</span><span class="p">,</span> <span class="n">saltado</span><span class="p">)</span>
+<span class="c1"># Demostrar que la falta de contigüidad no impide cualquier view.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"saltado.view(6):"</span><span class="p">,</span> <span class="n">saltado</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">tolist</span><span class="p">(),</span> <span class="s2">"| stride:"</span><span class="p">,</span> <span class="n">saltado</span><span class="o">.</span><span class="n">view</span><span class="p">(</span><span class="mi">6</span><span class="p">)</span><span class="o">.</span><span class="n">stride</span><span class="p">())</span>
+</pre></div>
+</details><div class="output"><pre>
+Original
+tensor([[ 0,  1,  2,  3],
+        [ 4,  5,  6,  7],
+        [ 8,  9, 10, 11]])
+shape: (3, 4) | stride: (4, 1) | offset: 0
+Contiguo estándar: True | offsets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+Base del almacenamiento: 0x… (varía por ejecución)
+
+Transpuesta
+tensor([[ 0,  4,  8],
+        [ 1,  5,  9],
+        [ 2,  6, 10],
+        [ 3,  7, 11]])
+shape: (4, 3) | stride: (1, 4) | offset: 0
+Contiguo estándar: False | offsets: [0, 4, 8, 1, 5, 9, 2, 6, 10, 3, 7, 11]
+Base del almacenamiento: 0x… (varía por ejecución)
+xt.view(12): forma incompatible con los strides; error esperado.
+
+Transpuesta contigua
+tensor([[ 0,  4,  8],
+        [ 1,  5,  9],
+        [ 2,  6, 10],
+        [ 3,  7, 11]])
+shape: (4, 3) | stride: (3, 1) | offset: 0
+Contiguo estándar: True | offsets: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11]
+Base del almacenamiento: 0x… (varía por ejecución)
+xt.reshape(12): [0, 4, 8, 1, 5, 9, 2, 6, 10, 3, 7, 11]
+
+Vista con salto de dos elementos
+tensor([[ 0,  2],
+        [ 4,  6],
+        [ 8, 10]])
+shape: (3, 2) | stride: (4, 2) | offset: 0
+Contiguo estándar: False | offsets: [0, 2, 4, 6, 8, 10]
+Base del almacenamiento: 0x… (varía por ejecución)
+saltado.view(6): [0, 2, 4, 6, 8, 10] | stride: (2,)
+</pre></div></section><section class="cell" data-cell="43"><h4 id="seccion-16">2.4.1.1. ¿Qué significa «contiguo»?</h4>
+<p>En el formato contiguo estándar, los elementos de una matriz no degenerada se recorren por filas mediante strides <code>(columnas,1)</code>. Los ejes de tamaño 1 y los tensores vacíos introducen matices; además existe contigüidad relativa a otros formatos, como <code>channels_last</code>.</p>
+<p>Que una vista no sea contigua no implica que su bloque de almacenamiento esté fragmentado. Describe la relación entre su orden lógico y sus strides.</p>
+</section><section class="cell" data-cell="44"><h5 id="seccion-17">Paso 1: tensor original</h5>
+<p>Con <code>x = torch.arange(12).reshape(3,4)</code>:</p>
+<p><math aria-label="x=\begin{pmatrix}0&amp;1&amp;2&amp;3\\4&amp;5&amp;6&amp;7\\8&amp;9&amp;10&amp;11\end{pmatrix}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>=</mo><mo>(</mo><mtable><mtr><mtd><mn>0</mn></mtd><mtd><mn>1</mn></mtd><mtd><mn>2</mn></mtd><mtd><mn>3</mn></mtd></mtr><mtr><mtd><mn>4</mn></mtd><mtd><mn>5</mn></mtd><mtd><mn>6</mn></mtd><mtd><mn>7</mn></mtd></mtr><mtr><mtd><mn>8</mn></mtd><mtd><mn>9</mn></mtd><mtd><mn>10</mn></mtd><mtd><mn>11</mn></mtd></mtr></mtable><mo>)</mo><mo>.</mo></mrow></math></p>
+<p>Su forma es <code>(3,4)</code>, sus strides son <code>(4,1)</code> y su offset inicial es 0. El almacenamiento contiene los valores de 0 a 11 en ese orden.</p>
+</section><section class="cell" data-cell="45"><p>El recorrido por filas visita offsets <code>0,1,2,3,4,5,6,7,8,9,10,11</code>. En este ejemplo, <code>x.is_contiguous()</code> devuelve <code>True</code>. La contigüidad depende de los metadatos, no de que los valores sean números consecutivos.</p>
+</section><section class="cell" data-cell="46"><h5 id="seccion-18">Paso 2: transposición <code>xt = x.t()</code></h5>
+<p>La vista tiene forma <code>(4,3)</code> y strides <code>(1,4)</code>:</p>
+<p><math aria-label="x^\top=\begin{pmatrix}0&amp;4&amp;8\\1&amp;5&amp;9\\2&amp;6&amp;10\\3&amp;7&amp;11\end{pmatrix}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mi>x</mi><mo>⊤</mo></msup><mo>=</mo><mo>(</mo><mtable><mtr><mtd><mn>0</mn></mtd><mtd><mn>4</mn></mtd><mtd><mn>8</mn></mtd></mtr><mtr><mtd><mn>1</mn></mtd><mtd><mn>5</mn></mtd><mtd><mn>9</mn></mtd></mtr><mtr><mtd><mn>2</mn></mtd><mtd><mn>6</mn></mtd><mtd><mn>10</mn></mtd></mtr><mtr><mtd><mn>3</mn></mtd><mtd><mn>7</mn></mtd><mtd><mn>11</mn></mtd></mtr></mtable><mo>)</mo><mo>.</mo></mrow></math></p>
+<p>Comparte el almacenamiento original. Su recorrido lógico por filas visita <code>0,4,8,1,5,9,2,6,10,3,7,11</code>, por lo que no es contiguo en el formato estándar. No se ha fragmentado ni reordenado el bloque de datos.</p>
+</section><section class="cell" data-cell="47"><h5 id="seccion-19">Paso 3: ¿por qué falla <code>xt.view(12)</code>?</h5>
+<p>Para conservar el orden lógico de <code>xt</code>, una vista 1D tendría que recorrer <code>0,4,8,1,5,9,...</code>. Ese recorrido no se puede representar mediante un único stride constante. Por eso <strong>este aplanado concreto</strong> falla.</p>
+<p>No toda vista no contigua falla: <code>x[:, ::2]</code> tiene forma <code>(3,2)</code> y strides <code>(4,2)</code>. Admite <code>view(6)</code> porque sus offsets <code>0,2,4,6,8,10</code> sí se describen con stride 2. El código comprueba ambos casos.</p>
+</section><section class="cell" data-cell="48"><h5 id="seccion-20">Paso 4: <code>contiguous()</code> y <code>reshape()</code></h5>
+<ul>
+<li>Para <code>xt</code>, <code>contiguous()</code> crea una copia organizada en su orden lógico, con forma <code>(4,3)</code> y strides <code>(3,1)</code>. Si el tensor ya era contiguo en el formato solicitado, devuelve el propio tensor.</li>
+<li><code>xt.reshape(12)</code> conserva el orden lógico de la transpuesta y en este caso requiere copiar. El resultado es <code>[0,4,8,1,5,9,2,6,10,3,7,11]</code>.</li>
+</ul>
+<p>No corresponde resumir <code>reshape</code> como un <code>if is_contiguous()</code> seguido siempre por copia para el caso falso: también existen vistas no contiguas compatibles.</p>
+</section><section class="cell" data-cell="49"><h3 id="seccion-21">2.4.2. Ejes unitarios: <code>squeeze</code> y <code>unsqueeze</code></h3>
+</section><section class="cell" data-cell="50"><figure id="fig-t12-squeeze"><a aria-label="Ampliar: Inserción y eliminación de un eje unitario." href="../assets/pytorch/t12-squeeze.svg" rel="noopener" target="_blank"><img alt="Inserción y eliminación de un eje unitario." height="650" loading="lazy" src="../assets/pytorch/t12-squeeze.svg" width="1200"/></a><figcaption>Fig. 1.12. Inserción y eliminación de un eje unitario.</figcaption></figure></section><section class="cell" data-cell="51"><p><code>unsqueeze(dim)</code> devuelve una vista con un eje nuevo de tamaño 1. <code>squeeze()</code> elimina todos los ejes unitarios; <code>squeeze(dim)</code> solo elimina el eje indicado si su tamaño es 1.</p>
+<p>Las operaciones del ejemplo mantienen los datos compartidos. No cambian la cantidad de elementos.</p>
+</section><section class="cell" data-cell="52"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Importar PyTorch para insertar y eliminar ejes.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">inspeccionar</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">nota</span><span class="o">=</span><span class="s2">""</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Describe los metadatos de un tensor denso del ejemplo.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nombre: Etiqueta del tensor.</span>
+<span class="sd">        tensor: Tensor strided no vacío que se desea examinar.</span>
+<span class="sd">        nota: Aclaración opcional que acompaña la etiqueta.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None. Imprime forma, strides, offset y direcciones de la vista y del bloque.</span>
+<span class="sd">    """</span>
+    <span class="c1"># Mostrar la etiqueta y la aclaración.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">nota</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="c1"># Mostrar los ejes y las zancadas.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"shape:"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="s2">"| stride:"</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">stride</span><span class="p">(),</span> <span class="s2">"| offset:"</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">storage_offset</span><span class="p">())</span>
+    <span class="c1"># Distinguir el comienzo de la vista de la base del almacenamiento.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"data_ptr:"</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">()),</span> <span class="s2">"| storage:"</span><span class="p">,</span> <span class="nb">hex</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">()))</span>
+
+<span class="c1"># Crear una matriz de valores conocidos.</span>
+<span class="n">original</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="c1"># Insertar un eje de lote de tamaño 1.</span>
+<span class="n">con_batch</span> <span class="o">=</span> <span class="n">original</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Eliminar específicamente ese eje.</span>
+<span class="n">comprimido</span> <span class="o">=</span> <span class="n">con_batch</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+<span class="c1"># Inspeccionar las tres interpretaciones.</span>
+<span class="n">inspeccionar</span><span class="p">(</span><span class="s2">"Original"</span><span class="p">,</span> <span class="n">original</span><span class="p">)</span>
+<span class="n">inspeccionar</span><span class="p">(</span><span class="s2">"Con lote"</span><span class="p">,</span> <span class="n">con_batch</span><span class="p">)</span>
+<span class="n">inspeccionar</span><span class="p">(</span><span class="s2">"Sin lote unitario"</span><span class="p">,</span> <span class="n">comprimido</span><span class="p">)</span>
+<span class="c1"># Comprobar el almacenamiento compartido en este ejemplo no vacío.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Base compartida:"</span><span class="p">,</span> <span class="n">original</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">()</span> <span class="o">==</span> <span class="n">con_batch</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">()</span> <span class="o">==</span> <span class="n">comprimido</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">())</span>
+<span class="c1"># Mostrar el efecto de quitar todos los ejes unitarios frente a elegir el último.</span>
+<span class="n">salida</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"squeeze():"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">salida</span><span class="o">.</span><span class="n">squeeze</span><span class="p">()</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="s2">"| squeeze(-1):"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">salida</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</details><div class="output"><pre>
+Original 
+shape: (3, 4) | stride: (4, 1) | offset: 0
+data_ptr: 0x… (varía por ejecución) | storage: 0x… (varía por ejecución)
+
+Con lote 
+shape: (1, 3, 4) | stride: (12, 4, 1) | offset: 0
+data_ptr: 0x… (varía por ejecución) | storage: 0x… (varía por ejecución)
+
+Sin lote unitario 
+shape: (3, 4) | stride: (4, 1) | offset: 0
+data_ptr: 0x… (varía por ejecución) | storage: 0x… (varía por ejecución)
+Base compartida: True
+squeeze(): () | squeeze(-1): (1,)
+</pre></div></section><section class="cell" data-cell="53"><h4 id="seccion-22">2.4.2.1. Metadatos frente a datos</h4>
+<p>La forma y los strides cambian en el descriptor de la vista, mientras que el almacenamiento permanece compartido. El ejemplo inspecciona tanto <code>data_ptr()</code> como la base del almacenamiento.</p>
+<p>En estos tensores no vacíos, la coincidencia de esos punteros respalda la observación. No conviene usar un único puntero como prueba universal de identidad entre objetos, especialmente con tensores vacíos o almacenamiento externo.</p>
+</section><section class="cell" data-cell="54"><h5 id="seccion-23">Paso 1: tensor original</h5>
+<p>Una matriz de forma <code>(3,4)</code> tiene dos ejes y strides estándar <code>(4,1)</code>. El offset es <code>fila*4 + columna</code>, porque el ejemplo comienza en el offset 0 del almacenamiento.</p>
+</section><section class="cell" data-cell="55"><h5 id="seccion-24">Paso 2: <code>con_batch = original.unsqueeze(0)</code></h5>
+<p>La forma pasa a <code>(1,3,4)</code> y los strides del ejemplo son <code>(12,4,1)</code>. El índice del nuevo eje solo puede ser 0, por lo que <code>batch*12</code> no cambia ninguna dirección leída. No se duplica el búfer de datos.</p>
+</section><section class="cell" data-cell="56"><h5 id="seccion-25">Paso 3: <code>comprimido = con_batch.squeeze(0)</code></h5>
+<p>Se elimina únicamente el eje inicial, recuperando la forma <code>(3,4)</code>. Esta variante hace explícita la intención.</p>
+<p><strong>Aplicación:</strong> una imagen <code>(C,H,W)</code> puede convertirse en un lote <code>(1,C,H,W)</code> con <code>unsqueeze(0)</code> si el modelo espera ese formato. Algunas capas también aceptan entradas sin lote; depende de su contrato.</p>
+<p><strong>Cuidado con <code>squeeze()</code> sin <code>dim</code>:</strong> una salida <code>(1,1)</code> se convertiría en un escalar y perdería el eje de lote. Para una salida <code>(B,1)</code>, suele ser más preciso usar <code>squeeze(-1)</code> y conservar <code>(B,)</code>, incluso cuando <code>B=1</code>.</p>
+</section><section class="cell" data-cell="57"><h2 id="seccion-26">2.5. Operaciones y broadcasting</h2>
+</section><section class="cell" data-cell="58"><p>PyTorch dispone de operadores con diferentes implementaciones según el dispositivo, el layout, el dtype y otros estados. El dispatcher participa en esa selección.</p>
+<p>No todos los operadores están disponibles para cualquier combinación de dtype y backend. La existencia de aceleración no implica que una operación sea siempre más rápida en GPU.</p>
+</section><section class="cell" data-cell="59"><h3 id="seccion-27">2.5.1. El mecanismo de broadcasting</h3>
+</section><section class="cell" data-cell="60"><figure id="fig-t13-broadcast"><a aria-label="Ampliar: Una vista expandida reutiliza datos mediante stride cero." href="../assets/pytorch/t13-broadcast.svg" rel="noopener" target="_blank"><img alt="Una vista expandida reutiliza datos mediante stride cero." height="650" loading="lazy" src="../assets/pytorch/t13-broadcast.svg" width="1200"/></a><figcaption>Fig. 1.13. Una vista expandida reutiliza datos mediante stride cero.</figcaption></figure></section><section class="cell" data-cell="61"><p>Para combinar tensores elemento a elemento, se alinean sus ejes <strong>de derecha a izquierda</strong>. Dos tamaños son compatibles si son iguales o si uno es 1; los ejes ausentes se consideran de tamaño 1.</p>
+<p>Por ejemplo, <code>(4,3,5)</code> y <code>(3,1)</code> pueden producir forma <code>(4,3,5)</code>. Los escalares 0D también participan en las operaciones compatibles.</p>
+<p>La expansión lógica no exige materializar copias de las entradas. Sin embargo, un resultado fuera de sitio como <code>A + B</code> necesita almacenamiento para sus valores.</p>
+</section><section class="cell" data-cell="62"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Importar PyTorch para observar una expansión.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">inspeccionar</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">nota</span><span class="o">=</span><span class="s2">""</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Distingue el tamaño lógico del tamaño del almacenamiento compartido.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nombre: Etiqueta del tensor.</span>
+<span class="sd">        tensor: Tensor denso strided en CPU para esta demostración.</span>
+<span class="sd">        nota: Explicación opcional.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None. Imprime los valores, los strides y ambas medidas de tamaño.</span>
+<span class="sd">    """</span>
+    <span class="c1"># Mostrar los valores y la forma lógica.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">nota</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">tensor</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"shape:"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="s2">"| stride:"</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">stride</span><span class="p">())</span>
+    <span class="c1"># Medir los elementos lógicos, que pueden reutilizar las mismas posiciones.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Bytes lógicos:"</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">*</span> <span class="n">tensor</span><span class="o">.</span><span class="n">element_size</span><span class="p">())</span>
+    <span class="c1"># Medir el bloque de datos real que respalda la vista.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Bytes del almacenamiento:"</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span><span class="o">.</span><span class="n">nbytes</span><span class="p">())</span>
+
+<span class="c1"># Crear una matriz y una fila float32.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">10.0</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">]],</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+<span class="c1"># Crear una vista que reutiliza la única fila mediante stride cero.</span>
+<span class="n">B_virtual</span> <span class="o">=</span> <span class="n">B</span><span class="o">.</span><span class="n">expand</span><span class="p">(</span><span class="mi">4</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="c1"># Calcular un resultado fuera de sitio con broadcasting.</span>
+<span class="n">resultado</span> <span class="o">=</span> <span class="n">A</span> <span class="o">+</span> <span class="n">B</span>
+<span class="c1"># Inspeccionar los tres papeles de la demostración.</span>
+<span class="n">inspeccionar</span><span class="p">(</span><span class="s2">"B original"</span><span class="p">,</span> <span class="n">B</span><span class="p">)</span>
+<span class="n">inspeccionar</span><span class="p">(</span><span class="s2">"B expandido"</span><span class="p">,</span> <span class="n">B_virtual</span><span class="p">)</span>
+<span class="n">inspeccionar</span><span class="p">(</span><span class="s2">"A + B"</span><span class="p">,</span> <span class="n">resultado</span><span class="p">)</span>
+<span class="c1"># Verificar que expand no ha creado otro bloque de datos.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"B y expand comparten almacenamiento:"</span><span class="p">,</span> <span class="n">B</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">()</span> <span class="o">==</span> <span class="n">B_virtual</span><span class="o">.</span><span class="n">untyped_storage</span><span class="p">()</span><span class="o">.</span><span class="n">data_ptr</span><span class="p">())</span>
+</pre></div>
+</details><div class="output"><pre>
+B original 
+tensor([[10., 20., 30.]])
+shape: (1, 3) | stride: (3, 1)
+Bytes lógicos: 12
+Bytes del almacenamiento: 12
+
+B expandido 
+tensor([[10., 20., 30.],
+        [10., 20., 30.],
+        [10., 20., 30.],
+        [10., 20., 30.]])
+shape: (4, 3) | stride: (0, 1)
+Bytes lógicos: 48
+Bytes del almacenamiento: 12
+
+A + B 
+tensor([[11., 21., 31.],
+        [11., 21., 31.],
+        [11., 21., 31.],
+        [11., 21., 31.]])
+shape: (4, 3) | stride: (3, 1)
+Bytes lógicos: 48
+Bytes del almacenamiento: 48
+B y expand comparten almacenamiento: True
+</pre></div></section><section class="cell" data-cell="63"><h4 id="seccion-28">2.5.1.1. ¿Qué se expande?</h4>
+<p>Con <code>A</code> de forma <code>(4,3)</code> y <code>B</code> de forma <code>(1,3)</code>, la suma utiliza la única fila de <code>B</code> para cada fila de <code>A</code>. <code>B.expand(4,3)</code> permite observar una vista explícita de esa reutilización.</p>
+</section><section class="cell" data-cell="64"><h4 id="seccion-29">2.5.1.2. Compatibilidad de derecha a izquierda</h4>
+<p>El último eje compara <code>3</code> con <code>3</code>: coincide. El anterior compara <code>4</code> con <code>1</code>: puede expandirse el tamaño 1. El resultado tiene forma <code>(4,3)</code>.</p>
+<p>Un tamaño 2 no puede expandirse directamente a 4 por broadcasting: debe ser 1 o coincidir con el otro tamaño.</p>
+</section><section class="cell" data-cell="65"><h4 id="seccion-30">2.5.1.3. El stride cero de <code>expand</code></h4>
+<p>La fila <code>B = [[10,20,30]]</code>, creada como <code>float32</code>, tiene strides <code>(3,1)</code> y 12 bytes de datos. La vista expandida <code>(4,3)</code> tiene strides <code>(0,1)</code>.</p>
+<p>Sus 12 posiciones lógicas reutilizan los tres elementos originales. El tamaño lógico es 48 bytes, mientras que el almacenamiento compartido sigue teniendo 12 bytes. Esto no incluye el costo de los objetos y metadatos.</p>
+</section><section class="cell" data-cell="66"><h4 id="seccion-31">2.5.1.4. Direccionamiento con stride cero</h4>
+<p>En esta vista, cuyo offset inicial es 0:</p>
+<p><math aria-label="o=\mathrm{fila}\times0+\mathrm{columna}\times1." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>o</mi><mo>=</mo><mrow><mi mathvariant="normal">f</mi><mi mathvariant="normal">i</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">a</mi></mrow><mo>×</mo><mn>0</mn><mo>+</mo><mrow><mi mathvariant="normal">c</mi><mi mathvariant="normal">o</mi><mi mathvariant="normal">l</mi><mi mathvariant="normal">u</mi><mi mathvariant="normal">m</mi><mi mathvariant="normal">n</mi><mi mathvariant="normal">a</mi></mrow><mo>×</mo><mn>1</mn><mo>.</mo></mrow></math></p>
+<p>Las posiciones <code>[0,0]</code>, <code>[1,0]</code>, <code>[2,0]</code> y <code>[3,0]</code> leen el mismo elemento. Cada fila vuelve a visitar offsets <code>0,1,2</code>.</p>
+<p><strong>No modificar indiscriminadamente una vista expandida:</strong> distintas posiciones lógicas pueden aliasar el mismo elemento. Para obtener datos independientes antes de escribir, puede usarse <code>clone()</code>.</p>
+</section><section class="cell" data-cell="67"><h4 id="seccion-32">2.5.1.5. La suma <code>resultado = A + B</code></h4>
+<p>Con <code>A</code> llena de unos y <code>B = [[10,20,30]]</code>:</p>
+<p><math aria-label="A+B=\begin{pmatrix}11&amp;21&amp;31\\11&amp;21&amp;31\\11&amp;21&amp;31\\11&amp;21&amp;31\end{pmatrix}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi><mo>+</mo><mi>B</mi><mo>=</mo><mo>(</mo><mtable><mtr><mtd><mn>11</mn></mtd><mtd><mn>21</mn></mtd><mtd><mn>31</mn></mtd></mtr><mtr><mtd><mn>11</mn></mtd><mtd><mn>21</mn></mtd><mtd><mn>31</mn></mtd></mtr><mtr><mtd><mn>11</mn></mtd><mtd><mn>21</mn></mtd><mtd><mn>31</mn></mtd></mtr><mtr><mtd><mn>11</mn></mtd><mtd><mn>21</mn></mtd><mtd><mn>31</mn></mtd></mtr></mtable><mo>)</mo><mo>.</mo></mrow></math></p>
+<p>La expresión fuera de sitio crea un resultado con 12 elementos <code>float32</code>: 48 bytes lógicos, además de los costos del asignador y los metadatos. No necesita copiar previamente las cuatro filas de <code>B</code>. Otras variantes con <code>out=</code> o in-place tienen contratos diferentes.</p>
+</section><section class="cell" data-cell="68"><h2 id="seccion-33">2.6. Álgebra lineal y transposición</h2>
+<p>La multiplicación matricial contrae una dimensión mediante sumas de productos. La transposición reordena ejes; no debe confundirse con redimensionar ni con multiplicar elemento a elemento.</p>
+</section><section class="cell" data-cell="69"><figure id="fig-t14-matmul"><a aria-label="Ampliar: Un ejemplo numérico de multiplicación matricial." href="../assets/pytorch/t14-matmul.svg" rel="noopener" target="_blank"><img alt="Un ejemplo numérico de multiplicación matricial." height="650" loading="lazy" src="../assets/pytorch/t14-matmul.svg" width="1200"/></a><figcaption>Fig. 1.14. Un ejemplo numérico de multiplicación matricial.</figcaption></figure></section><section class="cell" data-cell="70"><h3 id="seccion-34">2.6.1. Productos matriciales en PyTorch</h3>
+<ul>
+<li><code>torch.dot</code>: dos vectores 1D de la misma longitud; devuelve un escalar.</li>
+<li><code>torch.mm</code>: dos matrices 2D con dimensión interna compatible; no aplica broadcasting.</li>
+<li><code>torch.bmm</code>: dos tensores 3D, con el mismo tamaño de lote y dimensión interna compatible; no aplica broadcasting de lote.</li>
+<li><code>torch.matmul</code> / <code>@</code>: maneja vectores y matrices según sus reglas de rango, y permite broadcasting en las dimensiones de lote. No acepta operandos escalares 0D.</li>
+</ul>
+</section><section class="cell" data-cell="71"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Importar las operaciones matriciales.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">inspeccionar</span><span class="p">(</span><span class="n">nombre</span><span class="p">,</span> <span class="n">tensor</span><span class="p">,</span> <span class="n">nota</span><span class="o">=</span><span class="s2">""</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">"""Muestra la forma de un resultado matricial y su tamaño lógico.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        nombre: Etiqueta del ejemplo.</span>
+<span class="sd">        tensor: Tensor denso que se desea inspeccionar.</span>
+<span class="sd">        nota: Descripción opcional de sus dimensiones.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        None. Imprime valores, forma, strides y bytes lógicos.</span>
+<span class="sd">    """</span>
+    <span class="c1"># Mostrar los resultados numéricos de ejemplos pequeños.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"</span><span class="se">\n</span><span class="si">{</span><span class="n">nombre</span><span class="si">}</span><span class="s2"> </span><span class="si">{</span><span class="n">nota</span><span class="si">}</span><span class="se">\n</span><span class="si">{</span><span class="n">tensor</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="c1"># Informar la forma y el recorrido de la salida.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"shape:"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">tensor</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="s2">"| stride:"</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">stride</span><span class="p">())</span>
+    <span class="c1"># Contabilizar los elementos lógicos sin incluir el costo del asignador.</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"Bytes lógicos:"</span><span class="p">,</span> <span class="n">tensor</span><span class="o">.</span><span class="n">numel</span><span class="p">()</span> <span class="o">*</span> <span class="n">tensor</span><span class="o">.</span><span class="n">element_size</span><span class="p">())</span>
+
+<span class="c1"># Elegir valores que permitan verificar los productos a mano.</span>
+<span class="n">A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">2.0</span><span class="p">,</span> <span class="mf">3.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">4.0</span><span class="p">,</span> <span class="mf">5.0</span><span class="p">,</span> <span class="mf">6.0</span><span class="p">]])</span>
+<span class="n">B</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">([[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">0.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">],</span> <span class="p">[</span><span class="mf">1.0</span><span class="p">,</span> <span class="mf">1.0</span><span class="p">]])</span>
+<span class="c1"># Calcular el producto 2D de filas por columnas.</span>
+<span class="n">C</span> <span class="o">=</span> <span class="n">A</span> <span class="o">@</span> <span class="n">B</span>
+<span class="c1"># Mostrar la salida exacta del ejemplo.</span>
+<span class="n">inspeccionar</span><span class="p">(</span><span class="s2">"A @ B"</span><span class="p">,</span> <span class="n">C</span><span class="p">)</span>
+<span class="c1"># Crear dos lotes compatibles para bmm.</span>
+<span class="n">lote_A</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">60</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+<span class="n">lote_B</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">5</span><span class="p">)</span>
+<span class="c1"># Calcular diez productos independientes.</span>
+<span class="n">lote_C</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">bmm</span><span class="p">(</span><span class="n">lote_A</span><span class="p">,</span> <span class="n">lote_B</span><span class="p">)</span>
+<span class="c1"># Mostrar los metadatos sin imprimir todo el lote.</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"bmm:"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">lote_A</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="s2">"×"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">lote_B</span><span class="o">.</span><span class="n">shape</span><span class="p">),</span> <span class="s2">"→"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">(</span><span class="n">lote_C</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"Strides de lote_A:"</span><span class="p">,</span> <span class="n">lote_A</span><span class="o">.</span><span class="n">stride</span><span class="p">(),</span> <span class="s2">"| primer resultado:"</span><span class="p">,</span> <span class="n">lote_C</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="c1"># Mostrar broadcasting de lote en matmul, que bmm no ofrece.</span>
+<span class="n">matrices</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">4</span><span class="p">)</span>
+<span class="n">pesos</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">ones</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"matmul con broadcasting:"</span><span class="p">,</span> <span class="nb">tuple</span><span class="p">((</span><span class="n">matrices</span> <span class="o">@</span> <span class="n">pesos</span><span class="p">)</span><span class="o">.</span><span class="n">shape</span><span class="p">))</span>
+</pre></div>
+</details><div class="output"><pre>
+A @ B 
+tensor([[ 4.,  5.],
+        [10., 11.]])
+shape: (2, 2) | stride: (2, 1)
+Bytes lógicos: 16
+bmm: (10, 2, 3) × (10, 3, 5) → (10, 2, 5)
+Strides de lote_A: (6, 3, 1) | primer resultado: tensor([[ 3.,  3.,  3.,  3.,  3.],
+        [12., 12., 12., 12., 12.]])
+matmul con broadcasting: (2, 5, 3, 6)
+</pre></div></section><section class="cell" data-cell="72"><h4 id="seccion-35">2.6.1.1. Multiplicación 2D (<code>A @ B</code> o <code>torch.mm</code>)</h4>
+<p>Cada entrada de salida combina una fila de <code>A</code> con una columna de <code>B</code>. El operador <code>*</code>, en cambio, multiplica elemento a elemento con las reglas de broadcasting aplicables.</p>
+</section><section class="cell" data-cell="73"><h5 id="seccion-36">1. La dimensión de contracción</h5>
+<p><math aria-label="A\in\mathbb R^{M\times K},\quad B\in\mathbb R^{K\times N}\quad\Longrightarrow\quad C\in\mathbb R^{M\times N}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>A</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>M</mi><mo>×</mo><mi>K</mi></mrow></msup><mo>,</mo><mspace width="1em"></mspace><mi>B</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>K</mi><mo>×</mo><mi>N</mi></mrow></msup><mspace width="1em"></mspace><mi>⟹</mi><mspace width="1em"></mspace><mi>C</mi><mo>∈</mo><msup><mi mathvariant="double-struck">R</mi><mrow><mi>M</mi><mo>×</mo><mi>N</mi></mrow></msup><mo>.</mo></mrow></math></p>
+<p><math aria-label="C_{ij}=\sum_{k=0}^{K-1}A_{ik}B_{kj}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>C</mi><mrow><mi>i</mi><mi>j</mi></mrow></msub><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>K</mi><mo>−</mo><mn>1</mn></mrow></munderover><msub><mi>A</mi><mrow><mi>i</mi><mi>k</mi></mrow></msub><msub><mi>B</mi><mrow><mi>k</mi><mi>j</mi></mrow></msub><mo>.</mo></mrow></math></p>
+<p>En el ejemplo de forma <code>(2,3) @ (3,4)</code>, la salida tiene forma <code>(2,4)</code>. La expresión <code>C = A @ B</code> produce un resultado; no es una vista de las entradas. Las variantes con <code>out=</code> pueden reutilizar un tensor de destino compatible.</p>
+<p>El producto es bilineal respecto a sus dos entradas. Una transformación afín de una entrada fija requeriría además un sesgo, por ejemplo <code>X @ W + b</code>.</p>
+</section><section class="cell" data-cell="74"><h4 id="seccion-37">2.6.1.2. Multiplicación por lotes (<code>torch.bmm</code>)</h4>
+<p><math aria-label="[B,M,K]\times[B,K,N]\longrightarrow[B,M,N]." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">[</mo><mi>B</mi><mo>,</mo><mi>M</mi><mo>,</mo><mi>K</mi><mo stretchy="false">]</mo><mo>×</mo><mo stretchy="false">[</mo><mi>B</mi><mo>,</mo><mi>K</mi><mo>,</mo><mi>N</mi><mo stretchy="false">]</mo><mi>⟶</mi><mo stretchy="false">[</mo><mi>B</mi><mo>,</mo><mi>M</mi><mo>,</mo><mi>N</mi><mo stretchy="false">]</mo><mo>.</mo></mrow></math></p>
+<p>El ejemplo <code>(10,2,3)</code> por <code>(10,3,5)</code> produce <code>(10,2,5)</code>: diez productos independientes. La ejecución concreta y su paralelismo dependen del backend; no se deduce una distribución fija de hilos o kernels únicamente de esa forma.</p>
+</section><section class="cell" data-cell="75"><h5 id="seccion-38">1. Strides de lote</h5>
+<p>Para <code>lote_A</code> contiguo de forma <code>(10,2,3)</code>, los strides son <code>(6,3,1)</code>: avanzar un lote desplaza seis elementos; avanzar una fila, tres; avanzar una columna, uno.</p>
+<p>Estos valores describen ese tensor contiguo. Otro tensor con la misma forma puede tener strides diferentes. La fórmula general sigue incluyendo su <code>storage_offset</code>.</p>
+</section><section class="cell" data-cell="76"><h4 id="seccion-39">2.6.1.3. Tabla comparativa</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">Operación</th>
+<th style="text-align:left">Entradas</th>
+<th style="text-align:left">Salida</th>
+<th style="text-align:left">Broadcasting</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left"><code>dot</code></td>
+<td style="text-align:left"><code>(K,)</code>, <code>(K,)</code></td>
+<td style="text-align:left">Escalar</td>
+<td style="text-align:left">No</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>mm</code></td>
+<td style="text-align:left"><code>(M,K)</code>, <code>(K,N)</code></td>
+<td style="text-align:left"><code>(M,N)</code></td>
+<td style="text-align:left">No</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>bmm</code></td>
+<td style="text-align:left"><code>(B,M,K)</code>, <code>(B,K,N)</code></td>
+<td style="text-align:left"><code>(B,M,N)</code></td>
+<td style="text-align:left">No</td>
+</tr>
+<tr>
+<td style="text-align:left"><code>matmul</code></td>
+<td style="text-align:left">Vectores o matrices compatibles</td>
+<td style="text-align:left">Según rangos</td>
+<td style="text-align:left">En ejes de lote</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Idea para recordar:</strong> antes de elegir una operación, verificá qué ejes representan lote y cuáles participan en la contracción.</p>
+</section><section class="cell" data-cell="77"><figure id="fig-t15-tabla"><a aria-label="Ampliar: Comparación de rangos y broadcasting de las operaciones." href="../assets/pytorch/t15-tabla.svg" rel="noopener" target="_blank"><img alt="Comparación de rangos y broadcasting de las operaciones." height="650" loading="lazy" src="../assets/pytorch/t15-tabla.svg" width="1200"/></a><figcaption>Fig. 1.15. Comparación de rangos y broadcasting de las operaciones.</figcaption></figure></section><nav class="pager"><a href="../index.html#pytorch-intermedio">← PyTorch Intermedio</a><a href="clase-02-arquitectura-c10-aten.html">PT02 · Arquitectura de tensores en C++: c10/ATen →</a></nav><footer><p>© 2026 Jacobo León Juárez. Material docente propio: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Código propio: Apache 2.0. Los materiales de terceros conservan sus autores y condiciones.</p><p><a href="../citar.html">Cómo citar · BibTeX</a> · <a href="https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026/archive/refs/heads/main.zip">Descargar repositorio</a></p><p class="third-party-notice">Los pasajes adaptados de Dive into Deep Learning conservan CC BY-SA 4.0 y su código MIT modificada. <a href="../citar.html">Créditos y condiciones de las fuentes</a></p><p><a href="../revision.html">Bibliografía y criterios del material</a></p></footer></main><script src="../assets/site.js"></script></body></html>

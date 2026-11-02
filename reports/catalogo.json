@@ -208,5 +208,21 @@
     "slug": "whisper-datasets-entrenamiento-inferencia",
     "annex": "False",
     "filename": "clase-17-whisper-datasets-entrenamiento-inferencia.html"
+  },
+  {
+    "filename": "clase-01-tensores-y-operaciones.html",
+    "title": "PT01 · PyTorch: tensores y operaciones",
+    "class": 1,
+    "class_label": "PT01",
+    "track": "pytorch",
+    "path": "pytorch/clase-01-tensores-y-operaciones.html"
+  },
+  {
+    "filename": "clase-02-arquitectura-c10-aten.html",
+    "title": "PT02 · Arquitectura de tensores en C++: c10/ATen",
+    "class": 2,
+    "class_label": "PT02",
+    "track": "pytorch",
+    "path": "pytorch/clase-02-arquitectura-c10-aten.html"
   }
 ]

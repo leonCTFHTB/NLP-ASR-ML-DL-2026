@@ -1,0 +1,117 @@
+[
+  {
+    "asset": "docs/assets/pytorch/t01-portada.svg",
+    "number": "1.1",
+    "caption": "Cimientos de PyTorch: metadatos, datos y operaciones."
+  },
+  {
+    "asset": "docs/assets/pytorch/t02-storage.svg",
+    "number": "1.2",
+    "caption": "Dos descriptores pueden interpretar el mismo almacenamiento."
+  },
+  {
+    "asset": "docs/assets/pytorch/t03-operaciones.svg",
+    "number": "1.3",
+    "caption": "Tres preguntas para observar el efecto de una operación."
+  },
+  {
+    "asset": "docs/assets/pytorch/t04-capas.svg",
+    "number": "1.4",
+    "caption": "Responsabilidades del handle, TensorImpl, StorageImpl y los datos."
+  },
+  {
+    "asset": "docs/assets/pytorch/t05-offset.svg",
+    "number": "1.5",
+    "caption": "Cálculo del offset de elemento y su conversión a bytes."
+  },
+  {
+    "asset": "docs/assets/pytorch/t06-bytes.svg",
+    "number": "1.6",
+    "caption": "Representación little-endian de seis valores float32."
+  },
+  {
+    "asset": "docs/assets/pytorch/t07-ieee.svg",
+    "number": "1.7",
+    "caption": "Decodificación del valor normal 10.0 mediante IEEE 754."
+  },
+  {
+    "asset": "docs/assets/pytorch/t08-mapeo.svg",
+    "number": "1.8",
+    "caption": "Reconstrucción de una matriz usando shape y stride."
+  },
+  {
+    "asset": "docs/assets/pytorch/t09-inicializar.svg",
+    "number": "1.9",
+    "caption": "Inicialización vacía, constante o aleatoria."
+  },
+  {
+    "asset": "docs/assets/pytorch/t10-forma.svg",
+    "number": "1.10",
+    "caption": "Cambiar la forma requiere conservar la cantidad de elementos."
+  },
+  {
+    "asset": "docs/assets/pytorch/t11-view.svg",
+    "number": "1.11",
+    "caption": "view exige compatibilidad de strides; reshape puede copiar."
+  },
+  {
+    "asset": "docs/assets/pytorch/t12-squeeze.svg",
+    "number": "1.12",
+    "caption": "Inserción y eliminación de un eje unitario."
+  },
+  {
+    "asset": "docs/assets/pytorch/t13-broadcast.svg",
+    "number": "1.13",
+    "caption": "Una vista expandida reutiliza datos mediante stride cero."
+  },
+  {
+    "asset": "docs/assets/pytorch/t14-matmul.svg",
+    "number": "1.14",
+    "caption": "Un ejemplo numérico de multiplicación matricial."
+  },
+  {
+    "asset": "docs/assets/pytorch/t15-tabla.svg",
+    "number": "1.15",
+    "caption": "Comparación de rangos y broadcasting de las operaciones."
+  },
+  {
+    "asset": "docs/assets/pytorch/c01-portada.svg",
+    "number": "2.1",
+    "caption": "Separación entre handle, metadatos, almacenamiento y propiedad del bloque."
+  },
+  {
+    "asset": "docs/assets/pytorch/c02-handle.svg",
+    "number": "2.2",
+    "caption": "Copiar un handle comparte la implementación; no copia el búfer numérico."
+  },
+  {
+    "asset": "docs/assets/pytorch/c03-metadatos.svg",
+    "number": "2.3",
+    "caption": "Una transposición comparte el almacenamiento y cambia sus metadatos de vista."
+  },
+  {
+    "asset": "docs/assets/pytorch/c04-inline.svg",
+    "number": "2.4",
+    "caption": "Metadatos inline y almacenamiento auxiliar al superar la capacidad de la implementación."
+  },
+  {
+    "asset": "docs/assets/pytorch/c05-dispatch.svg",
+    "number": "2.5",
+    "caption": "La selección de un kernel combina características de las entradas y estado del despacho."
+  },
+  {
+    "asset": "docs/assets/pytorch/c06-dataptr.svg",
+    "number": "2.6",
+    "caption": "La dirección de los datos y el contexto de liberación tienen papeles distintos."
+  },
+  {
+    "asset": "docs/assets/pytorch/c08-abi.svg",
+    "number": "2.7",
+    "caption": "El layout binario se verifica sobre una compilación identificada, no sobre un esquema genérico."
+  },
+  {
+    "asset": "docs/assets/pytorch/c07-alias.svg",
+    "number": "2.8",
+    "caption": "Una escritura en una vista modifica los datos compartidos; clone produce una copia independiente."
+  }
+]
