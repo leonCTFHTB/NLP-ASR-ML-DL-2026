@@ -1,8 +1,8 @@
-# Portafolio docente · NLP y reconocimiento del habla
+# Portafolio docente · Inteligencia artificial
 
 **Jacobo León Juárez · 2026**
 
-Libro web con 30 páginas de clases sobre embeddings, CNN, atención, Transformers, posiciones, audio, diarización y Whisper.
+Libro web con 38 páginas, agrupadas en **NLP y ASR** (30), **PyTorch Intermedio** (2) y **ML Avanzado y DL** (6). Incluye teoría, código desplegable, búsqueda local, diagramas y laboratorios.
 
 - [Leer el libro](https://leonctfhtb.github.io/NLP-ASR-ML-DL-2026/)
 - [Bibliografía y criterios](https://leonctfhtb.github.io/NLP-ASR-ML-DL-2026/revision.html)
@@ -13,16 +13,14 @@ Las páginas y sus recursos se mantienen en `docs/`, que GitHub Pages publica de
 
 ## Mantenimiento y comprobaciones
 
-Los HTML de `docs/nlp/` constituyen la edición vigente. Las explicaciones enlazan artículos y documentación oficial. Las figuras vectoriales se generan con `tools/review_figures.py` y `tools/scientific_figures.py`; las gráficas sintéticas declaran sus datos y supuestos.
+Los HTML de `docs/nlp/`, `docs/pytorch/` y `docs/mla/` constituyen la edición vigente. Las explicaciones enlazan artículos y documentación oficial. Las figuras vectoriales se generan con `tools/review_figures.py` y `tools/scientific_figures.py`; las gráficas sintéticas declaran sus datos y supuestos.
 
-El número de clase del catálogo coincide con el prefijo `clase-NN` del archivo HTML. `tools/postprocess.py` sincroniza ese número en la portada, las barras laterales, los títulos, la navegación y la búsqueda. Los apartados internos conservan la numeración temática del material. Solo se muestran entradas con contenido publicado.
+El número de clase del catálogo coincide con el prefijo `clase-NN` del archivo HTML. `reports/catalogo.json` identifica cada materia con su ruta y etiqueta de clase. La portada, los tres grupos del menú y el buscador comparten sus 38 entradas. `tools/postprocess.py` corresponde al flujo original de NLP; las importaciones por materia mantienen además sus grupos y recursos propios. Los apartados internos conservan la numeración temática del material. Solo se muestran entradas con contenido publicado.
 
 Después de editar el contenido:
 
 ```bash
 python -m pip install -r tools/requirements.txt
-python tools/postprocess.py
-python tools/clean_resources.py
 python tools/validate.py
 ```
 
@@ -51,6 +49,15 @@ python tools/validate.py
 
 `reports/importacion-whisper.json` registra la procedencia, el hash del notebook y el alcance de la conversión. Las comprobaciones de importación verifican texto, código, imágenes y audio; no equivalen a ejecutar el entrenamiento. La revisión bibliográfica documentada de las 29 páginas anteriores se conserva.
 
+## ML Avanzado y DL
+
+La nueva sección contiene las clases 1–5: repaso de ML, gradient boosting, CatBoost, feature engineering con t-SNE y UMAP. Se revisan teoría, código y figuras. Las páginas ofrecen los cinco notebooks revisados como descarga y 107 diagramas SVG ampliables. Las prácticas de las clases 2–4 se ejecutaron en CPU: 20 celdas de código y 24 comprobaciones numéricas. Los resultados y versiones están en `reports/pruebas-mla.json`.
+
+El anexo YOLO26 conserva las 410 celdas, el código, las salidas y los bytes de sus imágenes, sin correcciones ni ejecución. Las rutas visuales se resuelven con los adjuntos de `clase-19-20.zip`. Las salidas interactivas conservan Plotly 2.35.2; los laboratorios revisados usan su propia versión local. `reports/integridad-yolo26.json` registra hashes por celda, salida e imagen. Los enlaces internos incompletos que ya tenía ese material se conservan y se informan separadamente en la validación.
+
+`reports/correcciones-mla.json`, `reports/figuras-mla.json` y `reports/validacion-mla.json` documentan las correspondencias y comprobaciones. Los diagramas se regeneran con `python tools/mla_figures.py`.
+
 ## Licencias y cita
 
 Material docente propio: **CC BY 4.0**. Código propio: **Apache 2.0**. Las adaptaciones de D2L mantienen CC BY-SA 4.0 y su código MIT modificada; los demás materiales de terceros conservan sus autores y condiciones. Véanse `LICENCIAS.md`, `THIRD_PARTY.md`, `CITATION.bib` y `CITATION.cff`.
+

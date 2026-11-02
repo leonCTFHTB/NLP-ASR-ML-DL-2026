@@ -1,0 +1,86 @@
+{
+  "pages": [
+    {
+      "filename": "clase-01-repaso-machine-learning.html",
+      "title": "ML01 · Repaso de Machine Learning",
+      "class": 1,
+      "class_label": "ML01",
+      "track": "mla",
+      "path": "mla/clase-01-repaso-machine-learning.html"
+    },
+    {
+      "filename": "clase-02-gradient-boosting.html",
+      "title": "ML02 · Gradient Boosting y XGBoost",
+      "class": 2,
+      "class_label": "ML02",
+      "track": "mla",
+      "path": "mla/clase-02-gradient-boosting.html"
+    },
+    {
+      "filename": "clase-03-catboost.html",
+      "title": "ML03 · CatBoost y modelos híbridos",
+      "class": 3,
+      "class_label": "ML03",
+      "track": "mla",
+      "path": "mla/clase-03-catboost.html"
+    },
+    {
+      "filename": "clase-04-feature-engineering-tsne.html",
+      "title": "ML04 · Feature Engineering y t-SNE",
+      "class": 4,
+      "class_label": "ML04",
+      "track": "mla",
+      "path": "mla/clase-04-feature-engineering-tsne.html"
+    },
+    {
+      "filename": "clase-05-umap.html",
+      "title": "ML05 · UMAP",
+      "class": 5,
+      "class_label": "ML05",
+      "track": "mla",
+      "path": "mla/clase-05-umap.html"
+    },
+    {
+      "filename": "clase-19-anexo-yolo26.html",
+      "title": "ML19 · Anexo YOLO26",
+      "class": 19,
+      "class_label": "ML19",
+      "track": "mla",
+      "path": "mla/clase-19-anexo-yolo26.html"
+    }
+  ],
+  "figures_per_class": {
+    "1": 10,
+    "2": 22,
+    "3": 15,
+    "4": 41,
+    "5": 35,
+    "19": 69
+  },
+  "new_vector_diagrams": 107,
+  "navigation_pages": 42,
+  "math_errors": [],
+  "source_notebooks": [
+    {
+      "filename": "1 - Repaso de ML.ipynb",
+      "sha256": "85195c4c5a50f35d1201b3f9058296fb63e368f4e9b5a94a89b5b5c3fd77cf0e"
+    },
+    {
+      "filename": "2 - Gradient Boosting.ipynb",
+      "sha256": "8061c4511f78914396da1e771d642425638e2037819c7d196ed96dd8a1fe428c"
+    },
+    {
+      "filename": "3 - Gradient Boosting_ CatBoost.ipynb",
+      "sha256": "6b5aa03ba9b3f5c08f05312d84cbebef03d3df71435352a3fc8a95ca39f4a155"
+    },
+    {
+      "filename": "4 - Feature Engineering avanzado.ipynb",
+      "sha256": "081cd52a2a2959493b0612380c04b1574e48f869f38f972afa52c90ba55b6f62"
+    },
+    {
+      "filename": "5 - Feature Engineering Avanzado - UMAP.ipynb",
+      "sha256": "dffd4e6571f0ea873b8b3863d678139b9bd84dc5efda81ef00cbf13ee3bc3abd"
+    }
+  ],
+  "yolo26_unchanged": true
+}

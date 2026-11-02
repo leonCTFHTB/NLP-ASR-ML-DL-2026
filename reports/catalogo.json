@@ -224,5 +224,53 @@
     "class_label": "PT02",
     "track": "pytorch",
     "path": "pytorch/clase-02-arquitectura-c10-aten.html"
+  },
+  {
+    "filename": "clase-01-repaso-machine-learning.html",
+    "title": "ML01 · Repaso de Machine Learning",
+    "class": 1,
+    "class_label": "ML01",
+    "track": "mla",
+    "path": "mla/clase-01-repaso-machine-learning.html"
+  },
+  {
+    "filename": "clase-02-gradient-boosting.html",
+    "title": "ML02 · Gradient Boosting y XGBoost",
+    "class": 2,
+    "class_label": "ML02",
+    "track": "mla",
+    "path": "mla/clase-02-gradient-boosting.html"
+  },
+  {
+    "filename": "clase-03-catboost.html",
+    "title": "ML03 · CatBoost y modelos híbridos",
+    "class": 3,
+    "class_label": "ML03",
+    "track": "mla",
+    "path": "mla/clase-03-catboost.html"
+  },
+  {
+    "filename": "clase-04-feature-engineering-tsne.html",
+    "title": "ML04 · Feature Engineering y t-SNE",
+    "class": 4,
+    "class_label": "ML04",
+    "track": "mla",
+    "path": "mla/clase-04-feature-engineering-tsne.html"
+  },
+  {
+    "filename": "clase-05-umap.html",
+    "title": "ML05 · UMAP",
+    "class": 5,
+    "class_label": "ML05",
+    "track": "mla",
+    "path": "mla/clase-05-umap.html"
+  },
+  {
+    "filename": "clase-19-anexo-yolo26.html",
+    "title": "ML19 · Anexo YOLO26",
+    "class": 19,
+    "class_label": "ML19",
+    "track": "mla",
+    "path": "mla/clase-19-anexo-yolo26.html"
   }
 ]

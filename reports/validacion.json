@@ -1,11 +1,58 @@
 {
-  "html_pages": 35,
-  "notebook_pages": 30,
+  "html_pages": 59,
+  "notebook_pages": 38,
   "class_redirects": 1,
-  "formula_instances": 3367,
-  "image_instances": 663,
+  "formula_instances": 4178,
+  "image_instances": 862,
   "class_numbering_verified": true,
   "errors": [],
   "external_media": [],
+  "original_yolo26_anchor_warnings": [
+    [
+      "mla/clase-19-anexo-yolo26.html",
+      "#anexo-19.3",
+      "missing anchor in original material"
+    ],
+    [
+      "mla/clase-19-anexo-yolo26.html",
+      "#anexo-19.4",
+      "missing anchor in original material"
+    ],
+    [
+      "mla/clase-19-anexo-yolo26.html",
+      "#anexo-19.5",
+      "missing anchor in original material"
+    ],
+    [
+      "mla/clase-19-anexo-yolo26.html",
+      "#d1",
+      "missing anchor in original material"
+    ],
+    [
+      "mla/clase-19-anexo-yolo26.html",
+      "#d1",
+      "missing anchor in original material"
+    ],
+    [
+      "mla/clase-19-anexo-yolo26.html",
+      "#d1",
+      "missing anchor in original material"
+    ],
+    [
+      "mla/clase-19-anexo-yolo26.html",
+      "#d2",
+      "missing anchor in original material"
+    ],
+    [
+      "mla/clase-19-anexo-yolo26.html",
+      "#d1",
+      "missing anchor in original material"
+    ],
+    [
+      "mla/clase-19-anexo-yolo26.html",
+      "#d4",
+      "missing anchor in original material"
+    ]
+  ],
   "python_training_executed": false
 }

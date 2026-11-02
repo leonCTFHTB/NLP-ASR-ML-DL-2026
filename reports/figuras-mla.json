@@ -1,0 +1,1538 @@
+[
+  {
+    "class": 1,
+    "source_cell": 7,
+    "number": "1.1",
+    "asset": "docs/assets/mla/diagramas/ml01-celda-007.svg",
+    "caption": "Supervisado y no supervisado utilizan objetivos diferentes.",
+    "original_bytes": false
+  },
+  {
+    "class": 1,
+    "source_cell": 9,
+    "number": "1.2",
+    "asset": "docs/assets/mla/diagramas/ml01-celda-009.svg",
+    "caption": "X tiene n filas y d columnas; cada fila representa una muestra.",
+    "original_bytes": false
+  },
+  {
+    "class": 1,
+    "source_cell": 11,
+    "number": "1.3",
+    "asset": "docs/assets/mla/diagramas/ml01-celda-011.svg",
+    "caption": "Curvas ilustrativas: una función afín no representa por sí sola una relación en U.",
+    "original_bytes": false
+  },
+  {
+    "class": 1,
+    "source_cell": 14,
+    "number": "1.4",
+    "asset": "docs/assets/mla/diagramas/ml01-celda-014.svg",
+    "caption": "Las activaciones introducen no linealidad; la separabilidad no está garantizada.",
+    "original_bytes": false
+  },
+  {
+    "class": 1,
+    "source_cell": 16,
+    "number": "1.5",
+    "asset": "docs/assets/mla/diagramas/ml01-celda-016.svg",
+    "caption": "Clasificación y regresión son tareas supervisadas diferentes.",
+    "original_bytes": false
+  },
+  {
+    "class": 1,
+    "source_cell": 18,
+    "number": "1.6",
+    "asset": "docs/assets/mla/diagramas/ml01-celda-018.svg",
+    "caption": "El escalado y la métrica modifican quiénes son los vecinos.",
+    "original_bytes": false
+  },
+  {
+    "class": 1,
+    "source_cell": 20,
+    "number": "1.7",
+    "asset": "docs/assets/mla/diagramas/ml01-celda-020.svg",
+    "caption": "Retener varianza no equivale a identificar clases semánticas.",
+    "original_bytes": false
+  },
+  {
+    "class": 1,
+    "source_cell": 24,
+    "number": "1.8",
+    "asset": "docs/assets/mla/diagramas/ml01-celda-024.svg",
+    "caption": "Las clases de este ejemplo son separables; el margen suave admite violaciones.",
+    "original_bytes": false
+  },
+  {
+    "class": 1,
+    "source_cell": 27,
+    "number": "1.9",
+    "asset": "docs/assets/mla/diagramas/ml01-celda-027.svg",
+    "caption": "Minimizar la norma amplía el margen sujeto a las restricciones.",
+    "original_bytes": false
+  },
+  {
+    "class": 1,
+    "source_cell": 29,
+    "number": "1.10",
+    "asset": "docs/assets/mla/diagramas/ml01-celda-029.svg",
+    "caption": "Un kernel válido permite evitar una expansión explícita de características.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 7,
+    "number": "2.1",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-007.svg",
+    "caption": "El ensamble es aditivo y se construye por etapas.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 10,
+    "number": "2.2",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-010.svg",
+    "caption": "Un aprendiz débil tiene un significado formal dependiente de la tarea.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 12,
+    "number": "2.3",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-012.svg",
+    "caption": "La analogía no garantiza llegar exactamente al objetivo.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 13,
+    "number": "2.4",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-013.svg",
+    "caption": "Los árboles anteriores permanecen fijos en el esquema por etapas.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 15,
+    "number": "2.5",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-015.svg",
+    "caption": "Random Forest combina bootstrap y aleatorización de atributos.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 17,
+    "number": "2.6",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-017.svg",
+    "caption": "La dirección de mejora viene de la pérdida elegida.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 19,
+    "number": "2.7",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-019.svg",
+    "caption": "También en clasificación los árboles aportan correcciones a las puntuaciones.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 21,
+    "number": "2.8",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-021.svg",
+    "caption": "Curvas ilustrativas reescaladas; la robustez depende de la pérdida.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 23,
+    "number": "2.9",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-023.svg",
+    "caption": "El término inicial no se debe omitir de la suma del ensamble.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 25,
+    "number": "2.10",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-025.svg",
+    "caption": "Los dos procedimientos optimizan representaciones distintas.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 29,
+    "number": "2.11",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-029.svg",
+    "caption": "Con media pérdida cuadrática, r = y − F.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 33,
+    "number": "2.12",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-033.svg",
+    "caption": "El tamaño de paso y el ajuste condicionan la mejora.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 35,
+    "number": "2.13",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-035.svg",
+    "caption": "Reducir error de entrenamiento no garantiza mejorar fuera de muestra.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 38,
+    "number": "2.14",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-038.svg",
+    "caption": "Tasa y cantidad de árboles deben seleccionarse conjuntamente.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 40,
+    "number": "2.15",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-040.svg",
+    "caption": "La estrategia y la proporción dependen de la biblioteca y configuración.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 42,
+    "number": "2.16",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-042.svg",
+    "caption": "Se elige la mejor etapa con validación; el test se reserva para el final.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 44,
+    "number": "2.17",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-044.svg",
+    "caption": "No hay un método universalmente superior en todos los problemas.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 45,
+    "number": "2.18",
+    "asset": "docs/assets/mla/diagramas/ml02-celda-045.svg",
+    "caption": "Complejidad, tasa y número de etapas interactúan.",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 68,
+    "number": "2.19",
+    "asset": "docs/assets/mla/laboratorios/clase-02-celda-68-1.html",
+    "caption": "Evolución del Entrenamiento en PyTorch (Feature Extractor)",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 68,
+    "number": "2.20",
+    "asset": "docs/assets/mla/laboratorios/clase-02-celda-68-2.png",
+    "caption": "Distribución de Atributos Extraídos en el Espacio Latente de PyTorch",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 68,
+    "number": "2.21",
+    "asset": "docs/assets/mla/laboratorios/clase-02-celda-68-3.png",
+    "caption": "Resultado de la práctica",
+    "original_bytes": false
+  },
+  {
+    "class": 2,
+    "source_cell": 68,
+    "number": "2.22",
+    "asset": "docs/assets/mla/laboratorios/clase-02-celda-68-4.html",
+    "caption": "Desempeño de Predicción: Real vs Modelo Híbrido",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 7,
+    "number": "3.1",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-007.svg",
+    "caption": "El tipo de boosting y la política de crecimiento son configurables.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 9,
+    "number": "3.2",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-009.svg",
+    "caption": "El artículo de CatBoost analiza mecanismos concretos de prediction shift.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 14,
+    "number": "3.3",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-014.svg",
+    "caption": "Son componentes diferentes; no equivalen a ausencia total de sobreajuste.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 16,
+    "number": "3.4",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-016.svg",
+    "caption": "El orden artificial no debe confundirse con tiempo físico.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 18,
+    "number": "3.5",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-018.svg",
+    "caption": "El prior del ejemplo se fija independientemente del objetivo propio.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 24,
+    "number": "3.6",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-024.svg",
+    "caption": "La media de los cinco objetivos es 0,60; no es el prior elegido.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 27,
+    "number": "3.7",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-027.svg",
+    "caption": "Excluir el objetivo propio es la protección relevante frente a esa fuga.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 29,
+    "number": "3.8",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-029.svg",
+    "caption": "La implementación comparte trabajo entre modelos y permutaciones.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 31,
+    "number": "3.9",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-031.svg",
+    "caption": "Un árbol simétrico de profundidad d almacena 2ᵈ posiciones de hoja.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 35,
+    "number": "3.10",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-035.svg",
+    "caption": "Las regiones no son necesariamente regulares ni todas las hojas alcanzables.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 36,
+    "number": "3.11",
+    "asset": "docs/assets/mla/diagramas/ml03-celda-036.svg",
+    "caption": "La inferencia de T árboles cuesta aproximadamente O(Td) por muestra.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 75,
+    "number": "3.12",
+    "asset": "docs/assets/mla/laboratorios/clase-03-celda-75-1.html",
+    "caption": "Fase 1: Evolución del Pre-entrenamiento en PyTorch (Latent Space)",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 75,
+    "number": "3.13",
+    "asset": "docs/assets/mla/laboratorios/clase-03-celda-75-4.html",
+    "caption": "Fase 2: Ajuste del Modelo Híbrido (Real vs. Predicho)",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 77,
+    "number": "3.14",
+    "asset": "docs/assets/mla/laboratorios/clase-03-celda-75-2.png",
+    "caption": "Distribución de los embeddings de esta ejecución. La dispersión no demuestra independencia ni utilidad predictiva.",
+    "original_bytes": false
+  },
+  {
+    "class": 3,
+    "source_cell": 83,
+    "number": "3.15",
+    "asset": "docs/assets/mla/laboratorios/clase-03-celda-75-3.png",
+    "caption": "Magnitud media absoluta de las atribuciones SHAP del modelo, sin interpretación causal.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 6,
+    "number": "4.1",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-006.svg",
+    "caption": "Una proyección no prueba por sí sola clases o grupos.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 9,
+    "number": "4.2",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-009.svg",
+    "caption": "nn.Linear almacena W con forma h × d y utiliza su transpuesta.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 11,
+    "number": "4.3",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-011.svg",
+    "caption": "Una transformación afín también puede reflejar o colapsar dimensiones.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 13,
+    "number": "4.4",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-013.svg",
+    "caption": "La monotonía de cada puntuación no equivale a monotonía de un mapa completo.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 15,
+    "number": "4.5",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-015.svg",
+    "caption": "No toda transformación vuelve separables todos los datos.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 16,
+    "number": "4.6",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-016.svg",
+    "caption": "Apilar solo aplicaciones afines produce otra aplicación afín.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 19,
+    "number": "4.7",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-019.svg",
+    "caption": "ReLU puede colapsar regiones; el plegado es una analogía.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 21,
+    "number": "4.8",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-021.svg",
+    "caption": "La simetría de tanh no garantiza media nula en cualquier distribución.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 23,
+    "number": "4.9",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-023.svg",
+    "caption": "La capacidad de representar no garantiza el resultado del entrenamiento.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 27,
+    "number": "4.10",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-027.svg",
+    "caption": "Cover motiva la expansión bajo condiciones; no promete generalización.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 29,
+    "number": "4.11",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-029.svg",
+    "caption": "La maldición de la dimensionalidad no equivale solo a uso de memoria.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 31,
+    "number": "4.12",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-031.svg",
+    "caption": "La matriz de Gram de un kernel válido es semidefinida positiva.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 33,
+    "number": "4.13",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-033.svg",
+    "caption": "El costo aún depende de muestras, kernel y vectores de soporte.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 36,
+    "number": "4.14",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-036.svg",
+    "caption": "Una proyección lineal puede superponer regiones de una variedad curva.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 37,
+    "number": "4.15",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-037.svg",
+    "caption": "Ninguno garantiza conservar toda la topología.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 39,
+    "number": "4.16",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-039.svg",
+    "caption": "La optimización se realiza sobre las coordenadas del embedding.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 42,
+    "number": "4.17",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-042.svg",
+    "caption": "El ancho σᵢ se adapta por fila; σᵢ² es la varianza.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 43,
+    "number": "4.18",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-043.svg",
+    "caption": "La probabilidad del propio punto se fija en cero.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 45,
+    "number": "4.19",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-045.svg",
+    "caption": "Perplejidad no es el número exacto de enlaces de peso no nulo.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 48,
+    "number": "4.20",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-048.svg",
+    "caption": "Una distribución uniforme sobre k elementos tiene perplejidad k.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 51,
+    "number": "4.21",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-051.svg",
+    "caption": "La búsqueda de ancho de banda aproxima una entropía objetivo.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 53,
+    "number": "4.22",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-053.svg",
+    "caption": "La simetría no asigna el mismo peso a todos los pares.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 55,
+    "number": "4.23",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-055.svg",
+    "caption": "Las áreas y densidades de islas no son estimaciones fieles de las originales.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 57,
+    "number": "4.24",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-057.svg",
+    "caption": "Reducir dimensión fuerza compromisos entre relaciones de distancia.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 59,
+    "number": "4.25",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-059.svg",
+    "caption": "El volumen a radio fijo no tiene por qué crecer con la dimensión.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 61,
+    "number": "4.26",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-061.svg",
+    "caption": "Núcleos sin normalizar; la cola de Student decae más lentamente.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 63,
+    "number": "4.27",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-063.svg",
+    "caption": "Permiten representar afinidades moderadas con separaciones mayores.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 65,
+    "number": "4.28",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-065.svg",
+    "caption": "Cambiar la perplejidad modifica el objetivo P.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 69,
+    "number": "4.29",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-069.svg",
+    "caption": "t-SNE sí tiene repulsión entre puntos en la formulación exacta.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 71,
+    "number": "4.30",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-071.svg",
+    "caption": "Distancias entre islas y relaciones de inclusión no están garantizadas.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 72,
+    "number": "4.31",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-072.svg",
+    "caption": "La perplejidad 30 es un punto de partida, no un óptimo universal.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 73,
+    "number": "4.32",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-073.svg",
+    "caption": "Las etiquetas se reservan para colorear los resultados.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 96,
+    "number": "4.33",
+    "asset": "docs/assets/mla/laboratorios/digits-pca.png",
+    "caption": "Digits proyectado sobre dos componentes principales.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 99,
+    "number": "4.34",
+    "asset": "docs/assets/mla/laboratorios/clase-04-celda-94-1.html",
+    "caption": "Las mismas observaciones con PCA y t-SNE de perplejidad 30.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 101,
+    "number": "4.35",
+    "asset": "docs/assets/mla/diagramas/ml04-celda-101.svg",
+    "caption": "La disposición de una clase no garantiza una interpretación morfológica única.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 105,
+    "number": "4.36",
+    "asset": "docs/assets/mla/laboratorios/digits-perplejidad-2.png",
+    "caption": "t-SNE con perplejidad 2: resultado de esta ejecución.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 107,
+    "number": "4.37",
+    "asset": "docs/assets/mla/laboratorios/digits-perplejidad-10.png",
+    "caption": "t-SNE con perplejidad 10: resultado de esta ejecución.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 109,
+    "number": "4.38",
+    "asset": "docs/assets/mla/laboratorios/digits-perplejidad-30.png",
+    "caption": "t-SNE con perplejidad 30: resultado de esta ejecución.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 110,
+    "number": "4.39",
+    "asset": "docs/assets/mla/laboratorios/digits-perplejidad-50.png",
+    "caption": "t-SNE con perplejidad 50: resultado de esta ejecución.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 112,
+    "number": "4.40",
+    "asset": "docs/assets/mla/laboratorios/digits-perplejidad-100.png",
+    "caption": "t-SNE con perplejidad 100: resultado de esta ejecución.",
+    "original_bytes": false
+  },
+  {
+    "class": 4,
+    "source_cell": 114,
+    "number": "4.41",
+    "asset": "docs/assets/mla/laboratorios/digits-kl.png",
+    "caption": "KL final por perplejidad. Cada punto corresponde a una matriz P diferente; no es una curva temporal de convergencia.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 6,
+    "number": "5.1",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-006.svg",
+    "caption": "Conservar el grafo aproximadamente no garantiza toda la geometría.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 8,
+    "number": "5.2",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-008.svg",
+    "caption": "La elección depende del objetivo y de la validación.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 9,
+    "number": "5.3",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-009.svg",
+    "caption": "El preprocesamiento puede cambiar por completo el grafo de vecinos.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 11,
+    "number": "5.4",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-011.svg",
+    "caption": "Los datos reales no vienen con una garantía de cumplir estos supuestos.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 14,
+    "number": "5.5",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-014.svg",
+    "caption": "Uniformidad métrica no exige densidad uniforme en el espacio observado.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 15,
+    "number": "5.6",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-015.svg",
+    "caption": "Los pesos difusos no están normalizados como probabilidades por fila.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 17,
+    "number": "5.7",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-017.svg",
+    "caption": "El ajuste local no recupera un tensor métrico completo.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 18,
+    "number": "5.8",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-018.svg",
+    "caption": "La forma cuadrática da longitudes infinitesimales positivas.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 20,
+    "number": "5.9",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-020.svg",
+    "caption": "ds² = dx² + dy² en coordenadas cartesianas ortonormales.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 22,
+    "number": "5.10",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-022.svg",
+    "caption": "Un término mixto expresa el producto interno de las direcciones.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 24,
+    "number": "5.11",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-024.svg",
+    "caption": "Una matriz variable no implica necesariamente curvatura intrínseca.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 26,
+    "number": "5.12",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-026.svg",
+    "caption": "La distancia geodésica minimiza longitudes de caminos.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 27,
+    "number": "5.13",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-027.svg",
+    "caption": "La aproximación local debe justificarse a la escala usada.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 29,
+    "number": "5.14",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-029.svg",
+    "caption": "UMAP admite distintas métricas de entrada; no solo distancia euclídea.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 31,
+    "number": "5.15",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-031.svg",
+    "caption": "Un plano tangente aproxima la geometría a pequeña escala.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 34,
+    "number": "5.16",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-034.svg",
+    "caption": "La resta de ρᵢ y la escala σᵢ cumplen papeles diferentes.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 36,
+    "number": "5.17",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-036.svg",
+    "caption": "Una aproximación local no justifica usarla a cualquier distancia.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 41,
+    "number": "5.18",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-041.svg",
+    "caption": "Un enlace al vecino próximo no une necesariamente todas las componentes.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 44,
+    "number": "5.19",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-044.svg",
+    "caption": "Puede no haber puntos aislados y seguir habiendo grupos desconectados.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 47,
+    "number": "5.20",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-047.svg",
+    "caption": "Una relación de vecindad dirigida no tiene por qué ser recíproca.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 49,
+    "number": "5.21",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-049.svg",
+    "caption": "El promedio de t-SNE no prueba por sí mismo que se rompan puentes.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 51,
+    "number": "5.22",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-051.svg",
+    "caption": "wᵢⱼ = u + v − uv; con 0,2 y 0,8 el resultado es 0,84.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 53,
+    "number": "5.23",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-053.svg",
+    "caption": "Preservar una arista del grafo no garantiza una geometría global exacta.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 54,
+    "number": "5.24",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-054.svg",
+    "caption": "La construcción del grafo y la optimización son etapas diferentes.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 56,
+    "number": "5.25",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-056.svg",
+    "caption": "La baja dimensión obliga a compromisos entre aristas y no aristas.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 58,
+    "number": "5.26",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-058.svg",
+    "caption": "q = 1 / (1 + a·d²ᵇ); no se normaliza sobre todos los pares.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 60,
+    "number": "5.27",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-060.svg",
+    "caption": "min_dist es una preferencia de empaquetamiento, no una restricción rígida.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 61,
+    "number": "5.28",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-061.svg",
+    "caption": "Las curvas ilustran parámetros; no son densidades normalizadas.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 63,
+    "number": "5.29",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-063.svg",
+    "caption": "El parámetro a modifica la escala del decaimiento en conjunto con b.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 64,
+    "number": "5.30",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-064.svg",
+    "caption": "a y b se ajustan conjuntamente; no son controles independientes exactos.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 66,
+    "number": "5.31",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-066.svg",
+    "caption": "La densidad del mapa no estima necesariamente la densidad original.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 68,
+    "number": "5.32",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-068.svg",
+    "caption": "El entrenamiento práctico no evalúa todos los pares en cada actualización.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 70,
+    "number": "5.33",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-070.svg",
+    "caption": "El embedding no reproduce perfectamente todas las vecindades.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 72,
+    "number": "5.34",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-072.svg",
+    "caption": "La fuerza depende de distancia y parámetros; no es constante.",
+    "original_bytes": false
+  },
+  {
+    "class": 5,
+    "source_cell": 73,
+    "number": "5.35",
+    "asset": "docs/assets/mla/diagramas/ml05-celda-073.svg",
+    "caption": "UMAP y t-SNE no garantizan distancias globales calibradas.",
+    "original_bytes": false
+  },
+  {
+    "class": 19,
+    "source_cell": 9,
+    "number": "A.1",
+    "asset": "docs/assets/mla/yolo26/7e1367e13dfd649e2f8abf81.png",
+    "caption": "Figura 19.1 — Ejes del tensor y diferencia entre canales RGB y canales de características.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 21,
+    "number": "A.2",
+    "asset": "docs/assets/mla/yolo26/1c46f645e1cf5199f6486727.png",
+    "caption": "1. Conv: La Analogía de la Inspección Local",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 24,
+    "number": "A.3",
+    "asset": "docs/assets/mla/yolo26/9a0ca7c19b813ceae6531a0f.png",
+    "caption": "2. `C3k2`: La Analogía de los Informes de Varias Rutas",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 27,
+    "number": "A.4",
+    "asset": "docs/assets/mla/yolo26/41871dbcb2c652cfcf66500c.png",
+    "caption": "3. `SPPF`: La Analogía de Consultar Entornos Más Amplios",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 30,
+    "number": "A.5",
+    "asset": "docs/assets/mla/yolo26/53336ce94810f2bc3d87b33a.png",
+    "caption": "4. `C2PSA`: La Analogía de Relacionar Informes Según su Contenido",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 62,
+    "number": "A.6",
+    "asset": "docs/assets/mla/yolo26/0c6947f39c73d21f425a8b0d.png",
+    "caption": "1. Analogía: Mesa de Mezcla por Posición",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 65,
+    "number": "A.7",
+    "asset": "docs/assets/mla/yolo26/fb30c99cbb4dac5f79b96c07.png",
+    "caption": "2. Analogía: Por qué se comparten los pesos",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 71,
+    "number": "A.8",
+    "asset": "docs/assets/mla/yolo26/9a0ca7c19b813ceae6531a0f.png",
+    "caption": "19.3. C3k2: Rutas Parciales y Concatenación",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 73,
+    "number": "A.9",
+    "asset": "docs/assets/mla/yolo26/5f1d8aeb5bc4245a3b1f3175.png",
+    "caption": "Figura 19.5 — Rutas parciales y reutilización de resultados intermedios en la envoltura de C3k2.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 76,
+    "number": "A.10",
+    "asset": "docs/assets/mla/yolo26/0c6947f39c73d21f425a8b0d.png",
+    "caption": "1. `c1`: Cuántas Señales Llegan",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 78,
+    "number": "A.11",
+    "asset": "docs/assets/mla/yolo26/fb30c99cbb4dac5f79b96c07.png",
+    "caption": "1. `c1`: Cuántas Señales Llegan",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 95,
+    "number": "A.12",
+    "asset": "docs/assets/mla/yolo26/output-95-1.html",
+    "caption": "19.3.2.2. Ejecución del Ejemplo y Sus Formas",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 95,
+    "number": "A.13",
+    "asset": "docs/assets/mla/yolo26/cafd8d2518b540aa35aa64fc.png",
+    "caption": "19.3.2.2. Ejecución del Ejemplo y Sus Formas",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 104,
+    "number": "A.14",
+    "asset": "docs/assets/mla/yolo26/output-104-0.html",
+    "caption": "Proyección → A y B.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 104,
+    "number": "A.15",
+    "asset": "docs/assets/mla/yolo26/output-104-1.html",
+    "caption": "Proyección → A y B.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 104,
+    "number": "A.16",
+    "asset": "docs/assets/mla/yolo26/output-104-2.html",
+    "caption": "Proyección → A y B.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 104,
+    "number": "A.17",
+    "asset": "docs/assets/mla/yolo26/output-104-3.html",
+    "caption": "Proyección → A y B.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 114,
+    "number": "A.18",
+    "asset": "docs/assets/mla/yolo26/cafd8d2518b540aa35aa64fc.png",
+    "caption": "2. Segunda Imagen: cómo leer los mapas de colores",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 119,
+    "number": "A.19",
+    "asset": "docs/assets/mla/yolo26/5f1d8aeb5bc4245a3b1f3175.png",
+    "caption": "Figura 19.5 — Rutas parciales y reutilización de resultados intermedios en la envoltura de C3k2.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 124,
+    "number": "A.20",
+    "asset": "docs/assets/mla/yolo26/01dc75a1abcd8986471020ad.png",
+    "caption": "Figura 19.6 — Concatenación y suma residual: diferencias de valores y formas.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 125,
+    "number": "A.21",
+    "asset": "docs/assets/mla/yolo26/62b7f212f26a88082b6baee1.png",
+    "caption": "Figura 19.7 — Dos Conv internas y conexión residual del Bottleneck simple de C3k2.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 130,
+    "number": "A.22",
+    "asset": "docs/assets/mla/yolo26/def827c17690a010415acc00.png",
+    "caption": "Figura 19.8 — Dos rutas y dos Bottleneck en un C3k interno; los dos finales se concatenan.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 136,
+    "number": "A.23",
+    "asset": "docs/assets/mla/yolo26/1e2eb8a4b10d4b27e7caf40e.png",
+    "caption": "Figura 19.9 — Proyección, pooling secuencial, concatenación y residuo de SPPF.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 139,
+    "number": "A.24",
+    "asset": "docs/assets/mla/yolo26/c2bed65976f07fd72a5f1282.png",
+    "caption": "19.5.2. Analogía: Red de Sensores",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 149,
+    "number": "A.25",
+    "asset": "docs/assets/mla/yolo26/5d11566397947c376e366c31.png",
+    "caption": "19.5.3. Continuación de la Analogía",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 152,
+    "number": "A.26",
+    "asset": "docs/assets/mla/yolo26/270ac28d28d3ec8922528a42.png",
+    "caption": "19.5.4. Ejemplo Numérico para `c1=c2=8`",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 164,
+    "number": "A.27",
+    "asset": "docs/assets/mla/yolo26/output-164-1.html",
+    "caption": "19.5.5.2. Preparar el ejemplo numérico 2→5→7→9 sin eliminar capas",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 169,
+    "number": "A.28",
+    "asset": "docs/assets/mla/yolo26/1239e7a46f31663325fe296b.png",
+    "caption": "19.5.5.3. Visualizar las rondas y comprobar el impulso central",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 169,
+    "number": "A.29",
+    "asset": "docs/assets/mla/yolo26/output-169-1.html",
+    "caption": "19.5.5.3. Visualizar las rondas y comprobar el impulso central",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 169,
+    "number": "A.30",
+    "asset": "docs/assets/mla/yolo26/9f09efc90ba4624b8449e717.png",
+    "caption": "19.5.5.3. Visualizar las rondas y comprobar el impulso central",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 174,
+    "number": "A.31",
+    "asset": "docs/assets/mla/yolo26/c18fd2f3aec89328fc5cb547.png",
+    "caption": "19.5.5.4. Calcular la concatenación, la Conv final, SiLU y el residuo",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 174,
+    "number": "A.32",
+    "asset": "docs/assets/mla/yolo26/output-174-2.html",
+    "caption": "19.5.5.4. Calcular la concatenación, la Conv final, SiLU y el residuo",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 181,
+    "number": "A.33",
+    "asset": "docs/assets/mla/yolo26/60dcd8aa1e717938ea6a5b5a.png",
+    "caption": "19.6.1. Para qué sirve y dónde aparece en YOLO26",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 185,
+    "number": "A.34",
+    "asset": "docs/assets/mla/yolo26/b0d7506833e6c852c505714b.png",
+    "caption": "19.6.2. Analogía: una red que consulta informes por contenido",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 216,
+    "number": "A.35",
+    "asset": "docs/assets/mla/yolo26/819f5bb41cf5839320a627bd.png",
+    "caption": "19.6.4.1. Attention: relaciones espaciales, contenido y PE",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 220,
+    "number": "A.36",
+    "asset": "docs/assets/mla/yolo26/e1cf7c69eb781e07b9b176f7.png",
+    "caption": "1. Preparar $QKV$: distintas mezclas del mismo mapa",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 223,
+    "number": "A.37",
+    "asset": "docs/assets/mla/yolo26/2027174c8202d31e8be1c31e.png",
+    "caption": "2. Calcular el contexto global: qué posiciones aportan contenido",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 227,
+    "number": "A.38",
+    "asset": "docs/assets/mla/yolo26/5dd270f02c33bd7abac5a50a.png",
+    "caption": "3. ¿Qué hace `groups=dim` dentro de `pe`?",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 230,
+    "number": "A.39",
+    "asset": "docs/assets/mla/yolo26/3601db84648ba6174b532557.png",
+    "caption": "4. ¿Por qué $k=3$ y qué aporta a la posición?",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 236,
+    "number": "A.40",
+    "asset": "docs/assets/mla/yolo26/a260d98c4faa4668f0ce6302.png",
+    "caption": "19.6.4.2. PSABlock: atención y FFN, cada una con su residual",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 250,
+    "number": "A.41",
+    "asset": "docs/assets/mla/yolo26/997c9b19d6f1bcc306acdd6c.png",
+    "caption": "19.6.4.3. C2PSA: dos rutas y fusión de sus dos finales",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 254,
+    "number": "A.42",
+    "asset": "docs/assets/mla/yolo26/d2d42293e2d1198f91e95211.png",
+    "caption": "19.6.5. Cadena completa: reutilizar C3k2 y continuar con SPPF y C2PSA",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 255,
+    "number": "A.43",
+    "asset": "docs/assets/mla/yolo26/output-255-0.html",
+    "caption": "19.6.5. Cadena completa: reutilizar C3k2 y continuar con SPPF y C2PSA",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 255,
+    "number": "A.44",
+    "asset": "docs/assets/mla/yolo26/output-255-1.html",
+    "caption": "19.6.5. Cadena completa: reutilizar C3k2 y continuar con SPPF y C2PSA",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 255,
+    "number": "A.45",
+    "asset": "docs/assets/mla/yolo26/3f250c4830a9c859b2676a3e.png",
+    "caption": "19.6.5. Cadena completa: reutilizar C3k2 y continuar con SPPF y C2PSA",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 260,
+    "number": "A.46",
+    "asset": "docs/assets/mla/yolo26/c70b895033ab79a78b5c3fa2.png",
+    "caption": "Figura 19.15 — Recorrido de las capas 0–10 del backbone de YOLO26n y sus formas a 640×640.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 272,
+    "number": "A.47",
+    "asset": "docs/assets/mla/yolo26/9b48a451cfa904c0c32cc6c6.png",
+    "caption": "19.8.1.1. Analogía: Red de Sensores",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 274,
+    "number": "A.48",
+    "asset": "docs/assets/mla/yolo26/114280bc4f6e45db8a035059.png",
+    "caption": "19.8.1.1. Analogía: Red de Sensores",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 289,
+    "number": "A.49",
+    "asset": "docs/assets/mla/yolo26/cbae9aa62fd811c79481b97d.png",
+    "caption": "19.8.2. Dos Recorridos y Cuatro Fusiones: El Grafo Real de Nano",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 316,
+    "number": "A.50",
+    "asset": "docs/assets/mla/yolo26/857e8612c34ee6eb72bb2e74.png",
+    "caption": "13. Arquitectura de las Fusiones y Recorridos",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 339,
+    "number": "A.51",
+    "asset": "docs/assets/mla/yolo26/output-339-0.html",
+    "caption": "5. Código Completo",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 343,
+    "number": "A.52",
+    "asset": "docs/assets/mla/yolo26/a1734e67075e08a45fe9bd9d.png",
+    "caption": "Analogía de una ciudad representada en planos con distinta escala y con márgenes.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 348,
+    "number": "A.53",
+    "asset": "docs/assets/mla/yolo26/09b56743b394bde543efb11a.png",
+    "caption": "Paso 1. Establecer el sistema de coordenadas de la imagen",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 352,
+    "number": "A.54",
+    "asset": "docs/assets/mla/yolo26/1af0c9f0c5b409f89b3fb267.png",
+    "caption": "Paso 2. Leer la caja en formato xyxy",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 355,
+    "number": "A.55",
+    "asset": "docs/assets/mla/yolo26/02df7a3645cfa16e0eb80e79.png",
+    "caption": "Paso 3. Obtener el ancho y el alto",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 358,
+    "number": "A.56",
+    "asset": "docs/assets/mla/yolo26/d97bbb592978140945211007.png",
+    "caption": "Paso 4. Calcular el centro de la caja",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 361,
+    "number": "A.57",
+    "asset": "docs/assets/mla/yolo26/2c3a13b5608c437036a76cd7.png",
+    "caption": "Paso 5. Representar la misma caja en formato cxcywh",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 364,
+    "number": "A.58",
+    "asset": "docs/assets/mla/yolo26/2f30e0b9ac42f8d7c0a67687.png",
+    "caption": "Paso 6. Entender qué significa usar coordenadas continuas",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 367,
+    "number": "A.59",
+    "asset": "docs/assets/mla/yolo26/5bc72af4b3438d7ba067bb60.png",
+    "caption": "Paso 7. Distinguir las características P3 de las coordenadas de una caja",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 371,
+    "number": "A.60",
+    "asset": "docs/assets/mla/yolo26/d8abb18db7a96d0e390fec38.png",
+    "caption": "Transformación exacta de una caja original al letterbox y a la rejilla de stride 8.",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 380,
+    "number": "A.61",
+    "asset": "docs/assets/mla/yolo26/794934adb9d9edbdfb51c6d6.png",
+    "caption": "20.2.2. Calcular IoU Sin Saltarse Ningún Paso",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 382,
+    "number": "A.62",
+    "asset": "docs/assets/mla/yolo26/d6b2b93a3f6df9120cbe0520.png",
+    "caption": "20.2.2.1. Calcular el área de cada caja",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 386,
+    "number": "A.63",
+    "asset": "docs/assets/mla/yolo26/2c854c3fb4ca842538b0c2a6.png",
+    "caption": "20.2.2.2. Encontrar la Intersección",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 388,
+    "number": "A.64",
+    "asset": "docs/assets/mla/yolo26/e8fb53cfe11fb504154997c7.png",
+    "caption": "20.2.2.2. Encontrar la Intersección",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 392,
+    "number": "A.65",
+    "asset": "docs/assets/mla/yolo26/859bc3578620568459062284.png",
+    "caption": "20.2.2.3. ¿Por qué la fórmula general incluye `max(0, diferencia)`?",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 395,
+    "number": "A.66",
+    "asset": "docs/assets/mla/yolo26/4ed22997490f294d01bb5736.png",
+    "caption": "20.2.2.4. Calcular la Unión",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 398,
+    "number": "A.67",
+    "asset": "docs/assets/mla/yolo26/0400aaaf49216cad6a7f66af.png",
+    "caption": "20.2.2.5. Dividir la Intersección por la Unión",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 401,
+    "number": "A.68",
+    "asset": "docs/assets/mla/yolo26/fb19b84fa0c18086c5bc8ae2.png",
+    "caption": "20.2.2.6. Interpretar Otros Pares del Ejemplo",
+    "original_bytes": true
+  },
+  {
+    "class": 19,
+    "source_cell": 404,
+    "number": "A.69",
+    "asset": "docs/assets/mla/yolo26/d82cb4dd2c7ec12fe42733f8.png",
+    "caption": "20.2.2.7. Conectar el Cálculo con la Decisión de NMS",
+    "original_bytes": true
+  }
+]

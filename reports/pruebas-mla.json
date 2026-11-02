@@ -1,0 +1,64 @@
+{
+  "environment": "CPU, dos hilos de PyTorch",
+  "versions": {
+    "torch": "2.15.0+cpu",
+    "numpy": "2.5.4",
+    "sklearn": "1.9.1",
+    "xgboost": "3.4.1",
+    "catboost": "1.2.10",
+    "matplotlib": "3.11.2",
+    "plotly": "7.1.0",
+    "shap": "0.54.1"
+  },
+  "classes": {
+    "2": {
+      "elapsed_seconds": 3.57,
+      "code_cells_executed": 6,
+      "test_rmse": 0.40625354647636414
+    },
+    "3": {
+      "elapsed_seconds": 4.64,
+      "code_cells_executed": 8,
+      "test_rmse": 1124.5479829726542
+    },
+    "4": {
+      "elapsed_seconds": 24.72,
+      "code_cells_executed": 6,
+      "kl_by_perplexity": {
+        "2": 0.9143380522727966,
+        "10": 0.9069058895111084,
+        "30": 0.7543038129806519,
+        "50": 0.6792171001434326,
+        "100": 0.5940497517585754
+      }
+    }
+  },
+  "checks": [
+    "Clase 2: tres particiones disjuntas",
+    "Clase 2: cobertura de todas las filas",
+    "Clase 2: RMSE finito de test",
+    "Pseudo-Huber: gradiente de autograd igual al analítico",
+    "Pseudo-Huber: Hessiano de autograd igual al analítico",
+    "Pseudo-Huber: curvatura positiva",
+    "XGBoost: predicción restringida a la mejor iteración",
+    "Clase 3: tres particiones disjuntas",
+    "Clase 3: cobertura de todas las filas",
+    "Clase 3: RMSE finito de test",
+    "Árbol simétrico: índices de hoja",
+    "Árbol simétrico: predicciones",
+    "CatBoost: aditividad de SHAP",
+    "CatBoost: configuración Ordered explícita",
+    "Digits: matriz y etiquetas alineadas",
+    "Digits: lote final de cinco muestras",
+    "t-SNE: cinco embeddings finitos",
+    "Ordered TS: traza numérica",
+    "Prior del ejemplo no es la media observada",
+    "Singleton suavizado no revela exactamente la etiqueta",
+    "Unión difusa 0.2 OR 0.8 = 0.84",
+    "Unión difusa con peso 1",
+    "Escala auto t-SNE para 1797 puntos",
+    "Métrica oblicua definida positiva"
+  ],
+  "all_checks_passed": true,
+  "yolo26_executed": false
+}

@@ -93,3 +93,10 @@ Comprobaciones: 17 recursos visuales; ninguna referencia local faltante ni leyen
 Se incorporan dos páginas a partir del notebook y el export de Notion proporcionados. El menú está agrupado estáticamente en NLP y ASR y PyTorch Intermedio en todas las páginas con navegación. Se añaden 23 diagramas específicos, un notebook ejecutado con imágenes integradas, el código C++ de inspección y entradas de búsqueda.
 
 Se corrigen compatibilidad de view/reshape, costo de vistas, direcciones virtuales, offsets en elementos/bytes, bytes lógicos frente a almacenamiento, squeeze y lotes unitarios, broadcasting y stride cero, alcance de matmul/bmm, alias y COW, propiedad de DataPtr, inline de metadatos y dependencia del ABI. Los ejemplos Python se ejecutaron con PyTorch 2.15.0+cpu: 20 comprobaciones de comportamiento. El C++ se compiló y ejecutó en Linux x86-64 con C++20. Los tamaños medidos se presentan como datos de esa compilación.
+
+
+## ML Avanzado y DL: clases 1–5 y anexo YOLO26
+
+Se añade una tercera materia al menú, portada y buscador. Se revisan las cinco primeras clases, con diagramas vectoriales, resultados regenerados y notebooks descargables. La revisión incluye composición afín, margen suave y kernels; índices y alcance del gradient boosting; pseudo-Huber para derivadas de segundo orden; particiones train/validation/test; estadísticas ordenadas y prior de CatBoost; costo O(d) de árboles simétricos; reproducibilidad y autograd; dimensiones y API actual de t-SNE; repulsión, perplejidad y comparación de KL; pesos difusos, conectividad local y límites de la interpretación de UMAP.
+
+Las prácticas se ejecutan en CPU con versiones y comprobaciones registradas en pruebas-mla.json. Los resultados de estas ejecuciones no se presentan como garantías de rendimiento. No se ejecuta ni se corrige YOLO26: se convierten sus 410 celdas para presentación y se conservan hashes de fuentes, salidas e imágenes en integridad-yolo26.json. Los bytes de las imágenes originales se conservan.

@@ -1,0 +1,776 @@
+<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="description" content="Machine Learning Avanzado y Aprendizaje Profundo: clases, teoría, código y diagramas."><title>ML03 · CatBoost y modelos híbridos · Jacobo León Juárez</title><link rel="stylesheet" href="../assets/site.css?v=ffcf357abe62"><link rel="icon" type="image/svg+xml" href="../assets/favicon.svg"></head><body><a class="skip" href="#contenido">Saltar al contenido</a><div class="progress"></div><button id="menu" aria-expanded="false" aria-controls="library-nav">☰ Índice</button><aside id="library-nav"><a class="brand" href="../index.html">PORTAFOLIO DOCENTE</a><h2>Inteligencia artificial<br/><span>Teoría, código<br/>y práctica</span></h2><p class="note">Jacobo León Juárez · 2026</p><a class="search-link" href="../index.html#buscar">⌕ Buscar en el libro</a><nav aria-label="Clases"><details class="subject-group" data-subject="nlp"><summary>NLP y ASR</summary><details class="chapter"><summary>02 · Word2Vec</summary><a class="" href="../nlp/clase-02-1-introduccion-al-nlp-parte-1-word2vec.html">02 · Introducción al NLP  - Parte 1 - Word2Vec</a></details><details class="chapter"><summary>03 · GloVe</summary><a class="" href="../nlp/clase-03-1-introduccion-al-nlp-parte-2-glove.html">03 · Introducción al NLP  - Parte 2 - GloVe</a></details><details class="chapter"><summary>04 · fastText</summary><a class="" href="../nlp/clase-04-1-introduccion-al-nlp-parte-3-fasttext.html">04 · Introducción al NLP  - Parte 3 - FastText</a></details><details class="chapter"><summary>05 · Redes convolucionales</summary><a class="" href="../nlp/clase-05-1-2-redes-convolucionales-v2.html">05 · Redes Convolucionales - V2</a><a class="" href="../nlp/clase-05-1-cnn-teoria-completa.html">05 · CNN - Teoría Completa <small>Complemento</small></a><a class="" href="../nlp/clase-05-1-1-redes-convolucionales-teoria-simplificada.html">05 · Redes Convolucionales Teoría Simplificada <small>Complemento</small></a><a class="" href="../nlp/clase-05-1-2-redes-convolucionales-v2-recurso-2.html">05 · Redes Convolucionales - V2 <small>Complemento</small></a><a class="" href="../nlp/clase-05-2-mecanismos-de-atencion.html">05 · Mecanismos de Atención <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-vision-por-computadora-cnns.html">05 · Visión Por Computadora - CNNs <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-1-vision-por-computadora-introduccion.html">05 · Visión Por Computadora - Introducción <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-2-vision-por-computadora-r-cnns.html">05 · Visión Por Computadora - R-CNNs <small>Complemento</small></a><a class="" href="../nlp/clase-05-3-3-vision-por-computadora-yolov3.html">05 · Visión por Computadora - YOLOv3 <small>Complemento</small></a><a class="" href="../nlp/clase-05-4-transformers-y-mecanismos-de-atencion.html">05 · Transformers y Mecanismos de Atención <small>Complemento</small></a><a class="" href="../nlp/clase-05-4-1-transformers-teoria-simplificada.html">05 · Transformers - Teoría Simplificada <small>Complemento</small></a></details><details class="chapter"><summary>06 · Mecanismos de atención · Parte 1</summary><a class="" href="../nlp/clase-06-6-mecanismos-de-atencion-parte-1-v2.html">06 · Mecanismos de Atención - Parte 1 (v2)</a><a class="" href="../nlp/clase-06-6-mecanismos-de-atencion-parte-2-v2.html">06 · Mecanismos de Atención - Parte 2 (v2)</a></details><details class="chapter"><summary>07 · Mecanismos de atención · Parte 2</summary><a class="" href="../nlp/clase-07-6-mecanismos-de-atencion-parte-2-v2.html">07 · Mecanismos de Atención - Parte 2 (v2)</a></details><details class="chapter"><summary>08 · Mecanismos de atención · Parte 3</summary><a class="" href="../nlp/clase-08-6-mecanismos-de-atencion-parte-3-v2.html">08 · Mecanismos de Atención - Parte 3 (v2)</a></details><details class="chapter"><summary>09 · Mecanismos de atención · Parte 4</summary><a class="" href="../nlp/clase-09-6-mecanismos-de-atencion-parte-4-v2.html">09 · Mecanismos de Atención - Parte 4 (v2)</a><a class="" href="../nlp/clase-09-6-1-transformers-teoria-simplificada.html">09 · Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>10 · Introducción a Transformers · Parte 1</summary><a class="" href="../nlp/clase-10-10-transformers-teoria-simplificada.html">10 · Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>11 · Introducción a Transformers · Parte 2</summary><a class="" href="../nlp/clase-11-clase-12-transformers-teoria-simplificada.html">11 · Transformers - Teoría Simplificada</a></details><details class="chapter"><summary>12 · GPT y codificación posicional · Parte 1</summary><a class="" href="../nlp/clase-12-11-positional-encoding-pe-y-gpt-parte-1.html">12 · Positional Encoding (PE) y GPT - Parte 1</a></details><details class="chapter"><summary>13 · GPT y RoPE · Parte 2</summary><a class="" href="../nlp/clase-13-13-introduccion-a-gpt-rope-parte-2.html">13 · Introducción a GPT - RoPE - Parte 2</a></details><details class="chapter"><summary>14 · Introducción a ASR · Parte 1</summary><a class="" href="../nlp/clase-14-14-inotroduccion-a-asr-parte-1.html">14 · Introducción a ASR - Parte 1</a><a class="" href="../nlp/clase-14-attentioncnn-ser-01.html">14 · Reconocimiento de emociones · AttentionCNN <small>Complemento</small></a><a class="" href="../nlp/clase-14-1-2-speaker-diarization-test.html">14 · Diarización de hablantes · Prueba <small>Complemento</small></a></details><details class="chapter"><summary>15 · Introducción a ASR · Parte 2</summary><a class="" href="../nlp/clase-15-15-introduccion-a-asr-parte-2.html">15 · Introducción a ASR - Parte 2</a></details><details class="chapter"><summary>16 · FFT Radix-2</summary><a class="" href="../nlp/clase-16-16-radix-2.html">16 · Radix-2</a></details><details class="chapter" data-whisper=""><summary>17 · Whisper</summary><a class="" href="../nlp/clase-17-whisper-datasets-entrenamiento-inferencia.html">17 · Whisper: datasets, entrenamiento e inferencia</a></details></details><details class="subject-group" data-subject="pytorch"><summary>PyTorch Intermedio</summary><details class="chapter"><summary>PT01 · Tensores y operaciones</summary><a class="" href="../pytorch/clase-01-tensores-y-operaciones.html">PT01 · PyTorch: tensores y operaciones</a></details><details class="chapter"><summary>PT02 · Arquitectura c10/ATen</summary><a class="" href="../pytorch/clase-02-arquitectura-c10-aten.html">PT02 · Arquitectura de tensores en C++: c10/ATen</a></details></details><details class="subject-group" data-subject="mla" open=""><summary>ML Avanzado y DL</summary><details class="chapter"><summary>ML01 · Repaso de Machine Learning</summary><a href="../mla/clase-01-repaso-machine-learning.html">ML01 · Repaso de Machine Learning</a></details><details class="chapter"><summary>ML02 · Gradient Boosting y XGBoost</summary><a href="../mla/clase-02-gradient-boosting.html">ML02 · Gradient Boosting y XGBoost</a></details><details class="chapter" open=""><summary>ML03 · CatBoost y modelos híbridos</summary><a aria-current="page" class="active" href="../mla/clase-03-catboost.html">ML03 · CatBoost y modelos híbridos</a></details><details class="chapter"><summary>ML04 · Feature Engineering y t-SNE</summary><a href="../mla/clase-04-feature-engineering-tsne.html">ML04 · Feature Engineering y t-SNE</a></details><details class="chapter"><summary>ML05 · UMAP</summary><a href="../mla/clase-05-umap.html">ML05 · UMAP</a></details><details class="chapter"><summary>ML19 · Anexo YOLO26</summary><a href="../mla/clase-19-anexo-yolo26.html">ML19 · Anexo YOLO26</a></details></details></nav><div class="aside-links"><a class="" href="https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026">GitHub ↗</a><a class="" href="https://www.linkedin.com/in/lic-jacobo-leon-juarez/">LinkedIn ↗</a><a class="" href="https://app.notion.com/p/leon-ctf/Portafolio-4034120b17c880048026ec0abf21f685">Notion ↗</a></div></aside><main id="contenido" class="mla-page"><header class="hero"><div class="eyebrow">Machine Learning Avanzado y Aprendizaje Profundo · ML03</div><h1>ML03 · CatBoost y modelos híbridos</h1><p class="note">Teoría revisada · Diagramas ampliables · Práctica ejecutada en CPU</p><div class="toolbar"><button id="expand">Mostrar código</button><button id="collapse">Plegar código</button><button id="print">Imprimir / PDF</button><a download href="clase-03-catboost.html">Descargar HTML</a><a download href="clase-03-revisada.ipynb">Descargar notebook revisado</a></div><details class="page-toc"><summary>En esta página</summary><a href="#toc-mla-0">3. Decodificando CatBoost y el Ecosistema Híbrido</a><a href="#toc-mla-1">3.1. Target encoding y fuga de información</a><a href="#toc-mla-2">3.2. Prediction shift</a><a href="#toc-mla-3">3.2.1. Dependencia del objetivo propio</a><a href="#toc-mla-4">3.3. Las Soluciones Matemáticas de CatBoost</a><a href="#toc-mla-5">3.3.1 Ordered Target Statistics (Estadísticas de Objetivo Ordenadas)</a><a href="#toc-mla-12">3.3.2. Ordered boosting</a><a href="#toc-mla-13">3.3.3. Árboles simétricos</a><a href="#toc-mla-24">3.4. Estructura y hardware</a><a href="#toc-mla-25">3.5. Comparación de bibliotecas</a><a href="#toc-mla-26">3.6. Implementación híbrida</a><a href="#toc-mla-27">3.6.1. CELDA 1: Configuración del Entorno, Dependencias y Semillas</a><a href="#toc-mla-28">3.6.2. Datos heterogéneos: Dataset y DataLoader</a><a href="#toc-mla-32">3.6.3. CELDA 3: Extractor de Características Latentes ( Bottleneck Architecture )</a><a href="#toc-mla-35">3.6.4. CELDA 4: Ciclo de Optimización, Grafo Autograd y Learning Rate Scheduling</a><a href="#toc-mla-40">3.6.5. CELDA 5: Inferencia Desacoplada, Conversión de Memoria y Fusión en CatBoost Pool</a><a href="#toc-mla-44">3.6.6. CELDA 6: Diagnóstico de Alta Dimensión, Explicabilidad con SHAP y Validación de Residuos</a><a href="#toc-mla-51">Referencias y lecturas</a></details></header><section class="cell" data-cell="6"><h2 id="toc-mla-0"><strong>3. Decodificando CatBoost y el Ecosistema Híbrido</strong></h2>
+</section><section class="cell" data-cell="7"><figure id="fig-3-1"><a aria-label="Ampliar: El tipo de boosting y la política de crecimiento son configurables." href="../assets/mla/diagramas/ml03-celda-007.svg" rel="noopener" target="_blank"><img alt="El tipo de boosting y la política de crecimiento son configurables." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-007.svg" width="1200"/></a><figcaption>Fig. 3.1. El tipo de boosting y la política de crecimiento son configurables.</figcaption></figure></section><section class="cell" data-cell="8"><p>Gradient boosting con árboles es un método supervisado y aditivo. CatBoost, publicado por Yandex en 2017 y descrito en NeurIPS 2018, introduce estadísticas ordenadas para categorías y un esquema de boosting ordenado que reduce una fuente concreta de <em>prediction shift</em>. Son mecanismos distintos y configurables; no eliminan todas las formas de fuga de información ni todo sobreajuste.</p>
+</section><section class="cell" data-cell="9"><figure id="fig-3-2"><a aria-label="Ampliar: El artículo de CatBoost analiza mecanismos concretos de prediction shift." href="../assets/mla/diagramas/ml03-celda-009.svg" rel="noopener" target="_blank"><img alt="El artículo de CatBoost analiza mecanismos concretos de prediction shift." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-009.svg" width="1200"/></a><figcaption>Fig. 3.2. El artículo de CatBoost analiza mecanismos concretos de prediction shift.</figcaption></figure></section><section class="cell" data-cell="10"><h2 id="toc-mla-1">3.1. Target encoding y fuga de información</h2>
+<p>Una categoría puede codificarse con una media suavizada del objetivo:</p>
+<p><math aria-label="\hat x_i=\frac{\sum_j\mathbb{I}[x_j=x_i]y_j+s p}{\sum_j\mathbb{I}[x_j=x_i]+s},\qquad s&gt;0." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover accent="true"><mi>x</mi><mo>^</mo></mover><mi>i</mi></msub><mo>=</mo><mfrac><mrow><msub><mo>∑</mo><mi>j</mi></msub><mi>𝕀</mi><mo stretchy="false">[</mo><msub><mi>x</mi><mi>j</mi></msub><mo>=</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">]</mo><msub><mi>y</mi><mi>j</mi></msub><mo>+</mo><mi>s</mi><mi>p</mi></mrow><mrow><msub><mo>∑</mo><mi>j</mi></msub><mi>𝕀</mi><mo stretchy="false">[</mo><msub><mi>x</mi><mi>j</mi></msub><mo>=</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">]</mo><mo>+</mo><mi>s</mi></mrow></mfrac><mo>,</mo><mspace width="2em"></mspace><mi>s</mi><mo>&gt;</mo><mn>0</mn><mo>.</mo></mrow></math></p>
+<p><math aria-label="p" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi></mrow></math> es un prior y <math aria-label="s" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>s</mi></mrow></math> su peso. Si la categoría aparece una sola vez, el resultado es <math aria-label="(y_i+s p)/(1+s)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>+</mo><mi>s</mi><mi>p</mi><mo stretchy="false">)</mo><mo>/</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><mi>s</mi><mo stretchy="false">)</mo></mrow></math>; <strong>solo sin suavizado</strong> se obtiene exactamente <math aria-label="y_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>y</mi><mi>i</mi></msub></mrow></math>. Incluir el propio objetivo en el atributo introduce fuga aunque haya suavizado. Para evaluación honesta se usan estadísticas fuera de pliegue o un procedimiento ordenado y priors que no consulten las etiquetas de validación o test.</p>
+</section><section class="cell" data-cell="11"><h2 id="toc-mla-2">3.2. Prediction shift</h2>
+<p>El gradiente de una etapa es</p>
+<p><math aria-label="g_i^{(t)}=\left.\frac{\partial L(y_i,s)}{\partial s}\right|_{s=F_{t-1}(x_i)}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msubsup><mi>g</mi><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>=</mo><msub><mrow><mo fence="true" form="prefix" stretchy="true"></mo><mfrac><mrow><mo>∂</mo><mi>L</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>,</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><mrow><mo>∂</mo><mi>s</mi></mrow></mfrac><mo fence="true" form="postfix" stretchy="true">|</mo></mrow><mrow><mi>s</mi><mo>=</mo><msub><mi>F</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></msub><mo>.</mo></mrow></math></p>
+<p>El nuevo aprendiz aproxima su <strong>negativo</strong>. El signo de esta definición es importante: <math aria-label="g" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>g</mi></mrow></math> y el pseudo-residuo <math aria-label="-g" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo>−</mo><mi>g</mi></mrow></math> no son lo mismo.</p>
+</section><section class="cell" data-cell="12"><h3 id="toc-mla-3">3.2.1. Dependencia del objetivo propio</h3>
+<p>Si <math aria-label="F_{t-1}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>F</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub></mrow></math> se entrenó con la observación <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math>, su predicción en <math aria-label="x_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>x</mi><mi>i</mi></msub></mrow></math> depende del propio <math aria-label="y_i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>y</mi><mi>i</mi></msub></mrow></math>. Por eso los gradientes calculados sobre entrenamiento pueden tener una distribución distinta de los obtenidos para una observación nueva, incluso condicionando por sus atributos. El artículo de CatBoost estudia esta fuente de desplazamiento. No debe confundirse con un cambio temporal de la distribución de datos ni afirmarse que invalida cualquier boosting convencional.</p>
+</section><section class="cell" data-cell="13"><h2 id="toc-mla-4"><strong>3.3. Las Soluciones Matemáticas de CatBoost</strong></h2>
+</section><section class="cell" data-cell="14"><figure id="fig-3-3"><a aria-label="Ampliar: Son componentes diferentes; no equivalen a ausencia total de sobreajuste." href="../assets/mla/diagramas/ml03-celda-014.svg" rel="noopener" target="_blank"><img alt="Son componentes diferentes; no equivalen a ausencia total de sobreajuste." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-014.svg" width="1200"/></a><figcaption>Fig. 3.3. Son componentes diferentes; no equivalen a ausencia total de sobreajuste.</figcaption></figure></section><section class="cell" data-cell="15"><h3 id="toc-mla-5"><strong>3.3.1 Ordered Target Statistics (Estadísticas de Objetivo Ordenadas)</strong></h3>
+</section><section class="cell" data-cell="16"><figure id="fig-3-4"><a aria-label="Ampliar: El orden artificial no debe confundirse con tiempo físico." href="../assets/mla/diagramas/ml03-celda-016.svg" rel="noopener" target="_blank"><img alt="El orden artificial no debe confundirse con tiempo físico." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-016.svg" width="1200"/></a><figcaption>Fig. 3.4. El orden artificial no debe confundirse con tiempo físico.</figcaption></figure></section><section class="cell" data-cell="17"><p>CatBoost construye estadísticas usando una permutación <math aria-label="\sigma" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>σ</mi></mrow></math>. Para una muestra en la posición <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math>, una versión simplificada es</p>
+<p><math aria-label="S_{\sigma(i)}=\frac{\sum_{j&lt;i}\mathbb{I}[x_{\sigma(j)}=x_{\sigma(i)}]y_{\sigma(j)}+a p}{\sum_{j&lt;i}\mathbb{I}[x_{\sigma(j)}=x_{\sigma(i)}]+a},\qquad a&gt;0." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>S</mi><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msub><mo>=</mo><mfrac><mrow><msub><mo>∑</mo><mrow><mi>j</mi><mo>&lt;</mo><mi>i</mi></mrow></msub><mi>𝕀</mi><mo stretchy="false">[</mo><msub><mi>x</mi><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msub><mo>=</mo><msub><mi>x</mi><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">]</mo><msub><mi>y</mi><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msub><mo>+</mo><mi>a</mi><mi>p</mi></mrow><mrow><msub><mo>∑</mo><mrow><mi>j</mi><mo>&lt;</mo><mi>i</mi></mrow></msub><mi>𝕀</mi><mo stretchy="false">[</mo><msub><mi>x</mi><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>j</mi><mo stretchy="false">)</mo></mrow></msub><mo>=</mo><msub><mi>x</mi><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msub><mo stretchy="false">]</mo><mo>+</mo><mi>a</mi></mrow></mfrac><mo>,</mo><mspace width="2em"></mspace><mi>a</mi><mo>&gt;</mo><mn>0</mn><mo>.</mo></mrow></math></p>
+<p>El objetivo propio no entra en las sumas. Con un prior fijado independientemente de ese objetivo, se evita esa dependencia directa. Calcular el prior con todos los objetivos, incluido el propio, reintroduciría una dependencia indirecta. En datos temporales o agrupados también hay que respetar la partición y el orden pertinentes.</p>
+</section><section class="cell" data-cell="18"><figure id="fig-3-5"><a aria-label="Ampliar: El prior del ejemplo se fija independientemente del objetivo propio." href="../assets/mla/diagramas/ml03-celda-018.svg" rel="noopener" target="_blank"><img alt="El prior del ejemplo se fija independientemente del objetivo propio." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-018.svg" width="1200"/></a><figcaption>Fig. 3.5. El prior del ejemplo se fija independientemente del objetivo propio.</figcaption></figure></section><section class="cell" data-cell="19"><table>
+<thead>
+<tr>
+<th>Símbolo</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><math aria-label="\sigma(i)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></math></td>
+<td>Muestra en la posición <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> de una permutación; no es tiempo físico.</td>
+</tr>
+<tr>
+<td><math aria-label="j&lt;i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>j</mi><mo>&lt;</mo><mi>i</mi></mrow></math></td>
+<td>Solo observaciones anteriores en ese orden.</td>
+</tr>
+<tr>
+<td><math aria-label="N_{c,&lt;i}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>N</mi><mrow><mi>c</mi><mo>,</mo><mo>&lt;</mo><mi>i</mi></mrow></msub></mrow></math></td>
+<td>Número de observaciones previas de la categoría <math aria-label="c" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>c</mi></mrow></math>.</td>
+</tr>
+<tr>
+<td><math aria-label="p" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi></mrow></math></td>
+<td>Prior fijado sin consultar la etiqueta propia ni etiquetas retenidas para evaluación.</td>
+</tr>
+<tr>
+<td><math aria-label="a&gt;0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>&gt;</mo><mn>0</mn></mrow></math></td>
+<td>Peso del prior; no se exige en general que sea mayor o igual que 1.</td>
+</tr>
+</tbody>
+</table>
+</section><section class="cell" data-cell="20"><h4 id="toc-mla-6">3.3.1.1. Interpretación de la codificación</h4>
+</section><section class="cell" data-cell="21"><h5 id="toc-mla-7">1. Una categoría, distintas historias disponibles</h5>
+<p>La media por categoría asigna un mismo valor a todas sus observaciones de entrenamiento. En la codificación ordenada, cada observación tiene un historial distinto y puede recibir otro valor. Esta secuencia es una herramienta estadística: no constituye una trayectoria causal ni una prueba de una variedad topológica.</p>
+</section><section class="cell" data-cell="22"><h5 id="toc-mla-8">2. Suavizado hacia el prior</h5>
+<p>Con <math aria-label="N=N_{c,&lt;i}&gt;0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi><mo>=</mo><msub><mi>N</mi><mrow><mi>c</mi><mo>,</mo><mo>&lt;</mo><mi>i</mi></mrow></msub><mo>&gt;</mo><mn>0</mn></mrow></math>,</p>
+<p><math aria-label="S_{\sigma(i)}=(1-\lambda_i)p+\lambda_i\bar y_{c,&lt;i},\qquad\lambda_i=\frac{N}{N+a}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>S</mi><mrow><mi>σ</mi><mo stretchy="false">(</mo><mi>i</mi><mo stretchy="false">)</mo></mrow></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>λ</mi><mi>i</mi></msub><mo stretchy="false">)</mo><mi>p</mi><mo>+</mo><msub><mi>λ</mi><mi>i</mi></msub><msub><mover><mi>y</mi><mo stretchy="true">¯</mo></mover><mrow><mi>c</mi><mo>,</mo><mo>&lt;</mo><mi>i</mi></mrow></msub><mo>,</mo><mspace width="2em"></mspace><msub><mi>λ</mi><mi>i</mi></msub><mo>=</mo><mfrac><mrow><mi>N</mi></mrow><mrow><mi>N</mi><mo>+</mo><mi>a</mi></mrow></mfrac><mo>.</mo></mrow></math></p>
+<p>Si <math aria-label="N=0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi><mo>=</mo><mn>0</mn></mrow></math>, se utiliza <math aria-label="p" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi></mrow></math> y no se calcula una media vacía. Al crecer <math aria-label="N" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>N</mi></mrow></math>, disminuye el peso relativo del prior. La convergencia a una esperanza condicional requiere supuestos de muestreo y estabilidad de la distribución; no es una garantía para cualquier dataset.</p>
+</section><section class="cell" data-cell="23"><h4 id="toc-mla-9">3.3.1.2. Traza numérica</h4>
+<p>Usamos cinco observaciones, un prior <strong>fijo</strong> <math aria-label="p=0.40" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mo>=</mo><mn>0.40</mn></mrow></math> y <math aria-label="a=1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>=</mo><mn>1</mn></mrow></math>. El 0.40 es un valor elegido para el ejemplo, no la media de sus cinco objetivos, que es 0.60.</p>
+</section><section class="cell" data-cell="24"><figure id="fig-3-6"><a aria-label="Ampliar: La media de los cinco objetivos es 0,60; no es el prior elegido." href="../assets/mla/diagramas/ml03-celda-024.svg" rel="noopener" target="_blank"><img alt="La media de los cinco objetivos es 0,60; no es el prior elegido." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-024.svg" width="1200"/></a><figcaption>Fig. 3.6. La media de los cinco objetivos es 0,60; no es el prior elegido.</figcaption></figure></section><section class="cell" data-cell="25"><h5 id="toc-mla-10"><strong>1. Paso a Paso del Cálculo Causal</strong></h5>
+<ul>
+<li>
+<p><strong>Paso 1 (<math aria-label="p=1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mo>=</mo><mn>1</mn></mrow></math>, Muestra <math aria-label="\sigma_1 =" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>σ</mi><mn>1</mn></msub><mo>=</mo></mrow></math> ID 1, <code>"Salta"</code>):</strong></p>
+<ul>
+<li>Historial previo de <code>"Salta"</code>: <math aria-label="\text{Conteo } N = 0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Conteo </mtext><mi>N</mi><mo>=</mo><mn>0</mn></mrow></math>, <math aria-label="\text{Suma Targets } S = 0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Suma Targets </mtext><mi>S</mi><mo>=</mo><mn>0</mn></mrow></math>.</li>
+</ul>
+</li>
+</ul>
+<p><math aria-label="\hat{x}_{\sigma_1} = \frac{0 + 1.0 \cdot 0.40}{0 + 1.0} = \mathbf{0.400}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover accent="true"><mrow><mi>x</mi></mrow><mo>^</mo></mover><mrow><msub><mi>σ</mi><mn>1</mn></msub></mrow></msub><mo>=</mo><mfrac><mrow><mn>0</mn><mo>+</mo><mn>1.0</mn><mo>·</mo><mn>0.40</mn></mrow><mrow><mn>0</mn><mo>+</mo><mn>1.0</mn></mrow></mfrac><mo>=</mo><mrow><mn mathvariant="bold">0.400</mn></mrow></mrow></math></p>
+<hr/>
+<ul>
+<li>
+<p><strong>Paso 2 (<math aria-label="p=2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mo>=</mo><mn>2</mn></mrow></math>, Muestra <math aria-label="\sigma_2 =" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>σ</mi><mn>2</mn></msub><mo>=</mo></mrow></math> ID 2, <code>"Jujuy"</code>):</strong></p>
+<ul>
+<li>Historial previo de <code>"Jujuy"</code>: <math aria-label="\text{Conteo } N = 0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Conteo </mtext><mi>N</mi><mo>=</mo><mn>0</mn></mrow></math>, <math aria-label="\text{Suma Targets } S = 0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Suma Targets </mtext><mi>S</mi><mo>=</mo><mn>0</mn></mrow></math>.</li>
+</ul>
+</li>
+</ul>
+<p><math aria-label="\hat{x}_{\sigma_2} = \frac{0 + 1.0 \cdot 0.40}{0 + 1.0} = \mathbf{0.400}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover accent="true"><mrow><mi>x</mi></mrow><mo>^</mo></mover><mrow><msub><mi>σ</mi><mn>2</mn></msub></mrow></msub><mo>=</mo><mfrac><mrow><mn>0</mn><mo>+</mo><mn>1.0</mn><mo>·</mo><mn>0.40</mn></mrow><mrow><mn>0</mn><mo>+</mo><mn>1.0</mn></mrow></mfrac><mo>=</mo><mrow><mn mathvariant="bold">0.400</mn></mrow></mrow></math></p>
+<hr/>
+<ul>
+<li>
+<p><strong>Paso 3 (<math aria-label="p=3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mo>=</mo><mn>3</mn></mrow></math>, Muestra <math aria-label="\sigma_3 =" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>σ</mi><mn>3</mn></msub><mo>=</mo></mrow></math> ID 3, <code>"Salta"</code>):</strong></p>
+<ul>
+<li>Historial previo de <code>"Salta"</code>: Apareció en <math aria-label="\sigma_1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>σ</mi><mn>1</mn></msub></mrow></math> con <math aria-label="y=1 \implies N=1, S=1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mn>1</mn><mi>⟹</mi><mi>N</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>S</mi><mo>=</mo><mn>1</mn></mrow></math>.</li>
+</ul>
+</li>
+</ul>
+<p><math aria-label="\hat{x}_{\sigma_3} = \frac{1 + 1.0 \cdot 0.40}{1 + 1.0} = \frac{1.40}{2} = \mathbf{0.700}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover accent="true"><mrow><mi>x</mi></mrow><mo>^</mo></mover><mrow><msub><mi>σ</mi><mn>3</mn></msub></mrow></msub><mo>=</mo><mfrac><mrow><mn>1</mn><mo>+</mo><mn>1.0</mn><mo>·</mo><mn>0.40</mn></mrow><mrow><mn>1</mn><mo>+</mo><mn>1.0</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1.40</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>=</mo><mrow><mn mathvariant="bold">0.700</mn></mrow></mrow></math></p>
+<hr/>
+<ul>
+<li>
+<p><strong>Paso 4 (<math aria-label="p=4" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mo>=</mo><mn>4</mn></mrow></math>, Muestra <math aria-label="\sigma_4 =" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>σ</mi><mn>4</mn></msub><mo>=</mo></mrow></math> ID 4, <code>"Salta"</code>):</strong></p>
+<ul>
+<li>Historial previo de <code>"Salta"</code>: Apareció en <math aria-label="\sigma_1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>σ</mi><mn>1</mn></msub></mrow></math> (<math aria-label="y=1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mn>1</mn></mrow></math>) y en <math aria-label="\sigma_3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>σ</mi><mn>3</mn></msub></mrow></math> (<math aria-label="y=0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mn>0</mn></mrow></math>) <math aria-label="\implies N=2, S=1+0=1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>⟹</mi><mi>N</mi><mo>=</mo><mn>2</mn><mo>,</mo><mi>S</mi><mo>=</mo><mn>1</mn><mo>+</mo><mn>0</mn><mo>=</mo><mn>1</mn></mrow></math>.</li>
+</ul>
+</li>
+</ul>
+<p><math aria-label="\hat{x}_{\sigma_4} = \frac{1 + 1.0 \cdot 0.40}{2 + 1.0} = \frac{1.40}{3} = \mathbf{0.467}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover accent="true"><mrow><mi>x</mi></mrow><mo>^</mo></mover><mrow><msub><mi>σ</mi><mn>4</mn></msub></mrow></msub><mo>=</mo><mfrac><mrow><mn>1</mn><mo>+</mo><mn>1.0</mn><mo>·</mo><mn>0.40</mn></mrow><mrow><mn>2</mn><mo>+</mo><mn>1.0</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>1.40</mn></mrow><mrow><mn>3</mn></mrow></mfrac><mo>=</mo><mrow><mn mathvariant="bold">0.467</mn></mrow></mrow></math></p>
+<hr/>
+<ul>
+<li>
+<p><strong>Paso 5 (<math aria-label="p=5" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>p</mi><mo>=</mo><mn>5</mn></mrow></math>, Muestra <math aria-label="\sigma_5 =" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>σ</mi><mn>5</mn></msub><mo>=</mo></mrow></math> ID 5, <code>"Jujuy"</code>):</strong></p>
+<ul>
+<li>Historial previo de <code>"Jujuy"</code>: Apareció en <math aria-label="\sigma_2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>σ</mi><mn>2</mn></msub></mrow></math> con <math aria-label="y=0 \implies N=1, S=0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>=</mo><mn>0</mn><mi>⟹</mi><mi>N</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>S</mi><mo>=</mo><mn>0</mn></mrow></math>.</li>
+</ul>
+</li>
+</ul>
+<p><math aria-label="\hat{x}_{\sigma_5} = \frac{0 + 1.0 \cdot 0.40}{1 + 1.0} = \frac{0.40}{2} = \mathbf{0.200}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mover accent="true"><mrow><mi>x</mi></mrow><mo>^</mo></mover><mrow><msub><mi>σ</mi><mn>5</mn></msub></mrow></msub><mo>=</mo><mfrac><mrow><mn>0</mn><mo>+</mo><mn>1.0</mn><mo>·</mo><mn>0.40</mn></mrow><mrow><mn>1</mn><mo>+</mo><mn>1.0</mn></mrow></mfrac><mo>=</mo><mfrac><mrow><mn>0.40</mn></mrow><mrow><mn>2</mn></mrow></mfrac><mo>=</mo><mrow><mn mathvariant="bold">0.200</mn></mrow></mrow></math></p>
+<hr/>
+</section><section class="cell" data-cell="26"><h5 id="toc-mla-11">2. Comparar las codificaciones</h5>
+<table>
+<thead>
+<tr>
+<th>Muestra de Salta</th>
+<th>Objetivo</th>
+<th>Media sin suavizar de toda la categoría</th>
+<th>Estadística ordenada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>ID 1</td>
+<td>1</td>
+<td><math aria-label="2/3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mo>/</mo><mn>3</mn></mrow></math></td>
+<td><math aria-label="0.400" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.400</mn></mrow></math></td>
+</tr>
+<tr>
+<td>ID 3</td>
+<td>0</td>
+<td><math aria-label="2/3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mo>/</mo><mn>3</mn></mrow></math></td>
+<td><math aria-label="0.700" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.700</mn></mrow></math></td>
+</tr>
+<tr>
+<td>ID 4</td>
+<td>1</td>
+<td><math aria-label="2/3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2</mn><mo>/</mo><mn>3</mn></mrow></math></td>
+<td><math aria-label="0.467" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>0.467</mn></mrow></math></td>
+</tr>
+</tbody>
+</table>
+<p>La columna ordenada excluye el objetivo de la fila que se codifica. Esa es la protección estadística relevante; generar distintos valores no demuestra por sí solo ausencia de sobreajuste. Con suavizado <math aria-label="a=1,p=0.4" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>a</mi><mo>=</mo><mn>1</mn><mo>,</mo><mi>p</mi><mo>=</mo><mn>0.4</mn></mrow></math>, la media global de Salta sería <math aria-label="2.4/4=0.6" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>2.4</mn><mo>/</mo><mn>4</mn><mo>=</mo><mn>0.6</mn></mrow></math>, distinta de la media sin suavizar de la tabla.</p>
+</section><section class="cell" data-cell="27"><figure id="fig-3-7"><a aria-label="Ampliar: Excluir el objetivo propio es la protección relevante frente a esa fuga." href="../assets/mla/diagramas/ml03-celda-027.svg" rel="noopener" target="_blank"><img alt="Excluir el objetivo propio es la protección relevante frente a esa fuga." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-027.svg" width="1200"/></a><figcaption>Fig. 3.7. Excluir el objetivo propio es la protección relevante frente a esa fuga.</figcaption></figure></section><section class="cell" data-cell="28"><h3 id="toc-mla-12">3.3.2. Ordered boosting</h3>
+<p>Conceptualmente, para una muestra en la posición <math aria-label="i" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>i</mi></mrow></math> se calcula el gradiente con un modelo entrenado solo sobre el prefijo anterior de la permutación. Ese modelo no ha usado el objetivo propio:</p>
+<p><math aria-label="r_i^{(t)}=-\left.\frac{\partial L(y_i,s)}{\partial s}\right|_{s=M_{&lt;i}(x_i)}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msubsup><mi>r</mi><mi>i</mi><mrow><mo stretchy="false">(</mo><mi>t</mi><mo stretchy="false">)</mo></mrow></msubsup><mo>=</mo><mo>−</mo><msub><mrow><mo fence="true" form="prefix" stretchy="true"></mo><mfrac><mrow><mo>∂</mo><mi>L</mi><mo stretchy="false">(</mo><msub><mi>y</mi><mi>i</mi></msub><mo>,</mo><mi>s</mi><mo stretchy="false">)</mo></mrow><mrow><mo>∂</mo><mi>s</mi></mrow></mfrac><mo fence="true" form="postfix" stretchy="true">|</mo></mrow><mrow><mi>s</mi><mo>=</mo><msub><mi>M</mi><mrow><mo>&lt;</mo><mi>i</mi></mrow></msub><mo stretchy="false">(</mo><msub><mi>x</mi><mi>i</mi></msub><mo stretchy="false">)</mo></mrow></msub><mo>.</mo></mrow></math></p>
+<p>La implementación comparte estructuras y emplea varias permutaciones para evitar entrenar ingenuamente <math aria-label="n" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>n</mi></mrow></math> modelos independientes. El mecanismo combate el sesgo analizado en el artículo; no garantiza gradientes poblacionales perfectos en cualquier situación. <code>boosting_type="Ordered"</code> y <code>boosting_type="Plain"</code> son opciones diferentes; no deben confundirse con las estadísticas ordenadas de las categorías.</p>
+</section><section class="cell" data-cell="29"><figure id="fig-3-8"><a aria-label="Ampliar: La implementación comparte trabajo entre modelos y permutaciones." href="../assets/mla/diagramas/ml03-celda-029.svg" rel="noopener" target="_blank"><img alt="La implementación comparte trabajo entre modelos y permutaciones." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-029.svg" width="1200"/></a><figcaption>Fig. 3.8. La implementación comparte trabajo entre modelos y permutaciones.</figcaption></figure></section><section class="cell" data-cell="30"><h3 id="toc-mla-13">3.3.3. Árboles simétricos</h3>
+<p>Con <code>grow_policy="SymmetricTree"</code>, CatBoost usa la misma condición de corte en todos los nodos de un nivel. Un árbol completo de profundidad <math aria-label="d" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>d</mi></mrow></math> tiene <math aria-label="2^d" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mn>2</mn><mi>d</mi></msup></mrow></math> posiciones de hoja y evalúa <math aria-label="d" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>d</mi></mrow></math> condiciones por muestra. Algunas hojas pueden quedar vacías o representar combinaciones imposibles.</p>
+<p>CatBoost también admite otras políticas de crecimiento. XGBoost admite políticas por profundidad o por pérdida, y LightGBM crece típicamente por hoja. Estas elecciones son configuraciones, no propiedades exclusivas e invariables de cada biblioteca.</p>
+</section><section class="cell" data-cell="31"><figure id="fig-3-9"><a aria-label="Ampliar: Un árbol simétrico de profundidad d almacena 2ᵈ posiciones de hoja." href="../assets/mla/diagramas/ml03-celda-031.svg" rel="noopener" target="_blank"><img alt="Un árbol simétrico de profundidad d almacena 2ᵈ posiciones de hoja." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-031.svg" width="1200"/></a><figcaption>Fig. 3.9. Un árbol simétrico de profundidad d almacena 2ᵈ posiciones de hoja.</figcaption></figure></section><section class="cell" data-cell="32"><p>Cada nivel aporta una decisión booleana. Su combinación identifica una posición de hoja; el diagrama anterior muestra cómo se reutiliza una condición en todas las ramas del mismo nivel.</p>
+</section><section class="cell" data-cell="33"><h4 id="toc-mla-14">3.3.3.1. Condiciones y hojas</h4>
+<p>Para cortes numéricos <math aria-label="C_k(x)=\mathbb{I}[x_{f_k}&gt;t_k]" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>C</mi><mi>k</mi></msub><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>𝕀</mi><mo stretchy="false">[</mo><msub><mi>x</mi><mrow><msub><mi>f</mi><mi>k</mi></msub></mrow></msub><mo>&gt;</mo><msub><mi>t</mi><mi>k</mi></msub><mo stretchy="false">]</mo></mrow></math>, con <math aria-label="k=0,\ldots,d-1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>k</mi><mo>=</mo><mn>0</mn><mo>,</mo><mi>…</mi><mo>,</mo><mi>d</mi><mo>−</mo><mn>1</mn></mrow></math>, el árbol almacena <math aria-label="d" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>d</mi></mrow></math> condiciones y <math aria-label="2^d" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mn>2</mn><mi>d</mi></msup></mrow></math> valores de hoja. Repetir un atributo en varios niveles es posible. El almacenamiento de hojas crece exponencialmente con la profundidad.</p>
+</section><section class="cell" data-cell="34"><h4 id="toc-mla-15">3.3.3.2. Geometría de los cortes</h4>
+<p>Si cada condición umbraliza una característica numérica, sus fronteras son hiperplanos alineados con los ejes de ese <strong>espacio de entrada</strong>. Un árbol asimétrico también produce regiones alineadas con los ejes; lo que cambia es dónde aplica cada corte.</p>
+<p>Un árbol simétrico reutiliza el mismo predicado por nivel. La partición no es necesariamente una grilla regular ni contiene <math aria-label="2^d" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mn>2</mn><mi>d</mi></msup></mrow></math> regiones no vacías. Cortes repetidos sobre el mismo atributo pueden generar combinaciones de bits inalcanzables. Con categorías transformadas, combinaciones y embeddings, la interpretación en las variables originales puede ser más compleja.</p>
+</section><section class="cell" data-cell="35"><figure id="fig-3-10"><a aria-label="Ampliar: Las regiones no son necesariamente regulares ni todas las hojas alcanzables." href="../assets/mla/diagramas/ml03-celda-035.svg" rel="noopener" target="_blank"><img alt="Las regiones no son necesariamente regulares ni todas las hojas alcanzables." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-035.svg" width="1200"/></a><figcaption>Fig. 3.10. Las regiones no son necesariamente regulares ni todas las hojas alcanzables.</figcaption></figure></section><section class="cell" data-cell="36"><figure id="fig-3-11"><a aria-label="Ampliar: La inferencia de T árboles cuesta aproximadamente O(Td) por muestra." href="../assets/mla/diagramas/ml03-celda-036.svg" rel="noopener" target="_blank"><img alt="La inferencia de T árboles cuesta aproximadamente O(Td) por muestra." height="650" loading="lazy" src="../assets/mla/diagramas/ml03-celda-036.svg" width="1200"/></a><figcaption>Fig. 3.11. La inferencia de T árboles cuesta aproximadamente O(Td) por muestra.</figcaption></figure></section><section class="cell" data-cell="37"><h4 id="toc-mla-16">3.3.3.3. Índice binario y costo de inferencia</h4>
+<p><math aria-label="b_k=\mathbb{I}[x_{f_k}&gt;t_k],\qquad\operatorname{index}(x)=\sum_{k=0}^{d-1}b_k2^k," display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>b</mi><mi>k</mi></msub><mo>=</mo><mi>𝕀</mi><mo stretchy="false">[</mo><msub><mi>x</mi><mrow><msub><mi>f</mi><mi>k</mi></msub></mrow></msub><mo>&gt;</mo><msub><mi>t</mi><mi>k</mi></msub><mo stretchy="false">]</mo><mo>,</mo><mspace width="2em"></mspace><mo>index</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><munderover><mo>∑</mo><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow><mrow><mi>d</mi><mo>−</mo><mn>1</mn></mrow></munderover><msub><mi>b</mi><mi>k</mi></msub><msup><mn>2</mn><mi>k</mi></msup><mo>,</mo></mrow></math></p>
+<p><math aria-label="\hat y(x)=W[\operatorname{index}(x)]." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover accent="true"><mi>y</mi><mo>^</mo></mover><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>W</mi><mo stretchy="false">[</mo><mo>index</mo><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo stretchy="false">]</mo><mo>.</mo></mrow></math></p>
+<p>El acceso al arreglo es <math aria-label="O(1)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>O</mi><mo stretchy="false">(</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>, pero calcular las <math aria-label="d" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>d</mi></mrow></math> decisiones requiere <strong><math aria-label="O(d)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>d</mi><mo stretchy="false">)</mo></mrow></math> por árbol y muestra</strong>. Para <math aria-label="T" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>T</mi></mrow></math> árboles, el costo básico es <math aria-label="O(Td)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>O</mi><mo stretchy="false">(</mo><mi>T</mi><mi>d</mi><mo stretchy="false">)</mo></mrow></math>, además del preprocesamiento de atributos. La estructura favorece implementaciones vectorizadas y evita recorrer una estructura arbitraria de punteros; no vuelve constante el costo total.</p>
+</section><section class="cell" data-cell="38"><h4 id="toc-mla-17"><strong>3.3.3.4. Ejemplo Numérico Paso a Paso (Traza Completa)</strong></h4>
+<p>Supongamos <strong>un modelo de evaluación crediticia con un árbol <em>Oblivious</em> de <strong>profundidad <math aria-label="d = 3" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>d</mi><mo>=</mo><mn>3</mn></mrow></math></strong> (<math aria-label="2^3 = 8" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mn>2</mn><mn>3</mn></msup><mo>=</mo><mn>8</mn></mrow></math> hojas terminales).</strong></p>
+<h5 id="toc-mla-18"><strong>1. Condiciones Globales del Árbol:</strong></h5>
+<ul>
+<li><strong>Nivel 0 (<math aria-label="k=0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>k</mi><mo>=</mo><mn>0</mn></mrow></math>, peso <math aria-label="2^0 = 1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mn>2</mn><mn>0</mn></msup><mo>=</mo><mn>1</mn></mrow></math>):</strong> ¿<math aria-label="\text{Edad} &gt; 30" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Edad</mtext><mo>&gt;</mo><mn>30</mn></mrow></math>?</li>
+<li><strong>Nivel 1 (<math aria-label="k=1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>k</mi><mo>=</mo><mn>1</mn></mrow></math>, peso <math aria-label="2^1 = 2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mn>2</mn><mn>1</mn></msup><mo>=</mo><mn>2</mn></mrow></math>):</strong> ¿<math aria-label="\text{Ingresos} &gt; 50000" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Ingresos</mtext><mo>&gt;</mo><mn>50000</mn></mrow></math>?</li>
+<li><strong>Nivel 2 (<math aria-label="k=2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>k</mi><mo>=</mo><mn>2</mn></mrow></math>, peso <math aria-label="2^2 = 4" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msup><mn>2</mn><mn>2</mn></msup><mo>=</mo><mn>4</mn></mrow></math>):</strong> ¿<math aria-label="\text{Score Crediticio} &gt; 700" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Score Crediticio</mtext><mo>&gt;</mo><mn>700</mn></mrow></math>?</li>
+</ul>
+<h5 id="toc-mla-19"><strong>2. Vector de Pesos de las Hojas (<math aria-label="\mathbf{W}" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>𝐖</mi></mrow></math>):</strong></h5>
+<p><math aria-label="\mathbf{W} = [w_0=10.5, \; w_1=15.2, \; w_2=20.0, \; w_3=28.4, \; w_4=32.1, \; w_5=45.0, \; w_6=50.3, \; w_7=62.8]" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>𝐖</mi><mo>=</mo><mo stretchy="false">[</mo><msub><mi>w</mi><mn>0</mn></msub><mo>=</mo><mn>10.5</mn><mo>,</mo><mspace width="0.278em"></mspace><msub><mi>w</mi><mn>1</mn></msub><mo>=</mo><mn>15.2</mn><mo>,</mo><mspace width="0.278em"></mspace><msub><mi>w</mi><mn>2</mn></msub><mo>=</mo><mn>20.0</mn><mo>,</mo><mspace width="0.278em"></mspace><msub><mi>w</mi><mn>3</mn></msub><mo>=</mo><mn>28.4</mn><mo>,</mo><mspace width="0.278em"></mspace><msub><mi>w</mi><mn>4</mn></msub><mo>=</mo><mn>32.1</mn><mo>,</mo><mspace width="0.278em"></mspace><msub><mi>w</mi><mn>5</mn></msub><mo>=</mo><mn>45.0</mn><mo>,</mo><mspace width="0.278em"></mspace><msub><mi>w</mi><mn>6</mn></msub><mo>=</mo><mn>50.3</mn><mo>,</mo><mspace width="0.278em"></mspace><msub><mi>w</mi><mn>7</mn></msub><mo>=</mo><mn>62.8</mn><mo stretchy="false">]</mo></mrow></math></p>
+<hr/>
+</section><section class="cell" data-cell="39"><h4 id="toc-mla-20"><strong>3.3.3.5 Caso de Prueba: Evaluación de una Instancia <math aria-label="x" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi></mrow></math></strong></h4>
+<p>Un cliente con los siguientes atributos:</p>
+<ul>
+<li><math aria-label="\text{Edad} = 35" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Edad</mtext><mo>=</mo><mn>35</mn></mrow></math></li>
+<li><math aria-label="\text{Ingresos} = 42000" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Ingresos</mtext><mo>=</mo><mn>42000</mn></mrow></math></li>
+<li><math aria-label="\text{Score Crediticio} = 740" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Score Crediticio</mtext><mo>=</mo><mn>740</mn></mrow></math></li>
+</ul>
+<h5 id="toc-mla-21"><strong>Paso 1: Evaluación Booleana de Condiciones</strong></h5>
+<ul>
+<li>Nivel 0 (<math aria-label="\text{Edad} &gt; 30" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Edad</mtext><mo>&gt;</mo><mn>30</mn></mrow></math>): <math aria-label="35 &gt; 30 \implies \textbf{True} \implies b_0 = 1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>35</mn><mo>&gt;</mo><mn>30</mn><mi>⟹</mi><mtext mathvariant="bold">True</mtext><mi>⟹</mi><msub><mi>b</mi><mn>0</mn></msub><mo>=</mo><mn>1</mn></mrow></math></li>
+<li>Nivel 1 (<math aria-label="\text{Ingresos} &gt; 50000" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Ingresos</mtext><mo>&gt;</mo><mn>50000</mn></mrow></math>): <math aria-label="42000 &gt; 50000 \implies \textbf{False} \implies b_1 = 0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>42000</mn><mo>&gt;</mo><mn>50000</mn><mi>⟹</mi><mtext mathvariant="bold">False</mtext><mi>⟹</mi><msub><mi>b</mi><mn>1</mn></msub><mo>=</mo><mn>0</mn></mrow></math></li>
+<li>Nivel 2 (<math aria-label="\text{Score Crediticio} &gt; 700" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Score Crediticio</mtext><mo>&gt;</mo><mn>700</mn></mrow></math>): <math aria-label="740 &gt; 700 \implies \textbf{True} \implies b_2 = 1" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mn>740</mn><mo>&gt;</mo><mn>700</mn><mi>⟹</mi><mtext mathvariant="bold">True</mtext><mi>⟹</mi><msub><mi>b</mi><mn>2</mn></msub><mo>=</mo><mn>1</mn></mrow></math></li>
+</ul>
+<h5 id="toc-mla-22"><strong>Paso 2: Cálculo del Índice Binario</strong></h5>
+<p><math aria-label="\text{Leaf Index} = b_0 \cdot 2^0 + b_1 \cdot 2^1 + b_2 \cdot 2^2" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Leaf Index</mtext><mo>=</mo><msub><mi>b</mi><mn>0</mn></msub><mo>·</mo><msup><mn>2</mn><mn>0</mn></msup><mo>+</mo><msub><mi>b</mi><mn>1</mn></msub><mo>·</mo><msup><mn>2</mn><mn>1</mn></msup><mo>+</mo><msub><mi>b</mi><mn>2</mn></msub><mo>·</mo><msup><mn>2</mn><mn>2</mn></msup></mrow></math></p>
+<p><math aria-label="\text{Leaf Index} = (1 \cdot 1) + (0 \cdot 2) + (1 \cdot 4) = 1 + 0 + 4 = \mathbf{5}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mtext>Leaf Index</mtext><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>·</mo><mn>1</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>0</mn><mo>·</mo><mn>2</mn><mo stretchy="false">)</mo><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>·</mo><mn>4</mn><mo stretchy="false">)</mo><mo>=</mo><mn>1</mn><mo>+</mo><mn>0</mn><mo>+</mo><mn>4</mn><mo>=</mo><mrow><mn mathvariant="bold">5</mn></mrow></mrow></math></p>
+<p>El número binario formado es:</p>
+<p><math aria-label="\mathbf{b} = [b_2, b_1, b_0]_2 = [1, 0, 1]_2 = 5_{10}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>𝐛</mi><mo>=</mo><mo stretchy="false">[</mo><msub><mi>b</mi><mn>2</mn></msub><mo>,</mo><msub><mi>b</mi><mn>1</mn></msub><mo>,</mo><msub><mi>b</mi><mn>0</mn></msub><msub><mo stretchy="false">]</mo><mn>2</mn></msub><mo>=</mo><mo stretchy="false">[</mo><mn>1</mn><mo>,</mo><mn>0</mn><mo>,</mo><mn>1</mn><msub><mo stretchy="false">]</mo><mn>2</mn></msub><mo>=</mo><msub><mn>5</mn><mrow><mn>10</mn></mrow></msub></mrow></math></p>
+<h5 id="toc-mla-23"><strong>Paso 3: Lectura en Tiempo Constante</strong></h5>
+<p><math aria-label="\hat{y}(x) = \mathbf{W}[5] = \mathbf{45.0}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mover accent="true"><mrow><mi>y</mi></mrow><mo>^</mo></mover><mo stretchy="false">(</mo><mi>x</mi><mo stretchy="false">)</mo><mo>=</mo><mi>𝐖</mi><mo stretchy="false">[</mo><mn>5</mn><mo stretchy="false">]</mo><mo>=</mo><mrow><mn mathvariant="bold">45.0</mn></mrow></mrow></math></p>
+<hr/>
+</section><section class="cell" data-cell="40"><h2 id="toc-mla-24">3.4. Estructura y hardware</h2>
+<p>Las condiciones compartidas facilitan evaluar lotes con operaciones vectoriales y formar índices con bits. Esto puede reducir saltos de control y mejorar localidad de memoria. El rendimiento depende de profundidad, cantidad de árboles, lote, procesador y representación de categorías.</p>
+<p>SIMD y los warps de GPU son mecanismos distintos: un registro contiene un número finito de elementos según su ancho y tipo, y un warp de CUDA agrupa habitualmente 32 hilos. No se garantiza ausencia de fallos de predicción de saltos ni una latencia fija en microsegundos. Las otras bibliotecas también implementan inferencia optimizada.</p>
+</section><section class="cell" data-cell="41"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># IMPLEMENTACIÓN DIDÁCTICA: ÁRBOL DE DECISIÓN SIMÉTRICO (OBLIVIOUS TREE)</span>
+<span class="c1"># ==============================================================================</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">typing</span><span class="w"> </span><span class="kn">import</span> <span class="n">List</span><span class="p">,</span> <span class="n">Tuple</span>
+
+
+<span class="k">class</span><span class="w"> </span><span class="nc">ObliviousDecisionTree</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Implementación de un Árbol de Decisión Oblivious (Simétrico)</span>
+<span class="sd">    con evaluación basada en indexación binaria y tablas de consulta.</span>
+<span class="sd">    """</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">depth</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Inicializa la estructura del árbol oblivious.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            depth (int): Profundidad del árbol simétrico. Tendrá exactamente 2^depth hojas.</span>
+<span class="sd">        """</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">depth</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">depth</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">num_leaves</span> <span class="o">=</span> <span class="mi">2</span> <span class="o">**</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth</span>
+
+        <span class="c1"># Lista de tuplas: (nombre_característica, umbral_de_corte) para cada nivel k</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">split_conditions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]]</span> <span class="o">=</span> <span class="p">[]</span>
+
+        <span class="c1"># Vector de pesos continuos en las hojas terminales</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leaf_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">num_leaves</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">set_tree_structure</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">split_conditions</span><span class="p">:</span> <span class="n">List</span><span class="p">[</span><span class="n">Tuple</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">float</span><span class="p">]],</span> <span class="n">leaf_weights</span><span class="p">:</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Configura manualmente las particiones por nivel y los pesos de las hojas.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            split_conditions (List[Tuple[str, float]]): Lista de (feature_name, threshold) por nivel.</span>
+<span class="sd">            leaf_weights (np.ndarray): Vector 1D de tamaño 2^depth con los valores predichos.</span>
+<span class="sd">        """</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">split_conditions</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">depth</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Se requieren exactamente </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">depth</span><span class="si">}</span><span class="s2"> condiciones."</span>
+        <span class="k">assert</span> <span class="nb">len</span><span class="p">(</span><span class="n">leaf_weights</span><span class="p">)</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">num_leaves</span><span class="p">,</span> <span class="sa">f</span><span class="s2">"Se requieren exactamente </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">num_leaves</span><span class="si">}</span><span class="s2"> pesos de hojas."</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">split_conditions</span> <span class="o">=</span> <span class="n">split_conditions</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">leaf_weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">leaf_weights</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">float64</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">compute_leaf_indices</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Calcula el índice binario de la hoja para cada muestra de forma vectorizada.</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            input_dataframe (pd.DataFrame): DataFrame con las variables de entrada.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Vector de enteros con las posiciones de las hojas asignadas.</span>
+<span class="sd">        """</span>
+        <span class="n">num_samples</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">input_dataframe</span><span class="p">)</span>
+        <span class="n">leaf_indices</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+
+        <span class="c1"># Evaluamos cada nivel k y acumulamos su potencia en base 2 (1 &lt;&lt; k)</span>
+        <span class="k">for</span> <span class="n">level_idx</span><span class="p">,</span> <span class="p">(</span><span class="n">feature_name</span><span class="p">,</span> <span class="n">threshold</span><span class="p">)</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">split_conditions</span><span class="p">):</span>
+            <span class="n">feature_values</span> <span class="o">=</span> <span class="n">input_dataframe</span><span class="p">[</span><span class="n">feature_name</span><span class="p">]</span><span class="o">.</span><span class="n">to_numpy</span><span class="p">()</span>
+
+            <span class="c1"># Evaluación booleana del hiperplano de nivel: b_k ∈ {0, 1}</span>
+            <span class="n">boolean_mask</span> <span class="o">=</span> <span class="p">(</span><span class="n">feature_values</span> <span class="o">&gt;</span> <span class="n">threshold</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">int64</span><span class="p">)</span>
+
+            <span class="c1"># Operación de desplazamiento de bits equivalente a: boolean_mask * (2 ** level_idx)</span>
+            <span class="n">leaf_indices</span> <span class="o">|=</span> <span class="p">(</span><span class="n">boolean_mask</span> <span class="o">&lt;&lt;</span> <span class="n">level_idx</span><span class="p">)</span>
+
+        <span class="k">return</span> <span class="n">leaf_indices</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">predict</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">np</span><span class="o">.</span><span class="n">ndarray</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">"""</span>
+<span class="sd">        Evalúa d condiciones por muestra y consulta la tabla: costo O(d).</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            input_dataframe (pd.DataFrame): Muestras a predecir.</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            np.ndarray: Valores predichos correspondientes a las hojas seleccionadas.</span>
+<span class="sd">        """</span>
+        <span class="n">assigned_indices</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">compute_leaf_indices</span><span class="p">(</span><span class="n">input_dataframe</span><span class="p">)</span>
+        <span class="c1"># Búsqueda directa por índice en el array de pesos</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">leaf_weights</span><span class="p">[</span><span class="n">assigned_indices</span><span class="p">]</span>
+
+
+<span class="c1"># ==============================================================================</span>
+<span class="c1"># DEMOSTRACIÓN PRÁCTICA DEL EJEMPLO NUMÉRICO</span>
+<span class="c1"># ==============================================================================</span>
+
+<span class="c1"># 1. Definir datos de prueba</span>
+<span class="n">test_clients</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+    <span class="s1">'Age'</span><span class="p">:</span> <span class="p">[</span><span class="mi">35</span><span class="p">,</span> <span class="mi">22</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">28</span><span class="p">],</span>
+    <span class="s1">'Income'</span><span class="p">:</span> <span class="p">[</span><span class="mi">42000</span><span class="p">,</span> <span class="mi">60000</span><span class="p">,</span> <span class="mi">75000</span><span class="p">,</span> <span class="mi">30000</span><span class="p">],</span>
+    <span class="s1">'Credit_Score'</span><span class="p">:</span> <span class="p">[</span><span class="mi">740</span><span class="p">,</span> <span class="mi">650</span><span class="p">,</span> <span class="mi">720</span><span class="p">,</span> <span class="mi">580</span><span class="p">]</span>
+<span class="p">})</span>
+
+<span class="c1"># 2. Instanciar el árbol de profundidad 3 (8 hojas)</span>
+<span class="n">tree_model</span> <span class="o">=</span> <span class="n">ObliviousDecisionTree</span><span class="p">(</span><span class="n">depth</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># 3. Definir las 3 divisiones globales (una por nivel)</span>
+<span class="n">conditions</span> <span class="o">=</span> <span class="p">[</span>
+    <span class="p">(</span><span class="s1">'Age'</span><span class="p">,</span> <span class="mf">30.0</span><span class="p">),</span>            <span class="c1"># Nivel 0: b0 (peso 1)</span>
+    <span class="p">(</span><span class="s1">'Income'</span><span class="p">,</span> <span class="mf">50000.0</span><span class="p">),</span>       <span class="c1"># Nivel 1: b1 (peso 2)</span>
+    <span class="p">(</span><span class="s1">'Credit_Score'</span><span class="p">,</span> <span class="mf">700.0</span><span class="p">)</span>    <span class="c1"># Nivel 2: b2 (peso 4)</span>
+<span class="p">]</span>
+
+<span class="c1"># 4. Asignar los pesos a las 8 hojas</span>
+<span class="n">weights</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">([</span><span class="mf">10.5</span><span class="p">,</span> <span class="mf">15.2</span><span class="p">,</span> <span class="mf">20.0</span><span class="p">,</span> <span class="mf">28.4</span><span class="p">,</span> <span class="mf">32.1</span><span class="p">,</span> <span class="mf">45.0</span><span class="p">,</span> <span class="mf">50.3</span><span class="p">,</span> <span class="mf">62.8</span><span class="p">])</span>
+<span class="n">tree_model</span><span class="o">.</span><span class="n">set_tree_structure</span><span class="p">(</span><span class="n">conditions</span><span class="p">,</span> <span class="n">weights</span><span class="p">)</span>
+
+<span class="c1"># 5. Ejecutar predicción</span>
+<span class="n">predictions</span> <span class="o">=</span> <span class="n">tree_model</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_clients</span><span class="p">)</span>
+<span class="n">indices</span> <span class="o">=</span> <span class="n">tree_model</span><span class="o">.</span><span class="n">compute_leaf_indices</span><span class="p">(</span><span class="n">test_clients</span><span class="p">)</span>
+
+<span class="c1"># 6. Mostrar resultados detallados</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"================================================================================"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">" RESULTADOS DE LA EVALUACIÓN DEL ÁRBOL OBLIVIOUS"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">"================================================================================"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">test_clients</span><span class="p">)):</span>
+    <span class="n">row</span> <span class="o">=</span> <span class="n">test_clients</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+    <span class="n">bin_str</span> <span class="o">=</span> <span class="nb">bin</span><span class="p">(</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">])[</span><span class="mi">2</span><span class="p">:]</span><span class="o">.</span><span class="n">zfill</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Cliente </span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s2">:"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Atributos  : Edad=</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'Age'</span><span class="p">]</span><span class="si">}</span><span class="s2">, Ingresos=</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'Income'</span><span class="p">]</span><span class="si">}</span><span class="s2">, Score=</span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="s1">'Credit_Score'</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Bitmask    : [b2, b1, b0] = [</span><span class="si">{</span><span class="n">bin_str</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">bin_str</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">, </span><span class="si">{</span><span class="n">bin_str</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s2">]"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Índice Hoja: </span><span class="si">{</span><span class="n">indices</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Predicción : </span><span class="si">{</span><span class="n">predictions</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="si">:</span><span class="s2">.2f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">"--------------------------------------------------------------------------------"</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>================================================================================
+ RESULTADOS DE LA EVALUACIÓN DEL ÁRBOL OBLIVIOUS
+================================================================================
+Cliente 1:
+  Atributos  : Edad=35, Ingresos=42000, Score=740
+  Bitmask    : [b2, b1, b0] = [1, 0, 1]
+  Índice Hoja: 5
+  Predicción : 45.00
+--------------------------------------------------------------------------------
+Cliente 2:
+  Atributos  : Edad=22, Ingresos=60000, Score=650
+  Bitmask    : [b2, b1, b0] = [0, 1, 0]
+  Índice Hoja: 2
+  Predicción : 20.00
+--------------------------------------------------------------------------------
+Cliente 3:
+  Atributos  : Edad=45, Ingresos=75000, Score=720
+  Bitmask    : [b2, b1, b0] = [1, 1, 1]
+  Índice Hoja: 7
+  Predicción : 62.80
+--------------------------------------------------------------------------------
+Cliente 4:
+  Atributos  : Edad=28, Ingresos=30000, Score=580
+  Bitmask    : [b2, b1, b0] = [0, 0, 0]
+  Índice Hoja: 0
+  Predicción : 10.50
+--------------------------------------------------------------------------------
+</pre></div></section><section class="cell" data-cell="42"><h2 id="toc-mla-25">3.5. Comparación de bibliotecas</h2>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>CatBoost</th>
+<th>XGBoost</th>
+<th>LightGBM</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Crecimiento</td>
+<td>Simétrico por defecto; otras políticas disponibles</td>
+<td>Por profundidad o por pérdida según configuración</td>
+<td>Habitualmente por hoja</td>
+</tr>
+<tr>
+<td>Categorías</td>
+<td>Estadísticas ordenadas, combinaciones y one-hot en ciertos casos</td>
+<td>Soporte nativo con particiones o one-hot según configuración</td>
+<td>Búsqueda de particiones de categorías codificadas como enteros</td>
+</tr>
+<tr>
+<td>Boosting</td>
+<td>Esquemas Plain u Ordered</td>
+<td>Aproximación de segundo orden</td>
+<td>Boosting con gradientes y Hessianos; GOSS es una opción de muestreo</td>
+</tr>
+<tr>
+<td>Inferencia</td>
+<td>Costo dependiente del número y profundidad de árboles</td>
+<td>Depende de estructura y predictor</td>
+<td>Depende de estructura y predictor</td>
+</tr>
+<tr>
+<td>Selección</td>
+<td>Validar con las mismas particiones y presupuesto</td>
+<td>Validar con las mismas particiones y presupuesto</td>
+<td>Validar con las mismas particiones y presupuesto</td>
+</tr>
+</tbody>
+</table>
+<p>GOSS no es una definición del gradiente y el criterio para categorías de LightGBM no es el test exacto de Fisher. No hay una clasificación universal de velocidad, precisión o necesidad de ajuste.</p>
+</section><section class="cell" data-cell="43"><h2 id="toc-mla-26">3.6. Implementación híbrida</h2>
+<p>PyTorch aprende cinco atributos latentes a partir de diez variables continuas. CatBoost recibe esos atributos junto con tres columnas categóricas. La compresión puede perder información; el resultado debe compararse con CatBoost aplicado directamente a las variables originales.</p>
+</section><section class="cell" data-cell="44"><h3 id="toc-mla-27"><strong>3.6.1. CELDA 1: Configuración del Entorno, Dependencias y Semillas</strong></h3>
+</section><section class="cell" data-cell="45"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># CELDA 1: Instalación de dependencias y configuración del entorno de cómputo</span>
+<span class="c1"># ==============================================================================</span>
+<span class="err">!</span><span class="n">pip</span> <span class="n">install</span> <span class="o">-</span><span class="n">q</span> <span class="n">catboost</span> <span class="n">shap</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">random</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.optim</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">optim</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torch.utils.data</span><span class="w"> </span><span class="kn">import</span> <span class="n">Dataset</span><span class="p">,</span> <span class="n">DataLoader</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">catboost</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">cb</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">catboost</span><span class="w"> </span><span class="kn">import</span> <span class="n">CatBoostRegressor</span><span class="p">,</span> <span class="n">Pool</span>
+
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">seaborn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">sns</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.graph_objects</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">go</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">plotly.express</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">px</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">shap</span>
+
+<span class="k">def</span><span class="w"> </span><span class="nf">set_deterministic_seed</span><span class="p">(</span><span class="n">seed_value</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">42</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">"""</span>
+<span class="sd">    Fija las semillas pseudoaleatorias en todas las bibliotecas para facilitar</span>
+<span class="sd">    la repetición de los experimentos en el mismo entorno.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        seed_value (int): Valor entero para la semilla de inicialización.</span>
+<span class="sd">    """</span>
+    <span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed_value</span><span class="p">)</span>
+    <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">seed</span><span class="p">(</span><span class="n">seed_value</span><span class="p">)</span>
+    <span class="n">torch</span><span class="o">.</span><span class="n">manual_seed</span><span class="p">(</span><span class="n">seed_value</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">():</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">manual_seed_all</span><span class="p">(</span><span class="n">seed_value</span><span class="p">)</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">deterministic</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="n">torch</span><span class="o">.</span><span class="n">backends</span><span class="o">.</span><span class="n">cudnn</span><span class="o">.</span><span class="n">benchmark</span> <span class="o">=</span> <span class="kc">False</span>
+
+<span class="n">set_deterministic_seed</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span>
+<span class="n">execution_device</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">device</span><span class="p">(</span><span class="s2">"cuda"</span> <span class="k">if</span> <span class="n">torch</span><span class="o">.</span><span class="n">cuda</span><span class="o">.</span><span class="n">is_available</span><span class="p">()</span> <span class="k">else</span> <span class="s2">"cpu"</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"[INFO] Entorno inicializado. Hardware activo en PyTorch: </span><span class="si">{</span><span class="n">execution_device</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>[INFO] Entorno inicializado. Hardware activo en PyTorch: cpu
+</pre></div></section><section class="cell" data-cell="46"><p>Fijar semillas ayuda a reproducir una ejecución. En CPU también puede haber paralelismo y operaciones no deterministas. <code>cudnn.benchmark=False</code> evita la selección por mediciones de rendimiento; <code>cudnn.deterministic=True</code> restringe los algoritmos de convolución cubiertos por esa opción. No garantiza determinismo de todas las operaciones CUDA. <code>torch.use_deterministic_algorithms(True)</code> ofrece un control adicional y puede lanzar errores si no hay alternativa determinista. No se promete igualdad bit a bit entre versiones o plataformas.</p>
+</section><section class="cell" data-cell="47"><h3 id="toc-mla-28">3.6.2. Datos heterogéneos: Dataset y DataLoader</h3>
+</section><section class="cell" data-cell="48"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># CELDA 2: Definición del Dataset Heterogéneo y DataLoaders en PyTorch</span>
+<span class="c1"># ==============================================================================</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">HeterogeneousTabularDataset</span><span class="p">(</span><span class="n">Dataset</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">num_samples</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">4000</span><span class="p">):</span>
+        <span class="n">regions</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Norte'</span><span class="p">,</span> <span class="s1">'Centro'</span><span class="p">,</span> <span class="s1">'Sur'</span><span class="p">,</span> <span class="s1">'Cuyo'</span><span class="p">,</span> <span class="s1">'Patagonia'</span><span class="p">]</span>
+        <span class="n">account_tiers</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Bronce'</span><span class="p">,</span> <span class="s1">'Plata'</span><span class="p">,</span> <span class="s1">'Oro'</span><span class="p">,</span> <span class="s1">'Platino'</span><span class="p">]</span>
+        <span class="n">risk_levels</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Bajo'</span><span class="p">,</span> <span class="s1">'Medio'</span><span class="p">,</span> <span class="s1">'Alto'</span><span class="p">]</span>
+
+        <span class="n">raw_region</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">regions</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+        <span class="n">raw_tier</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">account_tiers</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+        <span class="n">raw_risk</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">risk_levels</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+
+        <span class="n">raw_continuous</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randn</span><span class="p">(</span><span class="n">num_samples</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+        <span class="n">region_effect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">({</span><span class="s1">'Norte'</span><span class="p">:</span> <span class="mf">1200.0</span><span class="p">,</span> <span class="s1">'Centro'</span><span class="p">:</span> <span class="mf">2500.0</span><span class="p">,</span> <span class="s1">'Sur'</span><span class="p">:</span> <span class="o">-</span><span class="mf">800.0</span><span class="p">,</span> <span class="s1">'Cuyo'</span><span class="p">:</span> <span class="mf">500.0</span><span class="p">,</span> <span class="s1">'Patagonia'</span><span class="p">:</span> <span class="o">-</span><span class="mf">1500.0</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">)(</span><span class="n">raw_region</span><span class="p">)</span>
+        <span class="n">tier_effect</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">vectorize</span><span class="p">({</span><span class="s1">'Bronce'</span><span class="p">:</span> <span class="mf">100.0</span><span class="p">,</span> <span class="s1">'Plata'</span><span class="p">:</span> <span class="mf">1500.0</span><span class="p">,</span> <span class="s1">'Oro'</span><span class="p">:</span> <span class="mf">4000.0</span><span class="p">,</span> <span class="s1">'Platino'</span><span class="p">:</span> <span class="mf">8500.0</span><span class="p">}</span><span class="o">.</span><span class="n">get</span><span class="p">)(</span><span class="n">raw_tier</span><span class="p">)</span>
+
+        <span class="n">nonlinear_target</span> <span class="o">=</span> <span class="p">(</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">sin</span><span class="p">(</span><span class="n">raw_continuous</span><span class="p">[:,</span> <span class="mi">0</span><span class="p">])</span> <span class="o">*</span> <span class="mf">3500.0</span> <span class="o">+</span>
+            <span class="p">(</span><span class="n">raw_continuous</span><span class="p">[:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">**</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="mf">1200.0</span> <span class="o">-</span>
+            <span class="p">(</span><span class="n">raw_continuous</span><span class="p">[:,</span> <span class="mi">2</span><span class="p">]</span> <span class="o">*</span> <span class="n">raw_continuous</span><span class="p">[:,</span> <span class="mi">3</span><span class="p">])</span> <span class="o">*</span> <span class="mf">1800.0</span> <span class="o">+</span>
+            <span class="n">region_effect</span> <span class="o">+</span> <span class="n">tier_effect</span> <span class="o">+</span>
+            <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">normal</span><span class="p">(</span><span class="mf">0.0</span><span class="p">,</span> <span class="mf">300.0</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="n">num_samples</span><span class="p">)</span>
+        <span class="p">)</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">continuous_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">raw_continuous</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">target_tensor</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">tensor</span><span class="p">(</span><span class="n">nonlinear_target</span><span class="p">,</span> <span class="n">dtype</span><span class="o">=</span><span class="n">torch</span><span class="o">.</span><span class="n">float32</span><span class="p">)</span><span class="o">.</span><span class="n">unsqueeze</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">categorical_frame</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">({</span>
+            <span class="s1">'Region'</span><span class="p">:</span> <span class="n">raw_region</span><span class="p">,</span>
+            <span class="s1">'Account_Tier'</span><span class="p">:</span> <span class="n">raw_tier</span><span class="p">,</span>
+            <span class="s1">'Risk_Level'</span><span class="p">:</span> <span class="n">raw_risk</span>
+        <span class="p">})</span>
+
+        <span class="c1">#print(self.categorical_frame)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__len__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">continuous_tensor</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="fm">__getitem__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">index</span><span class="p">:</span> <span class="nb">int</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">continuous_tensor</span><span class="p">[</span><span class="n">index</span><span class="p">],</span> <span class="bp">self</span><span class="o">.</span><span class="n">target_tensor</span><span class="p">[</span><span class="n">index</span><span class="p">]</span>
+</pre></div>
+</details></section><section class="cell" data-cell="50"><p>Conservamos por separado una matriz continua de forma <math aria-label="(N,10)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>N</mi><mo>,</mo><mn>10</mn><mo stretchy="false">)</mo></mrow></math> y un DataFrame con categorías. CatBoost recibe esas categorías indicadas mediante <code>cat_features</code>; convertirlas en enteros sin informar su carácter categórico introduciría un orden artificial.</p>
+<p>La predicción y el objetivo de la red tienen ambos forma <math aria-label="(B,1)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>. MSE y SmoothL1 también aceptan otras formas, siempre que las dos entradas sean compatibles. Evitamos el broadcasting accidental entre <math aria-label="(B,)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>,</mo><mo stretchy="false">)</mo></mrow></math> y <math aria-label="(B,1)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mo stretchy="false">(</mo><mi>B</mi><mo>,</mo><mn>1</mn><mo stretchy="false">)</mo></mrow></math>, que produciría comparaciones incorrectas.</p>
+</section><section class="cell" data-cell="51"><h4 id="toc-mla-29"><strong>1. Partición Sincronizada con <code>torch.utils.data.Subset</code></strong></h4>
+</section><section class="cell" data-cell="52"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="n">full_dataset</span> <span class="o">=</span> <span class="n">HeterogeneousTabularDataset</span><span class="p">(</span><span class="n">num_samples</span><span class="o">=</span><span class="mi">5000</span><span class="p">)</span>
+<span class="c1"># Para estas filas sintéticas independientes usamos una permutación reproducible.</span>
+<span class="n">permutation</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">default_rng</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="o">.</span><span class="n">permutation</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">))</span>
+<span class="n">train_indices</span> <span class="o">=</span> <span class="n">permutation</span><span class="p">[:</span><span class="mi">3000</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">validation_indices</span> <span class="o">=</span> <span class="n">permutation</span><span class="p">[</span><span class="mi">3000</span><span class="p">:</span><span class="mi">4000</span><span class="p">]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">test_indices</span> <span class="o">=</span> <span class="n">permutation</span><span class="p">[</span><span class="mi">4000</span><span class="p">:]</span><span class="o">.</span><span class="n">tolist</span><span class="p">()</span>
+<span class="n">train_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Subset</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">,</span> <span class="n">train_indices</span><span class="p">)</span>
+<span class="n">validation_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Subset</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">,</span> <span class="n">validation_indices</span><span class="p">)</span>
+<span class="n">test_dataset</span> <span class="o">=</span> <span class="n">torch</span><span class="o">.</span><span class="n">utils</span><span class="o">.</span><span class="n">data</span><span class="o">.</span><span class="n">Subset</span><span class="p">(</span><span class="n">full_dataset</span><span class="p">,</span> <span class="n">test_indices</span><span class="p">)</span>
+<span class="n">train_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">train_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">64</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">validation_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">validation_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="n">test_loader</span> <span class="o">=</span> <span class="n">DataLoader</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="mi">128</span><span class="p">,</span> <span class="n">shuffle</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</details></section><section class="cell" data-cell="53"><h5 id="toc-mla-30">Preservar los índices</h5>
+<p>Separamos entrenamiento, validación y test, y aplicamos los mismos índices a tensores y categorías. <code>random_split()</code> también conserva los índices en cada <code>Subset</code>; no se pierde esa información. Para datos temporales o grupos relacionados debe elegirse una partición apropiada, en lugar de mezclar filas indiscriminadamente.</p>
+</section><section class="cell" data-cell="54"><h5 id="toc-mla-31">Orden de los lotes</h5>
+<p>El DataLoader mezcla entrenamiento para cambiar el orden de actualización. En evaluación conservamos el orden y alineamos las filas con sus objetivos. Las métricas agregadas como RMSE no dependen del orden si las correspondencias se mantienen. El tamaño de lote afecta memoria, estimación del gradiente y BatchNorm; no asegura escapar de mínimos locales.</p>
+</section><section class="cell" data-cell="55"><h3 id="toc-mla-32"><strong>3.6.3. CELDA 3: Extractor de Características Latentes (<em>Bottleneck Architecture</em>)</strong></h3>
+</section><section class="cell" data-cell="56"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># CELDA 3: Arquitectura en PyTorch para compresión y extracción de representaciones</span>
+<span class="c1"># ==============================================================================</span>
+
+<span class="k">class</span><span class="w"> </span><span class="nc">LatentEmbeddingExtractor</span><span class="p">(</span><span class="n">nn</span><span class="o">.</span><span class="n">Module</span><span class="p">):</span>
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">input_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">10</span><span class="p">,</span> <span class="n">latent_dim</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">5</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">LatentEmbeddingExtractor</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+        <span class="c1"># Bloque de extracción latente (Codificador)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">latent_encoder</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">input_dim</span><span class="p">,</span> <span class="mi">64</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">SiLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">64</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Dropout</span><span class="p">(</span><span class="mf">0.15</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">64</span><span class="p">,</span> <span class="mi">32</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">SiLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">BatchNorm1d</span><span class="p">(</span><span class="mi">32</span><span class="p">),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="mi">32</span><span class="p">,</span> <span class="n">latent_dim</span><span class="p">)</span>
+        <span class="p">)</span>
+
+        <span class="c1"># Cabeza de predicción auxiliar</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">regression_head</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">Sequential</span><span class="p">(</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">SiLU</span><span class="p">(),</span>
+            <span class="n">nn</span><span class="o">.</span><span class="n">Linear</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
+        <span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">extract_latent_vector</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">continuous_inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">latent_encoder</span><span class="p">(</span><span class="n">continuous_inputs</span><span class="p">)</span>
+
+    <span class="k">def</span><span class="w"> </span><span class="nf">forward</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">continuous_inputs</span><span class="p">:</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">torch</span><span class="o">.</span><span class="n">Tensor</span><span class="p">:</span>
+        <span class="n">latent_features</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">extract_latent_vector</span><span class="p">(</span><span class="n">continuous_inputs</span><span class="p">)</span>
+        <span class="n">predicted_target</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">regression_head</span><span class="p">(</span><span class="n">latent_features</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">predicted_target</span>
+
+<span class="n">pytorch_feature_extractor</span> <span class="o">=</span> <span class="n">LatentEmbeddingExtractor</span><span class="p">(</span><span class="n">input_dim</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">latent_dim</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">execution_device</span><span class="p">)</span>
+</pre></div>
+</details></section><section class="cell" data-cell="57"><h4 id="toc-mla-33">3.6.3.1. Arquitectura del extractor</h4>
+<p>La secuencia 10 → 64 → 32 → 5 incluye SiLU y BatchNorm; el primer bloque añade Dropout. La cabeza auxiliar aplica SiLU y una capa lineal. La red aprende una representación supervisada, sin una garantía de linealización, independencia o preservación de información.</p>
+</section><section class="cell" data-cell="58"><table>
+<thead>
+<tr>
+<th>Módulo</th>
+<th>Operación y alcance</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Linear</td>
+<td><math aria-label="z=xW^T+b" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>z</mi><mo>=</mo><mi>x</mi><msup><mi>W</mi><mi>T</mi></msup><mo>+</mo><mi>b</mi></mrow></math>; combina atributos con pesos aprendidos.</td>
+</tr>
+<tr>
+<td>SiLU</td>
+<td><math aria-label="x/(1+e^{-x})" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>x</mi><mo>/</mo><mo stretchy="false">(</mo><mn>1</mn><mo>+</mo><msup><mi>e</mi><mrow><mo>−</mo><mi>x</mi></mrow></msup><mo stretchy="false">)</mo></mrow></math>; suave, con gradiente que puede ser pequeño o incluso cero en algún punto. No asegura evitar todos los problemas de optimización.</td>
+</tr>
+<tr>
+<td>BatchNorm1d</td>
+<td>Normaliza con estadísticas de lote y parámetros afines; en evaluación usa estadísticas acumuladas con la configuración predeterminada. No garantiza estabilidad con cualquier tasa de aprendizaje.</td>
+</tr>
+<tr>
+<td>Dropout</td>
+<td>En entrenamiento aplica <math aria-label="z\odot m/(1-p)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>z</mi><mo>⊙</mo><mi>m</mi><mo>/</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></math>, con <math aria-label="m\sim\operatorname{Bernoulli}(1-p)" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>m</mi><mi>~</mi><mo>Bernoulli</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><mi>p</mi><mo stretchy="false">)</mo></mrow></math>; en evaluación es identidad.</td>
+</tr>
+<tr>
+<td>Bottleneck</td>
+<td>Reduce a cinco coordenadas. Puede descartar información útil y no impone independencia entre ellas.</td>
+</tr>
+</tbody>
+</table>
+<p>Una ReLU con salida negativa en un ejemplo tiene gradiente local cero; puede volver a activarse para otros ejemplos o después de cambios en capas previas. Una neurona muerta de forma persistente es un caso más específico.</p>
+</section><section class="cell" data-cell="59"><h4 id="toc-mla-34">3.6.3.2. Predicción y extracción</h4>
+<p><code>forward()</code> incluye la cabeza auxiliar para entrenar el encoder. <code>extract_latent_vector()</code> devuelve sus cinco coordenadas y se utiliza después, con la red en evaluación, para formar las tablas de CatBoost. La segunda etapa no retropropaga su pérdida a la primera.</p>
+</section><section class="cell" data-cell="60"><p>Cada fila mantiene su identidad al concatenar categorías y embeddings. La tabla híbrida se construye por separado para entrenamiento, validación y test.</p>
+</section><section class="cell" data-cell="61"><h3 id="toc-mla-35"><strong>3.6.4. CELDA 4: Ciclo de Optimización, Grafo Autograd y Learning Rate Scheduling</strong></h3>
+</section><section class="cell" data-cell="62"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># CELDA 4: Entrenamiento de la Red Neuronal (Optimizador AdamW + Loss Tracking)</span>
+<span class="c1"># ==============================================================================</span>
+
+<span class="n">loss_criterion</span> <span class="o">=</span> <span class="n">nn</span><span class="o">.</span><span class="n">SmoothL1Loss</span><span class="p">()</span>  <span class="c1"># Pérdida Huber suave, robusta a anomalías</span>
+<span class="n">model_optimizer</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">AdamW</span><span class="p">(</span><span class="n">pytorch_feature_extractor</span><span class="o">.</span><span class="n">parameters</span><span class="p">(),</span> <span class="n">lr</span><span class="o">=</span><span class="mf">0.008</span><span class="p">,</span> <span class="n">weight_decay</span><span class="o">=</span><span class="mf">1e-4</span><span class="p">)</span>
+<span class="n">lr_scheduler</span> <span class="o">=</span> <span class="n">optim</span><span class="o">.</span><span class="n">lr_scheduler</span><span class="o">.</span><span class="n">ReduceLROnPlateau</span><span class="p">(</span><span class="n">model_optimizer</span><span class="p">,</span> <span class="n">mode</span><span class="o">=</span><span class="s1">'min'</span><span class="p">,</span> <span class="n">factor</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span> <span class="n">patience</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="n">training_loss_history</span> <span class="o">=</span> <span class="p">[]</span>
+<span class="n">num_epochs</span> <span class="o">=</span> <span class="mi">30</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"[INFO] Iniciando entrenamiento del extractor de características en PyTorch..."</span><span class="p">)</span>
+<span class="n">pytorch_feature_extractor</span><span class="o">.</span><span class="n">train</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">epoch_index</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">num_epochs</span><span class="p">):</span>
+    <span class="n">cumulative_batch_loss</span> <span class="o">=</span> <span class="mf">0.0</span>
+
+    <span class="k">for</span> <span class="n">continuous_batch</span><span class="p">,</span> <span class="n">target_batch</span> <span class="ow">in</span> <span class="n">train_loader</span><span class="p">:</span>
+        <span class="n">continuous_batch</span> <span class="o">=</span> <span class="n">continuous_batch</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">execution_device</span><span class="p">)</span>
+        <span class="n">target_batch</span> <span class="o">=</span> <span class="n">target_batch</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">execution_device</span><span class="p">)</span>
+
+        <span class="n">model_optimizer</span><span class="o">.</span><span class="n">zero_grad</span><span class="p">()</span>
+        <span class="n">predictions_batch</span> <span class="o">=</span> <span class="n">pytorch_feature_extractor</span><span class="p">(</span><span class="n">continuous_batch</span><span class="p">)</span>
+        <span class="n">loss_value</span> <span class="o">=</span> <span class="n">loss_criterion</span><span class="p">(</span><span class="n">predictions_batch</span><span class="p">,</span> <span class="n">target_batch</span><span class="p">)</span>
+
+        <span class="n">loss_value</span><span class="o">.</span><span class="n">backward</span><span class="p">()</span>
+        <span class="n">model_optimizer</span><span class="o">.</span><span class="n">step</span><span class="p">()</span>
+
+        <span class="n">cumulative_batch_loss</span> <span class="o">+=</span> <span class="n">loss_value</span><span class="o">.</span><span class="n">item</span><span class="p">()</span> <span class="o">*</span> <span class="n">continuous_batch</span><span class="o">.</span><span class="n">size</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="n">epoch_mean_loss</span> <span class="o">=</span> <span class="n">cumulative_batch_loss</span> <span class="o">/</span> <span class="nb">len</span><span class="p">(</span><span class="n">train_loader</span><span class="o">.</span><span class="n">dataset</span><span class="p">)</span>
+    <span class="n">training_loss_history</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">epoch_mean_loss</span><span class="p">)</span>
+    <span class="n">lr_scheduler</span><span class="o">.</span><span class="n">step</span><span class="p">(</span><span class="n">epoch_mean_loss</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="p">(</span><span class="n">epoch_index</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">%</span> <span class="mi">5</span> <span class="o">==</span> <span class="mi">0</span> <span class="ow">or</span> <span class="n">epoch_index</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">current_lr</span> <span class="o">=</span> <span class="n">model_optimizer</span><span class="o">.</span><span class="n">param_groups</span><span class="p">[</span><span class="mi">0</span><span class="p">][</span><span class="s1">'lr'</span><span class="p">]</span>
+        <span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"  Época [</span><span class="si">{</span><span class="n">epoch_index</span><span class="o">+</span><span class="mi">1</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">/</span><span class="si">{</span><span class="n">num_epochs</span><span class="si">:</span><span class="s2">02d</span><span class="si">}</span><span class="s2">] - Loss (Smooth L1): </span><span class="si">{</span><span class="n">epoch_mean_loss</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2"> | LR: </span><span class="si">{</span><span class="n">current_lr</span><span class="si">:</span><span class="s2">.6f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">"[INFO] Extractor de PyTorch pre-entrenado exitosamente."</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>[INFO] Iniciando entrenamiento del extractor de características en PyTorch...
+  Época [01/30] - Loss (Smooth L1): 5623.1188 | LR: 0.008000
+  Época [05/30] - Loss (Smooth L1): 3307.8546 | LR: 0.008000
+  Época [10/30] - Loss (Smooth L1): 3016.9209 | LR: 0.008000
+  Época [15/30] - Loss (Smooth L1): 2953.7775 | LR: 0.008000
+  Época [20/30] - Loss (Smooth L1): 2896.7680 | LR: 0.008000
+  Época [25/30] - Loss (Smooth L1): 2883.3161 | LR: 0.008000
+  Época [30/30] - Loss (Smooth L1): 2848.2289 | LR: 0.008000
+[INFO] Extractor de PyTorch pre-entrenado exitosamente.
+</pre></div></section><section class="cell" data-cell="63"><h4 id="toc-mla-36"><strong>3.6.4.1. Fundamento Matemático de la Función de Pérdida (<code>nn.SmoothL1Loss</code>)</strong></h4>
+<p>En <strong>datos tabulares continuos, las distribuciones suelen contener valores atípicos (<em>outliers</em>) que desestabilizan el cálculo de gradientes si se utiliza el Error Cuadrático Medio (<math aria-label="L_2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>L</mi><mn>2</mn></msub></mrow></math> o MSE).</strong></p>
+<p>La función <strong>Smooth L1 Loss</strong> (variante suave de la pérdida Huber con <math aria-label="\beta = 1.0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi><mo>=</mo><mn>1.0</mn></mrow></math>) <strong>resuelve este compromiso:</strong></p>
+<p><math aria-label="L_{\beta}(y, \hat{y}) = \begin{cases}  \frac{0.5 (y - \hat{y})^2}{\beta}, &amp; \text{si } \vert{}y - \hat{y}\vert{} &lt; \beta \\ \vert{}y - \hat{y}\vert{} - 0.5 \beta, &amp; \text{en caso contrario} \end{cases}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>L</mi><mrow><mi>β</mi></mrow></msub><mo stretchy="false">(</mo><mi>y</mi><mo>,</mo><mover accent="true"><mrow><mi>y</mi></mrow><mo>^</mo></mover><mo stretchy="false">)</mo><mo>=</mo><mrow><mo fence="true" form="prefix" stretchy="true">{</mo><mtable><mtr><mtd columnalign="left"><mfrac><mrow><mn>0.5</mn><mo stretchy="false">(</mo><mi>y</mi><mo>−</mo><mover accent="true"><mrow><mi>y</mi></mrow><mo>^</mo></mover><msup><mo stretchy="false">)</mo><mn>2</mn></msup></mrow><mrow><mi>β</mi></mrow></mfrac><mo>,</mo></mtd><mtd columnalign="left"><mtext>si </mtext><mi>|</mi><mrow></mrow><mi>y</mi><mo>−</mo><mover accent="true"><mrow><mi>y</mi></mrow><mo>^</mo></mover><mi>|</mi><mrow></mrow><mo>&lt;</mo><mi>β</mi></mtd></mtr><mtr><mtd columnalign="left"><mi>|</mi><mrow></mrow><mi>y</mi><mo>−</mo><mover accent="true"><mrow><mi>y</mi></mrow><mo>^</mo></mover><mi>|</mi><mrow></mrow><mo>−</mo><mn>0.5</mn><mi>β</mi><mo>,</mo></mtd><mtd columnalign="left"><mtext>en caso contrario</mtext></mtd></mtr></mtable></mrow></mrow></math></p>
+</section><section class="cell" data-cell="64"><p>Para interpretar el signo del gradiente, definimos el error como <math aria-label="e=\hat y-y" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi><mo>=</mo><mover accent="true"><mi>y</mi><mo>^</mo></mover><mo>−</mo><mi>y</mi></mrow></math>. Entonces, para <math aria-label="\beta&gt;0" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>β</mi><mo>&gt;</mo><mn>0</mn></mrow></math>,</p>
+<p><math aria-label="\frac{\partial L_\beta}{\partial\hat y}=\begin{cases}e/\beta,&amp;|e|&lt;\beta,\\\operatorname{sign}(e),&amp;|e|\geq\beta.\end{cases}" display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mfrac><mrow><mo>∂</mo><msub><mi>L</mi><mi>β</mi></msub></mrow><mrow><mo>∂</mo><mover accent="true"><mi>y</mi><mo>^</mo></mover></mrow></mfrac><mo>=</mo><mrow><mo fence="true" form="prefix" stretchy="true">{</mo><mtable><mtr><mtd columnalign="left"><mi>e</mi><mo>/</mo><mi>β</mi><mo>,</mo></mtd><mtd columnalign="left"><mo stretchy="false">|</mo><mi>e</mi><mo stretchy="false">|</mo><mo>&lt;</mo><mi>β</mi><mo>,</mo></mtd></mtr><mtr><mtd columnalign="left"><mo>sign</mo><mo stretchy="false">(</mo><mi>e</mi><mo stretchy="false">)</mo><mo>,</mo></mtd><mtd columnalign="left"><mo stretchy="false">|</mo><mi>e</mi><mo stretchy="false">|</mo><mo>≥</mo><mi>β</mi><mo>.</mo></mtd></mtr></mtable></mrow></mrow></math></p>
+<p>Si el eje se define como <math aria-label="y-\hat y" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>y</mi><mo>−</mo><mover accent="true"><mi>y</mi><mo>^</mo></mover></mrow></math>, el signo se invierte. El diagrama usa <math aria-label="e=\hat y-y" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>e</mi><mo>=</mo><mover accent="true"><mi>y</mi><mo>^</mo></mover><mo>−</mo><mi>y</mi></mrow></math> de forma consistente.</p>
+</section><section class="cell" data-cell="65"><p>Cerca de cero, la pérdida SmoothL1 es cuadrática y su <strong>gradiente es lineal</strong> en el error. Fuera del umbral, la magnitud del gradiente por observación está acotada. Esto reduce la influencia de valores atípicos, pero no elimina todos los riesgos de gradientes grandes en el resto de la red.</p>
+</section><section class="cell" data-cell="66"><h4 id="toc-mla-37">3.6.4.2. AdamW y decaimiento desacoplado</h4>
+<p>Adam calcula medias móviles del gradiente y de su cuadrado:</p>
+<p><math aria-label="m_t=\beta_1m_{t-1}+(1-\beta_1)g_t,\qquad v_t=\beta_2v_{t-1}+(1-\beta_2)g_t^2." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>m</mi><mi>t</mi></msub><mo>=</mo><msub><mi>β</mi><mn>1</mn></msub><msub><mi>m</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>β</mi><mn>1</mn></msub><mo stretchy="false">)</mo><msub><mi>g</mi><mi>t</mi></msub><mo>,</mo><mspace width="2em"></mspace><msub><mi>v</mi><mi>t</mi></msub><mo>=</mo><msub><mi>β</mi><mn>2</mn></msub><msub><mi>v</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>+</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>β</mi><mn>2</mn></msub><mo stretchy="false">)</mo><msubsup><mi>g</mi><mi>t</mi><mn>2</mn></msubsup><mo>.</mo></mrow></math></p>
+<p>Con corrección del sesgo inicial, AdamW aplica</p>
+<p><math aria-label="W_t=(1-\eta_t\lambda)W_{t-1}-\eta_t\frac{\hat m_t}{\sqrt{\hat v_t}+\epsilon}." display="block" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>W</mi><mi>t</mi></msub><mo>=</mo><mo stretchy="false">(</mo><mn>1</mn><mo>−</mo><msub><mi>η</mi><mi>t</mi></msub><mi>λ</mi><mo stretchy="false">)</mo><msub><mi>W</mi><mrow><mi>t</mi><mo>−</mo><mn>1</mn></mrow></msub><mo>−</mo><msub><mi>η</mi><mi>t</mi></msub><mfrac><mrow><msub><mover accent="true"><mi>m</mi><mo>^</mo></mover><mi>t</mi></msub></mrow><mrow><msqrt><mrow><msub><mover accent="true"><mi>v</mi><mo>^</mo></mover><mi>t</mi></msub></mrow></msqrt><mo>+</mo><mi>ϵ</mi></mrow></mfrac><mo>.</mo></mrow></math></p>
+<p>El segundo momento no es una varianza centrada. En Adam con penalización <math aria-label="L_2" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><msub><mi>L</mi><mn>2</mn></msub></mrow></math>, el término <math aria-label="\lambda W" display="inline" xmlns="http://www.w3.org/1998/Math/MathML"><mrow><mi>λ</mi><mi>W</mi></mrow></math> se añade al <strong>gradiente</strong>, entrando en los momentos; AdamW lo desacopla. El decaimiento regulariza, sin garantizar una norma final ni ausencia de sobreajuste.</p>
+</section><section class="cell" data-cell="67"><h4 id="toc-mla-38">3.6.4.3. Gradientes y registro de pérdida</h4>
+<p>Los gradientes se acumulan en <code>.grad</code>; usamos <code>zero_grad()</code> antes de cada actualización salvo que busquemos acumulación deliberada. <code>backward()</code> calcula derivadas y por defecto libera los tensores guardados para retropropagación cuando ya no se necesitan. Los gradientes de tensores intermedios no se retienen automáticamente como los de las hojas.</p>
+<p><code>loss.item()</code> devuelve un número de Python y evita mantener el historial de la pérdida al registrar métricas. No «destruye todo el grafo» ni libera inmediatamente la caché CUDA. Conservar tensores conectados puede aumentar memoria; el efecto concreto depende de las referencias y de cuándo se hizo <code>backward()</code>.</p>
+</section><section class="cell" data-cell="68"><h4 id="toc-mla-39">3.6.4.4. Planificación de la tasa</h4>
+<p><code>ReduceLROnPlateau</code> reduce la tasa cuando la métrica monitorizada no mejora según sus criterios de paciencia y tolerancia. Aquí usamos pérdida de entrenamiento para ilustrarlo. Para seleccionar épocas o hiperparámetros se necesita validación independiente; reducir la tasa no garantiza convergencia.</p>
+</section><section class="cell" data-cell="69"><h3 id="toc-mla-40"><strong>3.6.5. CELDA 5: Inferencia Desacoplada, Conversión de Memoria y Fusión en CatBoost Pool</strong></h3>
+</section><section class="cell" data-cell="70"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># Red ya entrenada: formar tres tablas independientes con índices alineados.</span>
+<span class="n">pytorch_feature_extractor</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
+<span class="n">latent_column_names</span> <span class="o">=</span> <span class="p">[</span><span class="sa">f</span><span class="s1">'Latent_Embedding_</span><span class="si">{</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="si">}</span><span class="s1">'</span> <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">5</span><span class="p">)]</span>
+<span class="n">categorical_column_names</span> <span class="o">=</span> <span class="p">[</span><span class="s1">'Region'</span><span class="p">,</span> <span class="s1">'Account_Tier'</span><span class="p">,</span> <span class="s1">'Risk_Level'</span><span class="p">]</span>
+<span class="k">def</span><span class="w"> </span><span class="nf">make_hybrid</span><span class="p">(</span><span class="n">indices</span><span class="p">):</span>
+    <span class="k">with</span> <span class="n">torch</span><span class="o">.</span><span class="n">no_grad</span><span class="p">():</span>
+        <span class="n">continuous</span> <span class="o">=</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">continuous_tensor</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span><span class="o">.</span><span class="n">to</span><span class="p">(</span><span class="n">execution_device</span><span class="p">)</span>
+        <span class="n">latent</span> <span class="o">=</span> <span class="n">pytorch_feature_extractor</span><span class="o">.</span><span class="n">extract_latent_vector</span><span class="p">(</span><span class="n">continuous</span><span class="p">)</span><span class="o">.</span><span class="n">cpu</span><span class="p">()</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="n">latent_df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">latent</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="n">latent_column_names</span><span class="p">)</span>
+    <span class="n">categories</span> <span class="o">=</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">categorical_frame</span><span class="o">.</span><span class="n">iloc</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span><span class="o">.</span><span class="n">reset_index</span><span class="p">(</span><span class="n">drop</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="n">hybrid</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">concat</span><span class="p">([</span><span class="n">categories</span><span class="p">,</span> <span class="n">latent_df</span><span class="p">],</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+    <span class="n">target</span> <span class="o">=</span> <span class="n">full_dataset</span><span class="o">.</span><span class="n">target_tensor</span><span class="p">[</span><span class="n">indices</span><span class="p">]</span><span class="o">.</span><span class="n">squeeze</span><span class="p">(</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="o">.</span><span class="n">numpy</span><span class="p">()</span>
+    <span class="k">return</span> <span class="n">hybrid</span><span class="p">,</span> <span class="n">latent_df</span><span class="p">,</span> <span class="n">target</span><span class="p">,</span> <span class="n">Pool</span><span class="p">(</span><span class="n">hybrid</span><span class="p">,</span> <span class="n">label</span><span class="o">=</span><span class="n">target</span><span class="p">,</span> <span class="n">cat_features</span><span class="o">=</span><span class="n">categorical_column_names</span><span class="p">)</span>
+
+<span class="n">train_hybrid_features</span><span class="p">,</span> <span class="n">train_latent_df</span><span class="p">,</span> <span class="n">train_targets</span><span class="p">,</span> <span class="n">train_catboost_pool</span> <span class="o">=</span> <span class="n">make_hybrid</span><span class="p">(</span><span class="n">train_indices</span><span class="p">)</span>
+<span class="n">validation_hybrid_features</span><span class="p">,</span> <span class="n">validation_latent_df</span><span class="p">,</span> <span class="n">validation_targets</span><span class="p">,</span> <span class="n">validation_catboost_pool</span> <span class="o">=</span> <span class="n">make_hybrid</span><span class="p">(</span><span class="n">validation_indices</span><span class="p">)</span>
+<span class="n">test_hybrid_features</span><span class="p">,</span> <span class="n">test_latent_df</span><span class="p">,</span> <span class="n">test_targets</span><span class="p">,</span> <span class="n">test_catboost_pool</span> <span class="o">=</span> <span class="n">make_hybrid</span><span class="p">(</span><span class="n">test_indices</span><span class="p">)</span>
+<span class="n">catboost_regressor</span> <span class="o">=</span> <span class="n">CatBoostRegressor</span><span class="p">(</span>
+    <span class="n">iterations</span><span class="o">=</span><span class="mi">400</span><span class="p">,</span> <span class="n">learning_rate</span><span class="o">=</span><span class="mf">0.05</span><span class="p">,</span> <span class="n">depth</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span>
+    <span class="n">grow_policy</span><span class="o">=</span><span class="s1">'SymmetricTree'</span><span class="p">,</span> <span class="n">boosting_type</span><span class="o">=</span><span class="s1">'Ordered'</span><span class="p">,</span>
+    <span class="n">loss_function</span><span class="o">=</span><span class="s1">'RMSE'</span><span class="p">,</span> <span class="n">eval_metric</span><span class="o">=</span><span class="s1">'RMSE'</span><span class="p">,</span> <span class="n">random_seed</span><span class="o">=</span><span class="mi">42</span><span class="p">,</span>
+    <span class="n">early_stopping_rounds</span><span class="o">=</span><span class="mi">30</span><span class="p">,</span> <span class="n">verbose</span><span class="o">=</span><span class="mi">100</span><span class="p">,</span> <span class="n">thread_count</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span>
+    <span class="n">allow_writing_files</span><span class="o">=</span><span class="kc">False</span>
+<span class="p">)</span>
+<span class="n">catboost_regressor</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">train_catboost_pool</span><span class="p">,</span> <span class="n">eval_set</span><span class="o">=</span><span class="n">validation_catboost_pool</span><span class="p">,</span> <span class="n">use_best_model</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+<span class="n">final_predictions</span> <span class="o">=</span> <span class="n">catboost_regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_catboost_pool</span><span class="p">)</span>
+<span class="n">test_rmse</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">((</span><span class="n">final_predictions</span> <span class="o">-</span> <span class="n">test_targets</span><span class="p">)</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="sa">f</span><span class="s2">"Mejor iteración: </span><span class="si">{</span><span class="n">catboost_regressor</span><span class="o">.</span><span class="n">get_best_iteration</span><span class="p">()</span><span class="si">}</span><span class="s2">; RMSE final de test: </span><span class="si">{</span><span class="n">test_rmse</span><span class="si">:</span><span class="s2">.4f</span><span class="si">}</span><span class="s2">"</span><span class="p">)</span>
+</pre></div>
+</details><div class="output"><pre>0:	learn: 4717.0853426	test: 4658.2694248	best: 4658.2694248 (0)	total: 55.5ms	remaining: 22.1s
+100:	learn: 1138.9185578	test: 1236.2534833	best: 1236.2534833 (100)	total: 570ms	remaining: 1.69s
+200:	learn: 1080.2189075	test: 1188.8657993	best: 1188.8657993 (200)	total: 1.01s	remaining: 1s
+300:	learn: 1052.5736924	test: 1172.2524726	best: 1172.2395786 (299)	total: 1.55s	remaining: 509ms
+399:	learn: 1028.4610680	test: 1164.5840463	best: 1164.5597159 (398)	total: 2.09s	remaining: 0us
+
+bestTest = 1164.559716
+bestIteration = 398
+
+Shrink model to first 399 iterations.
+Mejor iteración: 398; RMSE final de test: 1124.5480
+</pre></div></section><section class="cell" data-cell="71"><h4 id="toc-mla-41">3.6.5.1. Evaluación y autograd</h4>
+<p><code>eval()</code> cambia el modo de los módulos: con la configuración usada, BatchNorm emplea estadísticas acumuladas y Dropout es identidad. <code>torch.no_grad()</code> desactiva el registro para diferenciación inversa dentro del contexto. Son controles independientes. El ahorro de memoria y tiempo depende del modelo; no hay un porcentaje universal.</p>
+</section><section class="cell" data-cell="72"><h4 id="toc-mla-42">3.6.5.2. De PyTorch a NumPy</h4>
+<p>Extraemos embeddings en el dispositivo elegido. <code>.cpu()</code> copia si el tensor está en otro dispositivo; si ya está en CPU puede devolver el mismo tensor. <code>.numpy()</code> comparte memoria cuando se cumplen sus requisitos de dispositivo, tipo y estado de autograd. Usar <code>.detach().cpu().numpy()</code> explicita la separación del grafo. La copia desde GPU no debe suponerse siempre asíncrona ni idéntica para todo hardware.</p>
+</section><section class="cell" data-cell="73"><h4 id="toc-mla-43">3.6.5.3. Pool, entrenamiento y evaluación</h4>
+<p><code>Pool</code> organiza datos, objetivos y metadatos de categorías. Configuramos explícitamente árboles simétricos y boosting ordenado. El modelo permite hasta 400 iteraciones y usa <strong>validación</strong>, nunca test, para la parada temprana. Un árbol de profundidad 6 tiene 64 posiciones de hoja y necesita seis decisiones por muestra. Al final informamos RMSE sobre el test reservado.</p>
+</section><section class="cell" data-cell="74"><h3 id="toc-mla-44"><strong>3.6.6. CELDA 6: Diagnóstico de Alta Dimensión, Explicabilidad con SHAP y Validación de Residuos</strong></h3>
+</section><section class="cell" data-cell="75"><details class="source-code"><summary>Código Python</summary><button class="copy-code">Copiar código</button><div class="highlight"><pre><span></span><span class="c1"># ==============================================================================</span>
+<span class="c1"># CELDA 6: Suite de Visualización Interactiva y Diagnóstico Estadístico</span>
+<span class="c1"># ==============================================================================</span>
+
+<span class="c1"># --- Visualización 1: Curva de Pérdida en PyTorch con Plotly ---</span>
+<span class="n">fig_loss</span> <span class="o">=</span> <span class="n">go</span><span class="o">.</span><span class="n">Figure</span><span class="p">()</span>
+<span class="n">fig_loss</span><span class="o">.</span><span class="n">add_trace</span><span class="p">(</span><span class="n">go</span><span class="o">.</span><span class="n">Scatter</span><span class="p">(</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">training_loss_history</span><span class="p">,</span>
+    <span class="n">mode</span><span class="o">=</span><span class="s1">'lines+markers'</span><span class="p">,</span>
+    <span class="n">name</span><span class="o">=</span><span class="s1">'PyTorch Smooth L1 Loss'</span><span class="p">,</span>
+    <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s1">'#636EFA'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="p">))</span>
+<span class="n">fig_loss</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">'&lt;b&gt;Fase 1: Evolución del Pre-entrenamiento en PyTorch (Latent Space)&lt;/b&gt;'</span><span class="p">,</span>
+    <span class="n">xaxis_title</span><span class="o">=</span><span class="s1">'Época'</span><span class="p">,</span>
+    <span class="n">yaxis_title</span><span class="o">=</span><span class="s1">'Loss'</span><span class="p">,</span>
+    <span class="n">template</span><span class="o">=</span><span class="s1">'plotly_white'</span><span class="p">,</span>
+    <span class="n">width</span><span class="o">=</span><span class="mi">850</span><span class="p">,</span>
+    <span class="n">height</span><span class="o">=</span><span class="mi">380</span>
+<span class="p">)</span>
+<span class="n">fig_loss</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># --- Visualización 2: Distribución de Activaciones Latentes en PyTorch con Seaborn ---</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">4</span><span class="p">))</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">set_theme</span><span class="p">(</span><span class="n">style</span><span class="o">=</span><span class="s2">"whitegrid"</span><span class="p">)</span>
+<span class="n">sns</span><span class="o">.</span><span class="n">violinplot</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">train_latent_df</span><span class="p">,</span> <span class="n">palette</span><span class="o">=</span><span class="s2">"crest"</span><span class="p">,</span> <span class="n">inner</span><span class="o">=</span><span class="s2">"quartile"</span><span class="p">,</span> <span class="n">cut</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Distribución de los Embeddings Extraídos por la Red Neuronal"</span><span class="p">,</span> <span class="n">fontsize</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">fontweight</span><span class="o">=</span><span class="s1">'bold'</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Amplitud de Activación"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># --- Visualización 3: Explicabilidad Global con SHAP sobre CatBoost ---</span>
+<span class="n">native_shap</span> <span class="o">=</span> <span class="n">catboost_regressor</span><span class="o">.</span><span class="n">get_feature_importance</span><span class="p">(</span><span class="n">test_catboost_pool</span><span class="p">,</span> <span class="nb">type</span><span class="o">=</span><span class="s1">'ShapValues'</span><span class="p">)</span>
+<span class="n">mean_absolute_shap</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">native_shap</span><span class="p">[:,</span> <span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">])</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span>
+<span class="n">shap_order</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">argsort</span><span class="p">(</span><span class="n">mean_absolute_shap</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">))</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">barh</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">test_hybrid_features</span><span class="o">.</span><span class="n">columns</span><span class="p">)[</span><span class="n">shap_order</span><span class="p">],</span> <span class="n">mean_absolute_shap</span><span class="p">[</span><span class="n">shap_order</span><span class="p">])</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"Media de |SHAP| en las unidades de salida"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">title</span><span class="p">(</span><span class="s2">"Atribuciones del modelo híbrido: categorías y embeddings"</span><span class="p">)</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">tight_layout</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="c1"># --- Visualización 4: Desempeño Final (Ground Truth vs. Predicción Híbrida) con Plotly ---</span>
+<span class="n">final_predictions</span> <span class="o">=</span> <span class="n">catboost_regressor</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">test_catboost_pool</span><span class="p">)</span>
+
+<span class="n">fig_scatter</span> <span class="o">=</span> <span class="n">px</span><span class="o">.</span><span class="n">scatter</span><span class="p">(</span>
+    <span class="n">x</span><span class="o">=</span><span class="n">test_targets</span><span class="p">,</span>
+    <span class="n">y</span><span class="o">=</span><span class="n">final_predictions</span><span class="p">,</span>
+    <span class="n">labels</span><span class="o">=</span><span class="p">{</span><span class="s1">'x'</span><span class="p">:</span> <span class="s1">'Valores Reales (Ground Truth)'</span><span class="p">,</span> <span class="s1">'y'</span><span class="p">:</span> <span class="s1">'Predicción Híbrida (PyTorch + CatBoost)'</span><span class="p">},</span>
+    <span class="n">title</span><span class="o">=</span><span class="s1">'&lt;b&gt;Fase 2: Ajuste del Modelo Híbrido (Real vs. Predicho)&lt;/b&gt;'</span><span class="p">,</span>
+    <span class="n">color_continuous_scale</span><span class="o">=</span><span class="s1">'Viridis'</span><span class="p">,</span>
+    <span class="n">color</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">test_targets</span> <span class="o">-</span> <span class="n">final_predictions</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">fig_scatter</span><span class="o">.</span><span class="n">add_shape</span><span class="p">(</span>
+    <span class="nb">type</span><span class="o">=</span><span class="s2">"line"</span><span class="p">,</span>
+    <span class="n">x0</span><span class="o">=</span><span class="n">test_targets</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span> <span class="n">y0</span><span class="o">=</span><span class="n">test_targets</span><span class="o">.</span><span class="n">min</span><span class="p">(),</span>
+    <span class="n">x1</span><span class="o">=</span><span class="n">test_targets</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span> <span class="n">y1</span><span class="o">=</span><span class="n">test_targets</span><span class="o">.</span><span class="n">max</span><span class="p">(),</span>
+    <span class="n">line</span><span class="o">=</span><span class="nb">dict</span><span class="p">(</span><span class="n">color</span><span class="o">=</span><span class="s2">"Red"</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">dash</span><span class="o">=</span><span class="s2">"dash"</span><span class="p">)</span>
+<span class="p">)</span>
+<span class="n">fig_scatter</span><span class="o">.</span><span class="n">update_layout</span><span class="p">(</span><span class="n">template</span><span class="o">=</span><span class="s1">'plotly_dark'</span><span class="p">,</span> <span class="n">width</span><span class="o">=</span><span class="mi">850</span><span class="p">,</span> <span class="n">height</span><span class="o">=</span><span class="mi">450</span><span class="p">)</span>
+<span class="n">fig_scatter</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+</pre></div>
+</details><figure id="fig-3-12"><iframe class="plot-frame" loading="lazy" sandbox="allow-scripts allow-same-origin allow-downloads" src="../assets/mla/laboratorios/clase-03-celda-75-1.html" title="Fase 1: Evolución del Pre-entrenamiento en PyTorch (Latent Space)"></iframe><a class="plot-open" href="../assets/mla/laboratorios/clase-03-celda-75-1.html" rel="noopener" target="_blank">Abrir gráfico en una ventana ↗</a><figcaption>Fig. 3.12. Fase 1: Evolución del Pre-entrenamiento en PyTorch (Latent Space)</figcaption></figure><figure id="fig-3-13"><iframe class="plot-frame" loading="lazy" sandbox="allow-scripts allow-same-origin allow-downloads" src="../assets/mla/laboratorios/clase-03-celda-75-4.html" title="Fase 2: Ajuste del Modelo Híbrido (Real vs. Predicho)"></iframe><a class="plot-open" href="../assets/mla/laboratorios/clase-03-celda-75-4.html" rel="noopener" target="_blank">Abrir gráfico en una ventana ↗</a><figcaption>Fig. 3.13. Fase 2: Ajuste del Modelo Híbrido (Real vs. Predicho)</figcaption></figure></section><section class="cell" data-cell="76"><h4 id="toc-mla-45">3.6.6.1. Leer distribuciones latentes</h4>
+<p>El violín muestra una estimación de densidad por coordenada; las líneas internas pueden mostrar cuartiles. Su forma depende del ancho de banda y puede extenderse más allá de los datos si no se limita la KDE. Una coordenada de varianza baja puede ser redundante o constante, sin demostrar por sí sola una neurona muerta. La multimodalidad tampoco identifica clases o factores causales.</p>
+</section><section class="cell" data-cell="77"><figure id="fig-3-14"><a aria-label="Ampliar: Distribución de los embeddings de esta ejecución. La dispersión no demuestra independencia ni utilidad predictiva." href="../assets/mla/laboratorios/clase-03-celda-75-2.png" rel="noopener" target="_blank"><img alt="Distribución de los embeddings de esta ejecución. La dispersión no demuestra independencia ni utilidad predictiva." height="557" loading="lazy" src="../assets/mla/laboratorios/clase-03-celda-75-2.png" width="1418"/></a><figcaption>Fig. 3.14. Distribución de los embeddings de esta ejecución. La dispersión no demuestra independencia ni utilidad predictiva.</figcaption></figure></section><section class="cell" data-cell="78"><h5 id="toc-mla-46">1. Variación de las coordenadas</h5>
+<p>Las coordenadas mostradas tienen dispersión, pero eso no demuestra que aporten información predictiva. Hay que medir su utilidad y redundancia, por ejemplo mediante ablaciones y evaluación retenida.</p>
+</section><section class="cell" data-cell="79"><h5 id="toc-mla-47">2. El signo no determina el significado</h5>
+<p>Una coordenada con mediana negativa no representa necesariamente términos sustractivos del objetivo. Las representaciones latentes pueden reparametrizarse y no están identificadas semánticamente por su signo. Para atribuirles una función hacen falta análisis adicionales.</p>
+</section><section class="cell" data-cell="80"><h5 id="toc-mla-48">3. Escala y estabilidad</h5>
+<p>El rango de un violín describe los valores observados; no prueba estabilidad numérica ni que BatchNorm o AdamW hayan acotado los pesos. Deben inspeccionarse pérdidas, gradientes y valores no finitos durante el entrenamiento.</p>
+</section><section class="cell" data-cell="81"><h5 id="toc-mla-49">4. Utilidad para CatBoost</h5>
+<p>Un embedding continuo permite buscar umbrales, pero una distribución amplia no garantiza cortes útiles ni independencia entre coordenadas. Comparar con atributos originales, categorías solas y red sola permite evaluar si la primera etapa aporta valor.</p>
+</section><section class="cell" data-cell="82"><h4 id="toc-mla-50">3.6.6.2. Resumen SHAP</h4>
+<p>El gráfico de barras informa la media del valor absoluto de las atribuciones por característica, calculadas con el método nativo de CatBoost sobre el Pool. Resume magnitud, no dirección del efecto. La suma de las atribuciones individuales más la referencia recupera la salida del modelo. SHAP explica el modelo aprendido y no establece causalidad ni convierte automáticamente un embedding en un factor interpretable.</p>
+</section><section class="cell" data-cell="83"><figure id="fig-3-15"><a aria-label="Ampliar: Magnitud media absoluta de las atribuciones SHAP del modelo, sin interpretación causal." href="../assets/mla/laboratorios/clase-03-celda-75-3.png" rel="noopener" target="_blank"><img alt="Magnitud media absoluta de las atribuciones SHAP del modelo, sin interpretación causal." height="700" loading="lazy" src="../assets/mla/laboratorios/clase-03-celda-75-3.png" width="1425"/></a><figcaption>Fig. 3.15. Magnitud media absoluta de las atribuciones SHAP del modelo, sin interpretación causal.</figcaption></figure></section><section class="cell"><h2 id="toc-mla-51">Referencias y lecturas</h2>
+<ul>
+<li><a href="https://proceedings.neurips.cc/paper/2018/hash/14491b756b3a51daac41c24863285549-Abstract.html">CatBoost: unbiased boosting with categorical features · NeurIPS 2018</a></li>
+<li><a href="https://catboost.ai/docs/en/references/training-parameters/common">Parámetros comunes · CatBoost</a></li>
+<li><a href="https://xgboost.readthedocs.io/en/stable/tutorials/categorical.html">Categorías · XGBoost</a></li>
+<li><a href="https://lightgbm.readthedocs.io/en/stable/Advanced-Topics.html#categorical-feature-support">Categorías · LightGBM</a></li>
+<li><a href="https://docs.pytorch.org/docs/stable/notes/randomness.html">Reproducibilidad · PyTorch</a></li>
+</ul>
+<p>Referencias del material de origen: <a href="https://drive.google.com/file/d/1fxbhCJ6f9nTZXvzaqboVLrMFQE1AlXZv/view">tesis de grado</a> y <a href="https://d2l.ai/">Dive into Deep Learning</a>. Los textos y figuras de terceros conservan sus créditos y condiciones.</p>
+</section><nav class="pager"><a href="../index.html#ml-avanzado-dl">← ML Avanzado y DL</a><a href="clase-04-feature-engineering-tsne.html">ML04 · Feature Engineering y t-SNE →</a></nav><footer><p>© 2026 Jacobo León Juárez. Material docente propio: <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a>. Código propio: Apache 2.0. Los materiales de terceros conservan sus autores y condiciones.</p><p><a href="../citar.html">Cómo citar · BibTeX</a> · <a href="https://github.com/leonCTFHTB/NLP-ASR-ML-DL-2026/archive/refs/heads/main.zip">Descargar repositorio</a></p><p class="third-party-notice">Los pasajes adaptados de Dive into Deep Learning conservan CC BY-SA 4.0 y su código MIT modificada. <a href="../citar.html">Créditos y condiciones de las fuentes</a></p><p><a href="../revision.html">Bibliografía y criterios del material</a></p></footer></main><script src="../assets/site.js"></script></body></html>
